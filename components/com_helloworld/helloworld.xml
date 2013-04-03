@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.0.x" method="upgrade">
+	<name>com_helloworld</name>
+	<creationDate>2013-04-01</creationDate>
+	<copyright>Copyright (C) 2012. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<author>Nha Bui</author>
+	<authorEmail>nha@redweb.dk</authorEmail>
+	<authorUrl>http://www.redcomponent.com</authorUrl>
+	<version>1.0.0</version>
+	<description>The first component for development.</description>
+
+	<files folder="site">
+		<filename>index.html</filename>
+		<filename>helloworld.php</filename>
+	</files>
+
+	<administration>
+		<files folder="admin">
+			<filename>index.html</filename>
+			<filename>helloworld.php</filename>
+		</files>
+	</administration>
+</extension>
