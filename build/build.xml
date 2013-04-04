@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Development" description="Build component and module for development Joomla extension" default="delivery">
 	<property name="dirs.root" value=".."/>
+	<property name="version" value="part03"/>
+
 	<property file="./build.properties"/>
 
 	<taskdef name="zipme" classname="phingext.ZipmeTask" />
@@ -39,7 +41,7 @@
 
 	<target name="release_module" description="Release all source code of module">
 		<!-- Create zip file for module -->
-		<zipme basedir="${dirs.mod.release}" destfile="${dirs.bin.mod}/mod_${mod.name}.zip" includeemptydirs="true">
+		<zipme basedir="${dirs.mod.release}" destfile="${dirs.bin.mod}/mod_${mod.name}.${version}.zip" includeemptydirs="true">
 			<fileset dir="${dirs.mod.release}">
 				<include name="**" />
 			</fileset>
@@ -48,7 +50,7 @@
 
 	<target name="release_component" description="Release all source code of component">
 		<!-- Create zip file for component -->
-		<zipme basedir="${dirs.com.release}" destfile="${dirs.bin.com}/com_${com.name}.zip" includeemptydirs="true">
+		<zipme basedir="${dirs.com.release}" destfile="${dirs.bin.com}/com_${com.name}.${version}.zip" includeemptydirs="true">
 			<fileset dir="${dirs.com.release}">
 				<include name="**" />
 			</fileset>
