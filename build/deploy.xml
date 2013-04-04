@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Development" description="Build component and module for development Joomla extension" default="delivery">
+<project name="Development" description="Deploy the components and modules to server" default="deploy">
 	<property name="dirs.root" value=".."/>
-	<property file="./build.properties"/>
+	<property file="./deploy.properties"/>
 
 	<taskdef name="zipme" classname="phingext.ZipmeTask" />
 
@@ -13,105 +13,19 @@
 		</tstamp>
 	</target>
 
-	<target name="delivery" description="Delivery all source code of module and component">
+	<target name="deploy" description="Deploy all source code of module and component">
 		<if>
-			<equals arg1="${mod.name}" arg2="" casesensitive="false" />
+			<equals arg1="${web.root}" arg2="" casesensitive="false" />
 			<then>
-				<echo>Don't implement module</echo>
+				<echo>Do not input web root to deploy</echo>
 			</then>
 			<else>
-				<!-- Create delivery directory -->
-				<mkdir dir="${dirs.delivery}"/>
-
-				<phingcall target="release_module" />
-			</else>
-		</if>
-
-		<if>
-			<equals arg1="${com.name}" arg2="" casesensitive="false" />
-			<then>
-				<echo>Don't implement component</echo>
-			</then>
-			<else>
-				<!-- Create delivery directory -->
-				<mkdir dir="${dirs.delivery}"/>
-
-				<phingcall target="release_component" />
+				<phingcall target="execute" />
 			</else>
 		</if>
 	</target>
 
-	<target name="release_module" description="Release all source code of module">
-		<!-- Create bin/modules directory -->
-		<delete dir="${dirs.mod.release}" quiet="yes" includeemptydirs="false"/>
-		<mkdir dir="${dirs.mod.release}"/>
-
-		<!-- Create bin/modules directory -->
-		<copy todir="${dirs.mod.release}">
-			<fileset id="modules" dir="${dirs.mod}/mod_${mod.name}">
-				<include name="**"/>
-			</fileset>
-		</copy>
-
-		<copy todir="${dirs.mod.release.lang}">
-			<fileset id="modules-lang" dir="${dirs.language.en}">
-				<include name="*mod_${mod.name}*"/>
-			</fileset>
-		</copy>
-
-		<!-- Create zip file for module -->
-		<zipme basedir="${dirs.mod.release}" destfile="${dirs.delivery}/mod_${mod.name}.zip" includeemptydirs="true">
-			<fileset dir="${dirs.mod.release}">
-				<include name="**" />
-			</fileset>
-		</zipme>
-	</target>
-
-	<target name="release_component" description="Release all source code of component">
-		<!-- Create bin/components directory -->
-		<delete dir="${dirs.com.release}" quiet="yes" includeemptydirs="false"/>
-		<mkdir dir="${dirs.com.release}"/>
-
-		<!-- Create bin/components directory -->
-		<copy todir="${dirs.com.release}">
-			<fileset id="com-admin" dir="${dirs.admin.com}/com_${com.name}">
-				<include name="**install*"/>
-				<include name="**${com.name}.xml"/>
-			</fileset>
-		</copy>
-
-		<copy todir="${dirs.com.release}/admin">
-			<fileset id="com-admin" dir="${dirs.admin.com}/com_${com.name}">
-				<include name="**"/>
-				<exclude name="**install.${com.name}*"/>
-				<exclude name="**${com.name}.xml"/>
-			</fileset>
-		</copy>
-
-		<copy todir="${dirs.com.release}/admin/language/en-GB">
-			<fileset id="com-admin-lang" dir="${dirs.admin.language.en}">
-				<include name="*com_${com.name}*"/>
-			</fileset>
-		</copy>
-
-		<copy todir="${dirs.com.release}/site">
-			<fileset id="com-site" dir="${dirs.com}/com_${com.name}">
-				<include name="**"/>
-				<exclude name="**.bak"/>
-			</fileset>
-		</copy>
-
-		<copy todir="${dirs.com.release}/site/language/en-GB">
-			<fileset id="com-site-lang" dir="${dirs.language.en}">
-				<include name="*com_${com.name}*"/>
-			</fileset>
-		</copy>
-
-		<!-- Create zip file for component -->
-		<zipme basedir="${dirs.com.release}" destfile="${dirs.delivery}/com_${com.name}.zip" includeemptydirs="true">
-			<fileset dir="${dirs.com.release}">
-				<include name="**" />
-			</fileset>
-		</zipme>
+	<target name="execute">
+		<echo>${host.root}/${web.root}/</echo>
 	</target>
 </project>
