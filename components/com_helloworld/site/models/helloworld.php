@@ -14,26 +14,35 @@ jimport('legacy.model.item');
 
 class HelloWorldModelHelloWorld extends JModelItem
 {
-	protected $msg;
+	/**
+	 * @var array messages
+	 */
+	protected $messages;
+
+	public function getTable($type = 'HelloWorld', $prefix = 'HelloWorldTable', $config = array())
+	{
+		return JTable::getInstance($type, $prefix, $config);
+	}
 
 	public function getMsg()
 	{
+		if (!is_array($this->messages))
+		{
+			$this->messages = array();
+		}
+
 		if(!isset($this->msg))
 		{
 
 			$id = JFactory::getApplication()->input->get('id', 1, 'INT' );
-			switch($id)
-			{
-				case 2:
-					$this->msg = "Good bye World";
-					break;
-				case 1:
-				default:
-					$this->msg = "Hello world from request in menu type";
-					break;
-			}
+
+			$table = $this->getTable();
+			$table->load($id);
+
+			// Assign the message
+			$this->messages[$id] = $table->greeting;
 		}
-		return $this->msg;
+		return $this->messages[$id];
 	}
 }
 ?>
