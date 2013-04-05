@@ -20,7 +20,18 @@ class HelloWorldModelHelloWorld extends JModelItem
 	{
 		if(!isset($this->msg))
 		{
-			$this->msg = "Hello World From Model";
+
+			$id = JFactory::getApplication()->input->get('id', 1, 'INT' );
+			switch($id)
+			{
+				case 2:
+					$this->msg = "Good bye World";
+					break;
+				case 1:
+				default:
+					$this->msg = "Hello world from request in menu type";
+					break;
+			}
 		}
 		return $this->msg;
 	}
