@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.0.x" method="upgrade">
-	<name>Hello World!</name>
+	<name>COM_HELLOWORLD</name>
 	<creationDate>2013-04-01</creationDate>
 	<copyright>Copyright (C) 2012. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
@@ -8,7 +8,7 @@
 	<authorEmail>nha@redweb.dk</authorEmail>
 	<authorUrl>http://www.redcomponent.com</authorUrl>
 	<version>0.0.7</version>
-	<description>The first component for development.</description>
+	<description>COM_HELLOWORLD_DESCRIPTION</description>
 
 	<install> <!-- Runs on install -->
 		<sql>
@@ -30,22 +30,31 @@
 		<filename>helloworld.php</filename>
 		<filename>index.html</filename>
 		<filename>controller.php</filename>
+		<folder>language</folder>
 		<folder>models</folder>
 		<folder>views</folder>
 	</files>
+	<languages folder="site">
+		<language tag="en-GB">language/en-GB/en-GB.com_helloworld.ini</language>
+	</languages>
 
 	<administration>
 		<!-- Administration Menu Section -->
-		<menu>Hello World!</menu>
+		<menu>COM_HELLOWORLD</menu>
 
 		<files folder="admin">
 			<filename>controller.php</filename>
 			<filename>helloworld.php</filename>
 			<filename>index.html</filename>
+			<folder>language</folder>
 			<folder>models</folder>
 			<folder>sql</folder>
 			<folder>tables</folder>
 			<folder>views</folder>
 		</files>
+		<languages folder="admin">
+			<language tag="en-GB">language/en-GB/en-GB.com_helloworld.ini</language>
+			<language tag="en-GB">language/en-GB/en-GB.com_helloworld.sys.ini</language>
+		</languages>
 	</administration>
 </extension>
