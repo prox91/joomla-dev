@@ -13,18 +13,18 @@ defined('_JEXEC') or die('Restricted access');
 jimport('legacy.view.legacy');
 
 /**
- * Class HelloWorldViewHelloWorlds
+ * Class HelloWorldViewHelloWorld
  */
-class HelloWorldViewHelloWorlds extends JViewLegacy
+class HelloWorldViewHelloWorld extends JViewLegacy
 {
 	/**
 	 * Display function
 	 */
 	public function display($tpl = null)
 	{
-		// Get data from the model
-		$items = $this->get('Items');
-		$pagination = $this->get('Pagination');
+		// Get data
+		$item = $this->get('Item');
+		$form = $this->get('Form');
 
 		// Check for error
 		if(count($errors = $this->get('Errors')))
@@ -34,11 +34,11 @@ class HelloWorldViewHelloWorlds extends JViewLegacy
 		}
 
 		// Assign data to view
-		$this->items = $items;
-		$this->pagination  = $pagination;
+		$this->item = $item;
+		$this->form = $form;
 
 		// Set the tool bar
-		$this->addToolbar();
+		$this->_addToolbar();
 
 		// Display the template
 		parent::display($tpl);
@@ -47,12 +47,18 @@ class HelloWorldViewHelloWorlds extends JViewLegacy
 	/**
 	 * Setting the toolbar
 	 */
-	public function addToolbar()
+	private function _addToolbar()
 	{
-		JToolbarHelper::title(JText::_('COM_HELLOWORLD_MANAGER_HELLOWORLDS'));
-		JToolbarHelper::addNew('helloworld.add');
-		JToolbarHelper::editList('helloworld.edit');
-		JToolbarHelper::deleteList('', 'helloworlds.delete');
+		$input = JFactory::getApplication()->input;
+		$input->set('hidemainmenu', true);
+
+		$isNew = ($this->item->id == 0);
+
+		JToolbarHelper::title($isNew ? JText::_('COM_HELLOWORLD_MANAGER_HELLOWORLD_NEW')
+									: JText::_('COM_HELLOWORLD_MANAGER_HELLOWORLD_EDIT'));
+		JToolbarHelper::save('helloworlds.save');
+		JToolbarHelper::cancel('helloworld.cancel', $isNew ? 'JTOOLBAR_CANCEL'
+															: 'JTOOLBAR_CLOSE');
 	}
 }
 ?>
