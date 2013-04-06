@@ -7,7 +7,7 @@
 	<author>Nha Bui</author>
 	<authorEmail>nha@redweb.dk</authorEmail>
 	<authorUrl>http://www.redcomponent.com</authorUrl>
-	<version>0.0.6</version>
+	<version>0.0.7</version>
 	<description>The first component for development.</description>
 
 	<install> <!-- Runs on install -->
@@ -39,11 +39,13 @@
 		<menu>Hello World!</menu>
 
 		<files folder="admin">
+			<filename>controller.php</filename>
 			<filename>helloworld.php</filename>
 			<filename>index.html</filename>
 			<folder>models</folder>
 			<folder>sql</folder>
 			<folder>tables</folder>
+			<folder>views</folder>
 		</files>
 	</administration>
 </extension>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Development" description="Build component and module for development Joomla extension" default="delivery">
 	<property name="dirs.root" value=".."/>
-	<property name="version" value="part06"/>
+	<property name="version" value="part07"/>
 
 	<property file="./build.properties"/>
 
