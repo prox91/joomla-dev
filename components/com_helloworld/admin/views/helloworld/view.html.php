@@ -18,6 +18,13 @@ jimport('legacy.view.legacy');
 class HelloWorldViewHelloWorld extends JViewLegacy
 {
 	/**
+	 * View form
+	 *
+	 * @var         form
+	 */
+	protected $form = null;
+
+	/**
 	 * Display function
 	 */
 	public function display($tpl = null)
@@ -38,16 +45,19 @@ class HelloWorldViewHelloWorld extends JViewLegacy
 		$this->form = $form;
 
 		// Set the tool bar
-		$this->_addToolbar();
+		$this->addToolbar();
 
 		// Display the template
 		parent::display($tpl);
+
+		// Set the documents
+		$this->setDocument();
 	}
 
 	/**
 	 * Setting the toolbar
 	 */
-	private function _addToolbar()
+	public function addToolbar()
 	{
 		$input = JFactory::getApplication()->input;
 		$input->set('hidemainmenu', true);
@@ -59,6 +69,19 @@ class HelloWorldViewHelloWorld extends JViewLegacy
 		JToolbarHelper::save('helloworlds.save');
 		JToolbarHelper::cancel('helloworld.cancel', $isNew ? 'JTOOLBAR_CANCEL'
 															: 'JTOOLBAR_CLOSE');
+	}
+
+	/**
+	 * Method to set up the document properties
+	 *
+	 * @return void
+	 */
+	protected function setDocument()
+	{
+		$isNew = ($this->item->id < 1);
+		$document = JFactory::getDocument();
+		$document->setTitle($isNew ? JText::_('COM_HELLOWORLD_HELLOWORLD_CREATING')
+			: JText::_('COM_HELLOWORLD_HELLOWORLD_EDITING'));
 	}
 }
 ?>
