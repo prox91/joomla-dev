@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module"
-			version="2.5.x"
-			method="upgrade">
+           version="2.5.x"
+           method="upgrade">
 	<name>redTWITTER Module</name>
 	<version>1.1.2</version>
 	<creationDate>25-03-2011</creationDate>
@@ -50,12 +50,12 @@
 				       label="MOD_REDTWITTER_TWITTER_ITEM_MAX_DISPLAY_LBL"
 				       description="MOD_REDTWITTER_TWITTER_ITEM_MAX_DISPLAY_DESC"/>
 				<field name="title_length"
-						type="text"
-						size="20"
-						default="30"
-						filter='int'
-						label="MOD_REDTWITTER_TWITTER_TITLE_LENGTH_LBL"
-						description="MOD_REDTWITTER_TWITTER_TITLE_LENGTH_DESC"/>
+				       type="text"
+				       size="20"
+				       default="30"
+				       filter='int'
+				       label="MOD_REDTWITTER_TWITTER_TITLE_LENGTH_LBL"
+				       description="MOD_REDTWITTER_TWITTER_TITLE_LENGTH_DESC"/>
 				<field
 						name="display_slide"
 						type="list"
@@ -65,13 +65,13 @@
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-					<field name="item_per_slide"
-						type="text"
-						size="10"
-						default="10"
-						filter='int'
-						label="MOD_REDTWITTER_TWITTER_ITEM_PER_SLIDE_LBL"
-						description="MOD_REDTWITTER_TWITTER_ITEM_PER_SLIDE_DESC"/>
+				<field name="item_per_slide"
+				       type="text"
+				       size="10"
+				       default="10"
+				       filter='int'
+				       label="MOD_REDTWITTER_TWITTER_ITEM_PER_SLIDE_LBL"
+				       description="MOD_REDTWITTER_TWITTER_ITEM_PER_SLIDE_DESC"/>
 			</fieldset>
 
 			<fieldset

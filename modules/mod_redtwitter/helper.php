@@ -12,26 +12,20 @@ defined('_JEXEC') or die('Restricted access');
 JLoader::register('RedtwitterHelper', JPATH_SITE . '/components/com_redtwitter/helpers/redtwitter.php');
 
 /**
- * modRedTwitterHelper class
- *
- * @package  RedTwitter
- * @since    11.1
+ * Class modRedTwitterHelper
  */
 abstract class modRedTwitterHelper
 {
 	/**
-	 * getTwitterList function
-	 *
-	 * @param   array() $twitter_id  twitter id list.
-	 *
-	 * @return $twitter_info
-	 *
-	 * @since   11.1
+	 * @param array $twitter_id
+	 * @param $order_type
+	 * @param $max_item_displayed
+	 * @return array
 	 */
 	public static function getTwitterList($twitter_id = array(), $order_type, $max_item_displayed)
 	{
 		JModelLegacy::addIncludePath(JPATH_ROOT . '/components/com_redtwitter/models', 'redtwitterModelfollowedprofiles');
-		$model    = JModelLegacy::getInstance('followedprofiles', 'redtwitterModel', array('ignore_request' => true));
+		$model = JModelLegacy::getInstance('followedprofiles', 'redtwitterModel', array('ignore_request' => true));
 
 		$twitter_data =& $model->getData($twitter_id);
 		$twitter_info = RedtwitterHelper::get_alldata($twitter_data, $order_type, $max_item_displayed);
@@ -39,10 +33,14 @@ abstract class modRedTwitterHelper
 		return $twitter_info;
 	}
 
+	/**
+	 * @param $time
+	 * @return string
+	 */
 	public static function ago($time)
 	{
 		$periods = array("second", "minute", "hour", "day", "week", "month", "year", "decade");
-		$lengths = array("60", "60", "24", "7", "4.35", "12", "10");
+		$lengths = array("1", "60", "60", "24", "7", "4.35", "12", "10");
 
 		$now = time();
 
@@ -57,11 +55,11 @@ abstract class modRedTwitterHelper
 
 		if ($difference != 1)
 		{
-			$periods[$j] = JText::_('MOD_REDTWITTER_TWITTER_PLURAL_PERIOD'.$j);
+			$periods[$j] = JText::_('MOD_REDTWITTER_TWITTER_PLURAL_PERIOD' . $j);
 		}
 		else
 		{
-			$periods[$j] = JText::_('MOD_REDTWITTER_TWITTER_PERIOD'.$j);
+			$periods[$j] = JText::_('MOD_REDTWITTER_TWITTER_PERIOD' . $j);
 		}
 
 		return "$difference $periods[$j]";

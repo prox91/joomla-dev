@@ -7,7 +7,7 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  * Developed by email@recomponent.com - redCOMPONENT.com
  */
-defined('JPATH_PLATFORM') or die;
+defined('_JEXEC') or die('Restricted access');
 
 /**
  * Form Field class for the Joomla Platform.

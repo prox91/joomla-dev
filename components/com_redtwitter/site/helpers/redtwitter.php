@@ -11,6 +11,8 @@ defined('_JEXEC') or die;
 
 abstract class RedtwitterHelper
 {
+	public static $http;
+
 	/**
 	 * getcom_twitter
 	 *
@@ -20,10 +22,8 @@ abstract class RedtwitterHelper
 	 */
 	public static function getcom_twitter($login)
 	{
-		global $no_ofprofiles;
-
 		$tweets = "http://api.twitter.com/1/statuses/user_timeline.rss?screen_name=" . $login;
-		$twi    = file_get_contents($tweets);
+		$twi = self::_get_response_content($tweets);
 
 		if ($twi != "")
 		{
@@ -53,17 +53,10 @@ abstract class RedtwitterHelper
 	 */
 	public static function getcom_twitter_detail($name)
 	{
-		global $no_ofprofiles;
 		$tweets = "http://api.twitter.com/1/statuses/user_timeline.xml?screen_name=" . $name;
-		/*
-		$tw = curl_init();
-		curl_setopt($tw, CURLOPT_URL, $tweets);
-		curl_setopt($tw, CURLOPT_RETURNTRANSFER, TRUE);
-		$twi = curl_exec($tw);
-		*/
+		$twi = self::_get_response_content($tweets);
 
 		$tweeters = '';
-		$twi      = file_get_contents($tweets);
 
 		if ($twi != "")
 		{
@@ -190,5 +183,47 @@ abstract class RedtwitterHelper
 		return (strcasecmp($a[$key2sort], $b[$key2sort]));
 	}
 
-}
+	private static function _get_response_content($host)
+	{
+		if (empty(self::$http))
+		{
+			$options = new JRegistry;
 
+			try
+			{
+				$transport  = new JHttpTransportStream($options);
+				self::$http = new JHttp($options, $transport);
+			}
+			catch (RuntimeException $e)
+			{
+				try
+				{
+					$transport  = new JHttpTransportCurl($options);
+					self::$http = new JHttp($options, $transport);
+				}
+				catch (RuntimeException $e)
+				{
+					try
+					{
+						$transport  = new JHttpTransportSocket($options);
+						self::$http = new JHttp($options, $transport);
+					}
+					catch (RuntimeException $e)
+					{
+					}
+				}
+			}
+		}
+
+		try
+		{
+			$response_content = self::$http->get($host)->body;
+		}
+		catch (RuntimeException $e)
+		{
+			$response_content = array();
+		}
+
+		return $response_content;
+	}
+}

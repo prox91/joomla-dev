@@ -7,18 +7,19 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  *             Developed by email@recomponent.com - redCOMPONENT.com
  */
+defined('_JEXEC') or die('Restricted access');
 
 // Include the syndicate functions only once
 require_once dirname(__FILE__) . '/helper.php';
 
-$document = JFactory::getDocument();
+$document        = JFactory::getDocument();
 $moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
 
-if($params->get('twitter_id'))
+if ($params->get('twitter_id'))
 {
-	$order_type = $params->get('order_type');
+	$order_type         = $params->get('order_type');
 	$max_item_displayed = $params->get('item_max_display');
-	$twitters = modRedTwitterHelper::getTwitterList($params->get('twitter_id'), $order_type, $max_item_displayed);
+	$twitters           = modRedTwitterHelper::getTwitterList($params->get('twitter_id'), $order_type, $max_item_displayed);
 }
 
 require JModuleHelper::getLayoutPath('mod_redtwitter', $params->get('layout', 'default'));
