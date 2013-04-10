@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `#__redtwitter_followed_profiles` (
 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT COLLATE=utf8_general_ci;
 
-CREATE TABLE IF NOT EXISTS `#__redtwitter_app_info` (
+CREATE TABLE IF NOT EXISTS `#__redtwitter_oauth_info` (
 `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
 `consumer_key` VARCHAR(100)  NOT NULL ,
 `consumer_secret` VARCHAR(100)  NOT NULL ,

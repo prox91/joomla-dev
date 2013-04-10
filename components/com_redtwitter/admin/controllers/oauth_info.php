@@ -15,7 +15,7 @@ jimport('joomla.application.component.controller');
 /**
  * Class FollowedprofilesController
  */
-class AppUserInfoController extends JControllerLegacy
+class RedtwitterControllerOauth_Info extends JControllerLegacy
 {
 	/**
 	 * @param array $default

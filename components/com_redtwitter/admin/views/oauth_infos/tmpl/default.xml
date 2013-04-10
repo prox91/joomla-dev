@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Followed profiles">
+		<message>
+			<![CDATA[COM_REDTWITTER_FOLLOWED_PROFILES]]>
+		</message>
+	</layout>
+	<state>
+		<name>COM_REDTWITTER_FOLLOWED_PROFILES</name>
+		<description>COM_REDTWITTER_FOLLOWED_PROFILES_DESC</description>
+	</state>
+</metadata>

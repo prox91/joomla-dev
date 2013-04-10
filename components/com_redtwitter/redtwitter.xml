@@ -46,8 +46,8 @@
 		<menu img="components/com_redtwitter/assets/images/s_com_redtwitter.png">COM_REDTWITTER</menu>
 		<submenu>
 
-			<menu link="option=com_redtwitter&amp;view=app_user_info"
-			      view="app_user_info"
+			<menu link="option=com_redtwitter&amp;view=oauth_info"
+			      view="oauth_info"
 			      img="components/com_redtwitter/assets/images/s_followed_profiles.png"
 			      alt="Redtwitter/Followed_profiles">COM_REDTWITTER_TITLE_APP_INFO
 			</menu>
