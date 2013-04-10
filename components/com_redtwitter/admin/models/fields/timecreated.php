@@ -1,13 +1,14 @@
 <?php
 /**
- * @version     1.0.0
- * @package     com_redtwitter
- * @copyright   Copyright (C) 2012. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- * @author      Ronni K. G. Christiansen <email@redweb.dk> - http://www.redcomponent.com
+ * @version    1.0.0
+ * @package    Com_Redtwitter
+ * @author     Ronni K. G. Christiansen<email@redweb.dk> - http://www.redcomponent.com
+ * @copyright  Copyright (C) 2010 redCOMPONENT.com. All rights reserved.
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ *             Developed by email@recomponent.com - redCOMPONENT.com
  */
-
-defined('JPATH_BASE') or die;
+// No direct access
+defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.form.formfield');
 
@@ -19,31 +20,34 @@ class JFormFieldTimecreated extends JFormField
 	/**
 	 * The form field type.
 	 *
-	 * @var		string
-	 * @since	1.6
+	 * @var        string
+	 * @since    1.6
 	 */
 	protected $type = 'timecreated';
 
 	/**
 	 * Method to get the field input markup.
 	 *
-	 * @return	string	The field input markup.
-	 * @since	1.6
+	 * @return    string    The field input markup.
+	 * @since    1.6
 	 */
 	protected function getInput()
 	{
 		// Initialize variables.
 		$html = array();
-        
+
 		$time_created = $this->value;
-		if (!$time_created) {
+
+		if (!$time_created)
+		{
 			$time_created = date("Y-m-d H:i:s");
-			$html[] = '<input type="hidden" name="'.$this->name.'" value="'.$time_created.'" />';
+			$html[]       = '<input type="hidden" name="' . $this->name . '" value="' . $time_created . '" />';
 		}
-		$jdate = new JDate($time_created);
+
+		$jdate       = new JDate($time_created);
 		$pretty_date = $jdate->format(JText::_('DATE_FORMAT_LC2'));
-		$html[] = "<div>".$pretty_date."</div>";
-        
+		$html[]      = "<div>" . $pretty_date . "</div>";
+
 		return implode($html);
 	}
 }

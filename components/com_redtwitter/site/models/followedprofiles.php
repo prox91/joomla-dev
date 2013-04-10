@@ -1,12 +1,24 @@
 <?php
- 
+/**
+ * @version    1.0.0
+ * @package    Com_Redtwitter
+ * @author     Ronni K. G. Christiansen<email@redweb.dk> - http://www.redcomponent.com
+ * @copyright  Copyright (C) 2010 redCOMPONENT.com. All rights reserved.
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * Developed by email@recomponent.com - redCOMPONENT.com
+ */
+// No direct access
+defined('_JEXEC') or die('Restricted access');
+
 jimport('joomla.application.component.model');
-  
-class redtwitterModelfollowedprofiles extends JModelLegacy
+
+/**
+ * Class redtwitterModelfollowedprofiles
+ */
+class RedtwitterModelfollowedprofiles extends JModelLegacy
 {
-	 
-	public $pagination  = null;		/* Paginatio */
-	public $total		= null;
+	public $pagination = null; /* Paginatio */
+	public $total = null;
 
 	/**
 	 * Class constructor, overridden in descendant classes.
@@ -36,7 +48,7 @@ class redtwitterModelfollowedprofiles extends JModelLegacy
 	/**
 	 * Get data function
 	 *
-	 * @param   array()  $twitter_id  Array twitter id.
+	 * @param   array() $twitter_id  Array twitter id.
 	 *
 	 * @since   11.1
 	 * @return   dataa
@@ -58,7 +70,7 @@ class redtwitterModelfollowedprofiles extends JModelLegacy
 	/**
 	 * _loadData function
 	 *
-	 * @param   array()  $twitter_id  Array twitter id.
+	 * @param   array() $twitter_id  Array twitter id.
 	 *
 	 * @since   11.1
 	 * @return   true
@@ -94,14 +106,14 @@ class redtwitterModelfollowedprofiles extends JModelLegacy
 	{
 		if (empty($this->_data))
 		{
-			$detail[0]					= new stdClass;
-			$detail[0]->id				= 0;
-			$detail[0]->username		= null;
+			$detail[0]                  = new stdClass;
+			$detail[0]->id              = 0;
+			$detail[0]->username        = null;
 			$detail[0]->twitterusername = null;
 			$detail[0]->twitterpassword = null;
-			$detail[0]->private			= 0;
-			$detail[0]->params 			= null;
-			$this->_data				= $detail;
+			$detail[0]->private         = 0;
+			$detail[0]->params          = null;
+			$this->_data                = $detail;
 
 			return (boolean) $this->_data;
 		}

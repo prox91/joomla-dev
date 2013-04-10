@@ -14,7 +14,7 @@ jimport('joomla.application.component.view');
 /**
  * Class RedtwitterViewFollowedProfiles
  */
-class RedtwitterViewFollowedProfiles extends JViewLegacy
+class RedtwitterViewAppUserInfo extends JViewLegacy
 {
 	/**
 	 * @param   null $tpl

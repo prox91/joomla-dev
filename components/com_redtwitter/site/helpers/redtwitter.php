@@ -1,14 +1,18 @@
 <?php
 /**
- * @version     1.0.0
- * @package     com_redtwitter
- * @copyright   Copyright (C) 2012. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- * @author      Ronni K. G. Christiansen <email@redweb.dk> - http://www.redcomponent.com
+ * @version    1.0.0
+ * @package    Com_Redtwitter
+ * @author     Ronni K. G. Christiansen<email@redweb.dk> - http://www.redcomponent.com
+ * @copyright  Copyright (C) 2010 redCOMPONENT.com. All rights reserved.
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ *             Developed by email@recomponent.com - redCOMPONENT.com
  */
+// No direct access
+defined('_JEXEC') or die('Restricted access');
 
-defined('_JEXEC') or die;
-
+/**
+ * Class RedtwitterHelper
+ */
 abstract class RedtwitterHelper
 {
 	public static $http;
@@ -16,14 +20,14 @@ abstract class RedtwitterHelper
 	/**
 	 * getcom_twitter
 	 *
-	 * @param   array  $login  Login info
+	 * @param   array $login  Login info
 	 *
 	 * @return   $tweeters
 	 */
 	public static function getcom_twitter($login)
 	{
-		$tweets = "http://api.twitter.com/1/statuses/user_timeline.rss?screen_name=" . $login;
-		$twi = self::_get_response_content($tweets);
+		$tweets = "http://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=" . $login;
+		$twi    = self::_get_response_content($tweets);
 
 		if ($twi != "")
 		{
@@ -47,14 +51,14 @@ abstract class RedtwitterHelper
 	/**
 	 * getcom_twitter_detail
 	 *
-	 * @param   array  $name  Name
+	 * @param   array $name  Name
 	 *
 	 * @return   $tweeters
 	 */
 	public static function getcom_twitter_detail($name)
 	{
-		$tweets = "http://api.twitter.com/1/statuses/user_timeline.xml?screen_name=" . $name;
-		$twi = self::_get_response_content($tweets);
+		$tweets = "http://api.twitter.com/1.1/statuses/user_timeline.xml?screen_name=" . $name;
+		$twi    = self::_get_response_content($tweets);
 
 		$tweeters = '';
 
@@ -74,14 +78,13 @@ abstract class RedtwitterHelper
 	}
 
 	/**
-	 * get_alldata
+	 * @param $lists
+	 * @param $order_type
+	 * @param $max_item_displayed
 	 *
-	 * @param   array  $lists  list paramter
-	 * @param   string  $date_format  data format
-	 *
-	 * @return   $tweeters
+	 * @return array
 	 */
-	public static function get_alldata($lists, $order_type, $max_item_displayed)
+	public static function get_alldata($lists, $order_type = 0, $max_item_displayed = 20)
 	{
 		$twitdata   = array();
 		$twiterdata = array();
@@ -99,16 +102,9 @@ abstract class RedtwitterHelper
 			}
 		}
 
-		$coun = count($twitdata);
-
-		$arrmerge = array();
 		$dt1      = array();
 		$array1   = array();
-		$arre     = array();
 		$j        = 0;
-
-		$arr_date = array();
-		$arr_name = array();
 
 		for ($a = 0; $a < count($twitdata); $a++)
 		{
@@ -118,8 +114,8 @@ abstract class RedtwitterHelper
 
 				foreach ($twitdata[$a]->channel->item as $twit1)
 				{
-					$date      = new DateTime($twit1->pubDate);
-					$dt1[$j]   = $date->format("Y-m-d H:i:s");
+					$date    = new DateTime($twit1->pubDate);
+					$dt1[$j] = $date->format("Y-m-d H:i:s");
 
 					$id = (string) $twiterdata[$a]->status[$r]->user->id;
 
@@ -155,11 +151,11 @@ abstract class RedtwitterHelper
 		}
 
 		// Order by date
-		if($order_type == 0)
+		if ($order_type == 0)
 		{
 			ksort($array1);
-		} // Order by name
-		else
+		}
+		else // Order by name
 		{
 			self::_sort_by_key($array1, 'name');
 		}
@@ -167,6 +163,12 @@ abstract class RedtwitterHelper
 		return array_reverse($array1);
 	}
 
+	/**
+	 * @param $arr
+	 * @param $key
+	 *
+	 * @return mixed
+	 */
 	private static function _sort_by_key($arr, $key)
 	{
 		global $key2sort;
@@ -176,6 +178,12 @@ abstract class RedtwitterHelper
 		return ($arr);
 	}
 
+	/**
+	 * @param $a
+	 * @param $b
+	 *
+	 * @return int
+	 */
 	private static function _sbk($a, $b)
 	{
 		global $key2sort;
@@ -183,6 +191,11 @@ abstract class RedtwitterHelper
 		return (strcasecmp($a[$key2sort], $b[$key2sort]));
 	}
 
+	/**
+	 * @param $host
+	 *
+	 * @return array
+	 */
 	private static function _get_response_content($host)
 	{
 		if (empty(self::$http))

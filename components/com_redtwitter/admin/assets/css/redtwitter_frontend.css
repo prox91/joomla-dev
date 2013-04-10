@@ -1,57 +1,56 @@
 #tweetlist {
-	border: none;
+	border : none;
 }
 
 #tweetlist .tweet {
-	width: 100%;
-	display: table;
+	width   : 100%;
+	display : table;
 }
 
-#tweetlist .tweet:nth-child(even)
-{
-	background:#f1f1f1;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-} 
+#tweetlist .tweet:nth-child(even) {
+	background         : #f1f1f1;
+	-moz-border-radius : 5px;
+	border-radius      : 5px;
+}
 
 #tweetlist .image {
-	float: left;
-	width: 48px;
-	height: 48px;
-	border: 2px solid #cc3333;
-	margin: 10px;
-	display: table-cell;
+	float   : left;
+	width   : 48px;
+	height  : 48px;
+	border  : 2px solid #FFFFFF;
+	margin  : 10px;
+	display : table-cell;
 }
 
 #tweetlist .content {
-	padding: 10px 10px 10px 0px;
-	min-height: 52px;
-	display: table-cell;
-	vertical-align: top;
-    width: 100%;
+	padding        : 10px 10px 10px 0px;
+	min-height     : 52px;
+	display        : table-cell;
+	vertical-align : top;
+	width          : 100%;
 }
 
-* + html #tweetlist .content  {  
-    width: auto !important;
-}  
+* + html #tweetlist .content {
+	width : auto !important;
+}
 
 #tweetlist .text {
-	text-align: justify;
+	text-align : justify;
 }
 
 #tweetlist .date {
-	text-align: right;
-	color: #666666;
-	fontsize: 10px;
-	margin-bottom: 5px;
+	text-align    : right;
+	color         : #666666;
+	fontsize      : 10px;
+	margin-bottom : 5px;
 }
 
 /*user specific style*/
 #tweetlist .user_118635130 .image {
-	border: 2px solid green;
+	border : 2px solid green;
 }
 
 .tweetlist_footer_link a {
-	font-size: 10px;
-	color: #666666;
+w	font-size : 10px;
+	color     : #666666;
 }

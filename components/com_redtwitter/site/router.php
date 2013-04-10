@@ -1,28 +1,32 @@
 <?php
 /**
- * @version     1.0.0
- * @package     com_redtwitter
- * @copyright   Copyright (C) 2012. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- * @author      Ronni K. G. Christiansen <email@redweb.dk> - http://www.redcomponent.com
+ * @version    1.0.0
+ * @package    Com_Redtwitter
+ * @author     Ronni K. G. Christiansen<email@redweb.dk> - http://www.redcomponent.com
+ * @copyright  Copyright (C) 2010 redCOMPONENT.com. All rights reserved.
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * Developed by email@recomponent.com - redCOMPONENT.com
  */
-
 // No direct access
-defined('_JEXEC') or die;
+defined('_JEXEC') or die('Restricted access');
 
 /**
- * @param	array	A named array
- * @return	array
+ * @param   array  $query  A named array
+ *
+ * @return  array
  */
-function RedtwitterBuildRoute(&$query)
+function redtwitterBuildRoute(&$query)
 {
 	$segments = array();
 
-	if (isset($query['task'])) {
+	if (isset($query['task']))
+	{
 		$segments[] = $query['task'];
 		unset($query['task']);
 	}
-	if (isset($query['id'])) {
+
+	if (isset($query['id']))
+	{
 		$segments[] = $query['id'];
 		unset($query['id']);
 	}
@@ -31,8 +35,8 @@ function RedtwitterBuildRoute(&$query)
 }
 
 /**
- * @param	array	A named array
- * @param	array
+ * @param    array    A named array
+ * @param    array
  *
  * Formats:
  *
@@ -40,20 +44,24 @@ function RedtwitterBuildRoute(&$query)
  *
  * index.php?/redtwitter/id/Itemid
  */
-function RedtwitterParseRoute($segments)
+function redtwitterParseRoute($segments)
 {
 	$vars = array();
 
-	// view is always the first element of the array
+	// View is always the first element of the array
 	$count = count($segments);
 
 	if ($count)
 	{
 		$count--;
 		$segment = array_shift($segments);
-		if (is_numeric($segment)) {
+
+		if (is_numeric($segment))
+		{
 			$vars['id'] = $segment;
-		} else {
+		}
+		else
+		{
 			$vars['task'] = $segment;
 		}
 	}
@@ -61,8 +69,10 @@ function RedtwitterParseRoute($segments)
 	if ($count)
 	{
 		$count--;
-		$segment = array_shift($segments) ;
-		if (is_numeric($segment)) {
+		$segment = array_shift($segments);
+
+		if (is_numeric($segment))
+		{
 			$vars['id'] = $segment;
 		}
 	}
