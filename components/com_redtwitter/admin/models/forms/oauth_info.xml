@@ -5,51 +5,50 @@
 		<field name="id"
 		       type="text"
 		       default="0"
-		       label="COM_REDTWITTER_FORM_LBL_FOLLOWED_PROFILE_ID"
+		       label="COM_REDTWITTER_FORM_LBL_OAUTH_INFO_ID"
 		       readonly="true"
 		       class="readonly"
 		       description="JGLOBAL_FIELD_ID_DESC"/>
 
-		<field name="name"
+		<field name="consumer_key"
 		       type="text"
 		       size="40"
 		       class="inputbox"
-
-		       label="COM_REDTWITTER_FORM_LBL_FOLLOWED_PROFILE_NAME"
-		       description="COM_REDTWITTER_FORM_DESC_FOLLOWED_PROFILE_NAME"
-
-
+		       label="COM_REDTWITTER_FORM_LBL_OAUTH_INFO_CONSUMER_KEY"
+		       description="COM_REDTWITTER_FORM_DESC_OAUTH_INFO_CONSUMER_KEY"
 		       required="true"
 		       filter="safehtml"/>
 
-		<field name="twitterusername"
+		<field name="consumer_secret"
 		       type="text"
 		       size="40"
 		       class="inputbox"
-
-		       label="COM_REDTWITTER_FORM_LBL_FOLLOWED_PROFILE_TWITTERUSERNAME"
-		       description="COM_REDTWITTER_FORM_DESC_FOLLOWED_PROFILE_TWITTERUSERNAME"
-
-
+		       label="COM_REDTWITTER_FORM_LBL_OAUTH_INFO_CONSUMER_SECRET"
+		       description="COM_REDTWITTER_FORM_DESC_OAUTH_INFO_CONSUMER_SECRET"
 		       required="true"
 		       filter="safehtml"/>
 
-		<field name="twitterpassword"
+		<field name="access_token"
 		       type="text"
 		       size="40"
 		       class="inputbox"
+		       label="COM_REDTWITTER_FORM_LBL_OAUTH_INFO_ACCESS_TOKEN"
+		       description="COM_REDTWITTER_FORM_DESC_OAUTH_INFO_ACCESS_TOKEN"
+		       filter="safehtml"/>
 
-		       label="COM_REDTWITTER_FORM_LBL_FOLLOWED_PROFILE_TWITTERPASSWORD"
-		       description="COM_REDTWITTER_FORM_DESC_FOLLOWED_PROFILE_TWITTERPASSWORD"
-
-
+		<field name="access_token_secret"
+		       type="text"
+		       size="40"
+		       class="inputbox"
+		       label="COM_REDTWITTER_FORM_LBL_OAUTH_INFO_ACCESS_TOKEN_SECRET"
+		       description="COM_REDTWITTER_FORM_DESC_OAUTH_INFO_ACCESS_TOKEN_SECRET"
 		       filter="safehtml"/>
 
 		<field name="created_by"
 		       type="createdby"
 		       default=""
-		       label="COM_REDTWITTER_FORM_LBL_FOLLOWED_PROFILE_CREATED_BY"
-		       description="COM_REDTWITTER_FORM_DESC_FOLLOWED_PROFILE_CREATED_BY"/>
+		       label="COM_REDTWITTER_FORM_LBL_OAUTH_INFO_CREATED_BY"
+		       description="COM_REDTWITTER_FORM_DESC_OAUTH_INFO_CREATED_BY"/>
 
 		<field
 				name="state"
@@ -62,13 +61,6 @@
 			<option value="1">JPUBLISHED</option>
 			<option value="0">JUNPUBLISHED</option>
 		</field>
-
-		<field name="checked_out"
-		       type="hidden"
-		       filter="unset"/>
-		<field name="checked_out_time"
-		       type="hidden"
-		       filter="unset"/>
 
 	</fieldset>
 
