@@ -13,7 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.modeladmin');
 
 /**
- * Class RedtwitterModelfollowed_Profile
+ * Class RedtwitterModelOauth_Info
  */
 class RedtwitterModelOauth_Info extends JModelAdmin
 {
@@ -49,9 +49,6 @@ class RedtwitterModelOauth_Info extends JModelAdmin
 	 */
 	public function getForm($data = array(), $loadData = true)
 	{
-		// Initialise variables.
-		$app = JFactory::getApplication();
-
 		// Get the form.
 		$form = $this->loadForm('com_redtwitter.oauth_info', 'oauth_info', array('control' => 'jform', 'load_data' => $loadData));
 
@@ -105,7 +102,7 @@ class RedtwitterModelOauth_Info extends JModelAdmin
 	 *
 	 * @since    1.6
 	 */
-	protected function prepareTable($table)
+	protected function prepareTable(&$table)
 	{
 		jimport('joomla.filter.output');
 

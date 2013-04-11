@@ -13,7 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.controlleradmin');
 
 /**
- * Class FollowedprofilesController
+ * Class RedtwitterControllerOauth_Infos
  */
 class RedtwitterControllerOauth_Infos extends JControllerAdmin
 {
@@ -21,7 +21,7 @@ class RedtwitterControllerOauth_Infos extends JControllerAdmin
 	 * Proxy for getModel.
 	 * @since    1.6
 	 */
-	public function getModel($name = 'oauth_info', $prefix = 'RedtwitterModel')
+	public function getModel($name = 'Oauth_Info', $prefix = 'RedtwitterModel')
 	{
 		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
 

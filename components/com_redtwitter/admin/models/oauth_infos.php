@@ -13,7 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.modellist');
 
 /**
- * Methods supporting a list of Redtwitter records.
+ * Class RedtwitterModelOauth_Infos
  */
 class RedtwitterModelOauth_Infos extends JModelList
 {

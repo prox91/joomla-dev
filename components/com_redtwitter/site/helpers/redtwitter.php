@@ -18,7 +18,7 @@ include(JPATH_BASE . "/components/com_redtwitter/libs/twitteroauth/twitteroauth.
  */
 abstract class RedtwitterHelper
 {
-  /**
+	/**
 	 * @var
 	 */
 	public static $http;
@@ -28,74 +28,128 @@ abstract class RedtwitterHelper
 	 */
 	public static $connection = null;
 
-	public static function get_twitter_connection()
+	/**
+	 * @param $user_list
+	 * @param int $order_type
+	 * @param int $max_item_displayed
+	 * @return array
+	 */
+	public static function get_all_twitter_timelines($user_list, $order_type = 0, $max_item_displayed = 20)
 	{
-		$oauth_info = self::_get_oauth_info();
-		if(is_object($oauth_info))
-		{
-			self::$connection = new TwitterOAuth($oauth_info->consumer_key, $oauth_info->consumer_secret, $oauth_info->access_token, $oauth_info->access_token_secret);
-		}
-	}
+		$twitter_timelines = array();
 
-	public static function get_timeline_twitter($screen_name, $order_type = 0, $max_item_displayed = 20)
-	{
-		self::get_twitter_connection();
-		$param = array(
-					'screen_name' => $screen_name,
-					);
+		$num_user  = count($user_list);
+		$num_count = (int) ($max_item_displayed / $num_user);
 
-		$info_list = array();
-		if(!empty(self::$connection))
+		$num_count_ext = 0;
+		if ($remain = ($max_item_displayed - ($num_count * $num_user)) != 0)
 		{
-			$info_list = self::$connection->get('statuses/user_timeline', $param);
+			$num_count_ext = $remain;
 		}
 
-		$twitter_data = array();
-		if(count($info_list) > 0)
+		$twitter_data_list = array();
+		for ($i = 0; $i < $num_user; $i++)
 		{
-			foreach ($info_list as $key => $info)
+			if (!empty($user_list[$i]->twitterusername))
 			{
-				$date  = new DateTime($info->created_at);
-				$pDate = $date->format("Y-m-d H:i:s");
-
-				$id = (string) $info->user->id;
-
-				$name              = (string) $info->user->name;
-				$screen_name       = (string) $info->user->screen_name;
-				$title             = (string) $info->text;
-				$profile_image_url = (string) $info->user->profile_image_url;
-				$description       = (string) $info->text;
-				$link              = (string) 'https://twitter.com/amazon/statuses/' . $info->id_str;
-				$pubDate           = (string) $pDate;
-
-				$twitter_data[strtotime($pDate)] = array(
-					'id'                => $id,
-					'name'              => $name,
-					'screen_name'       => $screen_name,
-					'title'             => $title,
-					'profile_image_url' => $profile_image_url,
-					'description'       => $description,
-					'link'              => $link,
-					'pdate'             => $pubDate,
+				if ($num_count_ext != 0 && $i == $num_user - 1)
+				{
+					$num_count = $num_count_ext;
+				}
+				$params                = array(
+					'screen_name' => $user_list[$i]->twitterusername,
+					'count'       => $num_count
 				);
+				$twitter_data_list[$i] = self::get_timeline_twitter($params);
 			}
 		}
+
+		foreach ($twitter_data_list as $twitter_data)
+		{
+			if (count($twitter_data) > 0)
+			{
+				foreach ($twitter_data as $data)
+				{
+					$date  = new DateTime($data->created_at);
+					$pDate = $date->format("Y-m-d H:i:s");
+
+					$id                = (string) $data->user->id;
+					$name              = (string) $data->user->name;
+					$screen_name       = (string) $data->user->screen_name;
+					$title             = (string) $data->text;
+					$profile_image_url = (string) $data->user->profile_image_url;
+					$description       = (string) $data->text;
+					$link              = (string) 'https://twitter.com/' . $screen_name . '/statuses/' . $data->id_str;
+					$pubDate           = (string) $pDate;
+
+					$twitter_timelines[time()] = array(
+						'id'                => $id,
+						'name'              => $name,
+						'screen_name'       => $screen_name,
+						'title'             => $title,
+						'profile_image_url' => $profile_image_url,
+						'description'       => $description,
+						'link'              => $link,
+						'pdate'             => $pubDate,
+					);
+				}
+			}
+		}
+
 		// Order by date
 		if ($order_type == 0)
 		{
-			ksort($twitter_data);
+			self::_sort_by_key($twitter_timelines, 'pdate');
 		}
 		else // Order by name
 		{
-			self::_sort_by_key($twitter_data, 'name');
+			self::_sort_by_key($twitter_timelines, 'name');
 		}
 
-		return array_reverse($twitter_data);
+		return array_reverse($twitter_timelines);
 	}
 
+	/**
+	 * @param $screen_name
+	 * @param int $order_type
+	 * @param int $max_item_displayed
+	 * @return array
+	 */
+	public static function get_timeline_twitter($params)
+	{
+		if (empty(self::$connection))
+		{
+			self::$connection = self::get_twitter_connection();
+		}
+
+		if (!empty(self::$connection))
+		{
+			return self::$connection->get('statuses/user_timeline', $params);
+		}
+
+		return array();
+	}
+
+	/**
+	 *
+	 */
+	public static function get_twitter_connection()
+	{
+		$oauth_info = self::_get_oauth_info();
+		if (is_object($oauth_info))
+		{
+			return new TwitterOAuth($oauth_info->consumer_key, $oauth_info->consumer_secret, $oauth_info->access_token, $oauth_info->access_token_secret);
+		}
+
+		return null;
+	}
+
+	/**
+	 * @return JException|mixed
+	 */
 	private static function _get_oauth_info()
 	{
-		$db = JFactory::getDbo();
+		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true)
 			->select('id, consumer_key, consumer_secret, access_token, access_token_secret')
 			->from($db->quoteName('#__redtwitter_oauth_info'))
@@ -107,8 +161,7 @@ abstract class RedtwitterHelper
 		try
 		{
 			return $db->loadObject();
-		}
-		catch (RuntimeException $e)
+		} catch (RuntimeException $e)
 		{
 			return new JException(JText::sprintf('COM_USERS_DATABASE_ERROR', $e->getMessage()), 500);
 		}
@@ -131,8 +184,7 @@ abstract class RedtwitterHelper
 			try
 			{
 				$tweeters = new SimpleXMLElement($twi);
-			}
-			catch (exception $e)
+			} catch (exception $e)
 			{
 				$tweeters = '';
 			}
@@ -164,8 +216,7 @@ abstract class RedtwitterHelper
 			try
 			{
 				$tweeters = new SimpleXMLElement($twi);
-			}
-			catch (exception $e)
+			} catch (exception $e)
 			{
 				$tweeters = '';
 			}
@@ -199,9 +250,9 @@ abstract class RedtwitterHelper
 			}
 		}
 
-		$dt1      = array();
-		$array1   = array();
-		$j        = 0;
+		$dt1    = array();
+		$array1 = array();
+		$j      = 0;
 
 		for ($a = 0; $a < count($twitdata); $a++)
 		{
@@ -303,22 +354,19 @@ abstract class RedtwitterHelper
 			{
 				$transport  = new JHttpTransportStream($options);
 				self::$http = new JHttp($options, $transport);
-			}
-			catch (RuntimeException $e)
+			} catch (RuntimeException $e)
 			{
 				try
 				{
 					$transport  = new JHttpTransportCurl($options);
 					self::$http = new JHttp($options, $transport);
-				}
-				catch (RuntimeException $e)
+				} catch (RuntimeException $e)
 				{
 					try
 					{
 						$transport  = new JHttpTransportSocket($options);
 						self::$http = new JHttp($options, $transport);
-					}
-					catch (RuntimeException $e)
+					} catch (RuntimeException $e)
 					{
 					}
 				}
@@ -328,8 +376,7 @@ abstract class RedtwitterHelper
 		try
 		{
 			$response_content = self::$http->get($host)->body;
-		}
-		catch (RuntimeException $e)
+		} catch (RuntimeException $e)
 		{
 			$response_content = array();
 		}

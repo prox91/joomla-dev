@@ -13,7 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.view');
 
 /**
- * Class RedtwitterViewFollowed_Profile
+ * Class RedtwitterViewOauth_Info
  */
 class RedtwitterViewOauth_Info extends JViewLegacy
 {

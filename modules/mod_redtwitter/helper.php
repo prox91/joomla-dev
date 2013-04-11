@@ -27,12 +27,10 @@ abstract class modRedTwitterHelper
 		JModelLegacy::addIncludePath(JPATH_ROOT . '/components/com_redtwitter/models', 'redtwitterModelfollowedprofiles');
 		$model = JModelLegacy::getInstance('followedprofiles', 'redtwitterModel', array('ignore_request' => true));
 
-		$twitter_data =& $model->getData($twitter_id);
+		$twitter_user_list =& $model->getData($twitter_id);
 
-		$twitter_info_test = RedtwitterHelper::get_timeline_twitter('amazon');
-
-		//$twitter_info = RedtwitterHelper::get_alldata($twitter_data, $order_type, $max_item_displayed);
-		return $twitter_info_test;
+		$twitter_data_timelines = RedtwitterHelper::get_all_twitter_timelines($twitter_user_list, $order_type, $max_item_displayed);
+		return $twitter_data_timelines;
 	}
 
 	/**

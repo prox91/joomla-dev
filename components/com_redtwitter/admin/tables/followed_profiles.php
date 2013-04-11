@@ -11,7 +11,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Class RedtwitterTablefollowed_Profiles
+ * Class RedtwitterTableFollowed_Profiles
  */
 class RedtwitterTablefollowed_Profiles extends JTable
 {

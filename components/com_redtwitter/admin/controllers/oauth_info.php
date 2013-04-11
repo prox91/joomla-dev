@@ -13,7 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.controllerform');
 
 /**
- * Class FollowedprofilesController
+ * Class RedtwitterControllerOauth_Info
  */
 class RedtwitterControllerOauth_Info extends JControllerForm
 {

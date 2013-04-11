@@ -49,9 +49,6 @@ class RedtwitterModelFollowed_Profile extends JModelAdmin
 	 */
 	public function getForm($data = array(), $loadData = true)
 	{
-		// Initialise variables.
-		$app = JFactory::getApplication();
-
 		// Get the form.
 		$form = $this->loadForm('com_redtwitter.followed_profile', 'followed_profile', array('control' => 'jform', 'load_data' => $loadData));
 
