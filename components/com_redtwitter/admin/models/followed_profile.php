@@ -13,9 +13,9 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.modeladmin');
 
 /**
- * Class RedtwitterModelfollowed_Profile
+ * Class RedtwitterModelFollowed_Profile
  */
-class RedtwitterModelfollowed_Profile extends JModelAdmin
+class RedtwitterModelFollowed_Profile extends JModelAdmin
 {
 	/**
 	 * @var        string    The prefix to use with controller messages.
@@ -33,7 +33,7 @@ class RedtwitterModelfollowed_Profile extends JModelAdmin
 	 * @return    JTable    A database object
 	 * @since    1.6
 	 */
-	public function getTable($type = 'Followed_profile', $prefix = 'RedtwitterTable', $config = array())
+	public function getTable($type = 'Followed_Profile', $prefix = 'RedtwitterTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -105,7 +105,7 @@ class RedtwitterModelfollowed_Profile extends JModelAdmin
 	 *
 	 * @since    1.6
 	 */
-	protected function prepareTable($table)
+	protected function prepareTable(&$table)
 	{
 		jimport('joomla.filter.output');
 
