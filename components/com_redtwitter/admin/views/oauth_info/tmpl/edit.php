@@ -19,8 +19,8 @@ $document->addStyleSheet('components/com_redtwitter/assets/css/redtwitter.css');
 ?>
 <script type="text/javascript">
 	Joomla.submitbutton = function (task) {
-		if (task == 'oauth_info.cancel' || document.formvalidator.isValid(document.id('oauth-info-form'))) {
-			Joomla.submitform(task, document.getElementById('oauth-info-form'));
+		if (task == 'oauth_info.cancel' || document.formvalidator.isValid(document.id('oauth_info-form'))) {
+			Joomla.submitform(task, document.getElementById('oauth_info-form'));
 		}
 		else
 		{
@@ -29,10 +29,10 @@ $document->addStyleSheet('components/com_redtwitter/assets/css/redtwitter.css');
 	}
 </script>
 
-<form action="<?php echo JRoute::_('index.php?option=com_redtwitter&layout=edit&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="oauth-info-form" class="form-validate">
+<form action="<?php echo JRoute::_('index.php?option=com_redtwitter&layout=edit&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="oauth_info-form" class="form-validate">
 	<div class="width-60 fltlft">
 		<fieldset class="adminform">
-			<legend><?php echo JText::_('COM_REDTWITTER_LEGEND_FOLLOWED_PROFILE'); ?></legend>
+			<legend><?php echo JText::_('COM_REDTWITTER_LEGEND_OAUTH_INFO'); ?></legend>
 			<ul class="adminformlist">
 
 				<li><?php echo $this->form->getLabel('id'); ?>

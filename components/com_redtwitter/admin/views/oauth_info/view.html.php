@@ -69,24 +69,13 @@ class RedtwitterViewOauth_Info extends JViewLegacy
 
 		$canDo = RedtwitterHelper::getActions();
 
-		JToolBarHelper::title(JText::_('COM_REDTWITTER_TITLE_FOLLOWED_PROFILE'), 'followed_profile.png');
+		JToolBarHelper::title(JText::_('COM_REDTWITTER_TITLE_OAUTH_INFO'), 'followed_profile.png');
 
 		// If not checked out, can save the item.
 		if (!$checkedOut && ($canDo->get('core.edit') || ($canDo->get('core.create'))))
 		{
 			JToolBarHelper::apply('oauth_info.apply', 'JTOOLBAR_APPLY');
 			JToolBarHelper::save('oauth_info.save', 'JTOOLBAR_SAVE');
-		}
-
-		if (!$checkedOut && ($canDo->get('core.create')))
-		{
-			JToolBarHelper::custom('oauth_info.save2new', 'save-new.png', 'save-new_f2.png', 'JTOOLBAR_SAVE_AND_NEW', false);
-		}
-
-		// If an existing item, can save to a copy.
-		if (!$isNew && $canDo->get('core.create'))
-		{
-			JToolBarHelper::custom('oauth_info.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false);
 		}
 
 		if (empty($this->item->id))

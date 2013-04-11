@@ -10,18 +10,19 @@
 // No direct access
 defined('_JEXEC') or die('Restricted access');
 
-jimport('joomla.application.component.controller');
+jimport('joomla.application.component.controllerform');
 
 /**
  * Class FollowedprofilesController
  */
-class RedtwitterControllerOauth_Info extends JControllerLegacy
+class RedtwitterControllerOauth_Info extends JControllerForm
 {
 	/**
 	 * @param array $default
 	 */
 	public function __construct($default = array())
 	{
+		$this->view_list = 'oauth_infos';
 		parent::__construct($default);
 	}
 }

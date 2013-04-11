@@ -34,6 +34,7 @@
 		       class="inputbox"
 		       label="COM_REDTWITTER_FORM_LBL_OAUTH_INFO_ACCESS_TOKEN"
 		       description="COM_REDTWITTER_FORM_DESC_OAUTH_INFO_ACCESS_TOKEN"
+		       required="true"
 		       filter="safehtml"/>
 
 		<field name="access_token_secret"
@@ -42,6 +43,7 @@
 		       class="inputbox"
 		       label="COM_REDTWITTER_FORM_LBL_OAUTH_INFO_ACCESS_TOKEN_SECRET"
 		       description="COM_REDTWITTER_FORM_DESC_OAUTH_INFO_ACCESS_TOKEN_SECRET"
+		       required="true"
 		       filter="safehtml"/>
 
 		<field name="created_by"

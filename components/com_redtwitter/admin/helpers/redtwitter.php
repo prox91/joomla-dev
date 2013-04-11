@@ -20,6 +20,12 @@ class RedtwitterHelper
 	public static function addSubmenu($vName = '')
 	{
 		JSubMenuHelper::addEntry(
+			JText::_('COM_REDTWITTER_TITLE_OAUTH_INFO'),
+			'index.php?option=com_redtwitter&view=oauth_infos',
+			$vName == 'oauth_infos'
+		);
+
+		JSubMenuHelper::addEntry(
 			JText::_('COM_REDTWITTER_TITLE_FOLLOWED_PROFILES'),
 			'index.php?option=com_redtwitter&view=followed_profiles',
 			$vName == 'followed_profiles'

@@ -26,24 +26,6 @@ $saveOrder = $listOrder == 'a.ordering';
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_redtwitter&view=oauth_infos'); ?>" method="post" name="adminForm" id="adminForm">
-	<fieldset id="filter-bar">
-		<div class="filter-search fltlft">
-			<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
-			<input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('Search'); ?>" />
-			<button type="submit"><?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?></button>
-			<button type="button" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
-		</div>
-
-		<div class='filter-select fltrt'>
-			<select name="filter_published" class="inputbox" onchange="this.form.submit()">
-				<option value=""><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></option>
-				<?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), "value", "text", $this->state->get('filter.state'), true);?>
-			</select>
-		</div>
-
-	</fieldset>
-	<div class="clr"></div>
-
 	<table class="adminlist">
 		<thead>
 		<tr>
@@ -52,18 +34,17 @@ $saveOrder = $listOrder == 'a.ordering';
 			</th>
 
 			<th class='left'>
-				<?php echo JHtml::_('grid.sort', 'COM_REDTWITTER_FOLLOWED_PROFILES_NAME', 'a.consumer_key', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('grid.sort', 'COM_REDTWITTER_OAUTH_INFO_CONSUMER_KEY', 'a.consumer_key', $listDirn, $listOrder); ?>
 			</th>
 			<th class='left'>
-				<?php echo JHtml::_('grid.sort', 'COM_REDTWITTER_FOLLOWED_PROFILES_NAME', 'a.consumer_secret', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('grid.sort', 'COM_REDTWITTER_OAUTH_INFO_CONSUMER_SECRET', 'a.consumer_secret', $listDirn, $listOrder); ?>
 			</th>
 			<th class='left'>
-				<?php echo JHtml::_('grid.sort', 'COM_REDTWITTER_FOLLOWED_PROFILES_NAME', 'a.access_token', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('grid.sort', 'COM_REDTWITTER_OAUTH_INFO_ACCESS_TOKEN', 'a.access_token', $listDirn, $listOrder); ?>
 			</th>
 			<th class='left'>
-				<?php echo JHtml::_('grid.sort', 'COM_REDTWITTER_FOLLOWED_PROFILES_TWITTERUSERNAME', 'a.access_token_secret', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('grid.sort', 'COM_REDTWITTER_OAUTH_INFO_ACCESS_TOKEN_SECRET', 'a.access_token_secret', $listDirn, $listOrder); ?>
 			</th>
-
 
 			<?php
 			if (isset($this->items[0]->state))
@@ -110,7 +91,6 @@ $saveOrder = $listOrder == 'a.ordering';
 		<tbody>
 		<?php foreach ($this->items as $i => $item) :
 			$ordering   = ($listOrder == 'a.ordering');
-			$canCreate  = $user->authorise('core.create', 'com_redtwitter');
 			$canEdit    = $user->authorise('core.edit', 'com_redtwitter');
 			$canCheckin = $user->authorise('core.manage', 'com_redtwitter');
 			$canChange  = $user->authorise('core.edit.state', 'com_redtwitter');
@@ -126,16 +106,20 @@ $saveOrder = $listOrder == 'a.ordering';
 					<?php endif; ?>
 					<?php if ($canEdit) : ?>
 						<a href="<?php echo JRoute::_('index.php?option=com_redtwitter&task=oauth_info.edit&id=' . (int) $item->id); ?>">
-							<?php echo $this->escape($item->name); ?></a>
+							<?php echo $this->escape($item->consumer_key); ?></a>
 					<?php else : ?>
-						<?php echo $this->escape($item->name); ?>
+						<?php echo $this->escape($item->consumer_key); ?>
 					<?php endif; ?>
 				</td>
 				<td>
-					<?php echo $item->twitterusername; ?>
+					<?php echo $item->consumer_secret; ?>
 				</td>
-
-
+				<td>
+					<?php echo $item->access_token; ?>
+				</td>
+				<td>
+					<?php echo $item->access_token_secret; ?>
+				</td>
 				<?php
 				if (isset($this->items[0]->state))
 				{
