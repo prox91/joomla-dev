@@ -33,7 +33,7 @@ class RedtwitterModelOauth_Info extends JModelAdmin
 	 * @return    JTable    A database object
 	 * @since    1.6
 	 */
-	public function getTable($type = 'Followed_profile', $prefix = 'RedtwitterTable', $config = array())
+	public function getTable($type = 'Oauth_Info', $prefix = 'RedtwitterTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -53,7 +53,7 @@ class RedtwitterModelOauth_Info extends JModelAdmin
 		$app = JFactory::getApplication();
 
 		// Get the form.
-		$form = $this->loadForm('com_redtwitter.followed_profile', 'followed_profile', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_redtwitter.oauth_info', 'oauth_info', array('control' => 'jform', 'load_data' => $loadData));
 
 		if (empty($form))
 		{
@@ -72,7 +72,7 @@ class RedtwitterModelOauth_Info extends JModelAdmin
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_redtwitter.edit.followed_profile.data', array());
+		$data = JFactory::getApplication()->getUserState('com_redtwitter.edit.oauth_info.data', array());
 
 		if (empty($data))
 		{
@@ -115,7 +115,7 @@ class RedtwitterModelOauth_Info extends JModelAdmin
 			if (@$table->ordering === '')
 			{
 				$db = JFactory::getDbo();
-				$db->setQuery('SELECT MAX(ordering) FROM #__redtwitter_followed_profiles');
+				$db->setQuery('SELECT MAX(ordering) FROM #__redtwitter_oauth_info');
 				$max             = $db->loadResult();
 				$table->ordering = $max + 1;
 			}
