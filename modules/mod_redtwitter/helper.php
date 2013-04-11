@@ -22,15 +22,17 @@ abstract class modRedTwitterHelper
 	 * @param $max_item_displayed
 	 * @return array
 	 */
-	public static function getTwitterList($twitter_id = array(), $order_type, $max_item_displayed)
+	public static function getTwitterList($twitter_id = array(), $order_type = 0, $max_item_displayed = 10)
 	{
 		JModelLegacy::addIncludePath(JPATH_ROOT . '/components/com_redtwitter/models', 'redtwitterModelfollowedprofiles');
 		$model = JModelLegacy::getInstance('followedprofiles', 'redtwitterModel', array('ignore_request' => true));
 
 		$twitter_data =& $model->getData($twitter_id);
-		$twitter_info = RedtwitterHelper::get_alldata($twitter_data, $order_type, $max_item_displayed);
 
-		return $twitter_info;
+		$twitter_info_test = RedtwitterHelper::get_timeline_twitter('amazon');
+
+		//$twitter_info = RedtwitterHelper::get_alldata($twitter_data, $order_type, $max_item_displayed);
+		return $twitter_info_test;
 	}
 
 	/**
