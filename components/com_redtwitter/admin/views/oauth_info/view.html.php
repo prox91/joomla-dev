@@ -5,47 +5,97 @@
  * @author     Ronni K. G. Christiansen<email@redweb.dk> - http://www.redcomponent.com
  * @copyright  Copyright (C) 2010 redCOMPONENT.com. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
- * Developed by email@recomponent.com - redCOMPONENT.com
+ *             Developed by email@recomponent.com - redCOMPONENT.com
  */
-defined('_JEXEC') or die ('restricted access');
+// No direct access
+defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.view');
 
 /**
- * Class RedtwitterViewFollowedProfiles
+ * Class RedtwitterViewFollowed_Profile
  */
 class RedtwitterViewOauth_Info extends JViewLegacy
 {
+	protected $state;
+
+	protected $item;
+
+	protected $form;
+
 	/**
-	 * @param   null $tpl
+	 * @param null $tpl
 	 *
 	 * @return mixed|void
+	 *
+	 * @throws Exception
 	 */
 	public function display($tpl = null)
 	{
-		$document = JFactory::getDocument();
-		$document->addStyleSheet(JURI::root() . "administrator/components/com_redtwitter/assets/css/redtwitter_frontend.css");
+		$this->state = $this->get('State');
+		$this->item  = $this->get('Item');
+		$this->form  = $this->get('Form');
 
-		$app    = JFactory::getApplication();
-		$params = $app->getParams();
-		$uri    = JFactory::getURI();
+		// Check for errors.
+		if (count($errors = $this->get('Errors')))
+		{
+			throw new Exception(implode("\n", $errors));
+		}
 
-		$lists = $this->get('data');
-
-		$slink = "index.php?option=com_redtwitter&view=redtwitter";
-		$this->assignRef('slink', $slink);
-		$this->assignRef('lists', $lists);
-
-		$this->assignRef('request_url', $uri->toString());
-
-		$model      = $this->getModel('followedprofiles');
-		$red_detail = $model->getDetail();
-
-		$this->assignRef('red_detail', $red_detail);
-		$this->assignRef('params', $params);
-
-		$this->setLayout('default');
-
+		$this->addToolbar();
 		parent::display($tpl);
+	}
+
+	/**
+	 * Add the page title and toolbar.
+	 *
+	 * @return none
+	 */
+	protected function addToolbar()
+	{
+		JFactory::getApplication()->input->set('hidemainmenu', true);
+
+		$user  = JFactory::getUser();
+		$isNew = ($this->item->id == 0);
+
+		if (isset($this->item->checked_out))
+		{
+			$checkedOut = !($this->item->checked_out == 0 || $this->item->checked_out == $user->get('id'));
+		}
+		else
+		{
+			$checkedOut = false;
+		}
+
+		$canDo = RedtwitterHelper::getActions();
+
+		JToolBarHelper::title(JText::_('COM_REDTWITTER_TITLE_FOLLOWED_PROFILE'), 'followed_profile.png');
+
+		// If not checked out, can save the item.
+		if (!$checkedOut && ($canDo->get('core.edit') || ($canDo->get('core.create'))))
+		{
+			JToolBarHelper::apply('oauth_info.apply', 'JTOOLBAR_APPLY');
+			JToolBarHelper::save('oauth_info.save', 'JTOOLBAR_SAVE');
+		}
+
+		if (!$checkedOut && ($canDo->get('core.create')))
+		{
+			JToolBarHelper::custom('oauth_info.save2new', 'save-new.png', 'save-new_f2.png', 'JTOOLBAR_SAVE_AND_NEW', false);
+		}
+
+		// If an existing item, can save to a copy.
+		if (!$isNew && $canDo->get('core.create'))
+		{
+			JToolBarHelper::custom('oauth_info.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false);
+		}
+
+		if (empty($this->item->id))
+		{
+			JToolBarHelper::cancel('oauth_info.cancel', 'JTOOLBAR_CANCEL');
+		}
+		else
+		{
+			JToolBarHelper::cancel('oauth_info.cancel', 'JTOOLBAR_CLOSE');
+		}
 	}
 }
