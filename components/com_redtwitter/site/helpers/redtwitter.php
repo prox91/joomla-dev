@@ -42,7 +42,7 @@ abstract class RedtwitterHelper
 		$num_count = (int) ($max_item_displayed / $num_user);
 
 		$num_count_ext = 0;
-		$remain = ($max_item_displayed - ($num_count * $num_user));
+		$remain        = ($max_item_displayed - ($num_count * $num_user));
 		if ($remain != 0)
 		{
 			$num_count_ext = $remain;
@@ -65,6 +65,7 @@ abstract class RedtwitterHelper
 			}
 		}
 
+		$index = 0;
 		foreach ($twitter_data_list as $twitter_data)
 		{
 			if (count($twitter_data) > 0)
@@ -83,7 +84,7 @@ abstract class RedtwitterHelper
 					$link              = (string) 'https://twitter.com/' . $screen_name . '/statuses/' . $data->id_str;
 					$pubDate           = (string) $pDate;
 
-					$twitter_timelines[time()] = array(
+					$twitter_timelines[$index++] = array(
 						'id'                => $id,
 						'name'              => $name,
 						'screen_name'       => $screen_name,
