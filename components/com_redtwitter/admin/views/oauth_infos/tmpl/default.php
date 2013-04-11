@@ -5,166 +5,191 @@
  * @author     Ronni K. G. Christiansen<email@redweb.dk> - http://www.redcomponent.com
  * @copyright  Copyright (C) 2010 redCOMPONENT.com. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
- * Developed by email@recomponent.com - redCOMPONENT.com
+ *             Developed by email@recomponent.com - redCOMPONENT.com
  */
 // No direct access
 defined('_JEXEC') or die('Restricted access');
+
+JHtml::_('behavior.tooltip');
+JHTML::_('script', 'system/multiselect.js', false, true);
+
+// Import CSS
+$document = JFactory::getDocument();
+$document->addStyleSheet('components/com_redtwitter/assets/css/redtwitter.css');
+
+$user = JFactory::getUser();
+$userId = $user->get('id');
+$listOrder = $this->state->get('list.ordering');
+$listDirn = $this->state->get('list.direction');
+$canOrder = $user->authorise('core.edit.state', 'com_redtwitter');
+$saveOrder = $listOrder == 'a.ordering';
 ?>
-	<style type="text/css">
-		<?php
-		echo $this->red_detail->get("css_data");
-		?>
-	</style>
-	<h1 class="componentheading<?php echo $this->params->get('pageclass_sfx') ?>">
-		<?php
-		echo $this->params->get('page_title');
-		?>
-	</h1>
-<?php
-$cache = JFactory::getCache();
-$cache->setCaching(1);
 
-include_once JPATH_COMPONENT_SITE . '/helpers/redtwitter.php';
+<form action="<?php echo JRoute::_('index.php?option=com_redtwitter&view=oauth_infos'); ?>" method="post" name="adminForm" id="adminForm">
+	<fieldset id="filter-bar">
+		<div class="filter-search fltlft">
+			<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
+			<input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('Search'); ?>" />
+			<button type="submit"><?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?></button>
+			<button type="button" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
+		</div>
 
-echo '<div id="tweetlist">';
-$array1 = RedtwitterHelper::get_alldata($this->lists, $this->params->get("date"));
+		<div class='filter-select fltrt'>
+			<select name="filter_published" class="inputbox" onchange="this.form.submit()">
+				<option value=""><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></option>
+				<?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), "value", "text", $this->state->get('filter.state'), true);?>
+			</select>
+		</div>
 
-@krsort($array1);
+	</fieldset>
+	<div class="clr"></div>
 
-if (count($array1) > 0)
-{
-	$b = 1;
+	<table class="adminlist">
+		<thead>
+		<tr>
+			<th width="1%">
+				<input type="checkbox" name="checkall-toggle" value="" onclick="checkAll(this)" />
+			</th>
 
-	foreach ($array1 as $key => $val)
-	{
-		$date = new DateTime($val['pdate']);
-		$dt1  = $date->format($this->params->get("date"));
-		$dt   = strtotime($dt1);
+			<th class='left'>
+				<?php echo JHtml::_('grid.sort', 'COM_REDTWITTER_FOLLOWED_PROFILES_NAME', 'a.consumer_key', $listDirn, $listOrder); ?>
+			</th>
+			<th class='left'>
+				<?php echo JHtml::_('grid.sort', 'COM_REDTWITTER_FOLLOWED_PROFILES_NAME', 'a.consumer_secret', $listDirn, $listOrder); ?>
+			</th>
+			<th class='left'>
+				<?php echo JHtml::_('grid.sort', 'COM_REDTWITTER_FOLLOWED_PROFILES_NAME', 'a.access_token', $listDirn, $listOrder); ?>
+			</th>
+			<th class='left'>
+				<?php echo JHtml::_('grid.sort', 'COM_REDTWITTER_FOLLOWED_PROFILES_TWITTERUSERNAME', 'a.access_token_secret', $listDirn, $listOrder); ?>
+			</th>
 
-		$title           = $val['title'];
-		$title1          = explode(":", $title);
-		$change_contents = $title;
 
-		$change_con = explode("http://", $change_contents);
-
-		if (count($change_con) > 0)
-		{
-			foreach ($change_con as $f)
+			<?php
+			if (isset($this->items[0]->state))
 			{
-				$ifr1   = explode(" ", $f);
-				$mytxt1 = "" . $ifr1[0] . "";
-
-				$mylink1 = str_replace($ifr1[0], ".", $ifr1[0]);
-				$mylink1 = str_replace($mylink1, ",", $mylink1);
-				$mylink1 = str_replace($mylink1, ":", $mylink1);
-				$mylink1 = str_replace($mylink1, "'", $mylink1);
-				$mylink1 = str_replace($mylink1, ")", $mylink1);
-
-				$url_data        = "<a target='_target' href='http://" . $mytxt1 . "'>http://" . $mytxt1 . "</a>";
-				$change_contents = str_replace("http://" . $mytxt1, $url_data, $change_contents);
+				?>
+				<th width="5%">
+					<?php echo JHtml::_('grid.sort', 'JPUBLISHED', 'a.state', $listDirn, $listOrder); ?>
+				</th>
+			<?php
 			}
-		}
-
-		$title = explode("@", $change_contents);
-		$j     = 0;
-
-		foreach ($title as $f)
-		{
-			$ifr     = explode(" ", $f);
-			$subject = $ifr[0];
-			$mytxt   = "@" . $ifr[0] . "";
-
-			$mylink = str_replace($ifr[0], ".", $ifr[0]);
-			$mylink = str_replace($mylink, ",", $mylink);
-			$mylink = str_replace($mylink, ":", $mylink);
-			$mylink = str_replace($mylink, "'", $mylink);
-
-			$ifr[0]          = str_replace(':', '', $ifr[0]);
-			$ifr[0]          = str_replace('.', '', $ifr[0]);
-			$uname           = "<a target='_target' href='http://twitter.com/" . $ifr[0] . "'>" . $ifr[0] . "</a>";
-			$change_contents = str_replace($mytxt, "@" . $uname, $change_contents);
-		}
-
-		$j++;
-		$change_contents = str_replace($title1[0] . ":", "", $change_contents);
-		$title2          = explode("#", $change_contents);
-		$j               = 0;
-
-		foreach ($title2 as $f)
-		{
-			if ($j != 0)
+			?>
+			<?php
+			if (isset($this->items[0]->ordering))
 			{
-				$ifr     = explode(" ", $f);
-				$subject = $ifr[0];
-				$mytxt   = "#" . $ifr[0];
-
-				$mylink = str_replace($ifr[0], ".", $ifr[0]);
-				$mylink = str_replace($mylink, ",", $mylink);
-				$mylink = str_replace($mylink, ":", $mylink);
-				$mylink = str_replace($mylink, "'", $mylink);
-
-				$uname           = "<a target='_target' href='http://search.twitter.com/search?q=" . $ifr[0] . "'>#" . $ifr[0] . "</a>";
-				$change_contents = str_replace($mytxt, $uname, $change_contents);
+				?>
+				<th width="10%">
+					<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ORDERING', 'a.ordering', $listDirn, $listOrder); ?>
+					<?php if ($canOrder && $saveOrder) : ?>
+						<?php echo JHtml::_('grid.order', $this->items, 'filesave.png', 'oauth_infos.saveorder'); ?>
+					<?php endif; ?>
+				</th>
+			<?php
 			}
+			?>
+			<?php
+			if (isset($this->items[0]->id))
+			{
+				?>
+				<th width="1%" class="nowrap">
+					<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
+				</th>
+			<?php
+			}
+			?>
+		</tr>
+		</thead>
+		<tfoot>
+		<tr>
+			<td colspan="10">
+				<?php echo $this->pagination->getListFooter(); ?>
+			</td>
+		</tr>
+		</tfoot>
+		<tbody>
+		<?php foreach ($this->items as $i => $item) :
+			$ordering   = ($listOrder == 'a.ordering');
+			$canCreate  = $user->authorise('core.create', 'com_redtwitter');
+			$canEdit    = $user->authorise('core.edit', 'com_redtwitter');
+			$canCheckin = $user->authorise('core.manage', 'com_redtwitter');
+			$canChange  = $user->authorise('core.edit.state', 'com_redtwitter');
+			?>
+			<tr class="row<?php echo $i % 2; ?>">
+				<td class="center">
+					<?php echo JHtml::_('grid.id', $i, $item->id); ?>
+				</td>
 
-			$j++;
-		}
+				<td>
+					<?php if (isset($item->checked_out) && $item->checked_out) : ?>
+						<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'oauth_infos.', $canCheckin); ?>
+					<?php endif; ?>
+					<?php if ($canEdit) : ?>
+						<a href="<?php echo JRoute::_('index.php?option=com_redtwitter&task=oauth_info.edit&id=' . (int) $item->id); ?>">
+							<?php echo $this->escape($item->name); ?></a>
+					<?php else : ?>
+						<?php echo $this->escape($item->name); ?>
+					<?php endif; ?>
+				</td>
+				<td>
+					<?php echo $item->twitterusername; ?>
+				</td>
 
-		$description = $val['description'];
-		$description = preg_replace("#(^|[\n ])@([^ \"\t\n\r<]*)#ise", "'\\1<a href=\"http://www.twitter.com/\\2\" >@\\2</a>'", $description);
-		$description = preg_replace("#(^|[\n ])([\w]+?://[\w]+[^ \"\n\r\t<]*)#ise", "'\\1<a href=\"\\2\" >\\2</a>'", $description);
-		$description = preg_replace("#(^|[\n ])((www|ftp)\.[^ \"\t\n\r<]*)#ise", "'\\1<a href=\"http://\\2\" >\\2</a>'", $description);
 
-		echo'<div class="tweet user_' . $val['id'] . '">';
+				<?php
+				if (isset($this->items[0]->state))
+				{
+					?>
+					<td class="center">
+						<?php echo JHtml::_('jgrid.published', $item->state, $i, 'oauth_infos.', $canChange, 'cb'); ?>
+					</td>
+				<?php
+				}
+				?>
+				<?php
+				if (isset($this->items[0]->ordering))
+				{
+					?>
+					<td class="order">
+						<?php if ($canChange) : ?>
+							<?php if ($saveOrder) : ?>
+								<?php if ($listDirn == 'asc') : ?>
+									<span><?php echo $this->pagination->orderUpIcon($i, true, 'oauth_infos.orderup', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
+									<span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, true, 'oauth_infos.orderdown', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
+								<?php elseif ($listDirn == 'desc') : ?>
+									<span><?php echo $this->pagination->orderUpIcon($i, true, 'oauth_infos.orderdown', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
+									<span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, true, 'oauth_infos.orderup', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
+								<?php endif; ?>
+							<?php endif; ?>
+							<?php $disabled = $saveOrder ? '' : 'disabled="disabled"'; ?>
+							<input type="text" name="order[]" size="5" value="<?php echo $item->ordering; ?>" <?php echo $disabled ?> class="text-area-order" />
+						<?php else : ?>
+							<?php echo $item->ordering; ?>
+						<?php endif; ?>
+					</td>
+				<?php
+				}
+				?>
+				<?php
+				if (isset($this->items[0]->id))
+				{
+					?>
+					<td class="center">
+						<?php echo (int) $item->id; ?>
+					</td>
+				<?php
+				}
+				?>
+			</tr>
+		<?php endforeach; ?>
+		</tbody>
+	</table>
 
-		$avatar = '';
-
-		if ($this->params->get("show_avatar", 0) > 0)
-		{
-			$val['profile_image_url'] = $val['profile_image_url']
-				? $val['profile_image_url'] : 'administrator/components/com_redtwitter/assets/images/default.png';
-			$avatar                   = '
-				 <div class="image">
-					 <a target="_target" href="http://twitter.com/' . $val['screen_name'] . '/">
-					 	<img src="' . $val['profile_image_url'] . '" border="0" />
-					 </a>
-	    		</div>
-				 ';
-		}
-
-		echo $avatar;
-
-		echo '
-		<div class="content">
-	         	 <a target="_blank" href="' . $val['link'] . '">' . $val['name'] . '</a>
-	             <div class="date">' . $val['pdate'] . '</div>
-	         	 <div class="text">' . $change_contents . '</div>
-	         </div>
-	    </div>
-	    ';
-
-		if ($b == $this->params->get("userlimit"))
-		{
-			break;
-		}
-
-		$b++;
-	}
-}
-
-echo '</div>';
-
-if ($this->params->get("footer_link_text") != "")
-{
-	$link = "#";
-
-	if ($this->params->get("footer_link") != "")
-	{
-		$link = JRoute::_($this->params->get("footer_link"));
-	}
-
-	echo '
-	<div class="tweetlist_footer_link">
-		<a href="' . $link . '">' . $this->params->get("footer_link_text") . '<a/>
-	</div>';
-}
+	<div>
+		<input type="hidden" name="task" value="" />
+		<input type="hidden" name="boxchecked" value="0" />
+		<input type="hidden" name="filter_order" value="<?php echo $listOrder; ?>" />
+		<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>" />
+		<?php echo JHtml::_('form.token'); ?>
+	</div>
+</form>
