@@ -42,7 +42,8 @@ abstract class RedtwitterHelper
 		$num_count = (int) ($max_item_displayed / $num_user);
 
 		$num_count_ext = 0;
-		if ($remain = ($max_item_displayed - ($num_count * $num_user)) != 0)
+		$remain = ($max_item_displayed - ($num_count * $num_user));
+		if ($remain != 0)
 		{
 			$num_count_ext = $remain;
 		}
