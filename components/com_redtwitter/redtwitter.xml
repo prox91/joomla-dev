@@ -49,14 +49,12 @@
 			<menu link="option=com_redtwitter&amp;view=oauth_infos"
 			      view="oauth_infos"
 			      img="components/com_redtwitter/assets/images/s_followed_profiles.png"
-			      alt="Redtwitter/Followed_profiles">COM_REDTWITTER_TITLE_APP_INFO
-			</menu>
+			      alt="Redtwitter/Followed_profiles">COM_REDTWITTER_TITLE_OAUTH_INFO_MANAGER</menu>
 
 			<menu link="option=com_redtwitter&amp;view=followed_profiles"
 			      view="followed_profiles"
 			      img="components/com_redtwitter/assets/images/s_followed_profiles.png"
-			      alt="Redtwitter/Followed_profiles">COM_REDTWITTER_TITLE_FOLLOWED_PROFILES
-			</menu>
+			      alt="Redtwitter/Followed_profiles">COM_REDTWITTER_TITLE_FOLLOWED_PROFILES</menu>
 
 		</submenu>
 		<files folder="admin">
