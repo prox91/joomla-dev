@@ -31,13 +31,13 @@ class RedtwitterModelOauth_Infos extends JModelList
 		{
 			$config['filter_fields'] = array(
 				'id', 'a.id',
-				'name', 'a.name',
-				'twitterusername', 'a.twitterusername',
-				'twitterpassword', 'a.twitterpassword',
+				'consumer_key', 'a.consumer_key',
+				'consumer_secret', 'a.consumer_secret',
+				'access_token', 'a.access_token',
+				'access_token_secret', 'a.access_token_secret',
 				'ordering', 'a.ordering',
 				'state', 'a.state',
 				'created_by', 'a.created_by',
-
 			);
 		}
 
@@ -109,7 +109,7 @@ class RedtwitterModelOauth_Infos extends JModelList
 				'a.*'
 			)
 		);
-		$query->from('`#__redtwitter_followed_profiles` AS a');
+		$query->from('`#__redtwitter_oauth_info` AS a');
 
 		// Join over the users for the checked out user.
 		$query->select('uc.name AS editor');
