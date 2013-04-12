@@ -27,9 +27,7 @@ $cache->setCaching(1);
 include_once JPATH_COMPONENT_SITE . '/helpers/redtwitter.php';
 
 echo '<div id="tweetlist">';
-$array1 = RedtwitterHelper::get_alldata($this->lists, $this->params->get("date"));
-
-@krsort($array1);
+$array1 = RedtwitterHelper::get_all_twitter_timelines($this->lists);
 
 if (count($array1) > 0)
 {
@@ -42,7 +40,6 @@ if (count($array1) > 0)
 		$dt   = strtotime($dt1);
 
 		$title           = $val['title'];
-		$title1          = explode(":", $title);
 		$change_contents = $title;
 
 		$change_con = explode("http://", $change_contents);
@@ -86,7 +83,6 @@ if (count($array1) > 0)
 		}
 
 		$j++;
-		$change_contents = str_replace($title1[0] . ":", "", $change_contents);
 		$title2          = explode("#", $change_contents);
 		$j               = 0;
 

@@ -10,7 +10,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Form Field class for the Joomla Platform.
+ * JFormFieldRedtwitterCategory for the Joomla Platform.
  * Supports an HTML select list of categories
  *
  * @package     Joomla.Platform

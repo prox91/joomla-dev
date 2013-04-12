@@ -14,11 +14,8 @@
 		       type="text"
 		       size="40"
 		       class="inputbox"
-
 		       label="COM_REDTWITTER_FORM_LBL_FOLLOWED_PROFILES_NAME"
 		       description="COM_REDTWITTER_FORM_DESC_FOLLOWED_PROFILES_NAME"
-
-
 		       required="true"
 		       filter="safehtml"/>
 
@@ -26,11 +23,8 @@
 		       type="text"
 		       size="40"
 		       class="inputbox"
-
 		       label="COM_REDTWITTER_FORM_LBL_FOLLOWED_PROFILES_TWITTERUSERNAME"
 		       description="COM_REDTWITTER_FORM_DESC_FOLLOWED_PROFILES_TWITTERUSERNAME"
-
-
 		       required="true"
 		       filter="safehtml"/>
 
@@ -38,11 +32,8 @@
 		       type="text"
 		       size="40"
 		       class="inputbox"
-
 		       label="COM_REDTWITTER_FORM_LBL_FOLLOWED_PROFILES_TWITTERPASSWORD"
 		       description="COM_REDTWITTER_FORM_DESC_FOLLOWED_PROFILES_TWITTERPASSWORD"
-
-
 		       filter="safehtml"/>
 
 		<field name="created_by"
@@ -69,7 +60,6 @@
 		<field name="checked_out_time"
 		       type="hidden"
 		       filter="unset"/>
-
 	</fieldset>
 
 </form>

@@ -16,12 +16,16 @@
 
 	<install> <!-- Runs on install -->
 		<sql>
-			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+			<file driver="mysql"
+			      charset="utf8">sql/install.mysql.utf8.sql
+			</file>
 		</sql>
 	</install>
 	<uninstall> <!-- Runs on uninstall -->
 		<sql>
-			<file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+			<file driver="mysql"
+			      charset="utf8">sql/uninstall.mysql.utf8.sql
+			</file>
 		</sql>
 	</uninstall>
 
@@ -48,12 +52,14 @@
 			<menu link="option=com_redtwitter&amp;view=oauth_infos"
 			      view="oauth_infos"
 			      img="components/com_redtwitter/assets/images/s_followed_profiles.png"
-			      alt="Redtwitter/Followed_profiles">COM_REDTWITTER_TITLE_OAUTH_INFO_MANAGER</menu>
+			      alt="Redtwitter/Followed_profiles">COM_REDTWITTER_TITLE_OAUTH_INFO_MANAGER
+			</menu>
 
 			<menu link="option=com_redtwitter&amp;view=followed_profiles"
 			      view="followed_profiles"
 			      img="components/com_redtwitter/assets/images/s_followed_profiles.png"
-			      alt="Redtwitter/Followed_profiles">COM_REDTWITTER_TITLE_FOLLOWED_PROFILES</menu>
+			      alt="Redtwitter/Followed_profiles">COM_REDTWITTER_TITLE_FOLLOWED_PROFILES
+			</menu>
 
 		</submenu>
 		<files folder="admin">
