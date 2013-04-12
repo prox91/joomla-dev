@@ -36,6 +36,7 @@
 
 #tweetlist .text {
 	text-align : justify;
+	margin-top : 5px;
 }
 
 #tweetlist .date {
@@ -43,6 +44,7 @@
 	color         : #666666;
 	fontsize      : 10px;
 	margin-bottom : 5px;
+	float         : right;
 }
 
 /*user specific style*/
@@ -51,6 +53,6 @@
 }
 
 .tweetlist_footer_link a {
-w	font-size : 10px;
+	font-size : 10px;
 	color     : #666666;
 }

@@ -36,7 +36,7 @@ if (count($array1) > 0)
 	foreach ($array1 as $key => $val)
 	{
 		$date = new DateTime($val['pdate']);
-		$dt1  = $date->format($this->params->get("date"));
+		$dt1  = $date->format($this->params->get("date", 'Y-m-d'));
 		$dt   = strtotime($dt1);
 
 		$title           = $val['title'];
@@ -115,7 +115,7 @@ if (count($array1) > 0)
 
 		$avatar = '';
 
-		if ($this->params->get("show_avatar", 0) > 0)
+		if ($this->params->get("show_avatar", 1) > 0)
 		{
 			$val['profile_image_url'] = $val['profile_image_url']
 				? $val['profile_image_url'] : 'administrator/components/com_redtwitter/assets/images/default.png';

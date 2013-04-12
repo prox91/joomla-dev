@@ -10,22 +10,19 @@
 	<authorEmail>email@redweb.dk</authorEmail>
 	<authorUrl>http://www.redcomponent.com</authorUrl>
 	<version>1.0.0</version>
-	<description></description>
+	<description>COM_REDTWITTER_XML_DESCRIPTION</description>
 
 	<installfile>install.redtwitter.php</installfile>
 
 	<install> <!-- Runs on install -->
 		<sql>
-			<file driver="mysql"
-			      charset="utf8">sql/install.mysql.utf8.sql
-			</file>
+			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
 		</sql>
 	</install>
+
 	<uninstall> <!-- Runs on uninstall -->
 		<sql>
-			<file driver="mysql"
-			      charset="utf8">sql/uninstall.mysql.utf8.sql
-			</file>
+			<file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
 		</sql>
 	</uninstall>
 
@@ -48,19 +45,15 @@
 	<administration>
 		<menu img="components/com_redtwitter/assets/images/s_com_redtwitter.png">COM_REDTWITTER</menu>
 		<submenu>
-
 			<menu link="option=com_redtwitter&amp;view=oauth_infos"
 			      view="oauth_infos"
 			      img="components/com_redtwitter/assets/images/s_followed_profiles.png"
-			      alt="Redtwitter/Followed_profiles">COM_REDTWITTER_TITLE_OAUTH_INFO_MANAGER
-			</menu>
+			      alt="Redtwitter/Followed_profiles">COM_REDTWITTER_TITLE_OAUTH_INFO_MANAGER</menu>
 
 			<menu link="option=com_redtwitter&amp;view=followed_profiles"
 			      view="followed_profiles"
 			      img="components/com_redtwitter/assets/images/s_followed_profiles.png"
-			      alt="Redtwitter/Followed_profiles">COM_REDTWITTER_TITLE_FOLLOWED_PROFILES
-			</menu>
-
+			      alt="Redtwitter/Followed_profiles">COM_REDTWITTER_TITLE_FOLLOWED_PROFILES_MANAGER</menu>
 		</submenu>
 		<files folder="admin">
 			<filename>access.xml</filename>
@@ -78,10 +71,8 @@
 			<folder>views</folder>
 		</files>
 		<languages folder="admin">
-			<language tag="en-GB">language/en-GB/en-GB.com_redtwitter.ini
-			</language>
-			<language tag="en-GB">language/en-GB/en-GB.com_redtwitter.sys.ini
-			</language>
+			<language tag="en-GB">language/en-GB/en-GB.com_redtwitter.ini</language>
+			<language tag="en-GB">language/en-GB/en-GB.com_redtwitter.sys.ini</language>
 		</languages>
 	</administration>
 </extension>

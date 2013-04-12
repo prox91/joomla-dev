@@ -36,7 +36,8 @@ class RedtwitterViewFollowedProfiles extends JViewLegacy
 		$this->assignRef('slink', $slink);
 		$this->assignRef('lists', $lists);
 
-		$this->assignRef('request_url', $uri->toString());
+		$string = $uri->toString();
+		$this->assignRef('request_url', $string);
 
 		$model      = $this->getModel('followedprofiles');
 		$red_detail = $model->getDetail();
