@@ -30,19 +30,22 @@ class HelloWorldViewHelloWorld extends JViewLegacy
 	public function display($tpl = null)
 	{
 		// Get data
-		$item = $this->get('Item');
-		$form = $this->get('Form');
+		$item   = $this->get('Item');
+		$form   = $this->get('Form');
+		$script = $this->get('Script');
 
 		// Check for error
-		if(count($errors = $this->get('Errors')))
+		if (count($errors = $this->get('Errors')))
 		{
 			JError::raiseError(500, implode('<br/>', $errors));
+
 			return false;
 		}
 
 		// Assign data to view
-		$this->item = $item;
-		$this->form = $form;
+		$this->item   = $item;
+		$this->form   = $form;
+		$this->script = $script;
 
 		// Set the tool bar
 		$this->addToolbar();
@@ -65,10 +68,10 @@ class HelloWorldViewHelloWorld extends JViewLegacy
 		$isNew = ($this->item->id == 0);
 
 		JToolbarHelper::title($isNew ? JText::_('COM_HELLOWORLD_MANAGER_HELLOWORLD_NEW')
-									: JText::_('COM_HELLOWORLD_MANAGER_HELLOWORLD_EDIT'));
+			: JText::_('COM_HELLOWORLD_MANAGER_HELLOWORLD_EDIT'));
 		JToolbarHelper::save('helloworld.save');
 		JToolbarHelper::cancel('helloworld.cancel', $isNew ? 'JTOOLBAR_CANCEL'
-															: 'JTOOLBAR_CLOSE');
+			: 'JTOOLBAR_CLOSE');
 	}
 
 	/**
@@ -78,9 +81,14 @@ class HelloWorldViewHelloWorld extends JViewLegacy
 	 */
 	protected function setDocument()
 	{
-		$isNew = ($this->item->id < 1);
+		$isNew    = ($this->item->id < 1);
 		$document = JFactory::getDocument();
 		$document->setTitle($isNew ? JText::_('COM_HELLOWORLD_HELLOWORLD_CREATING')
 			: JText::_('COM_HELLOWORLD_HELLOWORLD_EDITING'));
+
+		$document->addScript(JUri::root() . $this->script);
+		$document->addScript(JUri::root() . "administrator/components/com_helloworld/views/helloworld/submitbutton.js");
+
+		JText::script('COM_HELLOWORLD_HELLOWORLD_ERROR_UNACCEPTABLE');
 	}
 }

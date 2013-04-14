@@ -7,7 +7,7 @@
 	<author>Nha Bui</author>
 	<authorEmail>nha@redweb.dk</authorEmail>
 	<authorUrl>http://www.redcomponent.com</authorUrl>
-	<version>0.0.10</version>
+	<version>0.0.11</version>
 	<description>COM_HELLOWORLD_DESCRIPTION</description>
 
 	<install> <!-- Runs on install -->

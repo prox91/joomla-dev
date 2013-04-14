@@ -25,7 +25,7 @@ JHtml::_('formbehavior.chosen', 'select');
 </script>
 
 <form action="<?php echo JRoute::_('index.php?option=com_helloworld&layout=edit&id' . (int) $this->item->id); ?>" method="post"
-	name="adminForm" id="helloworld-form">
+	name="adminForm" id="helloworld-form" class="form-validate">
 	<fieldset>
 		<legend><?php echo JText::_('COM_HELLOWORLD_HELLOWORLD_DETAILS') ?></legend>
 		<ul class="adminformlist">

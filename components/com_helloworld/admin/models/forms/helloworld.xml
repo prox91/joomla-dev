@@ -11,7 +11,9 @@
 				label="COM_HELLOWORLD_HELLOWORLD_GREETING_LABEL"
 				description="COM_HELLOWORLD_HELLOWORLD_GREETING_DESC"
 				size="40"
-				class="inputbox"
+				class="inputbox validate-greeting"
+				validate="greeting"
+				required="true"
 				default=""
 				/>
 	</fieldset>
