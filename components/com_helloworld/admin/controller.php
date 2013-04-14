@@ -29,4 +29,3 @@ class HelloWorldController extends JControllerLegacy
 		parent::display($cachable, $urlparams);
 	}
 }
-?>

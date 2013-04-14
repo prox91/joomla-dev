@@ -9,11 +9,15 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted Access');
 
+JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 // Load tooltip behaviour
-//JHtml::_('behaviour.tooltip');
+JHtml::_('behavior.tooltip');
+JHtml::_('behavior.multiselect');
+JHtml::_('formbehavior.chosen', 'select');
+
 ?>
 
-<form action="<?php echo JRoute::_('index.php?option=com_hellworld'); ?>" method="post" name="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_helloworld'); ?>" method="post" name="adminForm" id="adminForm">
 	<table class="adminList">
 		<thead><?php echo $this->loadTemplate('head'); ?></thead>
 		<tbody><?php echo $this->loadTemplate('body'); ?></tbody>

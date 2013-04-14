@@ -19,4 +19,3 @@ class HelloWorldControllerHelloWorld extends JControllerForm
 {
 
 }
-?>

@@ -26,4 +26,3 @@ class HelloWorldControllerHelloWorlds extends JControllerAdmin
 		return $model;
 	}
 }
-?>

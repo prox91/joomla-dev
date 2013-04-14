@@ -66,7 +66,7 @@ class HelloWorldViewHelloWorld extends JViewLegacy
 
 		JToolbarHelper::title($isNew ? JText::_('COM_HELLOWORLD_MANAGER_HELLOWORLD_NEW')
 									: JText::_('COM_HELLOWORLD_MANAGER_HELLOWORLD_EDIT'));
-		JToolbarHelper::save('helloworlds.save');
+		JToolbarHelper::save('helloworld.save');
 		JToolbarHelper::cancel('helloworld.cancel', $isNew ? 'JTOOLBAR_CANCEL'
 															: 'JTOOLBAR_CLOSE');
 	}
@@ -84,4 +84,3 @@ class HelloWorldViewHelloWorld extends JViewLegacy
 			: JText::_('COM_HELLOWORLD_HELLOWORLD_EDITING'));
 	}
 }
-?>

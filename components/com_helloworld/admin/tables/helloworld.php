@@ -9,9 +9,6 @@
 // No direct access
 defined('_JEXEC') or die('Restricted access');
 
-// Import Joomla table library
-jimport('joomla.table.table');
-
 /**
  * Helloworld class table
  */
@@ -25,5 +22,3 @@ class HelloWorldTableHelloWorld extends JTable
 		parent::__construct('#__helloworld', 'id', $db);
 	}
 }
-
-?>

@@ -42,7 +42,7 @@ class HelloWorldModelHelloWorld extends JModelAdmin
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form
-		$form = $this->loadForm('com_helloworld.helloworld', 'hello_world',
+		$form = $this->loadForm('com_helloworld.helloworld', 'helloworld',
 								array('control' => 'jform', 'load_data' => $loadData));
 
 		if(empty($form))
@@ -70,4 +70,3 @@ class HelloWorldModelHelloWorld extends JModelAdmin
 		return $data;
 	}
 }
-?>

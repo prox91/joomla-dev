@@ -37,4 +37,3 @@ class HelloWorldModelHelloWorlds extends JModelList
 		return $query;
 	}
 }
-?>

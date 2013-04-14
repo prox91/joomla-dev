@@ -41,5 +41,3 @@ class JFormlFieldHelloWorld extends JFormFieldList
 		return $options;
 	}
 }
-
-?>

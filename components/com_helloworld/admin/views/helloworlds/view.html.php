@@ -52,6 +52,8 @@ class HelloWorldViewHelloWorlds extends JViewLegacy
 	 */
 	public function addToolbar($total = null)
 	{
+		//JFactory::getApplication()->input->set('hidemainmenu', true);
+
 		JToolbarHelper::title(JText::_('COM_HELLOWORLD_MANAGER_HELLOWORLDS').
 				//Reflect number of items in title!
 				($total?' <span style="font-size: 0.5em; vertical-align: middle;">('.$total.')</span>':'')
@@ -73,4 +75,3 @@ class HelloWorldViewHelloWorlds extends JViewLegacy
 		$document->setTitle(JText::_('COM_HELLOWORLD_ADMINISTRATION'));
 	}
 }
-?>
