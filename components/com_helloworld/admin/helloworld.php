@@ -11,6 +11,9 @@ defined('_JEXEC') or die('Restricted access');
 
 jimport('legacy.controller.legacy');
 
+// require helper file
+JLoader::register('HelloWorldHelper', dirname(__FILE__) . '/helpers/helloworld.php');
+
 // Get an instance of the controller
 $controller = JControllerLegacy::getInstance('HelloWorld');
 

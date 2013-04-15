@@ -27,5 +27,8 @@ class HelloWorldController extends JControllerLegacy
 
 		// Call parent behaviour
 		parent::display($cachable, $urlparams);
+
+		// Set the submenu
+		HelloWorldHelper::addSubmenu('messages');
 	}
 }

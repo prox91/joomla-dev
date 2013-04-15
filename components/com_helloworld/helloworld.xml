@@ -20,6 +20,7 @@
 			<file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
 		</sql>
 	</uninstall>
+
 	<update> <!-- Runs on update; New in 3.0 -->
 		<schemas>
 			<schemapath type="mysql">sql/updates/mysql</schemapath>
@@ -47,6 +48,7 @@
 			<filename>helloworld.php</filename>
 			<filename>index.html</filename>
 			<folder>controllers</folder>
+			<folder>helpers</folder>
 			<folder>language</folder>
 			<folder>models</folder>
 			<folder>sql</folder>

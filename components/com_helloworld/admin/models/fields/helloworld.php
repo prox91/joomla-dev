@@ -21,9 +21,11 @@ class JFormlFieldHelloWorld extends JFormFieldList
 	{
 		$db = JFactory::getDbo();
 
-		$query = $db->getQuery(true);
-		$query->select('id, greeting');
-		$query->from('#__helloworld');
+		$query = $db->getQuery(true)
+		->select('#__helloworld.id as id, greeting, #__categories.title as category, catid')
+		->from('#__helloworld')
+		->leftJoin('#__categories on catid=#__categories.id');
+
 		$db->setQuery((string)$query);
 
 		$messages = $db->loadObjectList();
