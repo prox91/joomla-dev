@@ -9,16 +9,15 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
+JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
 JHtml::_('formbehavior.chosen', 'select');
+$params = $this->form->getFieldsets('param');
 ?>
 <script type="text/javascript">
-	Joomla.submitbutton = function(task)
-	{
-		if (task == 'helloworld.cancel' || document.formvalidator.isValid(document.id('helloworld-form')))
-		{
+	Joomla.submitbutton = function (task) {
+		if (task == 'helloworld.cancel' || document.formvalidator.isValid(document.id('helloworld-form'))) {
 			Joomla.submitform(task, document.getElementById('helloworld-form'));
 		}
 	}
@@ -26,14 +25,34 @@ JHtml::_('formbehavior.chosen', 'select');
 
 <form action="<?php echo JRoute::_('index.php?option=com_helloworld&layout=edit&id' . (int) $this->item->id); ?>" method="post"
 	name="adminForm" id="helloworld-form" class="form-validate">
-	<fieldset>
-		<legend><?php echo JText::_('COM_HELLOWORLD_HELLOWORLD_DETAILS') ?></legend>
-		<ul class="adminformlist">
-			<?php foreach ($this->form->getFieldset() as $field): ?>
-				<li><?php echo $field->label; echo $field->input;?></li>
-			<?php endforeach; ?>
-		</ul>
-	</fieldset>
+	<div class="width-60 fltlft">
+		<fieldset>
+			<legend><?php echo JText::_('COM_HELLOWORLD_HELLOWORLD_DETAILS') ?></legend>
+			<ul class="adminformlist">
+				<?php foreach ($this->form->getFieldset() as $field): ?>
+					<li><?php echo $field->label; echo $field->input;?></li>
+				<?php endforeach; ?>
+			</ul>
+		</fieldset>
+	</div>
+	<div class="width-40 fltrt">
+		<?php echo JHtml::_('sliders.start', 'helloworld-slider');
+		foreach ($params as $name => $fieldset):
+			echo JHtml::_('sliders.panel', JText::_($fieldset->label), $name . '-params');
+			if (isset($fieldset->description) && trim($fieldset->description)): ?>
+				<p class="tip"><?php echo $this->escape(JText::_($fieldset->description));?></p>
+			<?php endif; ?>
+			<fieldset class="panelform">
+				<ul class="adminformlist">
+					<?php foreach ($this->form->getFieldset($name) as $field) : ?>
+						<li><?php echo $field->label; ?><?php echo $field->input; ?></li>
+					<?php endforeach; ?>
+				</ul>
+			</fieldset>
+		<?php endforeach; ?>
+
+		<?php echo JHtml::_('sliders.end'); ?>
+	</div>
 	<div>
 		<input type="hidden" name="task" value="helloworld.edit" />
 		<?php echo JHtml::_('form.token'); ?>

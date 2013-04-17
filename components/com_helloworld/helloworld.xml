@@ -7,7 +7,7 @@
 	<author>Nha Bui</author>
 	<authorEmail>nha@redweb.dk</authorEmail>
 	<authorUrl>http://www.redcomponent.com</authorUrl>
-	<version>0.0.11</version>
+	<version>0.0.13</version>
 	<description>COM_HELLOWORLD_DESCRIPTION</description>
 
 	<install> <!-- Runs on install -->
@@ -44,6 +44,7 @@
 		<menu>COM_HELLOWORLD</menu>
 
 		<files folder="admin">
+			<filename>config.xml</filename>
 			<filename>controller.php</filename>
 			<filename>helloworld.php</filename>
 			<filename>index.html</filename>
