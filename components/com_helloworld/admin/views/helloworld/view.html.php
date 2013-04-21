@@ -17,12 +17,10 @@ jimport('legacy.view.legacy');
  */
 class HelloWorldViewHelloWorld extends JViewLegacy
 {
-	/**
-	 * View form
-	 *
-	 * @var         form
-	 */
-	protected $form = null;
+	protected $form;
+	protected $item;
+	protected $script;
+	protected $canDo;
 
 	/**
 	 * Display function
@@ -30,9 +28,12 @@ class HelloWorldViewHelloWorld extends JViewLegacy
 	public function display($tpl = null)
 	{
 		// Get data
-		$item   = $this->get('Item');
-		$form   = $this->get('Form');
-		$script = $this->get('Script');
+		$this->item   = $this->get('Item');
+		$this->form   = $this->get('Form');
+		$this->script = $this->get('Script');
+
+		// What Access Permissions does this user have? What can (s)he do?
+		$this->canDo = HelloWorldHelper::getActions($this->item->id);
 
 		// Check for error
 		if (count($errors = $this->get('Errors')))
@@ -41,11 +42,6 @@ class HelloWorldViewHelloWorld extends JViewLegacy
 
 			return false;
 		}
-
-		// Assign data to view
-		$this->item   = $item;
-		$this->form   = $form;
-		$this->script = $script;
 
 		// Set the tool bar
 		$this->addToolbar();
@@ -65,13 +61,49 @@ class HelloWorldViewHelloWorld extends JViewLegacy
 		$input = JFactory::getApplication()->input;
 		$input->set('hidemainmenu', true);
 
+		$user = JFactory::getUser();
+		$userId = $user->id;
 		$isNew = ($this->item->id == 0);
 
 		JToolbarHelper::title($isNew ? JText::_('COM_HELLOWORLD_MANAGER_HELLOWORLD_NEW')
 			: JText::_('COM_HELLOWORLD_MANAGER_HELLOWORLD_EDIT'));
-		JToolbarHelper::save('helloworld.save');
-		JToolbarHelper::cancel('helloworld.cancel', $isNew ? 'JTOOLBAR_CANCEL'
-			: 'JTOOLBAR_CLOSE');
+		if($isNew)
+		{
+			if($this->canDo->get('core.create'))
+			{
+				JToolBarHelper::apply('helloworld.apply', 'JTOOLBAR_APPLY');
+				JToolBarHelper::save('helloworld.save', 'JTOOLBAR_SAVE');
+				JToolBarHelper::custom('helloworld.save2new', 'save-new.png', 'save-new_f2.png',
+					'JTOOLBAR_SAVE_AND_NEW', false);
+			}
+			JToolBarHelper::cancel('helloworld.cancel', 'JTOOLBAR_CANCEL');
+
+			JToolbarHelper::save('helloworld.save');
+			JToolbarHelper::cancel('helloworld.cancel', $isNew ? 'JTOOLBAR_CANCEL'
+				: 'JTOOLBAR_CLOSE');
+		}
+		else
+		{
+			if($this->canDo->get('core.edit'))
+			{
+				// We can save the new record
+				JToolBarHelper::apply('helloworld.apply', 'JTOOLBAR_APPLY');
+				JToolBarHelper::save('helloworld.save', 'JTOOLBAR_SAVE');
+
+				// We can save this record, but check the create permission to see
+				// if we can return to make a new one.
+				if ($this->canDo->get('core.create'))
+				{
+					JToolBarHelper::custom('helloworld.save2new', 'save-new.png', 'save-new_f2.png', 'JTOOLBAR_SAVE_AND_NEW', false);
+				}
+			}
+
+			if ($this->canDo->get('core.create'))
+			{
+				JToolBarHelper::custom('helloworld.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false);
+			}
+			JToolBarHelper::cancel('helloworld.cancel', 'JTOOLBAR_CLOSE');
+		}
 	}
 
 	/**

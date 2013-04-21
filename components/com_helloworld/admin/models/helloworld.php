@@ -79,4 +79,15 @@ class HelloWorldModelHelloWorld extends JModelAdmin
 	{
 		return 'administrator/components/com_helloworld/models/forms/helloworld.js';
 	}
+
+	/**
+	 * Method to check if it's OK to delete a message. Overwrites JModelAdmin::canDelete
+	 */
+	protected function canDelete($record)
+	{
+		if( !empty( $record->id ) ){
+			$user = JFactory::getUser();
+			return $user->authorise( "core.delete", "com_helloworld.message." . $record->id );
+		}
+	}
 }

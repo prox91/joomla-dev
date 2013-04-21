@@ -34,4 +34,29 @@ abstract class HelloWorldHelper
 			$document->setTitle(JText::_('COM_HELLOWORLD_ADMINISTRATION_CATEGORIES'));
 		}
 	}
+
+	/**
+	 * Get the actions
+	 */
+	public static function getActions($messageId = 0)
+	{
+		jimport('joomla.access.access');
+		$user   = JFactory::getUser();
+		$result = new JObject;
+		if (empty($messageId))
+		{
+			$assetName = 'com_helloworld';
+		}
+		else
+		{
+			$assetName = 'com_helloworld.message.' . (int) $messageId;
+		}
+		$actions = JAccess::getActions('com_helloworld', 'component');
+		foreach ($actions as $action)
+		{
+			$result->set($action->name, $user->authorise($action->name, $assetName));
+		}
+
+		return $result;
+	}
 }

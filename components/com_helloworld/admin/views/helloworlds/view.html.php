@@ -17,14 +17,20 @@ jimport('legacy.view.legacy');
  */
 class HelloWorldViewHelloWorlds extends JViewLegacy
 {
+	protected $items;
+	protected $pagination;
+	protected $canDo;
+
 	/**
 	 * Display function
 	 */
 	public function display($tpl = null)
 	{
 		// Get data from the model
-		$items = $this->get('Items');
-		$pagination = $this->get('Pagination');
+		$this->items = $this->get('Items');
+		$this->pagination = $this->get('Pagination');
+
+		$this->canDo = HelloWorldHelper::getActions();
 
 		// Check for error
 		if(count($errors = $this->get('Errors')))
@@ -32,10 +38,6 @@ class HelloWorldViewHelloWorlds extends JViewLegacy
 			JError::raiseError(500, implode('<br/>', $errors));
 			return false;
 		}
-
-		// Assign data to view
-		$this->items = $items;
-		$this->pagination  = $pagination;
 
 		// Set the tool bar
 		$this->addToolbar($this->pagination->total);
@@ -59,10 +61,27 @@ class HelloWorldViewHelloWorlds extends JViewLegacy
 				($total?' <span style="font-size: 0.5em; vertical-align: middle;">('.$total.')</span>':'')
 				, 'helloworld');
 
-		JToolbarHelper::addNew('helloworld.add');
-		JToolbarHelper::editList('helloworld.edit');
-		JToolbarHelper::deleteList('', 'helloworlds.delete');
-		JToolBarHelper::preferences('com_helloworld');
+		if($this->canDo->get('core.create'))
+		{
+			JToolbarHelper::addNew('helloworld.add');
+		}
+
+		if($this->canDo->get('core.edit'))
+		{
+			JToolbarHelper::editList('helloworld.edit');
+		}
+
+		if($this->canDo->get('core.delete'))
+		{
+			JToolbarHelper::deleteList('', 'helloworlds.delete');
+		}
+
+		// Option button
+		if ($this->canDo->get('core.admin'))
+		{
+			JToolbarHelper::divider();
+			JToolBarHelper::preferences('com_helloworld');
+		}
 	}
 
 	/**

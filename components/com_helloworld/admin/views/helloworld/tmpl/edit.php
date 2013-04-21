@@ -53,6 +53,22 @@ $params = $this->form->getFieldsets('param');
 
 		<?php echo JHtml::_('sliders.end'); ?>
 	</div>
+
+	<!-- begin ACL definition-->
+	<div class="clr"></div>
+		<?php if ($this->canDo->get('core.admin')): ?>
+		<div class="width-100 fltlft">
+			<?php echo JHtml::_('sliders.start', 'permissions-sliders-'.$this->item->id, array('useCookie'=>1)); ?>
+			<?php echo JHtml::_('sliders.panel', JText::_('COM_HELLOWORLD_FIELDSET_RULES'), 'access-rules'); ?>
+			<fieldset class="panelform">
+				<?php echo $this->form->getLabel('rules'); ?>
+				<?php echo $this->form->getInput('rules'); ?>
+			</fieldset>
+			<?php echo JHtml::_('sliders.end'); ?>
+		</div>
+	<?php endif; ?>
+	<!-- end ACL definition-->
+
 	<div>
 		<input type="hidden" name="task" value="helloworld.edit" />
 		<?php echo JHtml::_('form.token'); ?>
