@@ -14,5 +14,3 @@ jimport('legacy.controller.legacy');
 class HelloWorldController extends JControllerLegacy
 {
 }
-
-?>
