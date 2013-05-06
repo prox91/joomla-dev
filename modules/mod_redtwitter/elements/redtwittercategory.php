@@ -1,6 +1,6 @@
 <?php
 /**
- * @version    Id: JFormFieldRedtwitterCategory.php
+ * @version    1.0.0
  * @package    Com_Redtwitter
  * @author     Ronni K. G. Christiansen<email@redweb.dk> - http://www.redcomponent.com
  * @copyright  Copyright (C) 2010 redCOMPONENT.com. All rights reserved.
@@ -10,7 +10,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * JFormFieldRedtwitterCategory for the Joomla Platform.
+ * Form Field class for the Joomla Platform.
  * Supports an HTML select list of categories
  *
  * @package     Joomla.Platform
@@ -28,13 +28,13 @@ class JFormFieldRedtwitterCategory extends JFormFieldList
 	public $type = 'redtwittercategory';
 
 	/**
-	* Method to get the field input markup for a generic list.
-	* Use the multiple attribute to enable multiselect.
-	*
-	* @return  string  The field input markup.
-	*
-	* @since   11.1
-	*/
+	 * Method to get the field input markup for a generic list.
+	 * Use the multiple attribute to enable multiselect.
+	 *
+	 * @return  string  The field input markup.
+	 *
+	 * @since   11.1
+	 */
 	protected function getInput()
 	{
 		$db = JFactory::getDBO();

@@ -44,6 +44,7 @@
 		<menu>COM_HELLOWORLD</menu>
 
 		<files folder="admin">
+			<filename>access.xml</filename>
 			<filename>config.xml</filename>
 			<filename>controller.php</filename>
 			<filename>helloworld.php</filename>
