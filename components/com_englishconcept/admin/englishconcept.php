@@ -11,12 +11,6 @@ defined('_JEXEC') or die('Restricted access');
 
 jimport('legacy.controller.legacy');
 
-// Access check: is this user allowed to access the backend of this component?
-if (!JFactory::getUser()->authorise('core.manage', 'com_englishconcept'))
-{
-	return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
-}
-
 // require helper file
 JLoader::register('EnglishConceptHelper', dirname(__FILE__) . '/helpers/englishconcept.php');
 

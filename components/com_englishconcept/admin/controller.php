@@ -21,6 +21,10 @@ class EnglishConceptController extends JControllerLegacy
 	 */
 	public function display($cachable = false, $urlparams = array())
 	{
+		// Set default view if not set
+		$input = JFactory::getApplication()->input;
+		$input->set('view', $input->getCmd('view', 'EnglishConcepts'));
+
 		// Call parent behaviour
 		parent::display($cachable, $urlparams);
 	}

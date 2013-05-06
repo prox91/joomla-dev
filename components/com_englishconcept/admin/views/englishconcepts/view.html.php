@@ -15,7 +15,7 @@ jimport('legacy.view.legacy');
 /**
  * Class EnglishConceptViewEnglishConcept
  */
-class EnglishConceptViewEnglishConcept extends JViewLegacy
+class EnglishConceptViewEnglishConcepts extends JViewLegacy
 {
 	protected $items;
 	protected $pagination;
