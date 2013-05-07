@@ -31,7 +31,26 @@ class EnglishConceptViewEnglishConcepts extends JViewLegacy
 
 		//$this->canDo = HelloWorldHelper::getActions();
 
+		// Set the tool bar
+		$this->addToolbar();
+
 		// Display the template
 		parent::display($tpl);
+
+		// Set the documents
+		$this->setDocument();
+	}
+
+	public function addToolbar() {
+		JToolbarHelper::title(JText::_('COM_ENGLISHCONCEPT_TITLE'));
+
+		JToolbarHelper::addNew('englishconcept.add');
+
+		JToolbarHelper::editList('englishconcept.edit');
+	}
+
+	public function setDocument() {
+		$document = JFactory::getDocument();
+		$document->setTitle(JText::_("COM_ENGLISHCONCEPT_TITLE"));
 	}
 }
