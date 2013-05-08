@@ -1,0 +1,186 @@
+/* author 		redWeb ApS
+ * copyright 	Copyright © 2013 redweb.dk All rights reserved.
+ * license  	http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+ * website   	http://www.redweb.dk
+ */
+
+
+.gridRedWeb
+{
+	.wrapper(@gridMarginLeft)
+	{
+	   width: auto !important;
+        .clearfix();
+		margin-left: -@gridMarginLeft;
+
+	}
+	
+	.row(@gridWidth, @gridColumns, @gridMarginLeft, @girdColumnHeight)
+	{
+		width: floor((@gridWidth - (@gridColumns - 1) * @gridMarginLeft) / @gridColumns) !important;
+		margin: 0px 0px @gridMarginLeft @gridMarginLeft;
+		
+		float: left;
+        min-height: @girdColumnHeight;
+
+		*width: floor((@gridWidth - (@gridColumns - 1) * @gridMarginLeft) / @gridColumns) - 2 !important;
+	}
+	
+	
+	.grid(@layout)
+    {
+        
+        #sidebar1.span2
+        {
+            @var : "gridLeftWidth@{layout}";
+            width: @@var;
+            clear: both;
+        }
+        
+        #sidebar2.span3
+        {
+            @var : "gridRightWidth@{layout}";
+            width: @@var;
+        }
+       
+    
+        @var : "gridContentWidth@{layout}";
+        @gridContentWidthL : @@var;
+         
+        #main.span12
+        {
+            @gridContent : "gridRowWidth@{layout}";
+            width: @@gridContent;
+        }
+        
+        #main.span10
+        {
+            @gridContent : "gridRowWidth@{layout}";
+            @gridLeft : "gridLeftWidth@{layout}";
+            @gridGutter : "gridGutterWidth@{layout}";
+            width: @@gridContent - @@gridLeft - @@gridGutter;
+        }
+        
+        #main.span9
+        {
+            @gridContent : "gridRowWidth@{layout}";
+            @gridRight : "gridRightWidth@{layout}";
+            @gridGutter : "gridGutterWidth@{layout}";
+            width: @@gridContent - @@gridRight - @@gridGutter;
+        }
+        
+        #main.span7
+        {
+            @gridContent : "gridRowWidth@{layout}";
+            @gridLeft : "gridLeftWidth@{layout}";
+            @gridRight : "gridRightWidth@{layout}";
+            @gridGutter : "gridGutterWidth@{layout}";
+            width: @@gridContent - @@gridLeft - @@gridRight - (@@gridGutter * 2);
+        }
+        
+        .category_box_wrapper
+        {
+            @var : "gridProductGutterWidth@{layout}";
+            .gridRedWeb .wrapper(@@var);
+        }
+        
+        .category_box_wrapper .category_box_outside
+        {
+            @var1 : "gridProductColumns@{layout}";
+            @var2 : "gridProductGutterWidth@{layout}";
+            @var3 : "gridProductColumnHeight@{layout}";
+            
+            .gridRedWeb .row(@gridContentWidthL, @@var1, @@var2, @@var3);
+        }
+        
+        
+        .category_box_wrapper .category_box_outside_row
+        {
+            @var : "gridProductGutterWidth@{layout}";
+            margin-left: @@var;
+        }
+        
+        .category_front_wrapper
+        {
+            @var : "gridCategoryGutterWidth@{layout}";
+            .gridRedWeb .wrapper(@@var);
+        }
+        
+        .category_front_wrapper .category_front
+        {
+            @var1 : "gridCategoryColumns@{layout}";
+            @var2 : "gridCategoryGutterWidth@{layout}";
+            @var3 : "gridCategoryColumnHeight@{layout}";
+            
+            .gridRedWeb .row(@gridContentWidthL, @@var1, @@var2, @@var3);
+        }
+
+        .related_product_wrapper
+        {
+            @var : "gridRelatedProductGutterWidth@{layout}";
+            .gridRedWeb .wrapper(@@var);
+        }
+        
+        .related_product_wrapper .related_product_inside
+        {
+            @var1 : "gridRelatedProductColumns@{layout}";
+            @var2 : "gridRelatedProductGutterWidth@{layout}";
+            @var3 : "gridRelatedProductColumnHeight@{layout}";
+            
+            .gridRedWeb .row(@gridContentWidthL, @@var1, @@var2, @@var3);
+        }
+    }
+	
+	.fluid(@layout)
+	{
+		@margin: 5%;
+		@categoryColumns : "gridCategoryColumns@{layout}";
+		@categoryWidth : (100/@@categoryColumns) - @margin;
+		@categoryHeight : "gridCategoryColumnHeight@{layout}";
+		
+		@productColumns : "gridProductsColumn@{layout}";
+		@productWidth : (100/@@productColumns) - @margin;
+		@productHeight : "gridProductsColumnHeight@{layout}";
+		
+		@relatedProductColumns : "gridRelatedProductsColumn@{layout}";
+		@relatedProductWidth : (100/@@relatedProductColumns) - @margin;
+		@relatedProductHeight : "gridRelatedProductsColumnHeight@{layout}";
+		
+		#sidebar1, #sidebar2, #main
+		{
+			width: auto !important;
+		}
+		
+		.category_box_wrapper, .category_front_wrapper, .related_product_wrapper
+		{
+			margin-left: -@margin;
+		}
+		
+		.category_box_wrapper .category_box_outside, 
+		.category_front_wrapper .category_front,
+		.related_product_wrapper .related_product_inside
+		{
+			margin-left: @margin;
+			margin-bottom: @margin;
+		}
+
+		.category_box_wrapper .category_box_outside
+		{
+			width: @productWidth !important;
+			min-height: @@productHeight !important;
+		}
+		
+		.category_front_wrapper .category_front
+		{
+			width: @categoryWidth !important;
+			min-height: @@categoryHeight !important;
+		}
+		
+		.related_product_wrapper .related_product_inside
+		{
+			width: @relatedProductWidth !important;
+			min-height: @@relatedProductHeight !important;
+		}
+		
+	}
+}

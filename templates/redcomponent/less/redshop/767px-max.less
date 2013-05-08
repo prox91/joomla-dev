@@ -1,0 +1,47 @@
+//
+// Responsive: Landscape phone to desktop/tablet
+// --------------------------------------------------
+
+@media (max-width: 767px) {
+	
+	// Modals
+    #sbox-window {
+        position: fixed;
+        top:   20px !important;
+        left:  20px !important;
+        right: 20px !important;
+        width: auto !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        &.fade  { top: -100px !important; }
+        &.fade.in { top: 20px !important; }
+    }
+    
+    // Modals
+	  .modal {
+	    position: static;
+	    top:   auto;
+	    left:  auto;
+	    right: auto;
+	    width: auto;
+	    margin: auto;
+	    &.fade  { top: auto; }
+	    &.fade.in { top: auto; }
+	  }
+  
+    .pagination .pager
+    {
+        display: inline;
+    }
+    
+    .pagination .pagerdt, .pagination .counter
+    {
+        display: none;
+    }
+    
+    .gridRedWeb .fluid('767');
+}
+
+
+
+

@@ -1,0 +1,35 @@
+/*
+ * author 		redComponent
+ * copyright 	Copyright © 2013 redcomponent.com All rights reserved.
+ * license  	http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+ * website   	http://www.redcomponent.com
+ */
+
+@import "mixins.less";
+
+@import "1200px-min.less";
+
+@import "768px-979px.less";
+
+@import "767px-max.less";
+
+@import "480px-max.less";
+
+@import "360px-max.less";
+
+@import "320px-max.less";
+
+
+@media (max-width: @navbarCollapseWidth) {
+  .navbar .nav li.active.dropdown ul.dropdown-menu,
+  .navbar .nav li:hover ul.dropdown-menu
+  {
+
+    display: block;
+    &.sub-menu
+    {
+      position: static;
+      visibility: visible;
+    }
+  }
+}

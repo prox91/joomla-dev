@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Standard Manufacturers Category List">
+		<message>
+			<![CDATA[Standard Manufacturers Layout For Redshop Manufacturers List]]>
+		</message>
+	</layout>
+	<state>
+		<name>Standard Manufacturers Category List</name>
+		<description>COM_REDSHOP_Standard_Manufacturers_Layout_For_Redshop_Manufacturers_List</description>
+		<config >
+ 	 <fields name="params"  addfieldpath="/administrator/components/com_redshop/elements">
+	   <fieldset name="basic">
+			<field name="maxmanufacturer" type="text" size="4" default="5" label="COM_REDSHOP_HOW_MANY_MANUFACTURERS" description="COM_REDSHOP_HOW_MANY_MANUFACTURERS_DESCRIPTION" />
+			<field name="cid" type="category" label="Select Category" description="Displays the selected category product"/>
+		</fieldset>	
+		
+		
+		
+	</fields>
+       </config >				
+	</state>
+</metadata>
