@@ -62,7 +62,7 @@ class plgContentAutoResizer extends JPlugin
 		}
 
 		// get plugin parameter
-		$plugin = JPluginHelper::getPlugin('content', 'smartresizer');
+		$plugin = JPluginHelper::getPlugin('content', 'autoresizer');
 		if(version_compare(JVERSION,'1.6.0','<'))
 		{
 			$pluginParams = new JParameter( $plugin->params );
