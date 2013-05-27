@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.0"
+           type="plugin"
+           group="content"
+           method="upgrade">
+	<name>AUTO_RESIZER</name>
+	<author>Nha Bui</author>
+	<creationDate>May 2013</creationDate>
+	<copyright>Copyright (C) 2013 dedweb.dk. All rights reserved.</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>nha@redweb.dk</authorEmail>
+	<authorUrl>www.redweb.dk</authorUrl>
+	<version>1.0 J25</version>
+	<description>AUTO_RESIZER_DESCRIPTION</description>
+	<files>
+		<filename plugin="autoresizer">autoresizer.php</filename>
+		<filename>index.html</filename>
+		<folder>autoresizer</folder>
+	</files>
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.plg_content_autoresizer.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.plg_content_autoresizer.sys.ini</language>
+		<language tag="vi-VN">language/vi-VN/vi-VN.plg_content_autoresizer.ini</language>
+		<language tag="vi-VN">language/vi-VN/vi-VN.plg_content_autoresizer.sys.ini</language>
+	</languages>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="resize_image_intro"
+				       type="radio"
+				       default="1"
+				       label="RESIZE_INTRO_IMAGE_LBL"
+				       description="RESIZE_INTRO_IMAGE_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="scale_img_intro_width"
+				       type="text"
+				       default=""
+				       label="SCALE_IMG_INTRO_WIDTH_LBL"
+				       description="SCALE_IMG_INTRO_WIDTH_DESC"/>
+				<field name="scale_img_intro_width_height"
+				       type="text"
+				       default=""
+				       label="SCALE_IMG_INTRO_HEIGHT_LBL"
+				       description="SCALE_IMG_INTRO_HEIGHT_DESC"/>
+
+				<field name="spacer0"
+				       type="spacer"
+				       hr="true"/>
+
+				<field name="resize_image_article"
+				       type="radio"
+				       default="1"
+				       label="RESIZE_ARTICLE_IMAGE_LBL"
+				       description="RESIZE_ARTICLE_IMAGE_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+			</fieldset>
+			<fieldset name="advanced">
+				<field name="resize_image_dir"
+				       type="list"
+				       default="1"
+				       label="RESIZE_IMAGE_DIR_LBL"
+				       description="RESIZE_IMAGE_DIR_DESC">
+					<option value="0">SAME_ORIGINAL_DIR</option>
+					<option value="1">CACHE_DIR</option>
+					<option value="2">AUTO_DIR_IS_SUBDIR_ORIGINAL_DIR</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+
+</extension>
