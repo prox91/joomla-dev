@@ -119,6 +119,87 @@ class plgContentAutoResizer extends JPlugin
 		if($resize_image_intro)
 		{
 			// Get parameter for image intro
+			$scale_img_intro_width = $pluginParams->def('scale_img_intro_width', 160);
+			$scale_img_intro_height = $pluginParams->def('scale_img_intro_height', 120);
+
+			// check path file and get information of image
+			$path = JPATH_ROOT . "/";
+			$original_img_file = $path . $image_infos['image_intro'];
+
+			if (file_exists($original_img_file) && is_file($original_img_file))
+			{
+				$original_img_file_info = pathinfo($original_img_file);
+
+				// check extension support
+				$is_img = ($original_img_file_info['extension'] == 'jpg' || $original_img_file_info['extension'] == 'jpeg' || $original_img_file_info['extension'] == 'png' || $original_img_file_info['extension'] == 'gif' ||
+					$original_img_file_info['extension'] == 'JPG' || $original_img_file_info['extension'] == 'JPEG' || $original_img_file_info['extension'] == 'PNG' || $original_img_file_info['extension'] == 'GIF');
+
+				if ($is_img)
+				{
+					// create new file
+					$file_name = md5($original_img_file_info['filename'].$scale_img_intro_width.$scale_img_intro_height) . "." . $original_img_file_info['extension'];
+
+					// check exist resized image
+					$resize_image_store_dir = $pluginParams->def('resize_image_store_dir', 1);
+					if ($resize_image_store_dir == 0)
+					{
+
+					}
+					else {
+						if ($resize_image_store_dir == 1)
+						{
+							if (!file_exists(JPATH_ROOT . "/cache/" . $file_name)
+								|| !is_file(JPATH_ROOT . "/cache/" . $file_name)
+							)
+							{
+								// process resize image
+								list($original_width, $original_height) = getimagesize($original_img_file);
+								if ($scale_img_intro_width != $original_width || $scale_img_intro_height != $original_height)
+								{
+									$image = new Image($original_img_file);
+									$image->resize($scale_img_intro_width, $scale_img_intro_height, $original_img_file_info['extension']);
+									$image->save(JPATH_ROOT . "/cache/" . $file_name);
+								}
+							}
+							$image_infos['image_intro'] = "cache/" . $file_name;
+						}
+						else
+						{
+
+						}
+					}
+				}
+			}
+
+
+			/*
+			$old_image = $file_name;
+			$new_image = 'cache/' . utf8_substr($file_name, 0, utf8_strrpos($file_name, '.')) . '-' . $scale_img_intro_width . 'x' . $scale_img_intro_height . $type .'.' . $extension;
+
+			if (!file_exists(DIR_IMAGE . $new_image) || (filemtime(DIR_IMAGE . $old_image) > filemtime(DIR_IMAGE . $new_image))) {
+				$path = '';
+
+				$directories = explode('/', dirname(str_replace('../', '', $new_image)));
+
+				foreach ($directories as $directory) {
+					$path = $path . '/' . $directory;
+
+					if (!file_exists(DIR_IMAGE . $path)) {
+						@mkdir(DIR_IMAGE . $path, 0777);
+					}
+				}
+
+				list($width_orig, $height_orig) = getimagesize(DIR_IMAGE . $old_image);
+
+				if ($width_orig != $width || $height_orig != $height) {
+					$image = new Image(DIR_IMAGE . $old_image);
+					$image->resize($width, $height, $type);
+					$image->save(DIR_IMAGE . $new_image);
+				} else {
+					copy(DIR_IMAGE . $old_image, DIR_IMAGE . $new_image);
+				}
+			}
+			*/
 
 
 		}
@@ -129,7 +210,6 @@ class plgContentAutoResizer extends JPlugin
 		}
 
 		// update image information of article
-		$image_infos['image_intro'] = 'cache/65_images_thumb_medium500_0.jpg';
 		$article->images = json_encode($image_infos);
 	}
 }

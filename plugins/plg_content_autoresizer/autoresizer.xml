@@ -61,7 +61,7 @@
 
 			</fieldset>
 			<fieldset name="advanced">
-				<field name="resize_image_dir"
+				<field name="resize_image_store_dir"
 				       type="list"
 				       default="1"
 				       label="RESIZE_IMAGE_DIR_LBL"
