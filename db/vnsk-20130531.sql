@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `vnsoftskills` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `vnsoftskills`;
+-- CREATE DATABASE  IF NOT EXISTS `vnsoftskills` /*!40100 DEFAULT CHARACTER SET utf8 */;
+-- USE `vnsoftskills`;
 -- MySQL dump 10.13  Distrib 5.5.16, for Win32 (x86)
 --
 -- Host: 127.0.0.1    Database: vnsoftskills
