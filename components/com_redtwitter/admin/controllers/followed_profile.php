@@ -9,9 +9,7 @@
  */
 // No direct access
 defined('_JEXEC') or die('Restricted access');
-
 jimport('joomla.application.component.controllerform');
-
 /**
  * Followed_profile controller class.
  */

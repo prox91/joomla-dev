@@ -10,103 +10,136 @@
 // No direct access
 defined('_JEXEC') or die('Restricted access');
 
-include(JPATH_BASE . "/components/com_redtwitter/libs/twitteroauth/OAuth.php");
-include(JPATH_BASE . "/components/com_redtwitter/libs/twitteroauth/twitteroauth.php");
+JLoader::registerPrefix('Red', JPATH_BASE . '/administrator/components/com_redtwitter/libraries');
 
 /**
  * Class RedtwitterHelper
  */
-abstract class RedtwitterHelper
+class RedtwitterHelper
 {
 	/**
 	 * @var
 	 */
-	public static $connection = null;
+	public static $oauthInfo;
 
 	/**
-	 * @param $user_list
-	 * @param int $order_type
-	 * @param int $max_item_displayed
+	 * @var
+	 */
+	public static $params;
+
+	/**
+	 * @param     $userList
+	 * @param int $orderType
+	 * @param int $maxItemDisplayed
 	 *
 	 * @return array
 	 */
-	public static function get_all_twitter_timelines($user_list, $order_type = 0, $max_item_displayed = 20)
+	public static function getAllUserTimeline($userList, $orderType = 0, $maxItemDisplayed = 20, $params = array())
 	{
-		$twitter_timelines = array();
 
-		$twitter_data_list = array();
-		$i                 = 0;
+		self::$params = $params;
 
-		foreach ($user_list as $user)
+		// Get authentication info
+		self::_getOauthInfo();
+		if(empty(self::$oauthInfo))
+		{
+			return array();
+		}
+
+		$cacheTime = 60;
+		if (!empty($params) && $params->get('cache') == 1)
+		{
+			// Fetch cache time from module parameters and convert to seconds
+			$cacheTime = $params->get('cache_time', 15);
+			$cacheTime = $cacheTime * 60;
+		}
+
+		$twitterTimelines = array();
+		$twitterDataList = array();
+		$i = 0;
+
+		foreach ($userList as $user)
 		{
 			if (!empty($user->twitterusername))
 			{
-				$params = array(
-					'screen_name' => $user->twitterusername,
-					'include_rts' => 1
-				);
-				$result = self::get_timeline_twitter($params);
+				$cacheTweets = JPATH_CACHE . '/' . $user->twitterusername . '_tweets.json';
+				if(file_exists($cacheTweets) && time() - @filemtime($cacheTweets) < $cacheTime)
+				{
+					$result = self::getCachedUserTimeline($cacheTweets);
+				}
+				else
+				{
+					$result = self::getUserTimeline($user->twitterusername, $cacheTweets);
+				}
 
 				if (is_array($result))
 				{
-					$twitter_data_list[$i] = $result;
+					$twitterDataList[$i] = $result;
 					$i++;
 				}
 			}
 		}
 
-		$num_real_user = count($twitter_data_list);
-		$num_count     = (int) ($max_item_displayed / $num_real_user);
+		$numRealUser = count($twitterDataList);
 
-		$num_count_ext = 0;
-		$remain        = ($max_item_displayed - ($num_count * $num_real_user));
+		if ($numRealUser != 0)
+		{
+			$numCount = (int) ($maxItemDisplayed / $numRealUser);
+		}
+		else
+		{
+			$numCount = 1;
+		}
+
+		$numCountExt = 0;
+		$remain = ($maxItemDisplayed - ($numCount * $numRealUser));
 
 		if ($remain != 0)
 		{
-			$num_count_ext = $remain;
+			$numCountExt = $remain;
 		}
 
-		$i     = 0;
+		$i = 0;
 		$index = 0;
 
-		foreach ($twitter_data_list as $twitter_data)
+		foreach ($twitterDataList as $twitterData)
 		{
-			if ($index == ($num_real_user - 1))
+			if ($index == ($numRealUser - 1))
 			{
-				$num_count += $num_count_ext;
+				$numCount += $numCountExt;
 			}
 
 			$index++;
 
-			if (count($twitter_data) > 0)
+			if (count($twitterData) > 0)
 			{
-				foreach ($twitter_data as $key => $data)
+				foreach ($twitterData as $key => $data)
 				{
-					$date  = new DateTime($data->created_at);
+					$date = new DateTime($data->created_at);
 					$pDate = $date->format("Y-m-d H:i:s");
 
-					$id                = (string) $data->user->id;
-					$name              = (string) $data->user->name;
-					$screen_name       = (string) $data->user->screen_name;
-					$title             = (string) $data->text;
+					$id = (string) $data->user->id;
+					$name = (string) $data->user->name;
+					$screen_name = (string) $data->user->screen_name;
+					$title = (string) $data->text;
 					$profile_image_url = (string) $data->user->profile_image_url;
-					$description       = (string) $data->text;
-					$link              = (string) 'https://twitter.com/' . $screen_name . '/statuses/' . $data->id_str;
-					$pubDate           = (string) $pDate;
+					$description = (string) $data->text;
+					$link = (string) 'https://twitter.com/' . $screen_name . '/statuses/' . $data->id_str;
+					$pubDate = (string) $pDate;
 
-					$twitter_timelines[$i++] = array(
-						'id'                => $id,
-						'name'              => $name,
-						'screen_name'       => $screen_name,
-						'title'             => $title,
+					$twitterTimelines[$i++] = array(
+						'id' => $id,
+						'name' => $name,
+						'screen_name' => $screen_name,
+						'title' => $title,
 						'profile_image_url' => $profile_image_url,
-						'description'       => $description,
-						'link'              => $link,
-						'pdate'             => $pubDate,
-						'pdate_time'       => strtotime($pDate)
+						'description' => $description,
+						'link' => $link,
+						'pdate' => $pubDate,
+						'pdate_time' => strtotime($pDate)
 					);
 
-					if ($key == ($num_count-1))
+					if ($key == ($numCount - 1))
 					{
 						break;
 					}
@@ -115,63 +148,54 @@ abstract class RedtwitterHelper
 		}
 
 		// Order by date
-		if ($order_type == 0)
+		if ($orderType == 0)
 		{
-			self::_sort_by_key($twitter_timelines, 'pdate_time');
-			return array_reverse($twitter_timelines);
+			self::_sortByKey($twitterTimelines, 'pdate_time');
+			return array_reverse($twitterTimelines);
 		}
 		else // Order by name
 		{
-			self::_sort_by_key($twitter_timelines, 'name');
-			return $twitter_timelines;
+			self::_sortByKey($twitterTimelines, 'name');
+			return $twitterTimelines;
 		}
 	}
 
-	/**
-	 * @param $screen_name
-	 * @param int $order_type
-	 * @param int $max_item_displayed
-	 *
-	 * @return array
-	 */
-	public static function get_timeline_twitter($params)
+	public static function getUserTimeline($username, $cacheTweets, $count = 20)
 	{
-		if (empty(self::$connection))
+		$url = "https://api.twitter.com/1.1/statuses/user_timeline.json?include_rts=1&screen_name=" . $username . "&count=" . $count;
+		$header = array('Authorization' => self::$oauthInfo->access_token,);
+
+		$http = RedHttpFactory::getHttp();
+		$response = $http->get($url, $header);
+
+		if(!empty(self::$params) && self::$params->get('cache') == 1)
 		{
-			self::$connection = self::get_twitter_connection();
+			try
+			{
+				file_put_contents($cacheTweets, $response->body);
+			}
+			catch (Exception $e)
+			{}
 		}
 
-		if (!empty(self::$connection))
-		{
-			return self::$connection->get('statuses/user_timeline', $params);
-		}
-
-		return array();
+		return json_decode($response->body);;
 	}
 
-	/**
-	 *
-	 */
-	public static function get_twitter_connection()
+	public static function getCachedUserTimeline($cacheTweets)
 	{
-		$oauth_info = self::_get_oauth_info();
+		$result = file_get_contents($cacheTweets);
 
-		if (is_object($oauth_info))
-		{
-			return new TwitterOAuth($oauth_info->consumer_key, $oauth_info->consumer_secret, $oauth_info->access_token, $oauth_info->access_token_secret);
-		}
-
-		return null;
+		return json_decode($result);
 	}
 
 	/**
 	 * @return JException|mixed
 	 */
-	private static function _get_oauth_info()
+	private static function _getOauthInfo()
 	{
-		$db    = JFactory::getDbo();
+		$db = JFactory::getDbo();
 		$query = $db->getQuery(true)
-			->select('id, consumer_key, consumer_secret, access_token, access_token_secret')
+			->select('id, consumer_key, consumer_secret, access_token')
 			->from($db->quoteName('#__redtwitter_oauth_info'))
 			->where('state = 1');
 
@@ -180,7 +204,12 @@ abstract class RedtwitterHelper
 
 		try
 		{
-			return $db->loadObject();
+			$result = $db->loadObject();
+			if(empty($result))
+			{
+				return array();
+			}
+			self::$oauthInfo = $result;
 		}
 		catch (RuntimeException $e)
 		{
@@ -194,11 +223,11 @@ abstract class RedtwitterHelper
 	 *
 	 * @return mixed
 	 */
-	private static function _sort_by_key(&$arr, $key)
+	private static function _sortByKey(&$arr, $key)
 	{
 		global $key2sort;
 		$key2sort = $key;
-		usort($arr, "self::_sbk");
+		usort($arr, "self::_subSort");
 
 		return ($arr);
 	}
@@ -209,10 +238,9 @@ abstract class RedtwitterHelper
 	 *
 	 * @return int
 	 */
-	private static function _sbk($a, $b)
+	private static function _subSort($a, $b)
 	{
 		global $key2sort;
-
 		return (strcasecmp($a[$key2sort], $b[$key2sort]));
 	}
 }

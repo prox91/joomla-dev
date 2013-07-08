@@ -10,8 +10,6 @@
 // No direct access
 defined('_JEXEC') or die('Restricted access');
 
-jimport('joomla.form.formfield');
-
 /**
  * Supports an HTML select list of categories
  */

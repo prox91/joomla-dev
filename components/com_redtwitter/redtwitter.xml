@@ -6,7 +6,7 @@
 	<creationDate>2012-11-15</creationDate>
 	<copyright>Copyright (C) 2012. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-	<author>Ronni K. G. Christiansen</author>
+	<author>www.redcomponent.com</author>
 	<authorEmail>email@redweb.dk</authorEmail>
 	<authorUrl>http://www.redcomponent.com</authorUrl>
 	<version>1.0.0</version>
@@ -33,10 +33,8 @@
 		<filename>router.php</filename>
 		<folder>views</folder>
 		<folder>models</folder>
-		<folder>libs</folder>
 		<folder>controllers</folder>
 		<folder>helpers</folder>
-		<folder>language</folder>
 	</files>
 	<languages folder="site">
 		<language tag="en-GB">language/en-GB/en-GB.com_redtwitter.ini
@@ -45,15 +43,14 @@
 	<administration>
 		<menu img="components/com_redtwitter/assets/images/s_com_redtwitter.png">COM_REDTWITTER</menu>
 		<submenu>
-			<menu link="option=com_redtwitter&amp;view=oauth_infos"
-			      view="oauth_infos"
+            <menu link="option=com_redtwitter&amp;view=followed_profiles"
+                  view="followed_profiles"
+                  img="components/com_redtwitter/assets/images/s_followed_profiles.png"
+                  alt="Redtwitter/Followed_profiles">COM_REDTWITTER_TITLE_FOLLOWED_PROFILES_MANAGER</menu>
+			<menu link="option=com_redtwitter&amp;view=oauth_info"
+			      view="oauth_info"
 			      img="components/com_redtwitter/assets/images/s_followed_profiles.png"
-			      alt="Redtwitter/Followed_profiles">COM_REDTWITTER_TITLE_OAUTH_INFO_MANAGER</menu>
-
-			<menu link="option=com_redtwitter&amp;view=followed_profiles"
-			      view="followed_profiles"
-			      img="components/com_redtwitter/assets/images/s_followed_profiles.png"
-			      alt="Redtwitter/Followed_profiles">COM_REDTWITTER_TITLE_FOLLOWED_PROFILES_MANAGER</menu>
+			      alt="Redtwitter/Followed_profile">COM_REDTWITTER_TITLE_OAUTH_INFO_MANAGER</menu>
 		</submenu>
 		<files folder="admin">
 			<filename>access.xml</filename>
@@ -63,7 +60,7 @@
 			<filename>redtwitter.php</filename>
 			<folder>controllers</folder>
 			<folder>assets</folder>
-			<folder>language</folder>
+			<folder>libraries</folder>
 			<folder>helpers</folder>
 			<folder>models</folder>
 			<folder>sql</folder>

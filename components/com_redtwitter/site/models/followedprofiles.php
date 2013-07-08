@@ -10,12 +10,10 @@
 // No direct access
 defined('_JEXEC') or die('Restricted access');
 
-jimport('joomla.application.component.model');
-
 /**
- * Class redtwitterModelfollowedprofiles
+ * Class RedtwitterModelFollowedProfiles
  */
-class RedtwitterModelfollowedprofiles extends JModelLegacy
+class RedtwitterModelFollowedProfiles extends JModelLegacy
 {
 	public $pagination = null; /* Paginatio */
 	public $total = null;

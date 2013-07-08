@@ -28,7 +28,7 @@ class RedtwitterController extends JControllerLegacy
 	{
 		require_once JPATH_COMPONENT . '/helpers/redtwitter.php';
 
-		$view = JFactory::getApplication()->input->getCmd('view', 'oauth_infos');
+		$view = JFactory::getApplication()->input->getCmd('view', 'followed_profiles');
 		JFactory::getApplication()->input->set('view', $view);
 
 		parent::display($cachable, $urlparams);

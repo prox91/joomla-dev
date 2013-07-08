@@ -41,8 +41,8 @@ class RedtwitterModelOauth_Info extends JModelAdmin
 	/**
 	 * Method to get the record form.
 	 *
-	 * @param    array $data          An optional array of data for the form to interogate.
-	 * @param    boolean $loadData    True if the form is to load its own data (default case), false if not.
+	 * @param    array   $data          An optional array of data for the form to interogate.
+	 * @param    boolean $loadData      True if the form is to load its own data (default case), false if not.
 	 *
 	 * @return    JForm    A JForm object on success, false on failure
 	 * @since    1.6
@@ -60,12 +60,6 @@ class RedtwitterModelOauth_Info extends JModelAdmin
 		return $form;
 	}
 
-	/**
-	 * Method to get the data that should be injected in the form.
-	 *
-	 * @return    mixed    The data for the form.
-	 * @since    1.6
-	 */
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
@@ -74,6 +68,13 @@ class RedtwitterModelOauth_Info extends JModelAdmin
 		if (empty($data))
 		{
 			$data = $this->getItem();
+
+			// Prime some default values.
+			if ($this->getState($this->getName() . '.id') == 0)
+			{
+				$app = JFactory::getApplication();
+				$data->set('id', JRequest::getInt('id', $app->getUserState('com_redtwitter.oauth_info.filter.id')));
+			}
 		}
 
 		return $data;
@@ -113,9 +114,46 @@ class RedtwitterModelOauth_Info extends JModelAdmin
 			{
 				$db = JFactory::getDbo();
 				$db->setQuery('SELECT MAX(ordering) FROM #__redtwitter_oauth_info');
-				$max             = $db->loadResult();
+				$max = $db->loadResult();
 				$table->ordering = $max + 1;
 			}
 		}
+	}
+
+	/**
+	 * Method to auto-populate the model state.
+	 *
+	 * Note. Calling getState in this method will result in recursion.
+	 */
+	protected function populateState($ordering = null, $direction = null)
+	{
+		// Load the User state.
+		$pk = ((int) JRequest::getInt('id') ? (int) JRequest::getInt('id') : 1);
+		$this->setState($this->getName() . '.id', $pk);
+	}
+
+	/**
+	 * @param $data
+	 *
+	 * @return bool
+	 */
+	public function updateToken($data)
+	{
+		$oauth_info = new stdClass();
+		$oauth_info->id = $data['id'];
+		$oauth_info->consumer_key = $data['consumer_key'];
+		$oauth_info->consumer_secret = $data['consumer_secret'];
+		$oauth_info->access_token = $data['access_token'];
+		$oauth_info->state = $data['state'];
+
+		try
+		{
+			$result = JFactory::getDbo()->updateObject('#__redtwitter_oauth_info', $oauth_info, 'id');
+		}
+		catch (Exception $e)
+		{
+		}
+
+		return $result;
 	}
 }

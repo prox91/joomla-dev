@@ -1,6 +1,6 @@
 <?php
 /**
- * @version    1.0.0
+ * @version    Id: helper.php
  * @package    Com_Redtwitter
  * @author     Ronni K. G. Christiansen<email@redweb.dk> - http://www.redcomponent.com
  * @copyright  Copyright (C) 2010 redCOMPONENT.com. All rights reserved.
@@ -17,20 +17,20 @@ JLoader::register('RedtwitterHelper', JPATH_SITE . '/components/com_redtwitter/h
 abstract class modRedTwitterHelper
 {
 	/**
-	 * @param array $twitter_id
-	 * @param $order_type
-	 * @param $max_item_displayed
+	 * @param array $twitterId
+	 * @param $orderType
+	 * @param $maxItemDisplayed
 	 * @return array
 	 */
-	public static function getTwitterList($twitter_id = array(), $order_type = 0, $max_item_displayed = 10)
+	public static function getTwitterList($twitterId = array(), $orderType = 0, $maxItemDisplayed = 10, $params = array())
 	{
 		JModelLegacy::addIncludePath(JPATH_ROOT . '/components/com_redtwitter/models', 'redtwitterModelfollowedprofiles');
 		$model = JModelLegacy::getInstance('followedprofiles', 'redtwitterModel', array('ignore_request' => true));
 
-		$twitter_user_list =& $model->getData($twitter_id);
+		$twitterUserList =& $model->getData($twitterId);
 
-		$twitter_data_timelines = RedtwitterHelper::get_all_twitter_timelines($twitter_user_list, $order_type, $max_item_displayed);
-		return $twitter_data_timelines;
+		$twitterDataTimelines = RedtwitterHelper::getAllUserTimeline($twitterUserList, $orderType, $maxItemDisplayed, $params);
+		return $twitterDataTimelines;
 	}
 
 	/**
