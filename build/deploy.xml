@@ -1,31 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Development" description="Deploy the components and modules to server" default="deploy">
-	<property name="dirs.root" value=".."/>
+<project name="Development" description="Deploy extensions to web server" default="deploy">
+	<property name="dir.root" value=".."/>
 	<property file="./deploy.properties"/>
 
-	<taskdef name="zipme" classname="phingext.ZipmeTask" />
+	<target name="deploy" description="Deploy extension to web server">
+        <if>
+            <equals arg1="${com.name}" arg2="" casesensitive="false" />
+            <then>
+                <echo>Don't deploy any component</echo>
+            </then>
+            <else>
+                <phingcall target="deploy_component" />
+            </else>
+        </if>
 
-	<target name="setup-properties"
-	        description="Set up version and build properties">
-		<tstamp>
-			<format property="build.date"
-			        pattern="%Y-%m-%d"/>
-		</tstamp>
-	</target>
-
-	<target name="deploy" description="Deploy all source code of module and component">
-		<if>
-			<equals arg1="${web.root}" arg2="" casesensitive="false" />
+        <if>
+			<equals arg1="${mod.name}" arg2="" casesensitive="false" />
 			<then>
-				<echo>Do not input web root to deploy</echo>
+				<echo>Don't deploy any module</echo>
 			</then>
 			<else>
-				<phingcall target="execute" />
+				<phingcall target="deploy_module" />
 			</else>
 		</if>
 	</target>
 
-	<target name="execute">
-		<echo>${host.root}/${web.root}/</echo>
+    <target name="deploy_component" description="Deploy the component to web server">
+        <!-- Manifest & install script -->
+        <copy todir="${des.com.admin}" overwrite="true">
+            <fileset id="com-backend-manifest" dir="${src.com}">
+                <include name="**install*"/>
+                <include name="**${com.name}.xml"/>
+            </fileset>
+        </copy>
+
+        <!-- Backend of component -->
+        <copy todir="${des.com.admin}" overwrite="true">
+            <fileset id="com-backend-dir" dir="${src.com.admin}">
+                <include name="**"/>
+                <exclude name="${src.com.admin.lang}/**"/>
+            </fileset>
+        </copy>
+
+        <!-- Language backend of component -->
+        <copy todir="${des.com.admin.lang}" overwrite="true">
+            <fileset dir="${src.com.admin.lang}">
+                <include name="**" />
+            </fileset>
+        </copy>
+
+        <!-- Frontend of component -->
+        <copy todir="${des.com.site}" overwrite="true">
+            <fileset id="com-backend-dir" dir="${src.com.site}">
+                <include name="**"/>
+                <exclude name="${src.com.site.lang}/**"/>
+            </fileset>
+        </copy>
+
+        <!-- Language frontend of component -->
+        <copy todir="${des.com.site.lang}" overwrite="true">
+            <fileset dir="${src.com.site.lang}">
+                <include name="**" />
+            </fileset>
+        </copy>
+    </target>
+
+	<target name="deploy_module" description="Deploy the module to the web server">
+        <!-- Module -->
+        <copy todir="${des.mod}" overwrite="true">
+            <fileset id="mod-dir" dir="${src.mod}">
+                <include name="**"/>
+                <exclude name="${src.mod.lang}/**"/>
+            </fileset>
+        </copy>
+
+        <!-- Language -->
+        <copy todir="${des.mod.lang}" overwrite="true">
+            <fileset id="mod-dir" dir="${src.mod.lang}">
+                <include name="**"/>
+            </fileset>
+        </copy>
 	</target>
+
+    <target name="deploy_plugin" description="Deploy the plugin to web server">
+
+    </target>
 </project>
