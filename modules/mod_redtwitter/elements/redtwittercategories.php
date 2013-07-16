@@ -10,18 +10,18 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Module JFormFieldRedTwitterCategory
+ * Module JFormFieldRedtwitterCategories
  *
  * @package     RedTwitter.Frontend
  * @subpackage  Modules
  * @since       1.0
  */
-class JFormFieldRedtwitterCategory extends JFormFieldList
+class JFormFieldRedtwitterCategories extends JFormFieldList
 {
 	/**
 	 * @var string field type
 	 */
-	public $type = 'redtwittercategory';
+	public $type = 'redtwittercategories';
 
 	/**
 	 * Override get input function
@@ -46,7 +46,7 @@ class JFormFieldRedtwitterCategory extends JFormFieldList
 		if (!empty($twitterList))
 		{
 			ob_start();
-			$options = JHTML::_('select.genericlist', $twitterList, $this->name, '', 'twitter_user_name', 'display_name', $this->value);
+			$options = JHTML::_('select.genericlist', $twitterList, $this->name, 'multiple="multiple"', 'twitter_id', 'twitter_user_name', $this->value);
 			ob_end_clean();
 		}
 		else

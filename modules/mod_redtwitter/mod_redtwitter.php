@@ -1,25 +1,23 @@
 <?php
 /**
- * @version    1.0.0
- * @package    Com_Redtwitter
- * @author     Ronni K. G. Christiansen<email@redweb.dk> - http://www.redcomponent.com
- * @copyright  Copyright (C) 2010 redCOMPONENT.com. All rights reserved.
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
- *             Developed by email@recomponent.com - redCOMPONENT.com
+ * @package     RedTwitter.Frontend
+ * @subpackage  mod_redtwitter
+ *
+ * @copyright   Copyright (C) 2005 - 2013 redCOMPONENT.com. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE
  */
+// No direct access
 defined('_JEXEC') or die('Restricted access');
 
 // Include the syndicate functions only once
 require_once dirname(__FILE__) . '/helper.php';
 
-$document        = JFactory::getDocument();
+$document = JFactory::getDocument();
 $moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
 
 if ($params->get('twitter_id'))
 {
-	$order_type         = $params->get('order_type');
-	$max_item_displayed = $params->get('item_max_display');
-	$twitters           = modRedTwitterHelper::getTwitterList($params->get('twitter_id'), $order_type, $max_item_displayed);
+	$twitters = ModRedTwitterHelper::getTwitterList($params);
 }
 
 require JModuleHelper::getLayoutPath('mod_redtwitter', $params->get('layout', 'default'));
