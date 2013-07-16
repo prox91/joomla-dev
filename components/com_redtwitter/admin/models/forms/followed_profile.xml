@@ -3,7 +3,7 @@
 	<fieldset>
 
 		<field name="id"
-		       type="text"
+		       type="hidden"
 		       default="0"
 		       label="COM_REDTWITTER_FORM_LBL_FOLLOWED_PROFILE_ID"
 		       readonly="true"

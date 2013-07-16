@@ -7,3 +7,7 @@
 	background-image : url(../images/l_followed_profiles.png);
 	padding-left     : 60px !important;
 }
+
+.icon-32-access_token {
+    background-image: url(../images/access_token.png);
+}

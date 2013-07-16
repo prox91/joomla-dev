@@ -19,7 +19,10 @@ $document->addStyleSheet('components/com_redtwitter/assets/css/redtwitter.css');
 ?>
 <script type="text/javascript">
 	Joomla.submitbutton = function (task) {
-		if (task == 'oauth_info.cancel' || document.formvalidator.isValid(document.id('oauth_info-form'))) {
+		if(task == 'oauth_info.cancel'){
+			Joomla.submitform(task, document.getElementById('oauth_info-form'));
+		}
+		else if (task == 'oauth_info.generateToken' && document.formvalidator.isValid(document.id('oauth_info-form'))) {
 			Joomla.submitform(task, document.getElementById('oauth_info-form'));
 		}
 		else
@@ -29,8 +32,17 @@ $document->addStyleSheet('components/com_redtwitter/assets/css/redtwitter.css');
 	}
 </script>
 
-<form action="<?php echo JRoute::_('index.php?option=com_redtwitter&layout=edit&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="oauth_info-form" class="form-validate">
+<form action="<?php echo JRoute::_('index.php?option=com_redtwitter&view=oauth_info'); ?>" method="post" name="adminForm" id="oauth_info-form" class="form-validate">
 	<div class="width-60 fltlft">
+		<?php if($this->generatedFlag === true) { ?>
+			<span style="padding-left: 10px; color: green; font-weight: bold;">
+				<?php echo JText::_('COM_REDTWITTER_OAUTH_INFO_GENERATE_TOKEN_SUCCESS'); ?>
+			</span>
+		<?php } elseif($this->generatedFlag === false) { ?>
+			<span style="padding-left: 10px; color: red; font-weight: bold;">
+				<?php echo JText::_('COM_REDTWITTER_OAUTH_INFO_GENERATE_TOKEN_FAIL'); ?>
+			</span>
+		<?php } ?>
 		<fieldset class="adminform">
 			<legend><?php echo JText::_('COM_REDTWITTER_LEGEND_OAUTH_INFO'); ?></legend>
 			<ul class="adminformlist">
@@ -41,10 +53,6 @@ $document->addStyleSheet('components/com_redtwitter/assets/css/redtwitter.css');
 					<?php echo $this->form->getInput('consumer_key'); ?></li>
 				<li><?php echo $this->form->getLabel('consumer_secret'); ?>
 					<?php echo $this->form->getInput('consumer_secret'); ?></li>
-				<li><?php echo $this->form->getLabel('access_token'); ?>
-					<?php echo $this->form->getInput('access_token'); ?></li>
-				<li><?php echo $this->form->getLabel('access_token_secret'); ?>
-					<?php echo $this->form->getInput('access_token_secret'); ?></li>
 				<li><?php echo $this->form->getLabel('state'); ?>
 					<?php echo $this->form->getInput('state'); ?></li>
 

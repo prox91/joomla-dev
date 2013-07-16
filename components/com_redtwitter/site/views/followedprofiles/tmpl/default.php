@@ -27,7 +27,7 @@ $cache->setCaching(1);
 include_once JPATH_COMPONENT_SITE . '/helpers/redtwitter.php';
 
 echo '<div id="tweetlist">';
-$array1 = RedtwitterHelper::get_all_twitter_timelines($this->lists);
+$array1 = RedtwitterHelper::getAllUserTimeline($this->lists);
 
 if (count($array1) > 0)
 {

@@ -9,8 +9,6 @@
  */
 defined('_JEXEC') or die ('restricted access');
 
-jimport('joomla.application.component.view');
-
 /**
  * Class RedtwitterViewFollowedProfiles
  */

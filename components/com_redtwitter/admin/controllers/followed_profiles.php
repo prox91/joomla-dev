@@ -10,8 +10,6 @@
 // No direct access
 defined('_JEXEC') or die('Restricted access');
 
-jimport('joomla.application.component.controlleradmin');
-
 /**
  * Followed_profiles list controller class.
  */

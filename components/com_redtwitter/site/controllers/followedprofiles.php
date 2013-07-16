@@ -10,12 +10,10 @@
 // No direct access
 defined('_JEXEC') or die('Restricted access');
 
-jimport('joomla.application.component.controller');
-
 /**
- * Class FollowedprofilesController
+ * Class FollowedProfilesController
  */
-class FollowedprofilesController extends JControllerLegacy
+class FollowedProfilesController extends JControllerLegacy
 {
 	/**
 	 * @param array $default

@@ -10,8 +10,6 @@
 // No direct access
 defined('_JEXEC') or die('Restricted access');
 
-jimport('joomla.application.component.view');
-
 /**
  * Class RedtwitterViewOauth_Info
  */
@@ -36,11 +34,16 @@ class RedtwitterViewOauth_Info extends JViewLegacy
 		$this->item  = $this->get('Item');
 		$this->form  = $this->get('Form');
 
-		// Check for errors.
+        // Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
 			throw new Exception(implode("\n", $errors));
 		}
+
+		$session = JFactory::getSession();
+		$generated_flg = $session->get('generatedFlag', -1);
+		$session->clear('generatedFlag');
+		$this->assignRef('generatedFlag', $generated_flg);
 
 		$this->addToolbar();
 		parent::display($tpl);
@@ -55,36 +58,10 @@ class RedtwitterViewOauth_Info extends JViewLegacy
 	{
 		JFactory::getApplication()->input->set('hidemainmenu', true);
 
-		$user  = JFactory::getUser();
-		$isNew = ($this->item->id == 0);
-
-		if (isset($this->item->checked_out))
-		{
-			$checkedOut = !($this->item->checked_out == 0 || $this->item->checked_out == $user->get('id'));
-		}
-		else
-		{
-			$checkedOut = false;
-		}
-
-		$canDo = RedtwitterHelper::getActions();
-
 		JToolBarHelper::title(JText::_('COM_REDTWITTER_TITLE_OAUTH_INFO'), 'followed_profile.png');
 
-		// If not checked out, can save the item.
-		if (!$checkedOut && ($canDo->get('core.edit') || ($canDo->get('core.create'))))
-		{
-			JToolBarHelper::apply('oauth_info.apply', 'JTOOLBAR_APPLY');
-			JToolBarHelper::save('oauth_info.save', 'JTOOLBAR_SAVE');
-		}
-
-		if (empty($this->item->id))
-		{
-			JToolBarHelper::cancel('oauth_info.cancel', 'JTOOLBAR_CANCEL');
-		}
-		else
-		{
-			JToolBarHelper::cancel('oauth_info.cancel', 'JTOOLBAR_CLOSE');
-		}
+		JToolBarHelper::cancel('oauth_info.cancel', 'JTOOLBAR_CLOSE');
+		JToolBarHelper::divider();
+		JToolBarHelper :: custom('oauth_info.generateToken', 'access_token', JText::_('COM_REDTWITTER_OAUTH_INFO_ACCESS_TOKEN') , JText::_('COM_REDTWITTER_OAUTH_INFO_ACCESS_TOKEN'), false, false );
 	}
 }
