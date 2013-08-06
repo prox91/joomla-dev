@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field name="id" type="text" default="0" label="SR_FIELD_ID_LABEL"
+			description="SR_FIELD_ID_DESC"
+			readonly="true" class="readonly" labelclass="control-label"/>
+
+		<field name="title" type="text" class="inputbox"
+			default="" size="60" label="SR_FIELD_NAME_LABEL"
+			description="SR_FIELD_NAME_DESC" required="true" labelclass="control-label"/>
+
+		<field name="alias" type="text" class="inputbox"
+			default="" size="60" label="SR_FIELD_ALIAS_LABEL"
+			description="SR_FIELD_ALIAS_DESC" labelclass="control-label"/>
+			
+		<field name="custom_field_group_id" type="customfieldgroup" require="true" label="SR_FIELD_CUSTOM_FIELD_GROUP_NAME_LABEL"
+			description="SR_FIELD_CUSTOM_FIELD_GROUP_NAME_DESC" labelclass="control-label"/>
+		
+		<field name="description" type="editor" class="inputbox"
+			label="SR_FIELD_DESCRIPTION_LABEL" description="SR_FIELD_ARTICLETEXT_DESC"
+			filter="safehtml" buttons="true" labelclass="control-label"/>
+		
+		<field name="state" type="list"
+			label="SR_FIELD_STATE_LABLE" description="SR_FIELD_STATE_DESC" 
+			class="inputbox" size="1" default="1" labelclass="control-label">
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+			<option value="2">JARCHIVED</option>
+			<option value="-2">JTRASH</option>
+		</field>
+
+		<field name="parent_id" type="categories" label="SR_FIELD_PARENT_CATEGORY_LABEL"
+			description="SR_FIELD_PARENT_CATEGORY_DESC" class="inputbox" size="6"
+			default="0" labelclass="control-label"/>
+		
+		<field
+			name="lft"
+			type="hidden"
+			 />
+		<field
+			name="rgt"
+			type="hidden"
+			 />
+		<field name="asset_id" type="hidden" filter="unset" />
+
+		<field name="ordering" type="text" label="JField_Ordering_Label"
+			description="JField_Ordering_Desc" class="inputbox" size="6"
+			default="0" labelclass="control-label"/>
+
+		<field name="access" type="accesslevel" label="JFIELD_ACCESS_LABEL"
+			description="JFIELD_ACCESS_DESC" class="inputbox" size="1"
+			default="" labelclass="control-label"/>
+
+		<field name="created_date" type="calendar"
+			label="JGLOBAL_FIELD_Created_Label" description="JGLOBAL_FIELD_Created_Desc"
+			class="inputbox" size="16" format="%Y-%m-%d %H:%M:%S"
+			filter="server_utc" labelclass="control-label"/>
+
+		<field name="created_by" type="user"
+			label="JGLOBAL_FIELD_Created_by_Label" description="JGLOBAL_FIELD_CREATED_BY_Desc" labelclass="control-label"/>
+
+		<field name="created_by_alias" type="text"
+			label="JGLOBAL_FIELD_Created_by_alias_Label" description="JGLOBAL_FIELD_Created_by_alias_Desc"
+			class="inputbox" size="20"  labelclass="control-label"/>
+
+		<field name="modified_date" type="text" class="readonly"
+			label="JGLOBAL_FIELD_Modified_Label" description="JGLOBAL_FIELD_Modified_Desc"
+			size="16" readonly="true" filter="unset"  labelclass="control-label"/>
+
+		<field name="modified_by" type="hidden" filter="unset" />
+
+		<field name="checked_out" type="hidden" filter="unset" />
+
+		<field name="checked_out_time" type="hidden" filter="unset" />
+
+		<field name="rules" type="rules" label="SR_ACCESS_RULES_LABEL"
+			description="SR_ACCESS_RULES_DESC" class="inputbox" filter="rules"
+			component="com_solidres" section="category"  labelclass="control-label"/>
+
+	</fieldset>
+</form>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field name="id" type="text" default="0" label="SR_FIELD_ID_LABEL"
+			description="SR_FIELD_ID_DESC"
+			readonly="true" class="readonly" labelclass="control-label"/>
+		
+		<field name="currency_name" type="text" class="inputbox"
+			default="" size="60" label="SR_FIELD_CURRENCY_NAME_LABEL"
+			description="SR_FIELD_CURRENCY_NAME_DESC" required="true" labelclass="control-label"/>
+
+		<field name="currency_code" type="text" class="inputbox"
+			default="" size="60" label="SR_FIELD_CURRENCY_CODE_LABEL"
+			description="SR_FIELD_CURRENCY_CODE_DESC" required="true" labelclass="control-label"/>
+
+
+		<field name="sign" type="text" class="inputbox"
+				default="" size="60" label="SR_FIELD_CURRENCY_SIGN_LABEL"
+				description="SR_FIELD_CURRENCY_SIGN_DESC" required="true" labelclass="control-label"/>
+		
+		<field name="exchange_rate" type="text" class="inputbox"
+			default="" size="20" label="SR_FIELD_EXCHANGE_RATE_LABEL"
+			description="SR_FIELD_EXCHANGE_RATE_DESC" required="true" labelclass="control-label"/>
+		
+		<field name="state" type="radio"
+			label="SR_FIELD_CURRENCY_STATE_LABEL" description="SR_FIELD_CURRENCY_STATE_DESC"
+			class="btn-group" default="0" labelclass="control-label"
+		>
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+		
+	</fieldset>
+</form>

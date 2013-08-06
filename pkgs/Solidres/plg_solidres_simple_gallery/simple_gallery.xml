@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="solidres" method="upgrade">
+	<name>plg_solidres_simple_gallery</name>
+	<author>Solidres</author>
+	<creationDate>Mar 2013</creationDate>
+	<copyright>Copyright (C) 2013 Solidres. All rights reserved.</copyright>
+	<license>GNU General Public License version 3, or later</license>
+	<authorEmail>contact@solidres.com</authorEmail>
+	<authorUrl>http://www.solidres.com</authorUrl>
+	<version>0.1.0</version>
+	<description>PLG_SOLIDRES_SIMPLE_GALLERY_XML_DESCRIPTION</description>
+	
+    <scriptfile>solidres.scriptfile.php</scriptfile>
+
+	<files>
+		<filename plugin="simple_gallery">simple_gallery.php</filename>
+        <filename>index.html</filename>
+        <folder>components</folder>
+	</files>
+
+    <languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.plg_solidres_simple_gallery.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_solidres_simple_gallery.sys.ini</language>
+	</languages>
+</extension>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+
+	<fieldset name="component">
+		<field
+			name="upload_extensions"
+			type="text"
+			size="50"
+			default="bmp,csv,doc,gif,ico,jpg,jpeg,odg,odp,ods,odt,pdf,png,ppt,swf,txt,xcf,xls,BMP,CSV,DOC,GIF,ICO,JPG,JPEG,ODG,ODP,ODS,ODT,PDF,PNG,PPT,SWF,TXT,XCF,XLS"
+			label="SR_FIELD_LEGAL_EXTENSIONS_LABEL"
+			description="SR_FIELD_LEGAL_EXTENSIONS_DESC" />
+
+		<field
+			name="upload_maxsize"
+			type="text"
+			size="50"
+			default="10000000"
+			label="SR_FIELD_MAXIMUM_SIZE_LABEL"
+			description="SR_FIELD_MAXIMUM_SIZE_DESC" />
+		<field
+			name="image_extensions"
+			type="text"
+			size="50"
+			default="bmp,gif,jpg,png"
+			label="SR_FIELD_LEGAL_IMAGE_EXTENSIONS_LABEL"
+			description="SR_FIELD_LEGAL_IMAGE_EXTENSIONS_DESC" />
+			
+		<field
+			name="ignore_extensions"
+			type="text"
+			size="50"
+			default=""
+			label="SR_FIELD_IGNORED_EXTENSIONS_LABEL"
+			description="SR_FIELD_IGNORED_EXTENSIONS_DESC" />
+
+		<field
+			name="check_mime"
+			type="radio"
+            class="btn-group"
+			default="1"
+			label="SR_FIELD_CHECK_MIME_LABEL"
+			description="SR_FIELD_CHECK_MIME_DESC">
+			<option
+				value="0">JNO</option>
+			<option
+				value="1">JYES</option>
+		</field>
+		
+		<field
+			name="upload_mime"
+			type="text"
+			size="50"
+			default="image/jpeg,image/gif,image/png,image/bmp,application/x-shockwave-flash,application/msword,application/excel,application/pdf,application/powerpoint,text/plain,application/x-zip"
+			label="SR_FIELD_LEGAL_MIME_TYPES_LABEL"
+			description="SR_FIELD_LEGAL_MIME_TYPES_DESC" />
+
+		<field
+			name="upload_mime_illegal"
+			type="text"
+			size="50"
+			default="text/html"
+			label="SR_FIELD_ILLEGAL_MIME_TYPES_LABEL"
+			description="SR_FIELD_ILLEGAL_MIME_TYPES_DESC" />
+
+        <field
+            name="default_gallery"
+            type="gallerylist"
+            addfieldpath="/administrator/components/com_solidres/models/fields"
+            default="simple_gallery"
+            label="SR_FIELD_DEFAULT_GALLERY"
+            description="SR_FIELD_DEFAULT_GALLERY_DESC" />
+
+        <field
+            name="availability_calendar_enable"
+            type="radio"
+            class="btn-group"
+            default="1"
+            label="SR_FIELD_AVAILABILITY_CALENDAR_ENABLE_LABEL"
+            description="SR_FIELD_AVAILABILITY_CALENDAR_ENABLE_DESC">
+            <option
+                    value="0">JNO</option>
+            <option
+                    value="1">JYES</option>
+        </field>
+
+        <field
+            name="availability_calendar_month_number"
+            type="text"
+            size="50"
+            default="6"
+            label="SR_FIELD_AVAILABILITY_CALENDAR_MONTH_NUMBER_LABEL"
+            description="SR_FIELD_AVAILABILITY_CALENDAR_MONTH_NUMBER_DESC" />
+
+        <field
+                name="show_solidres_copyright"
+                type="radio"
+                class="btn-group"
+                default="1"
+                label="SR_FIELD_SHOW_SOLIDRES_POWERED_BY_LABEL"
+                description="SR_FIELD_SHOW_SOLIDRES_POWERED_BY_DESC">
+            <option
+                    value="0">JNO</option>
+            <option
+                    value="1">JYES</option>
+        </field>
+
+	</fieldset>
+	<fieldset
+			name="currency"
+			addfieldpath="/administrator/components/com_solidres/models/fields"
+			label="SR_CONFIG_CURRENCY_LABEL"
+			description="SR_CONFIG_CURRENCY_DESC"
+			>
+	
+			<field
+				name="default_currency_id"
+				type="currency"
+				label="SR_CONFIG_CURRENCY_LABEL"
+				class="inputbox"
+				filter="" />
+
+            <field name="currency_format_pattern" type="list" label="SR_FIELD_DEFAULT_CURRENCY_FORMAT_PATTERN"
+                   description="SR_FIELD_DEFAULT_CURRENCY_FORMAT_PATTERN_DESC"
+                   filter="intval" size="1" default="1" labelclass="control-label">
+                <option value="1">X0,000.00</option>
+                <option value="2">0 000,00X</option>
+                <option value="3">X0.000,00</option>
+                <option value="4">0,000.00X</option>
+                <option value="5">0 000.00X</option>
+
+            <field
+                name="number_decimal_points"
+                type="text"
+                label="SR_CONFIG_CURRENCY_NUMBER_DECIMAL_POINTS"
+                description="SR_CONFIG_CURRENCY_NUMBER_DECIMAL_POINTS_DESC"
+                class="inputbox"
+                filter="intval"
+                default="2"
+                />
+
+            </field>
+
+		</fieldset>	
+	<fieldset
+		name="permissions"
+		label="JCONFIG_PERMISSIONS_LABEL"
+		description="JCONFIG_PERMISSIONS_DESC"
+		>
+
+		<field
+			name="rules"
+			type="rules"
+			label="JCONFIG_PERMISSIONS_LABEL"
+			filter="rules"
+			component="com_solidres"
+			section="component">
+			
+		</field>
+	</fieldset>
+</config>

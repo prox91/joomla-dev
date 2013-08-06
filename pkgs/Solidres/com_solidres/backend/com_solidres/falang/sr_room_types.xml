@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<falang type="contentelement">
+    <name>Solidres Room Types</name>
+    <author>Solidres</author>
+    <version>0.4.2</version>
+    <description>Solidres content element file for Falang</description>
+    <copyright>Copyright (C) 2013 Solidres. All Rights Reserved.</copyright>
+    <reference type="content">
+        <table name="sr_room_types">
+            <field type="referenceid" name="id" translate="0">ID</field>
+            <field type="titletext" name="name"  length="255" maxlength="255" translate="1">Name</field>
+            <field type="htmltext" name="description" translate="1">Description</field>
+            <field type="text" name="alias"  length="255" maxlength="255" translate="1">Alias</field>
+        </table>
+    </reference>
+    <translationfilters>
+    </translationfilters>
+</falang>

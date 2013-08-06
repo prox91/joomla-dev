@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="reservationasset_extra_fields">
+        <fieldset name="facilities" label="SR_PLG_EXT_RESERVATION_ASSET_FACILITIES">
+            <field
+                name="general"
+                type="textarea"
+                rows="5"
+                cols="100"
+                id="general"
+                class="span6"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FACILITIES_GENERAL_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FACILITIES_GENERAL_MESSAGE"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FACILITIES_GENERAL_DESC"
+                filter="string"
+                labelclass="control-label"
+                />
+
+            <field
+                name="activities"
+                type="textarea"
+                rows="5"
+                cols="100"
+                id="activities"
+                class="span6"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FACILITIES_ACTIVITIES_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FACILITIES_ACTIVITIES_MESSAGE"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FACILITIES_ACTIVITIES_DESC"
+                filter="string"
+                labelclass="control-label"
+                />
+
+            <field
+                name="services"
+                type="textarea"
+                rows="5"
+                cols="100"
+                id="services"
+                class="span6"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FACILITIES_SERVICES_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FACILITIES_SERVICES_MESSAGE"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FACILITIES_SERVICES_DESC"
+                filter="string"
+                labelclass="control-label"
+                />
+            <field
+                name="internet"
+                type="textarea"
+                rows="5"
+                cols="100"
+                id="internet"
+                class="span6"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FACILITIES_INTERNET_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FACILITIES_INTERNET_MESSAGE"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FACILITIES_INTERNET_DESC"
+                filter="string"
+                labelclass="control-label"
+                />
+
+            <field
+                name="parking"
+                type="textarea"
+                rows="5"
+                cols="100"
+                id="parking"
+                class="span6"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FACILITIES_PARKING_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FACILITIES_PARKING_MESSAGE"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FACILITIES_PARKING_DESC"
+                filter="string"
+                labelclass="control-label"
+                />
+
+        </fieldset>
+
+		<fieldset name="policies"
+			label="SR_PLG_EXT_RESERVATION_ASSET_POLICIES"
+		>
+			<field
+				name="checkin_time"
+				type="text"
+				id="checkin_time"
+                class="inputbox"
+				description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_CHECKIN_TIME_DESC"
+				filter="string"
+				label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_CHECKIN_TIME_DESC_LABEL"
+				message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_CHECKIN_TIME_DESC_MESSAGE"
+				labelclass="control-label"
+			/>
+
+            <field
+				name="checkout_time"
+				type="text"
+				id="checkout_time"
+                class="inputbox"
+				description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_CHECKOUT_TIME_DESC"
+				filter="string"
+				label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_CHECKOUT_TIME_DESC_LABEL"
+				message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_CHECKOUT_TIME_DESC_MESSAGE"
+				labelclass="control-label"
+			/>
+
+            <field
+				name="cancellation_prepayment"
+				type="textarea"
+				id="cancellation_prepayment"
+                class="span6"
+				description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_CANCELLATION_PREPAYMENT_DESC"
+				filter="string"
+				label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_CANCELLATION_PREPAYMENT_DESC_LABEL"
+				message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_CANCELLATION_PREPAYMENT_DESC_MESSAGE"
+                rows="5"
+                cols="100"
+				labelclass="control-label"
+			/>
+
+            <field
+				name="children_and_extra_beds"
+				type="textarea"
+				id="children_and_extra_beds"
+                class="span6"
+				description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_CHILDREN_EXTRA_BEDS_DESC"
+				filter="string"
+				label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_CHILDREN_EXTRA_BEDS_DESC_LABEL"
+				message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_CHILDREN_EXTRA_BEDS_DESC_MESSAGE"
+                rows="5"
+                cols="100"
+				labelclass="control-label"
+			/>
+
+            <field
+				name="pets"
+				type="text"
+				id="pets"
+                class="inputbox"
+				description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_PETS_DESC"
+				filter="string"
+				label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_PETS_DESC_LABEL"
+				message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_PETS_DESC_MESSAGE"
+				labelclass="control-label"
+			/>
+
+            <field
+                name="accepted_credit_cards"
+                type="textarea"
+                id="accepted_credit_cards"
+                class="span6"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_ACCEPTED_CREDIT_CARD_DESC"
+                filter="string"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_ACCEPTED_CREDIT_CARD_DESC_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_ACCEPTED_CREDIT_CARD_DESC_MESSAGE"
+                rows="5"
+                cols="100"
+                labelclass="control-label"
+                />
+
+		</fieldset>
+
+        <fieldset name="social_networks" label="SR_PLG_EXT_RESERVATION_ASSET_SOCIAL_NETWORKS">
+            <field
+				name="facebook_link"
+				type="text"
+				id="facebook_link"
+                class="inputbox"
+				description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FACEBOOK_DESC"
+				filter="string"
+				label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FACEBOOK_LINK_DESC_LABEL"
+				message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FACEBOOK_DESC_MESSAGE"
+				labelclass="control-label"
+			/>
+
+            <field
+                name="facebook_show"
+                type="radio"
+                class="btn-group"
+                id="facebook_show"
+                default="1"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FACEBOOK_SHOW_DESC_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FACEBOOK_DESC_MESSAGE"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FACEBOOK_DESC"
+                labelclass="control-label">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+
+            <field
+				name="twitter_link"
+				type="text"
+				id="twitter_link"
+                class="inputbox"
+				description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_TWITTER_DESC"
+				filter="string"
+				label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_TWITTER_LINK_DESC_LABEL"
+				message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_TWITTER_DESC_MESSAGE"
+				labelclass="control-label"
+			/>
+
+            <field
+                name="twitter_show"
+                type="radio"
+                class="btn-group"
+                id="twitter_show"
+                default="1"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_TWITTER_SHOW_DESC_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_TWITTER_DESC_MESSAGE"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_TWITTER_DESC"
+                labelclass="control-label">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+
+            <field
+                name="linkedin_link"
+                type="text"
+                id="linkedin_link"
+                class="inputbox"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_LINKEDIN_DESC"
+                filter="string"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_LINKEDIN_LINK_DESC_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_LINKEDIN_DESC_MESSAGE"
+                labelclass="control-label"
+            />
+
+            <field
+                name="linkedin_show"
+                type="radio"
+                class="btn-group"
+                id="linkedin_show"
+                default="1"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_LINKEDIN_SHOW_DESC_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_LINKEDIN_DESC_MESSAGE"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_LINKEDIN_DESC"
+                labelclass="control-label">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+
+            <field
+                name="gplus_link"
+                type="text"
+                id="gplus_link"
+                class="inputbox"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_GPLUS_DESC"
+                filter="string"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_GPLUS_LINK_DESC_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_GPLUS_DESC_MESSAGE"
+                labelclass="control-label"
+            />
+
+            <field
+                name="gplus_show"
+                type="radio"
+                class="btn-group"
+                id="gplus_show"
+                default="1"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_GPLUS_SHOW_DESC_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_GPLUS_DESC_MESSAGE"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_GPLUS_DESC"
+                labelclass="control-label">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+
+             <field
+                name="tumblr_link"
+                type="text"
+                id="tumblr_link"
+                class="inputbox"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_TUMBLR_DESC"
+                filter="string"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_TUMBLR_LINK_DESC_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_TUMBLR_DESC_MESSAGE"
+                labelclass="control-label"
+            />
+
+            <field
+                name="tumblr_show"
+                type="radio"
+                class="btn-group"
+                id="tumblr_show"
+                default="1"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_TUMBLR_SHOW_DESC_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_TUMBLR_DESC_MESSAGE"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_TUMBLE_DESC"
+                labelclass="control-label">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+
+               <field
+                name="foursquare_link"
+                type="text"
+                id="foursquare_link"
+                class="inputbox"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FOURSQUARE_DESC"
+                filter="string"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FOURSQUARE_LINK_DESC_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FOURSQUARE_DESC_MESSAGE"
+                labelclass="control-label"
+            />
+            
+            <field
+                name="foursquare_show"
+                type="radio"
+                class="btn-group"
+                id="foursquare_show"
+                default="1"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FOURSQUARE_SHOW_DESC_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FOURSQUARE_DESC_MESSAGE"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_FOURSQUARE_DESC"
+                labelclass="control-label">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+
+            <field
+                name="myspace_link"
+                type="text"
+                id="myspace_link"
+                class="inputbox"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_MYSPACE_DESC"
+                filter="string"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_MYSPACE_LINK_DESC_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_MYSPACE_DESC_MESSAGE"
+                labelclass="control-label"
+            />
+
+            <field
+                name="myspace_show"
+                type="radio"
+                class="btn-group"
+                id="myspace_show"
+                default="1"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_MYSPACE_SHOW_DESC_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_MYSPACE_DESC_MESSAGE"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_MYSPACE_DESC"
+                labelclass="control-label">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+
+            <field
+                name="pinterest_link"
+                type="text"
+                id="pinterest_link"
+                class="inputbox"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_PINTEREST_DESC"
+                filter="string"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_PINTEREST_LINK_DESC_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_PINTEREST_DESC_MESSAGE"
+                labelclass="control-label"
+            />
+
+            <field
+                name="pinterest_show"
+                type="radio"
+                class="btn-group"
+                id="pinterest_show"
+                default="1"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_PINTEREST_SHOW_DESC_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_PINTEREST_DESC_MESSAGE"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_PINTEREST_DESC"
+                labelclass="control-label">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+
+            <field
+                name="slideshare_link"
+                type="text"
+                id="slideshare_link"
+                class="inputbox"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_SLIDESHARE_DESC"
+                filter="string"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_SLIDESHARE_LINK_DESC_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_SLIDESHARE_DESC_MESSAGE"
+                labelclass="control-label"
+            />
+
+            <field
+                name="slideshare_show"
+                type="radio"
+                class="btn-group"
+                id="slideshare_show"
+                default="1"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_SLIDESHARE_SHOW_DESC_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_SLIDESHARE_DESC_MESSAGE"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_SLIDESHARE_DESC"
+                labelclass="control-label">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+
+            <field
+                name="vimeo_link"
+                type="text"
+                id="vimeo_link"
+                class="inputbox"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_VIMEO_DESC"
+                filter="string"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_VIMEO_LINK_DESC_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_VIMEO_DESC_MESSAGE"
+                labelclass="control-label"
+            />
+
+            <field
+                name="vimeo_show"
+                type="radio"
+                class="btn-group"
+                id="vimeo_show"
+                default="1"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_VIMEO_SHOW_DESC_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_VIMEO_DESC_MESSAGE"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_VIMEO_DESC"
+                labelclass="control-label">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+
+            <field
+                name="youtube_link"
+                type="text"
+                id="youtube_link"
+                class="inputbox"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_YOUTUBE_DESC"
+                filter="string"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_YOUTUBE_LINK_DESC_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_YOUTUBE_DESC_MESSAGE"
+                labelclass="control-label"
+            /> 
+
+            <field
+                name="youtube_show"
+                type="radio"
+                class="btn-group"
+                id="youtube_show"
+                default="1"
+                label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_YOUTUBE_SHOW_DESC_LABEL"
+                message="SR_PLG_EXT_RESERVATION_ASSET_FIELD_YOUTUBE_DESC_MESSAGE"
+                description="SR_PLG_EXT_RESERVATION_ASSET_FIELD_YOUTUBE_DESC"
+                labelclass="control-label">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+           
+        </fieldset>
+	</fields>
+</form>
+

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field name="id" type="text" default="0" label="SR_FIELD_ID_LABEL"
+			description="SR_FIELD_ID_DESC"
+			readonly="true" class="readonly" labelclass="control-label"/>
+		
+		<field name="coupon_name" type="text" class="inputbox"
+			default="" size="60" label="SR_FIELD_COUPON_COUPON_NAME_LABEL"
+			description="SR_FIELD_COUPON_COUPON_NAME_DESC" required="true" labelclass="control-label"/>
+
+		<field name="coupon_code" type="text" class="inputbox"
+			default="" size="60" label="SR_FIELD_COUPON_COUPON_CODE_LABEL"
+			description="SR_FIELD_COUPON_COUPON_CODE_DESC" labelclass="control-label"/>
+		
+		<field name="amount" type="text" class="inputbox"
+			default="" size="20" label="SR_FIELD_COUPON_VALUE_LABEL"
+			description="SR_FIELD_COUPON_VALUE_DESC" labelclass="control-label"/>
+			
+		<field name="reservation_asset_id" type="reservationasset" label="SR_FIELD_COUPON_RESERVATION_ASSET_LABEL"
+			description="SR_FIELD_COUPON_RESERVATION_ASSET_DESC" labelclass="control-label"
+			/>
+		
+		<field name="is_percent" type="radio" class="btn-group"
+			label="SR_FIELD_COUPON_PERCENT_LABEL"
+			description="SR_FIELD_COUPON_PERCENT_DESC" default="1" labelclass="control-label"
+		>
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>	
+		
+		<field name="valid_from" type="text" class="datepicker valid-date inputbox"
+			default="" size="20" label="SR_FIELD_COUPON_VALID_FROM_LABEL"
+			description="SR_FIELD_COUPON_VALID_FROM_DESC" labelclass="control-label"/>
+			
+		<field name="valid_to" type="text" class="datepicker valid-date inputbox"
+			default="" size="20" label="SR_FIELD_COUPON_VALID_TO_LABEL"
+			description="SR_FIELD_COUPON_VALID_TO_DESC" labelclass="control-label"/>
+
+        <field name="valid_from_checkin" type="text" class="datepicker valid-date inputbox"
+               default="" size="20" label="SR_FIELD_COUPON_VALID_FROM_CHECKIN_LABEL"
+               description="SR_FIELD_COUPON_VALID_FROM_CHECKIN_DESC" labelclass="control-label"/>
+
+        <field name="valid_to_checkin" type="text" class="datepicker valid-date inputbox"
+               default="" size="20" label="SR_FIELD_COUPON_VALID_TO_CHECKIN_LABEL"
+               description="SR_FIELD_COUPON_VALID_TO_CHECKIN_DESC" labelclass="control-label"/>
+
+        <field name="customer_group_id" type="customergroup" class="inputbox"
+               default="" size="60" label="SR_CUSTOMER_GROUP_ID_LABEL"
+               description="SR_CUSTOMER_GROUP_ID_DESC" labelclass="control-label"/>
+		
+		<field name="state" type="radio"
+			label="SR_FIELD_COUPON_STATE_LABEL" description="SR_FIELD_COUPON_STATE_DESC"
+			class="btn-group" default="0" labelclass="control-label"
+		>
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>	
+	</fieldset>
+</form>

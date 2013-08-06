@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field name="id" type="text" default="0" label="SR_FIELD_ID_LABEL"
+			description="SR_FIELD_ID_DESC"
+			readonly="true" class="readonly" labelclass="control-label"/>
+
+		<field name="name" type="text" class="inputbox"
+			default="" size="60" label="SR_FIELD_TAX_NAME_LABEL"
+			description="SR_FIELD_TAX_NAME_DESC" required="true" labelclass="control-label"/>
+
+		<field name="rate" type="text" class="inputbox"
+			default="" size="60" label="SR_FIELD_TAX_RATE_LABEL"
+			description="SR_FIELD_TAX_RATE_DESC" required="true" labelclass="control-label"/>
+
+		<field name="state" type="list"
+			label="SR_TAX_FIELD_STATE_LABEL" description="SR_TAX_FIELD_STATE_DESC"
+			class="inputbox" size="1" default="1" labelclass="control-label" >
+				<option value="1">JPUBLISHED</option>
+				<option value="0">JUNPUBLISHED</option>
+		</field>
+
+        <field name="country_id" type="country" label="SR_TAX_FIELD_COUNTRY_LABEL"
+               description="SR_TAX_FIELD_COUNTRY_DESC" class="inputbox" size="6"
+               default="0" labelclass="control-label"/>
+
+        <field name="geo_state_id" type="geostate" label="SR_TAX_FIELD_GEO_STATE_LABEL"
+               description="SR_TAX_FIELD_GEO_STATE_DESC" class="inputbox" size="1"
+               labelclass="control-label"/>
+
+	</fieldset>
+</form>

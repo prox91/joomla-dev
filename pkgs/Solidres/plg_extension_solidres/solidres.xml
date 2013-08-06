@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="extension" method="upgrade">
+	<name>plg_extension_solidres</name>
+	<author>Solidres</author>
+	<creationDate>Feb 2013</creationDate>
+	<copyright>Copyright (C) 2013 Solidres. All rights reserved.</copyright>
+	<license>GNU General Public License version 3, or later</license>
+	<authorEmail>contact@solidres.com</authorEmail>
+	<authorUrl>http://www.solidres.com</authorUrl>
+	<version>0.4.2</version>
+	<description>PLG_EXTENSION_SOLIDRES_XML_DESCRIPTION</description>
+	
+    <scriptfile>solidres.scriptfile.php</scriptfile>
+
+	<files>
+		<filename plugin="solidres">solidres.php</filename>
+        <filename>index.html</filename>
+        <folder>fields</folder>
+        <folder>language</folder>
+	</files>
+
+    <languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.plg_extension_solidres.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_extension_solidres.sys.ini</language>
+	</languages>
+
+    <config>
+        <fields name="params">
+            <fieldset name="reservationasset_custom_fields" label="SR_PLG_EXT_RESERVATION_ASSET_CUSTOM_FIELDS" >
+
+                <field name="param_reservation_asset_checkin_time" type="list"
+					   description="SR_PLG_EXT_RESERVATION_ASSET_ENABLE_FIELD_CHECKIN_TIME_DESC"
+					   label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_ENABLE_CHECKIN_TIME_LABEL">
+                            <option value="2">JOPTION_REQUIRED</option>
+                            <option value="1">JOPTION_OPTIONAL</option>
+                            <option value="0">JDISABLED</option>
+				</field>
+
+                <field name="param_reservation_asset_checkout_time" type="list"
+					   description="SR_PLG_EXT_RESERVATION_ASSET_ENABLE_FIELD_CHECKOUT_TIME_DESC"
+					   label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_ENABLE_CHECKOUT_TIME_LABEL">
+                            <option value="2">JOPTION_REQUIRED</option>
+                            <option value="1">JOPTION_OPTIONAL</option>
+                            <option value="0">JDISABLED</option>
+				</field>
+
+                <field name="param_reservation_asset_cancellation_prepayment" type="list"
+					   description="SR_PLG_EXT_RESERVATION_ASSET_ENABLE_FIELD_CANCELLATION_PREPAYMENT_DESC"
+					   label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_ENABLE_CANCELLATION_PREPAYMENT_LABEL">
+                            <option value="2">JOPTION_REQUIRED</option>
+                            <option value="1">JOPTION_OPTIONAL</option>
+                            <option value="0">JDISABLED</option>
+				</field>
+
+                <field name="param_reservation_asset_children_and_extra_beds" type="list"
+					   description="SR_PLG_EXT_RESERVATION_ASSET_ENABLE_FIELD_CHILDREN_EXTRA_BEDS_DESC"
+					   label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_ENABLE_CHILDREN_EXTRA_BEDS_LABEL">
+                            <option value="2">JOPTION_REQUIRED</option>
+                            <option value="1">JOPTION_OPTIONAL</option>
+                            <option value="0">JDISABLED</option>
+				</field>
+                <field name="param_reservation_asset_pets" type="list"
+					   description="SR_PLG_EXT_RESERVATION_ASSET_ENABLE_FIELD_PETS_DESC"
+					   label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_ENABLE_PETS_LABEL">
+                            <option value="2">JOPTION_REQUIRED</option>
+                            <option value="1">JOPTION_OPTIONAL</option>
+                            <option value="0">JDISABLED</option>
+				</field>
+
+                <field name="param_reservation_asset_facebook" type="list"
+					   description="SR_PLG_EXT_RESERVATION_ASSET_ENABLE_FIELD_FACEBOOK_DESC"
+					   label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_ENABLE_FACEBOOK_LABEL">
+                            <option value="2">JOPTION_REQUIRED</option>
+                            <option value="1">JOPTION_OPTIONAL</option>
+                            <option value="0">JDISABLED</option>
+				</field>
+
+                <field name="param_reservation_asset_twitter" type="list"
+					   description="SR_PLG_EXT_RESERVATION_ASSET_ENABLE_FIELD_TWITTER_DESC"
+					   label="SR_PLG_EXT_RESERVATION_ASSET_FIELD_ENABLE_TWITTER_LABEL">
+                            <option value="2">JOPTION_REQUIRED</option>
+                            <option value="1">JOPTION_OPTIONAL</option>
+                            <option value="0">JDISABLED</option>
+				</field>
+            </fieldset>
+
+            <fieldset name="roomtype_custom_fields" label="SR_PLG_EXT_ROOM_TYPE_CUSTOM_FIELDS">
+
+                <field name="param_roomtype_room_facilities" type="list"
+                       description="SR_PLG_EXT_ROOMTYPE_FIELD_ENABLE_ROOM_FACILITIES_DESC"
+                       label="SR_PLG_EXT_ROOMTYPE_FIELD_ENABLE_ROOM_FACILITIES_LABEL">
+                    <option value="2">JOPTION_REQUIRED</option>
+                    <option value="1">JOPTION_OPTIONAL</option>
+                    <option value="0">JDISABLED</option>
+                </field>
+
+                <field name="param_roomtype_room_size" type="list"
+                       description="SR_PLG_EXT_ROOMTYPE_FIELD_ENABLE_ROOM_SIZE_DESC"
+                       label="SR_PLG_EXT_ROOMTYPE_FIELD_ENABLE_ROOM_SIZE_LABEL">
+                    <option value="2">JOPTION_REQUIRED</option>
+                    <option value="1">JOPTION_OPTIONAL</option>
+                    <option value="0">JDISABLED</option>
+                </field>
+
+                <field name="param_roomtype_bed_size" type="list"
+                       description="SR_PLG_EXT_ROOMTYPE_FIELD_ENABLE_BED_SIZE_DESC"
+                       label="SR_PLG_EXT_ROOMTYPE_FIELD_ENABLE_BED_SIZE_LABEL">
+                    <option value="2">JOPTION_REQUIRED</option>
+                    <option value="1">JOPTION_OPTIONAL</option>
+                    <option value="0">JDISABLED</option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+</extension>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field name="id" type="text" default="0" required="true"
+			readonly="true" class="readonly" />
+
+		<field name="state" type="hidden" default="0" />
+
+		<field name="payment_method_id" type="hidden"
+			label="SR_FIELD_RESERVATION_PAYMENT_METHOD_LABEL"
+			description="SR_FIELD_RESERVATION_PAYMENT_METHOD_DESC" />
+			
+		<field name="note" type="textarea" class="inputbox"
+			label="SR_FIELD_DESCRIPTION_LABEL" description="SR_FIELD_ARTICLETEXT_DESC"
+			filter="safehtml" buttons="false" width="71%" />
+
+        <field
+			name="coupon_id"
+			type="hidden"
+			 />
+
+        <field
+			name="customer_id"
+			type="hidden"
+			 />
+
+		<field
+			name="checkin"
+			type="hidden"
+			 />
+		<field
+			name="checkout"
+			type="hidden"
+			 />
+
+		<field
+			name="extra"
+			type="hidden"
+			 />
+
+		<field
+			name="room_types"
+			type="hidden"
+			 />
+
+		<field
+			name="task"
+			type="hidden"
+			 />
+
+		<field
+			name="customer_firstname"
+			type="hidden"
+			 />
+
+		<field
+			name="customer_middlename"
+			type="hidden"
+			 />
+
+		<field
+			name="customer_lastname"
+			type="hidden"
+			 />
+		<field
+			name="returnurl"
+			type="hidden"
+			/>
+			
+	</fieldset>
+</form>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="system" method="upgrade">
+	<name>plg_system_solidres</name>
+	<author>Solidres</author>
+	<creationDate>Feb 2013</creationDate>
+	<copyright>Copyright (C) 2013 Solidres. All rights reserved.</copyright>
+	<license>GNU General Public License version 3, or later</license>
+	<authorEmail>contact@solidres.com</authorEmail>
+	<authorUrl>http://www.solidres.com</authorUrl>
+	<version>0.4.2</version>
+	<description>PLG_SYSTEM_SOLIDRES_XML_DESCRIPTION</description>
+
+    <scriptfile>solidres.scriptfile.php</scriptfile>
+
+	<files>
+		<filename plugin="solidres">solidres.php</filename>
+        <filename>index.html</filename>
+	</files>
+
+    <languages folder="language">
+        <language tag="en-GB">en-GB/en-GB.plg_system_solidres.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_system_solidres.sys.ini</language>
+    </languages>
+	
+</extension>

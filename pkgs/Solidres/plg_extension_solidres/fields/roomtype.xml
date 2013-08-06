@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="roomtype_custom_fields">
+
+        <fieldset name="conditions" label="SR_PLG_EXT_ROOMTYPE_CONDITIONS">
+            <field
+                name="free_cancellation"
+                type="radio"
+                class="btn-group"
+                id="free_cancellation"
+                default="1"
+                label="SR_PLG_EXT_ROOM_TYPE_FIELD_FREE_CANCELLATION_LABEL"
+                message="SR_PLG_EXT_ROOM_TYPE_FIELD_FREE_CANCELLATION_MESSAGE"
+                description="SR_PLG_EXT_ROOM_TYPE_FIELD_FREE_CANCELLATION_DESC"
+                labelclass="control-label">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+
+            <field
+                name="breakfast_included"
+                type="radio"
+                class="btn-group"
+                id="breakfast_included"
+                default="1"
+                label="SR_PLG_EXT_ROOM_TYPE_FIELD_BREAKFAST_LABEL"
+                message="SR_PLG_EXT_ROOM_TYPE_FIELD_BREAKFAST_MESSAGE"
+                description="SR_PLG_EXT_ROOM_TYPE_FIELD_BREAKFAST_DESC"
+                labelclass="control-label">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+
+            <field
+                name="taxes"
+                type="text"
+                id="taxes"
+                class="span6"
+                label="SR_PLG_EXT_ROOM_TYPE_FIELD_TAXES_LABEL"
+                message="SR_PLG_EXT_ROOM_TYPE_FIELD_TAXES_MESSAGE"
+                description="SR_PLG_EXT_ROOM_TYPE_FIELD_TAXES_DESC"
+                filter="string"
+                labelclass="control-label"
+                />
+
+            <field
+                name="prepayment"
+                type="text"
+                id="prepayment"
+                class="span6"
+                label="SR_PLG_EXT_ROOM_TYPE_FIELD_PREPAYMENT_LABEL"
+                message="SR_PLG_EXT_ROOM_TYPE_FIELD_PREPAYMENT_MESSAGE"
+                description="SR_PLG_EXT_ROOM_TYPE_FIELD_PREPAYMENT_DESC"
+                filter="string"
+                labelclass="control-label"
+                />
+
+        </fieldset>
+
+        <fieldset name="facilities" label="SR_PLG_EXT_ROOMTYPE_FACILITIES">
+            <field
+                name="room_facilities"
+                type="textarea"
+                rows="5"
+                cols="100"
+                id="room_facilities"
+                class="span6"
+                label="SR_PLG_EXT_ROOM_TYPE_FIELD_FACILITIES_ROOM_LABEL"
+                message="SR_PLG_EXT_ROOM_TYPE_FIELD_FACILITIES_ROOM_MESSAGE"
+                description="SR_PLG_EXT_ROOM_TYPE_FIELD_FACILITIES_ROOM_DESC"
+                filter="string"
+                labelclass="control-label"
+                />
+
+            <field
+                name="room_size"
+                type="text"
+                id="room_size"
+                class="span6"
+                label="SR_PLG_EXT_ROOM_TYPE_FIELD_FACILITIES_ROOM_SIZE_LABEL"
+                message="SR_PLG_EXT_ROOM_TYPE_FIELD_FACILITIES_ROOM_SIZE_MESSAGE"
+                description="SR_PLG_EXT_ROOM_TYPE_FIELD_FACILITIES_ROOM_SIZE_DESC"
+                filter="string"
+                labelclass="control-label"
+                />
+
+            <field
+                name="bed_size"
+                type="text"
+                id="bed_size"
+                class="span6"
+                label="SR_PLG_EXT_ROOM_TYPE_FIELD_FACILITIES_BED_SIZE_LABEL"
+                message="SR_PLG_EXT_ROOM_TYPE_FIELD_FACILITIES_BED_SIZE_MESSAGE"
+                description="SR_PLG_EXT_ROOM_TYPE_FIELD_FACILITIES_BED_SIZE_DESC"
+                filter="string"
+                labelclass="control-label"
+                />
+        </fieldset>
+	</fields>
+</form>

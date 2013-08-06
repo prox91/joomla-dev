@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field name="id" type="text" default="0" label="SR_FIELD_ID_LABEL"
+			description="SR_FIELD_ID_DESC"
+			readonly="true" class="readonly" labelclass="control-label"/>
+
+		<field name="name" type="text" class="inputbox"
+			default="" size="60" label="SR_CUSTOMER_GROUP_NAME_LABEL"
+			description="SR_CUSTOMER_GROUP_NAME_DESC" required="true" labelclass="control-label"/>
+
+		<field name="state" type="radio"
+			label="SR_FIELD_CUSTOMER_GROUP_STATE_LABEL" description="SR_FIELD_CUSTOMER_GROUP_STATE_DESC"
+			class="btn-group" default="1" labelclass="control-label">
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+	</fieldset>
+</form>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field name="id" type="text" default="0" label="SR_FIELD_ID_LABEL"
+			description="SR_FIELD_ID_DESC"
+			readonly="true" class="readonly" labelclass="control-label"/>
+		
+		<field name="reservation_asset_id" type="reservationasset" require="true" label="SR_FIELD_RT_RESERVATIONASSET_LABEL"
+			description="SR_FIELD_RT_RESERVATIONASSET_DESC" labelclass="control-label"/>
+		 
+		<field name="coupon_id" type="checkboxcoupon" label="SR_FIELD_ROOM_TYPE_COUPON_LABEL"
+			description="SR_FIELD_ROOM_TYPE_COUPON_DESC" labelclass="control-label"/>
+		
+        <field name="extra_id" type="checkboxextra" label="SR_FIELD_ROOM_TYPE_EXTRA_LABEL"
+               description="SR_FIELD_ROOM_TYPE_EXTRA_DESC" labelclass="control-label"/>
+		
+		<field name="name" type="text" class="inputbox"
+		    size="60" label="SR_FIELD_ROOM_TYPE_NAME_LABEL"
+			description="SR_FIELD_ROOM_TYPE_NAME_DESC" required="true" labelclass="control-label"/>
+
+        <field name="price" type="price" class="inputbox"
+               size="60" label="SR_FIELD_ROOM_TYPE_PRICE_LABEL"
+               description="SR_FIELD_ROOM_TYPE_PRICE_DESC" required="true" labelclass="control-label"/>
+
+		<field name="alias" type="text" class="inputbox"
+			size="60" label="SR_FIELD_ALIAS_LABEL"
+			description="SR_FIELD_ALIAS_DESC" labelclass="control-label"/>
+		
+		<field name="occupancy_adult" type="list" class="input-small"
+			label="SR_FIELD_OCCUPANCY_ADULT_LABEL"
+			description="SR_FIELD_OCCUPANCY_ADULT_DESC" labelclass="control-label">
+			<option value="0">0</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+		</field>
+
+		<field name="occupancy_child" type="list" class="input-small"
+			label="SR_FIELD_OCCUPANCY_CHILD_LABEL"
+			description="SR_FIELD_OCCUPANCY_CHILD_DESC" labelclass="control-label">
+			<option value="0">0</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+		</field>
+			
+		<field name="description" type="editor"
+			label="SR_FIELD_ROOM_TYPE_DESCRIPTION_LABEL" description="SR_FIELD_ROOM_TYPE_DESCRIPTION_DESC"
+			filter="safehtml" buttons="false" width="71%" labelclass="control-label"/>
+		
+		<field name="state" type="list"
+			label="SR_FIELD_ROOM_TYPE_STATE_LABEL" description="SR_FIELD_ROOM_TYPE_STATE_DESC"
+			class="inputbox" size="1" default="1" labelclass="control-label"
+		>
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+			<option value="-2">JTRASH</option>
+		</field>
+
+		<field name="featured" type="radio"
+			label="SR_ROOM_TYPE_FEATURED_LABEL" description="SR_ROOM_TYPE_FEATURED_DESC"
+			default="0"
+			class="btn-group" labelclass="control-label"
+		>
+			<option value="0">JOFF</option>
+			<option value="1">JON</option>
+		</field>
+
+		<field name="ordering" type="text" label="JField_Ordering_Label"
+			description="JField_Ordering_Desc" class="inputbox" size="6" labelclass="control-label"/>
+
+
+		<field name="language" type="contentlanguage" label="JFIELD_LANGUAGE_LABEL"
+			description="COM_BANNERS_FIELD_LANGUAGE_DESC" class="inputbox" labelclass="control-label"
+		>
+			<option value="*">JALL</option>
+		</field>
+
+		<field name="created_date" type="calendar"
+			label="JGLOBAL_FIELD_Created_Label" description="JGLOBAL_FIELD_Created_Desc"
+			class="inputbox" size="16" format="%Y-%m-%d %H:%M:%S"
+			filter="server_utc" labelclass="control-label"/>
+
+		<field name="created_by" type="user"
+			label="JGLOBAL_FIELD_Created_by_Label" description="JGLOBAL_FIELD_CREATED_BY_Desc" labelclass="control-label"/>
+
+		<field name="created_by_alias" type="text"
+			label="JGLOBAL_FIELD_Created_by_alias_Label" description="JGLOBAL_FIELD_Created_by_alias_Desc"
+			class="inputbox" size="20" labelclass="control-label"/>
+
+		<field name="modified_date" type="text" class="readonly"
+			label="JGLOBAL_FIELD_Modified_Label" description="JGLOBAL_FIELD_Modified_Desc"
+			size="16" readonly="true" filter="unset" labelclass="control-label"/>
+
+		<field name="modified_by" type="hidden" filter="unset" />
+
+		<field name="checked_out" type="hidden" filter="unset" />
+
+		<field name="checked_out_time" type="hidden" filter="unset" />
+
+		<field
+			name="mediaId"
+			type="hidden"
+			 />
+
+        <field
+            name="currency_id"
+            type="hidden"
+            />
+
+		<field
+			name="deleteMediaId"
+			type="hidden"
+			 />
+
+		<field name="tariff" type="text"
+			label="SR_PRICE_VALUE_LABEL" description="SR_PRICE_VALUE_DESC"
+			class="inputbox" size="20" labelclass="control-label"/>
+		
+		<field name="rooms" type="hidden"/>	
+			
+	</fieldset>
+</form>

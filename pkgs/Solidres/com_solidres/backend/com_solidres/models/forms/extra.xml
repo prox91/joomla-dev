@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field name="id" type="text" default="0" label="SR_FIELD_ID_LABEL"
+			description="SR_FIELD_ID_DESC"
+			readonly="true" class="readonly" labelclass="control-label"/>
+
+		<field name="name" type="text" class="inputbox"
+			default="" size="60" label="SR_FIELD_EXTRA_NAME_LABEL"
+			description="SR_FIELD_EXTRA_NAME_DESC" required="true" labelclass="control-label"/>
+		
+		<field name="max_quantity" type="text" class="inputbox"
+			default="" size="60" label="SR_FIELD_EXTRA_MAX_QUATITY_LABEL"
+			description="SR_FIELD_EXTRA_MAX_QUATITY_DESC" labelclass="control-label"/>	
+			
+		<field name="daily_chargable" type="list"
+			label="SR_FIELD_EXTRA_MAX_CHARGABLE_LABLE" description="SR_FIELD_EXTRA_MAX_CHARGABLE_DESC"
+			class="inputbox" size="1" default="1" labelclass="control-label"
+		>
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>	
+			
+		<field name="price" class="inputbox" type="text" label="SR_FIELD_EXTRA_PRICE_LABEL"
+			description="SR_FIELD_EXTRA_PRICE_DESC" labelclass="control-label"/>
+			
+		<field name="reservation_asset_id" type="reservationasset" label="SR_FIELD_EXTRA_RESERVATION_ASSET_LABEL"
+			description="SR_FIELD_EXTRA_RESERVATION_ASSET_DESC" labelclass="control-label"/>
+
+        <field name="currency_id" type="hidden" label=""
+               description="" labelclass=""/>
+		
+		<field name="state" type="list"
+			label="SR_FIELD_EXTRA_STATE_LABEL" description="SR_FIELD_EXTRA_STATE_DESC"
+			class="inputbox" size="1" default="1" labelclass="control-label"
+		>
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+		
+		<field name="description" type="textarea" rows="5" cols="150"
+			label="SR_FIELD_EXTRA_DESCRIPTION_LABEL" description="SR_FIELD_EXTRA_DESCRIPTION_DESC"
+			filter="safehtml" buttons="false" width="71%" labelclass="control-label"/>
+
+	</fieldset>
+</form>

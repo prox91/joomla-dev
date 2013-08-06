@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field name="id" type="text" default="0" label="SR_FIELD_ID_LABEL"
+			description="SR_FIELD_ID_DESC"
+			readonly="true" class="readonly" labelclass="control-label"/>
+
+		<field name="name" type="text" class="inputbox"
+			default="" size="60" label="SR_FIELD_NAME_LABEL"
+			description="SR_FIELD_NAME_DESC" required="true" labelclass="control-label"/>
+
+		<!--
+		<field name="category_id" type="categories" label="SR_FIELD_CATEGORY_LABEL"
+			description="SR_FIELD_CATEGORY_DESC" class="inputbox" size="6"
+			default="0" labelclass="control-label"/>
+		-->
+			
+		<field name="partner_name" type="text" class="inputbox"
+			default="" size="40" label="SR_FIELD_PARTNER_LABEL"
+			description="SR_FIELD_PARTNER_DESC" labelclass="control-label"/>	
+		
+		<field name="geo_state_id" type="geostate" label="SR_FIELD_STATE_LABEL"
+			description="SR_FIELD_STATE_DESC" class="inputbox" size="1" 
+			labelclass="control-label"/>
+		<field name="lat" type="hidden"/>
+		<field name="lng" type="hidden"/>
+		
+		<field name="alias" type="text" class="inputbox"
+			default="" size="60" label="SR_FIELD_ALIAS_LABEL"
+			description="SR_FIELD_ALIAS_DESC" labelclass="control-label"/>
+			
+		<field name="address_1" type="text" class="inputbox"
+			default="" size="60" label="SR_FIELD_ADDRESS_1_LABEL"
+			description="SR_FIELD_ADDRESS_1_DESC" labelclass="control-label"/>
+			
+		<field name="address_2" type="text" class="inputbox"
+			default="" size="60" label="SR_FIELD_ADDRESS_2_LABEL"
+			description="SR_FIELD_ADDRESS_2_DESC" labelclass="control-label"/>
+			
+		<field name="city" type="text" class="inputbox"
+			default="" size="60" label="SR_FIELD_CITY_LABEL"
+			description="SR_FIELD_CITY_DESC" labelclass="control-label"/>
+			
+		<field name="postcode" type="text" class="inputbox"
+			default="" size="60" label="SR_FIELD_POSTCODE_LABEL"
+			description="SR_FIELD_POSTCODE_DESC" labelclass="control-label"/>
+			
+		<field name="email" type="text" class="inputbox"
+			default="" size="60" label="SR_FIELD_EMAIL_LABEL"
+			description="SR_FIELD_EMAIL_DESC" labelclass="control-label" required="true"/>
+			
+		<field name="website" type="text" class="inputbox"
+			default="" size="60" label="SR_FIELD_WEBSITE_LABEL"
+			description="SR_FIELD_WEBSITE_DESC" labelclass="control-label"/>
+			
+		<field name="phone" type="text" class="inputbox"
+			default="" size="40" label="SR_FIELD_PHONE_LABEL"
+			description="SR_FIELD_PHONE_DESC" labelclass="control-label"/>
+			
+		<field name="fax" type="text" class="inputbox"
+			default="" size="40" label="SR_FIELD_FAX_LABEL"
+			description="SR_FIELD_FAX_DESC" labelclass="control-label"/>
+
+		<field name="hits" type="text" class="inputbox"
+			default="" size="6" label="SR_FIELD_HITS_LABEL"
+			description="SR_FIELD_HITS_LABEL" readonly="true" filter="unset" labelclass="control-label"/>
+
+		<field name="rating" type="list" label="SR_FIELD_RATING_LABEL"
+			description="SR_FIELD_RATING_DESC" class="inputbox"
+			filter="intval" size="1" default="1" labelclass="control-label">
+			<option value="1">1 star</option>
+			<option value="2">2 stars</option>
+			<option value="3">3 stars</option>
+			<option value="4">4 stars</option>
+			<option value="5">5 stars</option>
+			
+		</field>
+		
+		<field name="description" type="editor" class="inputbox"
+			label="SR_FIELD_DESCRIPTION_LABEL" description="SR_FIELD_DESCRIPTION_DESC"
+			filter="safehtml" buttons="false" width="71%" labelclass="control-label"/>
+		
+		<field name="country_id" type="country" label="SR_FIELD_COUNTRY_LABEL"
+			description="SR_FIELD_COUNTRY_DESC" class="inputbox" size="6"
+			default="0" labelclass="control-label"/>
+
+        <field name="currency_id" type="currency" label="SR_FIELD_CURRENCY_LABEL"
+               description="SR_FIELD_CURRENCY_DESC" class="inputbox" size="6"
+               default="0" labelclass="control-label" required="true"/>
+		
+		<field name="state" type="list"
+			label="SR_FIELD_STATE_LABEL" description="SR_FIELD_STATE_DESC"
+			class="inputbox" size="1" default="1" labelclass="control-label"
+		>
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+			<option value="2">JARCHIVED</option>
+			<option value="-2">JTRASH</option>
+		</field>
+
+		<!--<field name="featured"
+			   type="radio"
+			   label="SR_FEATURED_LABEL"
+			   description="SR_FEATURED_DESC"
+			   default="0"
+			   class="btn-group"
+			   labelclass="control-label"
+		>
+			<option value="0">JOFF</option>
+			<option value="1">JON</option>
+		</field>-->
+
+        <field name="default" type="radio" default="0"
+               label="SR_FIELD_DEFAULT_LABEL"
+               required="true"
+               description="SR_FIELD_DEFAULT_DESC"
+               class="btn-group" labelclass="control-label">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+		<field
+			name="mediaId"
+			type="hidden"
+			 />
+		
+		<field
+			name="roomTypeId"
+			type="hidden"
+			 />	 
+			 
+		<field
+			name="deleteMediaId"
+			type="hidden"
+			 />
+
+		<field
+			name="partner_id"
+			type="hidden"
+			 />
+
+		<field name="ordering" type="text" label="JField_Ordering_Label"
+			description="JField_Ordering_Desc" class="inputbox" size="6"
+			default="0" labelclass="control-label"/>
+
+		<field name="access" type="accesslevel" label="JFIELD_ACCESS_LABEL"
+			description="JFIELD_ACCESS_DESC" class="inputbox" size="1"
+			default="" labelclass="control-label"/>
+
+		<field name="language" type="contentlanguage" label="JFIELD_LANGUAGE_LABEL"
+			description="COM_BANNERS_FIELD_LANGUAGE_DESC" class="inputbox" labelclass="control-label"
+		>
+			<option value="*">JALL</option>
+		</field>
+
+		<field id="approved" name="approved" type="radio"
+			class="inputbox" default="" label="WEBLINKS_APPROVED_LABEL"
+			description="Weblinks_Approved_Desc" labelclass="control-label"
+		>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+		<field name="created_date" type="calendar"
+			label="JGLOBAL_FIELD_Created_Label" description="JGLOBAL_FIELD_Created_Desc"
+			class="inputbox" size="16" format="%Y-%m-%d %H:%M:%S"
+			filter="server_utc" labelclass="control-label"/>
+
+		<field name="created_by" type="user"
+			label="JGLOBAL_FIELD_Created_by_Label" description="JGLOBAL_FIELD_CREATED_BY_Desc" labelclass="control-label"/>
+
+		<field name="modified_date" type="text" class="readonly"
+			label="JGLOBAL_FIELD_Modified_Label" description="JGLOBAL_FIELD_Modified_Desc"
+			size="16" readonly="true" filter="unset" labelclass="control-label"/>
+
+		<field name="modified_by" type="hidden" filter="unset" />
+
+		<field name="checked_out" type="hidden" filter="unset" />
+
+		<field name="checked_out_time" type="hidden" filter="unset" />
+		
+		<field name="asset_id" type="hidden" filter="unset" />
+		
+		<field name="metakey" type="textarea"
+			label="JField_Meta_Keywords_Label" description="JField_Meta_Keywords_Desc"
+			class="inputbox" rows="3" cols="30" labelclass="control-label"/>
+
+		<field name="metadesc" type="textarea"
+			label="JField_Meta_Description_Label" description="JField_Meta_Description_Desc"
+			class="inputbox" rows="3" cols="30" labelclass="control-label"/>
+
+		<field name="xreference" type="text"
+			label="JField_XReference_Label" description="JField_XReference_Desc"
+			class="inputbox" size="20" labelclass="control-label"/>
+			
+		<field name="rules" type="rules" label="SR_ACCESS_RULES_LABEL"
+			description="SR_ACCESS_RULES_DESC" class="inputbox" filter="rules"
+			component="com_solidres" section="reservationasset" labelclass="control-label"/>
+
+		<field id="deposit_required" name="deposit_required" type="radio"
+			class="btn-group" default="0" label="SR_DEPOSIT_REQUIRED"
+			description="SR_DEPOSIT_REQUIRED_DESC" labelclass="control-label"
+		>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+
+		<field id="deposit_is_percentage" name="deposit_is_percentage" type="radio"
+			class="btn-group" default="1" label="SR_DEPOSIT_IS_PERCENTAGE"
+			description="SR_DEPOSIT_IS_PERCENTAGE_DESC" labelclass="control-label"
+		>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+
+		<field name="deposit_amount" type="text" class="inputbox"
+			default="" size="60" label="SR_DEPOSIT_AMOUNT"
+			description="SR_DEPOSIT_AMOUNT_DESC" labelclass="control-label"/>
+
+	</fieldset>
+	
+	<fields name="params">
+		<fieldset name="articles" label="SR_ASSET_ARTICLES"
+			addfieldpath="/administrator/components/com_solidres/models/fields" labelclass="control-label">
+
+			<field name="termsofuse" type="modal_article"
+				label="SR_FIELD_SELECT_ARTICLE_TERMS_OF_USE_LABEL"
+				required="false"
+				description="SR_FIELD_SELECT_ARTICLE_TERMS_OF_USE_DESC" labelclass="control-label"
+			/>
+			<field name="privacypolicy" type="modal_article"
+				label="SR_FIELD_SELECT_ARTICLE_PRIVACY_POLICY_LABEL"
+				required="false"
+				description="SR_FIELD_SELECT_ARTICLE_PRIVACY_POLICY_DESC" labelclass="control-label"
+			/>
+			<field name="disclaimer" type="modal_article"
+				label="SR_FIELD_SELECT_ARTICLE_DISCLAIMER_LABEL"
+				required="false"
+				description="SR_FIELD_SELECT_ARTICLE_DISCLAIMER_DESC" labelclass="control-label"
+			/>
+		</fieldset>
+	</fields>
+
+	<fields name="metadata">
+		<fieldset name="jmetadata" label="JGLOBAL_FIELDSET_METADATA">
+			<field name="robots" type="list"
+				label="JField_Metadata_Robots_Label" description="JField_Metadata_Robots_Desc" labelclass="control-label"
+			>
+				<option value="">JGLOBAL_USE_GLOBAL</option>
+				<option value="0">JGLOBAL_INDEX_FOLLOW</option>
+				<option value="1">JGLOBAL_NOINDEX_FOLLOW</option>
+				<option value="2">JGLOBAL_INDEX_NOFOLLOW</option>
+				<option value="3">JGLOBAL_NOINDEX_NOFOLLOW</option>
+				<option value="4">JGLOBAL_NO_ROBOTS_TAG</option>
+			</field>
+
+			<field name="author" type="text" label="JAUTHOR"
+				description="JField_Metadata_Author_Desc" size="20"  labelclass="control-label"/>
+
+			<field name="rights" type="textarea"
+				label="JFIELD_META_RIGHTS_LABEL" description="JFIELD_META_RIGHTS_DESC"
+				required="" filter="string" cols="30" rows="2"  labelclass="control-label"/>
+		</fieldset>
+	</fields>
+	
+	<!-- Add fields to the request variables for the layout. -->
+	</form>

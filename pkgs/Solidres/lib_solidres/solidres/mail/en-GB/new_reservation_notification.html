@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>{hotel_name} - New reservation.</title>
+</head>
+<body>
+    <table style="font-family:Verdana,sans-serif; font-size:11px; color:#374953; width: 550px;">
+        <tr>
+            <td align="left">
+                <h1>{hotel_name}</h1>
+            </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td align="left">
+                <strong style="color:#264492;">
+                    Notification for new reservation
+                </strong>,</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td align="left" style="background-color:#264492; color:#FFF; font-size: 12px; font-weight:bold; padding: 0.5em 1em;">A new reservation #{code} has been made successfully</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td align="left">
+                <p>You can: </p>
+                <ul>
+                    <li><a href="{reservation_edit_link}">Manage this reservation</a></li>
+                </ul>
+                <p>Thank you</p>
+            </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td align="center" style="font-size:10px; border-top: 1px solid #D9DADE;">
+                <a href="{hotel_url}" style="color:#264492; font-weight:bold; text-decoration:none;">{hotel_name}</a></a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

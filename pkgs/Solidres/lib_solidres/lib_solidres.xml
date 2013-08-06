@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="library" version="3.0" method="upgrade">
+	<name>lib_solidres</name>
+	<libraryname>solidres</libraryname>
+	<description>Solidres library</description>
+	<creationDate>Feb 2013</creationDate>
+	<author>Solidres Team</author>
+	<authorEmail>contact@solidres.com</authorEmail>
+	<authorUrl>http://www.solidres.com</authorUrl>
+    <copyright>Copyright (C) 2013 Solidres. All rights reserved.</copyright>
+	<license>GNU General Public License version 3, or later</license>
+	<version>0.4.2</version>
+	<packager>Solidres Team</packager>
+	<packagerurl>http://www.solidres.com</packagerurl>
+	<updateservers></updateservers>
+	<files folder="solidres">
+		<file>defines.php</file>
+		<file>version.php</file>
+		<file>factory.php</file>
+        <folder>config</folder>
+        <folder>coupon</folder>
+        <folder>currency</folder>
+        <folder>html</folder>
+        <folder>mail</folder>
+        <folder>media</folder>
+		<folder>nestedsetmodel</folder>
+        <folder>reservation</folder>
+		<folder>roomtype</folder>
+        <folder>swift</folder>
+		<folder>system</folder>
+        <folder>user</folder>
+        <folder>utilities</folder>
+	</files>
+</extension>
