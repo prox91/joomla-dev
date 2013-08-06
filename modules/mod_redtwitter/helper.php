@@ -1,40 +1,49 @@
 <?php
 /**
- * @version    Id: helper.php
- * @package    Com_Redtwitter
- * @author     Ronni K. G. Christiansen<email@redweb.dk> - http://www.redcomponent.com
- * @copyright  Copyright (C) 2010 redCOMPONENT.com. All rights reserved.
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
- *             Developed by email@recomponent.com - redCOMPONENT.com
+ * @package     RedTwitter.Frontend
+ * @subpackage  mod_redtwitter
+ *
+ * @copyright   Copyright (C) 2005 - 2013 redCOMPONENT.com. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE
  */
+// No direct access
 defined('_JEXEC') or die('Restricted access');
 
 JLoader::register('RedtwitterHelper', JPATH_SITE . '/components/com_redtwitter/helpers/redtwitter.php');
 
 /**
- * Class modRedTwitterHelper
+ * Module Redtwitter Helper.
+ *
+ * @package     RedTwitter.Frontend
+ * @subpackage  Modules
+ * @since       1.0
  */
-abstract class modRedTwitterHelper
+abstract class ModRedTwitterHelper
 {
 	/**
-	 * @param array $twitterId
-	 * @param $orderType
-	 * @param $maxItemDisplayed
+	 *  Get twitter list
+	 *
+	 * @param   array  $params  parameter to get twitter list
+	 *
 	 * @return array
 	 */
-	public static function getTwitterList($twitterId = array(), $orderType = 0, $maxItemDisplayed = 10, $params = array())
+	public static function getTwitterList($params = array())
 	{
 		JModelLegacy::addIncludePath(JPATH_ROOT . '/components/com_redtwitter/models', 'redtwitterModelfollowedprofiles');
 		$model = JModelLegacy::getInstance('followedprofiles', 'redtwitterModel', array('ignore_request' => true));
 
-		$twitterUserList =& $model->getData($twitterId);
+		$twitterUserList =& $model->getData($params->get('twitter_id'));
 
-		$twitterDataTimelines = RedtwitterHelper::getAllUserTimeline($twitterUserList, $orderType, $maxItemDisplayed, $params);
+		$twitterDataTimelines = RedtwitterHelper::getAllUserTimeline($twitterUserList, $params->get('order_type', 0), $params->get('item_max_display', 10), $params);
+
 		return $twitterDataTimelines;
 	}
 
 	/**
-	 * @param $time
+	 * Time ago
+	 *
+	 * @param   string  $time  time to calculator
+	 *
 	 * @return string
 	 */
 	public static function ago($time)

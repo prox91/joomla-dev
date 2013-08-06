@@ -2,117 +2,212 @@
 <extension type="module"
            version="2.5.x"
            method="upgrade">
-	<name>redTWITTER Module</name>
-	<version>1.1.2</version>
-	<creationDate>25-03-2011</creationDate>
-	<author>www.redcomponent.com</author>
-	<authorEmail>email@redweb.dk</authorEmail>
-	<copyright>redCOMPONENT.com</copyright>
-	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-	<description>redTWITTER Module</description>
-	<files>
-		<filename module="mod_redtwitter">mod_redtwitter.php</filename>
-		<filename>helper.php</filename>
-		<folder>tmpl</folder>
-		<folder>elements</folder>
-		<folder>includes</folder>
-	</files>
-	<languages>
-		<language tag="en-GB">language/en-GB/en-GB.mod_redtwitter.ini</language>
-	</languages>
-	<config>
-		<fields name="params">
-			<fieldset name="basic"
-			          addfieldpath="/modules/mod_redtwitter/elements">
-				<field
-						name="twitter_id"
-						type="redtwittercategory"
-						multiple="true"
-						size="20"
-						default="1"
-						label="MOD_REDTWITTER_TWITTER_ID_LBL"
-						description="MOD_REDTWITTER_TWITTER_ID_DESC">
-				</field>
-				<field
-						name="order_type"
-						type="list"
-						default="0"
-						label="MOD_REDTWITTER_ORDERING_LBL"
-						description="MOD_REDTWITTER_ORDERING_DESC">
-					<option value="0">MOD_REDTWITTER_ORDER_BY_CREATE_DATE</option>
-					<option value="1">MOD_REDTWITTER_ORDER_BY_NAME</option>
-				</field>
-				<field name="item_max_display"
-				       type="text"
-				       size="10"
-				       default="20"
-				       filter='int'
-				       label="MOD_REDTWITTER_TWITTER_ITEM_MAX_DISPLAY_LBL"
-				       description="MOD_REDTWITTER_TWITTER_ITEM_MAX_DISPLAY_DESC"/>
-				<field name="title_length"
-				       type="text"
-				       size="20"
-				       default="30"
-				       filter='int'
-				       label="MOD_REDTWITTER_TWITTER_TITLE_LENGTH_LBL"
-				       description="MOD_REDTWITTER_TWITTER_TITLE_LENGTH_DESC"/>
-				<field
-						name="display_slide"
-						type="list"
-						default="1"
-						label="MOD_REDTWITTER_DISPLAY_SLIDE_LBL"
-						description="MOD_REDTWITTER_DISPLAY_SLIDE_DESC">
-					<option value="1">Yes</option>
-					<option value="0">No</option>
-				</field>
-				<field name="item_per_slide"
-				       type="text"
-				       size="10"
-				       default="10"
-				       filter='int'
-				       label="MOD_REDTWITTER_TWITTER_ITEM_PER_SLIDE_LBL"
-				       description="MOD_REDTWITTER_TWITTER_ITEM_PER_SLIDE_DESC"/>
-			</fieldset>
+    <name>redTWITTER Module</name>
+    <version>1.1.2</version>
+    <creationDate>25-03-2011</creationDate>
+    <author>www.redcomponent.com</author>
+    <authorEmail>email@redweb.dk</authorEmail>
+    <copyright>redCOMPONENT.com</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <description>redTWITTER Module</description>
+    <files>
+        <filename module="mod_redtwitter">mod_redtwitter.php</filename>
+        <filename>helper.php</filename>
+        <folder>tmpl</folder>
+        <folder>elements</folder>
+        <folder>includes</folder>
+    </files>
+    <languages>
+        <language tag="en-GB">language/en-GB/en-GB.mod_redtwitter.ini</language>
+    </languages>
+    <config>
+        <fields name="params">
+            <fieldset name="basic"
+                      addfieldpath="/modules/mod_redtwitter/elements">
+                <field
+                        name="twitter_id"
+                        type="redtwittercategories"
+                        multiple="true"
+                        size="20"
+                        default="1"
+                        label="MOD_REDTWITTER_TWITTER_ID_LBL"
+                        description="MOD_REDTWITTER_TWITTER_ID_DESC">
+                </field>
+                <field
+                        name="order_type"
+                        type="list"
+                        default="0"
+                        label="MOD_REDTWITTER_ORDERING_LBL"
+                        description="MOD_REDTWITTER_ORDERING_DESC">
+                    <option value="0">MOD_REDTWITTER_ORDER_BY_CREATE_DATE</option>
+                    <option value="1">MOD_REDTWITTER_ORDER_BY_NAME</option>
+                </field>
+                <field name="item_max_display"
+                       type="text"
+                       size="10"
+                       default="20"
+                       filter='int'
+                       label="MOD_REDTWITTER_TWITTER_ITEM_MAX_DISPLAY_LBL"
+                       description="MOD_REDTWITTER_TWITTER_ITEM_MAX_DISPLAY_DESC"/>
+                <field name="title_length"
+                       type="text"
+                       size="20"
+                       default="30"
+                       filter='int'
+                       label="MOD_REDTWITTER_TWITTER_TITLE_LENGTH_LBL"
+                       description="MOD_REDTWITTER_TWITTER_TITLE_LENGTH_DESC"/>
+                <field
+                        name="display_slide"
+                        type="list"
+                        default="1"
+                        label="MOD_REDTWITTER_DISPLAY_SLIDE_LBL"
+                        description="MOD_REDTWITTER_DISPLAY_SLIDE_DESC">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+                <field name="item_per_slide"
+                       type="text"
+                       size="10"
+                       default="10"
+                       filter='int'
+                       label="MOD_REDTWITTER_TWITTER_ITEM_PER_SLIDE_LBL"
+                       description="MOD_REDTWITTER_TWITTER_ITEM_PER_SLIDE_DESC"/>
+            </fieldset>
 
-			<fieldset
-					name="advanced">
-				<field
-						name="layout"
-						type="modulelayout"
-						label="JFIELD_ALT_LAYOUT_LABEL"
-						description="JFIELD_ALT_MODULE_LAYOUT_DESC"/>
-				<field
-						name="moduleclass_sfx"
-						type="text"
-						label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
-						description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"/>
+            <fieldset name="header_setting"
+                      addfieldpath="/modules/mod_redtwitter/elements">
+                <field
+                        name="show_header"
+                        type="radio"
+                        default="1"
+                        label="MOD_REDTWITTER_SHOW_HEADER_LBL"
+                        description="MOD_REDTWITTER_SHOW_HEADER_DESC">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+                <field
+                        name="show_header_twitter_screen_name"
+                        type="redtwittercategory"
+                        default="1"
+                        label="MOD_REDTWITTER_SHOW_HEADER_FOR_USER_LBL"
+                        description="MOD_REDTWITTER_SHOW_HEADER_FOR_USER_DESC">
+                </field>
+                <field name="show_header_avatar"
+                       type="radio"
+                       default="1"
+                       label="MOD_REDTWITTER_TWITTER_SHOW_HEADER_AVATAR_LBL"
+                       description="MOD_REDTWITTER_TWITTER_SHOW_HEADER_AVATAR_DESC">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+                <field name="show_header_screen_name"
+                       type="radio"
+                       default="1"
+                       label="MOD_REDTWITTER_TWITTER_SHOW_HEADER_SCREEN_NAME_LBL"
+                       description="MOD_REDTWITTER_TWITTER_SHOW_HEADER_SCREEN_NAME_DESC">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+                <field name="show_header_desc"
+                       type="radio"
+                       default="1"
+                       label="MOD_REDTWITTER_TWITTER_SHOW_HEADER_DESC_LBL"
+                       description="MOD_REDTWITTER_TWITTER_SHOW_HEADER_DESC_DESC">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+                <field name="show_header_location"
+                       type="radio"
+                       default="1"
+                       label="MOD_REDTWITTER_TWITTER_SHOW_HEADER_LOCATION_LBL"
+                       description="MOD_REDTWITTER_TWITTER_SHOW_HEADER_LOCATION_DESC">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+                <field name="show_header_web"
+                       type="radio"
+                       default="1"
+                       label="MOD_REDTWITTER_TWITTER_SHOW_HEADER_WEB_LBL"
+                       description="MOD_REDTWITTER_TWITTER_SHOW_HEADER_WEB_DESC">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+            </fieldset>
 
-				<field
-						name="cache"
-						type="radio"
-						default="1"
-						label="COM_MODULES_FIELD_CACHING_LABEL"
-						description="COM_MODULES_FIELD_CACHING_DESC">
-					<option
-							value="1">Yes
-					</option>
-					<option
-							value="0">No
-					</option>
-				</field>
+            <fieldset name="follow_button">
+                <field
+                        name="show_follow_button"
+                        type="radio"
+                        default="1"
+                        label="MOD_REDTWITTER_SHOW_FOLLOW_BUTTON_LBL"
+                        description="MOD_REDTWITTER_SHOW_FOLLOW_BUTTON_DESC">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+                <field
+                        name="show_follow_button_screen_name"
+                        type="redtwittercategory"
+                        default="1"
+                        label="MOD_REDTWITTER_SHOW_FOLLOW_FOR_USER_LBL"
+                        description="MOD_REDTWITTER_SHOW_FOLLOW_FOR_USER_DESC">
+                </field>
+                <field name="show_follow_count"
+                       type="radio"
+                       default="1"
+                       label="MOD_REDTWITTER_TWITTER_SHOW_FOLLOW_COUNT_LBL"
+                       description="MOD_REDTWITTER_TWITTER_SHOW_FOLLOW_COUNT_DESC">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+                <field name="show_follow_screen_name"
+                       type="radio"
+                       default="1"
+                       label="MOD_REDTWITTER_TWITTER_SHOW_FOLLOW_SC_NAME_LBL"
+                       description="MOD_REDTWITTER_TWITTER_SHOW_FOLLOW_SC_NAME_DESC">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+            </fieldset>
 
-				<field
-						name="cache_time"
-						type="text"
-						default="900"
-						label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
-						description="COM_MODULES_FIELD_CACHE_TIME_DESC"/>
-				<field
-						name="cachemode"
-						type="hidden"
-						default="static">
-				</field>
-			</fieldset>
-		</fields>
-	</config>
+            <fieldset
+                    name="advanced">
+                <field
+                        name="layout"
+                        type="modulelayout"
+                        label="JFIELD_ALT_LAYOUT_LABEL"
+                        description="JFIELD_ALT_MODULE_LAYOUT_DESC"/>
+                <field
+                        name="moduleclass_sfx"
+                        type="text"
+                        label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+                        description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"/>
+
+                <field
+                        name="cache"
+                        type="radio"
+                        default="1"
+                        label="COM_MODULES_FIELD_CACHING_LABEL"
+                        description="COM_MODULES_FIELD_CACHING_DESC">
+                    <option
+                            value="1">Yes
+                    </option>
+                    <option
+                            value="0">No
+                    </option>
+                </field>
+
+                <field
+                        name="cache_time"
+                        type="text"
+                        default="900"
+                        label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+                        description="COM_MODULES_FIELD_CACHE_TIME_DESC"/>
+                <field
+                        name="cachemode"
+                        type="hidden"
+                        default="static">
+                </field>
+            </fieldset>
+        </fields>
+    </config>
 </extension>
