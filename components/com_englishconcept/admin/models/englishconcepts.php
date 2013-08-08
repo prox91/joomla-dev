@@ -9,8 +9,6 @@
 // no direct access
 defined('_JEXEC') or die;
 
-jimport('joomla.application.component.modellist');
-
 class EnglishConceptModelEnglishConcepts extends JModelList
 {
 	/**
@@ -25,7 +23,7 @@ class EnglishConceptModelEnglishConcepts extends JModelList
 		$query = $db->getQuery(true);
 
 		// Select some field
-		$query->select('l.id, l.book_id, l.book_name, l.script_flg, l.name, l.introduction, l.reg_date, l.status');
+		$query->select($this->getState('list.select','l.*'));
 
 		// From the hello table
 		$query->from('#__lesson AS l');

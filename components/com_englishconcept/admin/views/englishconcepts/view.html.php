@@ -47,11 +47,10 @@ class EnglishConceptViewEnglishConcepts extends JViewLegacy
 		$this->setDocument();
 	}
 
-	public function addToolbar() {
+	public function addToolbar()
+	{
 		JToolbarHelper::title(JText::_('COM_ENGLISHCONCEPT_TITLE'));
-
 		JToolbarHelper::addNew('englishconcept.add');
-
 		JToolbarHelper::editList('englishconcept.edit');
 	}
 

@@ -1,0 +1,104 @@
+#ec-side-navigation {
+	margin  : 0;
+	padding : 0;
+}
+
+#ec-side-navigation li {
+	list-style            : none;
+	line-height           : 25px;
+	padding               : 0;
+	background-color      : #fafafa;
+	border                : 1px solid #CCC;
+	-moz-border-radius    : 4px;
+	-webkit-border-radius : 4px;
+	border-radius         : 4px;
+	margin                : 0 0 4px 0;
+}
+
+#-side-navigation li a.ec-title {
+	padding : 0 0 0 10px;
+}
+
+#ec-side-navigation li.ec-tools {
+	text-indent      : 10px;
+	background-color : #EEE;
+}
+
+#ec-side-navigation li.ec-tools a {
+	margin : 5px 5px 0 0;
+}
+
+#ec-side-navigation li.ec-tools a#ec-current-ver {
+	float       : right;
+	width       : auto;
+	height      : 16px;
+	line-height : 16px;
+	color       : #A2A2A2;
+}
+
+#ec-side-navigation li a#ec-dashboard {
+}
+
+#ec-side-navigation li a#ec-expand {
+
+}
+
+#ec-side-navigation li a#ec-collapse {
+
+}
+
+#ec-side-navigation li a.ec-title {
+	display : block;
+	color   : #666;
+}
+
+#ec-side-navigation li a.ec-title:link,
+#ec-side-navigation li a.ec-title:visited {
+	color : #333;
+}
+
+#ec-side-navigation li a:hover {
+	text-decoration : none;
+}
+
+#ec-side-navigation li li {
+	border : none;
+}
+
+#ec-side-navigation li.active a.ec-title {
+	background : #146295;
+	color      : #FFFFFF;
+}
+
+#ec-side-navigation li ul {
+	margin       : 0;
+	padding-left : 0px;
+}
+
+#ec-side-navigation li ul li {
+	line-height : 25px;
+	margin      : 0;
+	text-indent : 10px;
+}
+
+#ec-side-navigation li ul li a:link {
+	display : block;
+}
+
+#ec-side-navigation li ul li a:hover {
+	background      : #EEE;
+	text-decoration : none;
+}
+
+#ec-side-navigation li ul li.active a {
+	font-weight : bold;
+}
+
+#ec-side-navigation a.ec-indicator {
+	display     : block;
+	width       : 25px;
+	padding     : 0px;
+	float       : right;
+	text-indent : -9999px;
+	background  : url(../images/arrow-down.png) no-repeat 50% 50%;
+}

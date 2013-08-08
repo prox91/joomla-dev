@@ -23,6 +23,16 @@
 				<phingcall target="deploy_module" />
 			</else>
 		</if>
+
+		<if>
+			<equals arg1="${active.media}" arg2=true casesensitive="false" />
+			<then>
+				<echo>Don't deploy any module</echo>
+			</then>
+			<else>
+				<phingcall target="deploy_module" />
+			</else>
+		</if>
 	</target>
 
     <target name="deploy_component" description="Deploy the component to web server">
@@ -63,7 +73,24 @@
                 <include name="**" />
             </fileset>
         </copy>
+
+	    <!-- Media -->
+	    <copy todir="${des.com.media}" overwrite="true">
+		    <fileset dir="${src.com.media}">
+			    <include name="**" />
+		    </fileset>
+	    </copy>
+
     </target>
+
+	<!-- Media -->
+	<target name="deploy_media" description="Deploy the media folder to the web server">
+		<copy todir="${des.com.media}" overwrite="true">
+			<fileset dir="${src.com.media}">
+				<include name="**" />
+			</fileset>
+		</copy>
+	</target>
 
 	<target name="deploy_module" description="Deploy the module to the web server">
         <!-- Module -->
