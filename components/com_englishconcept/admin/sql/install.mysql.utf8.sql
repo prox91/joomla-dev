@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS `#__lesson`;
-CREATE TABLE IF NOT EXISTS `#__lesson` (
+DROP TABLE IF EXISTS `#__lessons`;
+CREATE TABLE IF NOT EXISTS `#__lessons` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `book_id` int(11) DEFAULT NULL,
   `book_name` varchar(250) DEFAULT NULL,
@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS `#__lesson` (
   `ordering` int(11) NOT NULL DEFAULT '0',
   `checked_out` int(10) unsigned NOT NULL DEFAULT '0',
   `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `published` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'The published state of the lesson.',
   `publish_up` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `publish_down` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `language` char(7) NOT NULL DEFAULT '',
@@ -24,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `#__lesson` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
-DROP TABLE IF EXISTS `#__lesson_script`;
+DROP TABLE IF EXISTS `#__lessons_script`;
 CREATE TABLE IF NOT EXISTS `#__lesson_script` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lesson_id` int(11) DEFAULT NULL,
@@ -36,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `#__lesson_script` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
-DROP TABLE IF EXISTS `#__lesson_key_structures`;
+DROP TABLE IF EXISTS `#__lessons_key_structures`;
 CREATE TABLE IF NOT EXISTS `#__lesson_key_structures` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lesson_id` int(11) DEFAULT NULL,
@@ -46,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `#__lesson_key_structures` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
-DROP TABLE IF EXISTS `#__lesson_comprehension`;
+DROP TABLE IF EXISTS `#__lessons_comprehension`;
 CREATE TABLE IF NOT EXISTS `#__lesson_comprehension` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lesson_id` int(11) DEFAULT NULL,
@@ -68,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `#__lesson_special_difficulties` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
-DROP TABLE IF EXISTS `#__lesson_exercises`;
+DROP TABLE IF EXISTS `#__lessons_exercises`;
 CREATE TABLE IF NOT EXISTS `#__lesson_exercises` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lesson_id` int(11) DEFAULT NULL,
