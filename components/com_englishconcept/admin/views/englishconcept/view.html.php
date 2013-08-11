@@ -12,24 +12,23 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Class EnglishConceptViewEnglishConcept
  */
-class EnglishConceptViewEnglishConcepts extends JViewLegacy
+class EnglishConceptViewEnglishConcept extends JViewLegacy
 {
-	protected $items;
-	protected $pagination;
+	protected $state;
+	protected $item;
+	protected $form;
 
 	/**
 	 * Display function
 	 */
 	public function display($tpl = null)
 	{
-		// Get data from the model
-		$this->items = $this->get('Items');
-		$this->pagination = $this->get('Pagination');
+		$this->state	= $this->get('State');
+		$this->item		= $this->get('Item');
+		$this->form		= $this->get('Form');
 
-		//$this->canDo = HelloWorldHelper::getActions();
-
-		// Check for errors.
-		if (count($errors = $this->get('Errors'))) {
+		if (count($errors = $this->get('Errors')))
+		{
 			JError::raiseError(500, implode("\n", $errors));
 			return false;
 		}
@@ -46,9 +45,9 @@ class EnglishConceptViewEnglishConcepts extends JViewLegacy
 
 	public function addToolbar()
 	{
-		JToolbarHelper::title(JText::_('COM_ENGLISHCONCEPT_TITLE'));
-		JToolbarHelper::addNew('englishconcept.add');
-		JToolbarHelper::editList('englishconcept.edit');
+		JToolBarHelper::apply('englishconcept.apply', 'JToolbar_Apply');
+		JToolBarHelper::addNew('englishconcept.save2new', 'JToolbar_Save_and_new');
+		JToolBarHelper::save('englishconcept.save', 'JToolbar_Save');
 	}
 
 	public function setDocument()

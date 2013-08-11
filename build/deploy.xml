@@ -25,12 +25,12 @@
 		</if>
 
 		<if>
-			<equals arg1="${active.media}" arg2=true casesensitive="false" />
+			<equals arg1="${active.media}" arg2="true" casesensitive="false" />
 			<then>
-				<echo>Don't deploy any module</echo>
+				<echo>Don't deploy media</echo>
 			</then>
 			<else>
-				<phingcall target="deploy_module" />
+				<phingcall target="deploy_media" />
 			</else>
 		</if>
 	</target>
