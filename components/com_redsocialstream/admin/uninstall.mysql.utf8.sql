@@ -1,0 +1,10 @@
+DROP TABLE `#__redsocialstream_linkedin_connections`;
+DROP TABLE `#__redsocialstream_posts`;
+DROP TABLE `#__redsocialstream_profilereference`;
+DROP TABLE `#__redsocialstream_profiletype`;
+DROP TABLE `#__redsocialstream_settings`;
+DROP TABLE `#__redsocialstream_group`;
+DROP TABLE `#__redsocialstream_linkedin_accesstoken`;
+DROP TABLE `#__redsocialstream_facebook_accesstoken`;
+DROP TABLE `#__redsocialstream_twitter_accesstoken`;
+DROP TABLE `#__redsocialstream_postfeeds`;

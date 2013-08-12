@@ -1,0 +1,40 @@
+.radiobtn {
+    clear: none;
+    min-width: 45px;
+    float: left;
+    margin: 3px 0 0 5px;
+}
+
+.icon-48-profile {
+    background-image: url(../images/48_redsocialstream_profile.png);
+}
+
+.icon-48-group {
+    background-image: url(../images/48_redsocialstream_group.png);
+}
+
+.icon-48-posts {
+    background-image: url(../images/48_redsocialstream_post.png);
+}
+
+.icon-48-configure {
+    background-image: url(../images/48_redsocialstream_configure.png);
+}
+
+.icon-32-redsocialstream_import_generate32 {
+
+    background-image: url(../images/generate32.png);
+}
+
+.icon-48-redsocialstream {
+
+    background-image: url(../images/socialstream.png);
+}
+
+.icon-32-folderup_32 {
+    background-image: url(../images/folderup_32.png);
+}
+
+.icon-16-socialstream_small {
+    background-image: url(../images/socialstream_small.png);
+}

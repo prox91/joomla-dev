@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <layout title="COM_REDSOCIALSTREAM_ALL_ITEM_LAYOUT">
+        <message>COM_REDSOCIALSTREAM_ALL_ITEM_LAYOUT</message>
+    </layout>
+    <state>
+        <name>COM_REDSOCIALSTREAM_ALL_ITEM_LAYOUT</name>
+        <description>COM_REDSOCIALSTREAM_ALL_ITEM_LAYOUT_DESC</description>
+
+    </state>
+</metadata>

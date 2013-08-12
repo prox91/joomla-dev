@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension method="upgrade" type="component" version="2.5">
+    <name>COM_REDSOCIALSTREAM</name>
+    <creationDate>18-02-2013</creationDate>
+    <author>redWEB.dk</author>
+    <authorEmail>email@redweb.dk</authorEmail>
+    <authorUrl>www.redweb.dk</authorUrl>
+    <copyright>(c) Redweb.dk</copyright>
+    <license>GNU/GPL</license>
+    <version>1.0</version>
+    <description>redSOCIALSTREAM</description>
+
+    <installfile>install.redsocialstream.php</installfile>
+    <uninstallfile>uninstall.redsocialstream.php</uninstallfile>
+    <install>
+        <sql>
+            <file driver="mysql" charset="utf8">install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+    <uninstall>
+        <sql>
+            <file driver="mysql" charset="utf8">uninstall.mysql.utf8.sql</file>
+        </sql>
+    </uninstall>
+    <files folder="site">
+        <filename>index.html</filename>
+        <filename>redsocialstream.php</filename>
+        <folder>helpers</folder>
+        <folder>helpers/facebook</folder>
+        <folder>helpers/twitter</folder>
+        <folder>controllers</folder>
+        <folder>models</folder>
+        <folder>images</folder>
+        <folder>views</folder>
+        <folder>table</folder>
+        <folder>assets</folder>
+    </files>
+    <languages folder="site/languages">
+        <language tag="en-GB">en-GB.com_redsocialstream.ini</language>
+    </languages>
+    <administration>
+        <menu img="components/com_redsocialstream/assets/images/socialstream_small.png" task="redSocialstream">
+            COM_REDSOCIALSTREAM_REDSOCIALSTREAMS
+        </menu>
+        <submenu>
+            <menu img="components/com_redsocialstream/assets/images/socialstream_small.png">
+                COM_REDSOCIALSTREAM_SOCIALSTREAMS
+            </menu>
+            <menu img="components/com_redsocialstream/assets/images/profiles_small.png"
+                  link="option=com_redsocialstream&amp;view=profiles">COM_REDSOCIALSTREAM_PROFILES
+            </menu>
+            <menu img="components/com_redsocialstream/assets/images/groups_small.png"
+                  link="option=com_redsocialstream&amp;view=groups">COM_REDSOCIALSTREAM_GROUPS
+            </menu>
+            <menu img="components/com_redsocialstream/assets/images/configure_small.png"
+                  link="option=com_redsocialstream&amp;view=configure&amp;task=edit">COM_REDSOCIALSTREAM_CONFIGURE
+            </menu>
+        </submenu>
+        <files folder="admin">
+            <filename>index.html</filename>
+            <filename>controller.php</filename>
+            <filename>redsocialstream.php</filename>
+            <filename>install.mysql.utf8.sql</filename>
+            <filename>uninstall.mysql.utf8.sql</filename>
+            <folder>controllers</folder>
+            <folder>models</folder>
+            <folder>tables</folder>
+            <folder>views</folder>
+            <folder>assets</folder>
+            <folder>elements</folder>
+        </files>
+        <languages folder="admin/languages">
+            <language tag="en-GB">en-GB.com_redsocialstream.ini</language>
+            <language tag="en-GB">en-GB.com_redsocialstream.sys.ini</language>
+        </languages>
+    </administration>
+</extension>
