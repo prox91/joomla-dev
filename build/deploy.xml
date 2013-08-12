@@ -24,8 +24,9 @@
 			</else>
 		</if>
 
+        <!--
 		<if>
-			<equals arg1="${active.media}" arg2=true casesensitive="false" />
+			<equals arg1="${active.media}" arg2="true" casesensitive="false" />
 			<then>
 				<echo>Don't deploy any module</echo>
 			</then>
@@ -33,6 +34,8 @@
 				<phingcall target="deploy_module" />
 			</else>
 		</if>
+		-->
+
 	</target>
 
     <target name="deploy_component" description="Deploy the component to web server">
@@ -75,11 +78,13 @@
         </copy>
 
 	    <!-- Media -->
+        <!--
 	    <copy todir="${des.com.media}" overwrite="true">
 		    <fileset dir="${src.com.media}">
 			    <include name="**" />
 		    </fileset>
 	    </copy>
+	    -->
 
     </target>
 
