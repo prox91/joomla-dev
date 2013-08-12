@@ -39,6 +39,10 @@
 		<language tag="en-GB">language/en-GB/en-GB.com_englishconcept.ini</language>
 	</languages>
 
+	<media folder="media" destination="englishconcept">
+		<folder>assets</folder>
+	</media>
+
 	<administration>
 		<!-- Administration Menu Section -->
 		<menu>COM_ENGLISHCONCEPT_SYS_MENU</menu>

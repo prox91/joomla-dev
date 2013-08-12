@@ -26,8 +26,8 @@ class EnglishConceptModelEnglishConcepts extends JModelList
 		$query->select($this->getState('list.select','l.*'));
 
 		// From the hello table
-		$query->from('#__lesson AS l');
-		$query->where('l.del_flg = 0');
+		$query->from('#__lessons AS l');
+		$query->where('l.deleted_flg = 0');
 
 		return $query;
 	}

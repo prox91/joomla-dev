@@ -2,7 +2,6 @@
 <project name="Development" description="Build component and module for development Joomla extension" default="delivery">
 	<property name="dirs.root" value=".."/>
 	<property file="./build.properties"/>
-
 	<taskdef name="zipme" classname="phingext.ZipmeTask" />
 
 	<target name="setup-properties"
