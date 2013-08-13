@@ -120,7 +120,7 @@ defined('_JEXEC') or die;
 	<input type="hidden" name="cid[]" value="<?php echo $this->detail->id; ?>"/>
 	<input type="hidden" name="task" value=""/>
 	<input type="hidden" name="view" value="group"/>
-	<input type="hidden" name="ordering" value="<?php if ($this->detail->ordering != "")
+	<input type="hidden" name="ordering" value="<?php if (isset($this->detail->ordering) && $this->detail->ordering != "")
 	{
 		echo $this->detail->ordering;
 	}
