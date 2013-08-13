@@ -139,6 +139,7 @@ CREATE TABLE IF NOT EXISTS `#__redsocialstream_twitter_accesstoken` (
 
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `profile_id` int(11) DEFAULT NULL,
+  `twitter_access_token` text DEFAULT NULL,
   `twitter_token` text DEFAULT NULL,
   `twitter_secret` text DEFAULT NULL,
   `created` text DEFAULT NULL,
