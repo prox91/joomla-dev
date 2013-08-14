@@ -18,9 +18,9 @@ JLoader::registerPrefix('Red', dirname(__DIR__) . '/libraries');
 class RedSocialStreamHelper
 {
 	// Access token url
-	public static $accessTokenUrl = "https://api.twitter.com/oauth2/token";
+	private static $_accessTokenUrl = "https://api.twitter.com/oauth2/token";
 
-	/**
+    /**
 	 * @param $consumerKey
 	 * @param $consumerSecret
      *
@@ -41,7 +41,7 @@ class RedSocialStreamHelper
 		try
 		{
 			$http = RedHttpFactory::getHttp();
-			$response = $http->post(self::$accessTokenUrl, $data, $header);
+			$response = $http->post(self::$_accessTokenUrl, $data, $header);
 			$accessData = json_decode($response->body);
 
 			if(isset($accessData->errors))
@@ -56,4 +56,91 @@ class RedSocialStreamHelper
 			return "";
 		}
 	}
+
+    public static function getFacebookProfilesOptions()
+    {
+        $options = array();
+
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+
+        $query->select('id as value, title as text')
+            ->from('#__redsocialstream_profilereference')
+            ->where('profiletypeid=' . $db->quote(FACEBOOK));
+        $db->setQuery($query);
+
+        try
+        {
+            $profiles = $db->loadObjectList();
+        }
+        catch (RuntimeException $e)
+        {
+            JError::raiseWarning(500, $e->getMessage());
+        }
+
+        foreach ($profiles as $profile)
+        {
+            $options[]	= JHtml::_('select.option', $profile->value, $profile->text);
+        }
+
+        return $options;
+    }
+
+    public static function getTwitterProfilesOptions()
+    {
+        $options = array();
+
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+
+        $query->select('id as value, title as text')
+              ->from('#__redsocialstream_profilereference')
+              ->where('profiletypeid=' . $db->quote(TWITTER));
+        $db->setQuery($query);
+
+        try
+        {
+            $profiles = $db->loadObjectList();
+        }
+        catch (RuntimeException $e)
+        {
+            JError::raiseWarning(500, $e->getMessage());
+        }
+
+        foreach ($profiles as $profile)
+        {
+            $options[]	= JHtml::_('select.option', $profile->value, $profile->text);
+        }
+
+        return $options;
+    }
+
+    public static function getLinkedinProfilesOptions()
+    {
+        $options = array();
+
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+
+        $query->select('id as value, title as text')
+              ->from('#__redsocialstream_profilereference')
+              ->where('profiletypeid=' . $db->quote(LINKEDIN));
+        $db->setQuery($query);
+
+        try
+        {
+            $profiles = $db->loadObjectList();
+        }
+        catch (RuntimeException $e)
+        {
+            JError::raiseWarning(500, $e->getMessage());
+        }
+
+        foreach ($profiles as $profile)
+        {
+            $options[]	= JHtml::_('select.option', $profile->value, $profile->text);
+        }
+
+        return $options;
+    }
 }
