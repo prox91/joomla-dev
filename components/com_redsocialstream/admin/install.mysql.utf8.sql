@@ -122,7 +122,6 @@ CREATE TABLE IF NOT EXISTS `#__redsocialstream_linkedin_connections` (
 --
 
 CREATE TABLE IF NOT EXISTS `#__redsocialstream_facebook_accesstoken` (
-
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `profile_id` int(11) DEFAULT NULL,
   `fb_token` text DEFAULT NULL,
@@ -138,7 +137,6 @@ CREATE TABLE IF NOT EXISTS `#__redsocialstream_facebook_accesstoken` (
 --
 
 CREATE TABLE IF NOT EXISTS `#__redsocialstream_twitter_accesstoken` (
-
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `profile_id` int(11) DEFAULT NULL,
   `twitter_access_token` text DEFAULT NULL,

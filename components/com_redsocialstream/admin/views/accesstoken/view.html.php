@@ -19,17 +19,18 @@ class AccessTokenViewAccessToken extends JView
 
         // Facebook
         $code = $input->get('code', '', 'STRING');
-        $model = $this->getModel('AccessToken');
         if ($code != "")
         {
+            $model = $this->getModel('AccessToken');
             $model->saveFacebookAcceesToken($code);
         }
 
         // Linkedin
-        $oauth_verifier = JRequest::getVar('oauth_verifier');
-        $oauth_token = JRequest::getVar('oauth_token');
+        $oauth_verifier = $input->get('oauth_verifier', '', 'STRING');
+        $oauth_token = $input->get('oauth_token', '', 'STRING');
         if ($oauth_verifier != "" && $oauth_token != "")
         {
+            $model = $this->getModel('AccessToken');
             $model->saveLinkedinAcceesToken($oauth_token, $oauth_verifier);
         }
 
