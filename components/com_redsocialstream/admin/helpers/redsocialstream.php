@@ -18,15 +18,57 @@ JLoader::registerPrefix('Red', dirname(__DIR__) . '/libraries');
 class RedSocialStreamHelper
 {
 	// Access token url
-	private static $_accessTokenUrl = "https://api.twitter.com/oauth2/token";
+    private static $_facebookAuthorizeUrl = "https://www.facebook.com/dialog/oauth"; //"https://www.facebook.com/oauth/access_token";
+	private static $_twitterAccessTokenUrl = "https://api.twitter.com/oauth2/token";
+    private $linkedinAuthorizeUrl = "https://www.facebook.com/dialog/oauth";
 
-    /**
-	 * @param $consumerKey
-	 * @param $consumerSecret
-     *
-     * @return string access token
-	 */
-	public static function getAccessToken($consumerKey, $consumerSecret)
+    public static function getSettingData()
+    {
+        $loginData = array();
+        $db = JFactory::getDbo();
+        $q = "SELECT * FROM #__redsocialstream_settings";
+        $db->setQuery($q);
+        $rows = $db->loadObjectList();
+
+        foreach($rows as $row)
+        {
+            $loginData[$row->dataname] = $row->data;
+        }
+
+        return $loginData;
+    }
+
+    public static function getFacebookAccessToken($appId, $appSecret, $callbackUrl)
+    {
+        $data = array(
+            'client_id' => $appId,
+            'client_secret' => $appSecret,
+            'redirect_uri' => $callbackUrl,
+            'grant_type' => 'client_credentials',
+        );
+
+        $url = self::toUrl(self::$_facebookAuthorizeUrl, $data);
+
+        try
+        {
+            $http = RedHttpFactory::getHttp();
+            $response = $http->get($url);
+            $accessData = json_decode($response->body);
+
+            if(isset($accessData->errors))
+            {
+                return "";
+            }
+
+            return $accessData->access_token;
+        }
+        catch(Exception $e)
+        {
+            return "";
+        }
+    }
+
+	public static function getTwitterAccessToken($consumerKey, $consumerSecret)
 	{
 		// Bearer token credentials
 		$consumerKey = str_replace('+', ' ', str_replace('%7E', '~', rawurlencode($consumerKey)));
@@ -41,7 +83,7 @@ class RedSocialStreamHelper
 		try
 		{
 			$http = RedHttpFactory::getHttp();
-			$response = $http->post(self::$_accessTokenUrl, $data, $header);
+			$response = $http->post(self::$_twitterAccessTokenUrl, $data, $header);
 			$accessData = json_decode($response->body);
 
 			if(isset($accessData->errors))
@@ -49,7 +91,7 @@ class RedSocialStreamHelper
 				return "";
 			}
 
-			return $accessData->access_token;
+			return 'Bearer ' . $accessData->access_token;
 		}
 		catch(Exception $e)
 		{
@@ -142,5 +184,64 @@ class RedSocialStreamHelper
         }
 
         return $options;
+    }
+
+    public static function toUrl($url, $parameters)
+    {
+        foreach ($parameters as $key => $value)
+        {
+            if (is_array($value))
+            {
+                foreach ($value as $k => $v)
+                {
+                    if (strpos($url, '?') === false)
+                    {
+                        $url .= '?' . $key . '=' . $v;
+                    }
+                    else
+                    {
+                        $url .= '&' . $key . '=' . $v;
+                    }
+                }
+            }
+            else
+            {
+                if (strpos($value, ' ') !== false)
+                {
+                    $value = self::safeEncode($value);
+                }
+
+                if (strpos($url, '?') === false)
+                {
+                    $url .= '?' . $key . '=' . $value;
+                }
+                else
+                {
+                    $url .= '&' . $key . '=' . $value;
+                }
+            }
+        }
+
+        return $url;
+    }
+
+    public static function safeEncode($data)
+    {
+        if (is_array($data))
+        {
+            return array_map(array(self, 'safeEncode'), $data);
+        }
+        elseif (is_scalar($data))
+        {
+            return str_ireplace(
+                array('+', '%7E'),
+                array(' ', '~'),
+                rawurlencode($data)
+            );
+        }
+        else
+        {
+            return '';
+        }
     }
 }

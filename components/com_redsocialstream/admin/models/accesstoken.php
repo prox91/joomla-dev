@@ -16,6 +16,8 @@ require_once(JPATH_SITE . '/components/com_redsocialstream/helpers/twitter/OAuth
 
 class AccessTokenModelAccessToken extends JModel
 {
+    private $_tablePrefix = "RedSocialStreamTable";
+
     public function __construct($config = array())
     {
         parent::__construct($config);
@@ -23,7 +25,6 @@ class AccessTokenModelAccessToken extends JModel
 
     function getData()
 	{
-		$mainframe       = JFactory::getApplication();
 		$session         = JFactory::getSession();
 		$post            = JRequest::get('post');
 		$redsocialhelper = new redsocialhelper();
@@ -36,22 +37,6 @@ class AccessTokenModelAccessToken extends JModel
 
 		switch ($post['generatetoken'])
 		{
-			case 'twitter':
-				$consumer_key       = $login['twitter_consumer_key']; //'8YC0xc4N74h6BSdwWl3zA'; //your app's consumer key
-				$consumer_secret    = $login['twitter_consumer_sec']; //'kYVZX4MkOMKDoXtolGCRgPPYbb3oyhUkrUQLT8Jg20'; //your app's secret key
-				$twitter_profile_id = $session->set('twitter_profile_id', $post['twitter_profile_id']);
-
-				require_once(JPATH_SITE . '/components/com_redsocialstream/helpers/twitter/twitterOAuth.php');
-
-				$to  = new TwitterOAuth($consumer_key, $consumer_secret);
-				$tok = $to->getRequestToken();
-				$session->set('oauth_request_token', $tok['oauth_token']);
-				$session->set('oauth_request_token_secret', $tok['oauth_token_secret']);
-
-				$request_link = $to->getAuthorizeURL($tok);
-				header("location: $request_link");
-				break;
-
 			case 'facebook':
 
 				$fb_profile_id = $session->set('fb_profile_id', $post['fb_profile_id']);
@@ -91,6 +76,54 @@ class AccessTokenModelAccessToken extends JModel
 				break;
 		}
 	}
+
+    public function getFacebookAccessToken($facebookProfileId = 0)
+    {
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+
+        $query->select('*')
+            ->from('#__redsocialstream_facebook_accesstoken')
+            ->where('profile_id = ' .$facebookProfileId);
+
+        $db->setQuery($query);
+
+        $result = $db->loadObject();
+
+        return $result;
+    }
+
+    public function getTwitterAccessToken($twitterProfileId = 0)
+    {
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+
+        $query->select('*')
+              ->from('#__redsocialstream_twitter_accesstoken')
+              ->where('profile_id = ' .$twitterProfileId);
+
+        $db->setQuery($query);
+
+        $result = $db->loadObject();
+
+        return $result;
+    }
+
+    public function getLinkinAccessToken($linkedinProfileId = 0)
+    {
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+
+        $query->select('*')
+            ->from('#__redsocialstream_linkedin_accesstoken')
+            ->where('profile_id = ' .$linkedinProfileId);
+
+        $db->setQuery($query);
+
+        $result = $db->loadObject();
+
+        return $result;
+    }
 
 	function saveFacebookAcceesToken($code)
 	{
@@ -143,60 +176,51 @@ values ('', '$fb_profile_id', '$access_token', '', NOW(), NOW())";
 		exit;
 	}
 
-	function saveTwitterAcceesToken($oauth_token)
+	function saveTwitterAcceesToken($twitterProfileId = 0, $bearerToken = '')
 	{
-		$mainframe       = JFactory::getApplication();
-		$redsocialhelper = new redsocialhelper();
-		$login           = $redsocialhelper->getsettings();
+        // Get table
+        $row = $this->getTable('TwitterAccessToken', $this->_tablePrefix);
+        if($twitterProfileId == 0 || $bearerToken == '')
+        {
+            return false;
+        }
+        else
+        {
+            $now = date('Y-m-d H:i:s');
 
+            $data = $this->getTwitterAccessToken($twitterProfileId);
+            if(!empty($data))
+            {
+                $data->profile_id = $twitterProfileId;
+                $data->twitter_access_token = $bearerToken;
+                $data->updated = $now;
+            }
+            else
+            {
+                $data = new stdClass;
 
-		$db      = JFactory::getDBO();
-		$session = JFactory::getSession();
+                $data->profile_id = $twitterProfileId;
+                $data->twitter_access_token = $bearerToken;
+                $data->created = $now;
+                $data->updated = $now;
+            }
 
-		$consumer_key    = $login['twitter_consumer_key']; //your app's consumer key
-		$consumer_secret = $login['twitter_consumer_sec']; //your app's secret key
+            if (!$row->bind($data))
+            {
+                $this->setError($this->_db->getErrorMsg());
 
+                return false;
+            }
 
-		$twitter_profile_id = $session->get('twitter_profile_id');
-		require_once(JPATH_SITE . '/components/com_redsocialstream/helpers/twitter/twitterOAuth.php');
-		require_once(JPATH_SITE . '/components/com_redsocialstream/helpers/twitter/OAuth.php');
+            if (!$row->store())
+            {
+                $this->setError($this->_db->getErrorMsg());
 
-		$oauth_request_token        = $session->get('oauth_request_token');
-		$oauth_request_token_secret = $session->get('oauth_request_token_secret');
-		$oauth_access_token         = $session->get('oauth_access_token');
+                return false;
+            }
+        }
 
-		if (!$oauth_access_token || $oauth_access_token == '')
-		{
-			$to  = new TwitterOAuth($consumer_key, $consumer_secret, $oauth_request_token, $oauth_request_token_secret);
-			$tok = $to->getAccessToken();
-
-			/* Save tokens for later  - might be wise to
-			 * store the oauth_token and secret in a database, and
-			 * only store the oauth_token in a cookie or session for security purposes */
-			$token  = $tok['oauth_token'];
-			$secret = $tok['oauth_token_secret'];
-			$session->set('oauth_access_token', $token);
-			$session->set('oauth_access_token_secret', $secret);
-		}
-
-		// Delete Old Token
-		$del_old_token = "DELETE from #__redsocialstream_twitter_accesstoken";
-		$db->setQuery($del_old_token);
-		$db->query();
-
-		// Add New Token
-		$sql = "INSERT into #__redsocialstream_twitter_accesstoken (id, profile_id , twitter_token, twitter_secret, created, updated)
-values ('', '$twitter_profile_id', '$token', '$secret', NOW(), NOW())";
-		$db->setQuery($sql);
-		$db->query();
-		$session->set('oauth_request_token', NULL);
-		$session->set('oauth_request_token_secret', NULL);
-		$session->set('oauth_access_token', NULL);
-		$session->set('oauth_access_token_secret', NULL);
-		$session->set('twitter_profile_id', NULL);
-		$msg = JText::_('COM_REDSOCIALSTREAM_TWITTER_TOKEN_GENERATED');
-		$mainframe->Redirect('index.php?option=com_redsocialstream&view=access_token', $msg);
-		exit;
+        return true;
 
 	}
 
