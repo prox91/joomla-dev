@@ -1,0 +1,276 @@
+<?php
+/**
+ * @package     redSocialstream
+ * @subpackage  Models
+ *
+ * @copyright   Copyright (C) 2012 - 2013 redCOMPONENT.com. All rights reserved.
+ * @license     GNU General Public License version 2 or later, see LICENSE.
+ */
+defined('_JEXEC') or die;
+
+jimport('joomla.application.component.model');
+
+require_once(JPATH_SITE . '/components/com_redsocialstream/helpers/helper.php');
+include(JPATH_SITE . '/components/com_redsocialstream/helpers/linkedin/linkedin.php');
+require_once(JPATH_SITE . '/components/com_redsocialstream/helpers/twitter/OAuth.php');
+
+class AccessTokenModelAccessToken extends JModel
+{
+    private $_tablePrefix = "RedSocialStreamTable";
+
+    public function __construct($config = array())
+    {
+        parent::__construct($config);
+    }
+
+    function getData()
+	{
+		$session         = JFactory::getSession();
+		$post            = JRequest::get('post');
+		$redsocialhelper = new redsocialhelper();
+
+		$login = $redsocialhelper->getsettings();
+		if (!isset($post['generatetoken']))
+		{
+			return JText::_('PLEASE_SELECT_SECTION');
+		}
+
+		switch ($post['generatetoken'])
+		{
+			case 'facebook':
+
+				$fb_profile_id = $session->set('fb_profile_id', $post['fb_profile_id']);
+
+				$app_id     = $login['app_id'];
+				$app_secret = $login['app_secret'];
+				require_once(JPATH_SITE . '/components/com_redsocialstream/helpers/facebook/facebook.php');
+
+				$redirect_url = urlencode(JURI::base() . "index.php?option=com_redsocialstream&view=access_token");
+
+				header("location: https://www.facebook.com/dialog/oauth?client_id=" . $login['app_id'] . "&redirect_uri=" . $redirect_url . "&scope=manage_pages,publish_stream&manage_pages=1&publish_stream=1");
+				break;
+
+			case 'linkedin':
+				//Linkedin APi Key
+				$api_key = $login['linked_api_key'];
+				//Linkedin Secret Key
+				$secret_key          = $login['linked_secret_key'];
+				$redirect_url        = JURI::base() . "index.php?option=com_redsocialstream&view=access_token";
+				$linkedin_profile_id = $session->set('linkedin_profile_id', $post['linkedin_profile_id']);
+				$API_CONFIG          = array(
+					'appKey'      => $api_key,
+					'appSecret'   => $secret_key,
+					'callbackUrl' => $redirect_url
+				);
+
+				$linkedin = new LinkedIn($API_CONFIG);
+				$response = $linkedin->retrieveTokenRequest();
+
+				if ($response['success'] === TRUE)
+				{
+					$session->set('oauthReqToken', $response['linkedin']);
+					// redirect the user to the LinkedIn authentication/authorisation page to initiate validation.
+					header('Location: ' . LINKEDIN::_URL_AUTH . $response['linkedin']['oauth_token']);
+					exit;
+				}
+				break;
+		}
+	}
+
+    public function getFacebookAccessToken($facebookProfileId = 0)
+    {
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+
+        $query->select('*')
+            ->from('#__redsocialstream_facebook_accesstoken')
+            ->where('profile_id = ' .$facebookProfileId);
+
+        $db->setQuery($query);
+
+        $result = $db->loadObject();
+
+        return $result;
+    }
+
+    public function getTwitterAccessToken($twitterProfileId = 0)
+    {
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+
+        $query->select('*')
+              ->from('#__redsocialstream_twitter_accesstoken')
+              ->where('profile_id = ' .$twitterProfileId);
+
+        $db->setQuery($query);
+
+        $result = $db->loadObject();
+
+        return $result;
+    }
+
+    public function getLinkinAccessToken($linkedinProfileId = 0)
+    {
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+
+        $query->select('*')
+            ->from('#__redsocialstream_linkedin_accesstoken')
+            ->where('profile_id = ' .$linkedinProfileId);
+
+        $db->setQuery($query);
+
+        $result = $db->loadObject();
+
+        return $result;
+    }
+
+	function saveFacebookAcceesToken($code)
+	{
+		$mainframe       = JFactory::getApplication();
+		$db              = JFactory::getDBO();
+		$session         = JFactory::getSession();
+		$redsocialhelper = new redsocialhelper();
+		$login           = $redsocialhelper->getsettings();
+		//Set the page name or ID
+		$app_id     = $login['app_id'];
+		$app_secret = $login['app_secret'];
+
+		$fb_profile_id = $session->get('fb_profile_id');
+		$return_url    = urlencode(JURI::base() . "index.php?option=com_redsocialstream&view=access_token");
+		$post_data     = 'https://graph.facebook.com/oauth/access_token?client_id=' . $app_id . '&redirect_uri=' . $return_url . '&client_secret=' . $app_secret . '&code=' . $code;
+
+		$CR = curl_init($post_data);
+
+		curl_setopt($CR, CURLOPT_POST, 1);
+		curl_setopt($CR, CURLOPT_FAILONERROR, true);
+		curl_setopt($CR, CURLOPT_POSTFIELDS, '');
+		curl_setopt($CR, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($CR, CURLOPT_SSL_VERIFYPEER, FALSE);
+		curl_setopt($CR, CURLOPT_CONNECTTIMEOUT, 20);
+		curl_setopt($CR, CURLOPT_TIMEOUT, 30);
+
+		$token = curl_exec($CR);
+		$error = curl_error($CR);
+
+		if ($token)
+		{
+			$token        = explode("&", $token);
+			$access_token = explode("=", $token[0]);
+			$access_token = $access_token[1];
+		}
+
+		// Delete Old Token
+		$del_old_token = "DELETE from #__redsocialstream_facebook_accesstoken";
+		$db->setQuery($del_old_token);
+		$db->query();
+
+		// Add New Token
+		$sql = "INSERT into #__redsocialstream_facebook_accesstoken (id, profile_id , fb_token, fb_secret, created, updated)
+values ('', '$fb_profile_id', '$access_token', '', NOW(), NOW())";
+		$db->setQuery($sql);
+		$db->query();
+		$session->set('fb_profile_id', NULL);
+		$msg = JText::_('COM_REDSOCIALSTREAM_FACEBOOK_TOKEN_GENERATED');
+		$mainframe->Redirect('index.php?option=com_redsocialstream&view=access_token', $msg);
+		exit;
+	}
+
+	function saveTwitterAcceesToken($twitterProfileId = 0, $bearerToken = '')
+	{
+        // Get table
+        $row = $this->getTable('TwitterAccessToken', $this->_tablePrefix);
+        if($twitterProfileId == 0 || $bearerToken == '')
+        {
+            return false;
+        }
+        else
+        {
+            $now = date('Y-m-d H:i:s');
+
+            $data = $this->getTwitterAccessToken($twitterProfileId);
+            if(!empty($data))
+            {
+                $data->profile_id = $twitterProfileId;
+                $data->twitter_access_token = $bearerToken;
+                $data->updated = $now;
+            }
+            else
+            {
+                $data = new stdClass;
+
+                $data->profile_id = $twitterProfileId;
+                $data->twitter_access_token = $bearerToken;
+                $data->created = $now;
+                $data->updated = $now;
+            }
+
+            if (!$row->bind($data))
+            {
+                $this->setError($this->_db->getErrorMsg());
+
+                return false;
+            }
+
+            if (!$row->store())
+            {
+                $this->setError($this->_db->getErrorMsg());
+
+                return false;
+            }
+        }
+
+        return true;
+
+	}
+
+	function saveLinkedinAcceesToken($oauth_token, $oauth_verifier)
+	{
+		$mainframe       = JFactory::getApplication();
+		$redsocialhelper = new redsocialhelper();
+		$login           = $redsocialhelper->getsettings();
+		$db              = JFactory::getDBO();
+		$session         = JFactory::getSession();
+
+		$api_key      = $login['linked_api_key']; //Linkedin APi Key
+		$secret_key   = $login['linked_secret_key']; //Linkedin Secret Key
+		$redirect_url = JURI::base() . "index.php?option=com_redsocialstream&view=access_token";
+
+		$API_CONFIG        = array(
+			'appKey'      => $api_key,
+			'appSecret'   => $secret_key,
+			'callbackUrl' => $redirect_url
+		);
+		$linkedin          = new LinkedIn($API_CONFIG);
+		$oauth_token_array = $session->get('oauthReqToken');
+
+
+		$oauth_token         = $oauth_token_array['oauth_token'];
+		$oauth_token_secret  = $oauth_token_array['oauth_token_secret'];
+		$response            = $linkedin->retrieveTokenAccess($oauth_token, $oauth_token_secret, $oauth_verifier);
+		$token               = $response['linkedin']['oauth_token'];
+		$secret              = $response['linkedin']['oauth_token_secret'];
+		$linkedin_profile_id = $session->get('linkedin_profile_id');
+		// Delete Old Token
+		$del_old_token = "DELETE from #__redsocialstream_linkedin_accesstoken";
+		$db->setQuery($del_old_token);
+		$db->query();
+
+		// Add New Token
+		$sql = "INSERT into #__redsocialstream_linkedin_accesstoken (id, profile_id , linkedin_token, linkedin_secret, created, updated)
+values ('', '$linkedin_profile_id', '$token', '$secret', NOW(), NOW())";
+		$db->setQuery($sql);
+		$db->query();
+		$session->set('linkedin_profile_id', NULL);
+		$msg = JText::_('COM_REDSOCIALSTREAM_LINKEDIN_TOKEN_GENERATED');
+		$mainframe->Redirect('index.php?option=com_redsocialstream&view=access_token', $msg);
+		exit;
+
+	}
+}
+
+
+
+
+
+

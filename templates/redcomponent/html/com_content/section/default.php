@@ -1,7 +1,7 @@
 <?php // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-require_once(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_redmember' . DS . 'helpers' . DS . 'helper.php');
+require_once(JPATH_ADMINISTRATOR . '/components/com_redmember/helpers/helper.php');
 $helpobj          = new helper();
 
 $cparams =& JComponentHelper::getParams('com_media');
