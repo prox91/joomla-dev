@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module"
+           version="3.0.x"
+           method="upgrade">
+	<name>ntkCarousel Module</name>
+	<version>1.1.2</version>
+	<creationDate>25-03-2011</creationDate>
+	<author>Nha Bui</author>
+	<authorEmail>bngnha@gmail.com</authorEmail>
+	<copyright>ntksoft.com</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<description>ntkCarousel Module</description>
+	<files>
+		<filename module="mod_ntkcarousel">mod_ntkcarousel.php</filename>
+		<filename>helper.php</filename>
+		<folder>tmpl</folder>
+		<folder>elements</folder>
+	</files>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic" addfieldpath="/modules/mod_ntkcarousel/elements">
+				<field name="ctype"
+				       type="radio"
+				       default="1"
+				       label="Ntk Carousel Source"
+				       description="">
+					<option value="1">Image directory</option>
+				</field>
+				<field name="path"
+				       type="foldertree"
+				       directory="/images"
+				       filter=""
+				       default=""
+				       label="Image Directory"
+				       description="">
+				</field>
+			</fieldset>
+
+			<fieldset
+					name="advanced">
+				<field
+						name="layout"
+						type="modulelayout"
+						label="JFIELD_ALT_LAYOUT_LABEL"
+						description="JFIELD_ALT_MODULE_LAYOUT_DESC"/>
+				<field
+						name="moduleclass_sfx"
+						type="text"
+						label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+						description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"/>
+
+				<field
+						name="cache"
+						type="radio"
+						default="1"
+						label="COM_MODULES_FIELD_CACHING_LABEL"
+						description="COM_MODULES_FIELD_CACHING_DESC">
+					<option
+							value="1">Yes
+					</option>
+					<option
+							value="0">No
+					</option>
+				</field>
+
+				<field
+						name="cache_time"
+						type="text"
+						default="900"
+						label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+						description="COM_MODULES_FIELD_CACHE_TIME_DESC"/>
+				<field
+						name="cachemode"
+						type="hidden"
+						default="static">
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
