@@ -18,11 +18,6 @@ require_once(JPATH_SITE . '/components/com_redsocialstream/helpers/linkedin/link
 
 class PostfeedsController extends JController
 {
-	function display()
-	{
-		parent::display();
-	}
-
 	function __construct($default = array())
 	{
 		parent::__construct($default);

@@ -43,21 +43,19 @@ class profilesViewprofiles extends JView
 		$lists['order'] = $filter_order;
 		$lists['order_Dir'] = $filter_order_Dir;
 
-		//DEVNOTE:Get data from the model
 		$items = $this->get('Data');
 		$total = $this->get('Total');
 
 		$pagination = $this->get('Pagination');
 		$ordering = ($lists['order'] == 'm.ordering');
 
-		//DEVNOTE:save a reference into view	
-		$this->assignRef('user', JFactory::getUser());
+		$this->user = JFactory::getUser();
 		$this->assignRef('lists', $lists);
 		$this->assignRef('items', $items);
 		$this->assignRef('pagination', $pagination);
 		$this->assignRef('ordering', $ordering);
-		$this->assignRef('request_url', $uri->toString());
-		//DEVNOTE:call parent display
+		$this->request_url = $uri->toString();
+
 		parent::display($tpl);
 	}
 }

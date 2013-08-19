@@ -23,6 +23,7 @@ class RedsocialstreamsViewRedsocialstreams extends JView
 		$document = JFactory::getDocument();
 		$document->setTitle(JText::_('COM_REDSOCIALSTREAM_REDSOCIALSTREAMS'));
 		$this->assignRef('pane', $pane);
+
 		parent::display($tpl);
 	}
 

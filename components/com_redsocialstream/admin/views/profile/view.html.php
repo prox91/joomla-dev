@@ -54,7 +54,7 @@ class profileViewprofile extends JView
 		$this->assignRef('groups', $groups);
 		$this->assignRef('profiletypes', $profiletypes);
 		$this->assignRef('detail', $detail);
-		$this->assignRef('request_url', $uri->toString());
+		$this->request_url = $uri->toString();
 
 		parent::display($tpl);
 	}

@@ -39,16 +39,19 @@ class redsocialstreamViewgroup extends JView
 			if ($groupeid != array())
 			{
 				$group = $model->getgroupdata($groupeid);
-				$this->assignRef('groupinfo', $group);
+
+				$this->groupinfo = $group;
 			}
 			 $limit = JRequest::getVar('limit');
 			if ($limit == "")
 			{
 				$limit = $params->get('feedlimit');
 			}
-			$this->assignRef('posts', $model->getposts($groupeid, $profiletypeid, $limit));
-			$this->assignRef('limit', $limit);
+			$this->posts = $model->getposts($groupeid, $profiletypeid, $limit);
+			$this->limit = $limit;
+
 			$tpl = "ajaxposts";
+
 			parent::display($tpl);
 		}
 

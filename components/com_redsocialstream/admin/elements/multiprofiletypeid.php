@@ -15,6 +15,13 @@
  */
 
 defined('_JEXEC') or die('Restricted access');
+
+define('FACEBOOK', 1);
+define('TWITTER', 2);
+define('LINKEDIN', 3);
+define('YOUTUBE', 4);
+define('DEFAULT_PRODUCT_ORDERING_METHOD', 1);
+
 class JFormFieldmultiprofiletypeid extends JFormField
 {
 	/**
@@ -25,16 +32,16 @@ class JFormFieldmultiprofiletypeid extends JFormField
 	 */
 	public $type = 'profiletypeid';
 
-	protected function getInput()
+	public function getInput()
 	{
-		$order_data = array();
-		$order_data[0]->value = "1";
+		$order_data = array(new stdClass, new stdClass, new stdClass, new stdClass);
+		$order_data[0]->value = FACEBOOK;
 		$order_data[0]->text = JText::_('COM_REDSOCIALSTREAM_FACEBOOK');
-		$order_data[1]->value = "2";
+		$order_data[1]->value = TWITTER;
 		$order_data[1]->text = JText::_('COM_REDSOCIALSTREAM_TWITTER');
-		$order_data[2]->value = "6";
+		$order_data[2]->value = YOUTUBE;
 		$order_data[2]->text = JText::_('COM_REDSOCIALSTREAM_YOUTUBE');
-		$order_data[3]->value = "7";
+		$order_data[3]->value = LINKEDIN;
 		$order_data[3]->text = JText::_('COM_REDSOCIALSTREAM_LINKEDIN');
 
 

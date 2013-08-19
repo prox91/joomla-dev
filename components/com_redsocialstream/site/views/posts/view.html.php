@@ -30,7 +30,7 @@ class redsocialstreamViewposts extends JView
 		//Get Group Information
 		$model = $this->getModel();
 		$group = $model->getgroupdata($groupid);
-		$this->assignRef('groupinfo', $group);
+		$this->groupinfo= $group;
 		//End
 
 		$doc = JFactory::getDocument();
@@ -38,33 +38,35 @@ class redsocialstreamViewposts extends JView
 		JHTML::Script('jquery.js', 'components/com_redsocialstream/assets/js/', false);
 		JHTML::_('behavior.mootools');
 		JHTML::_('behavior.framework', true);
-		$this->assignRef('groupid', $groupid);
-		$this->assignRef('profiletypeid', $profiletypeid);
-		$this->assignRef('limit', $limit);
-		$this->assignRef('orderby', $orderby);
-		$this->assignRef('headline', $headline);
-		$fbpost = $model->getposts($groupid, 1, $limit, $orderby);
-		$twposts = $model->getposts($groupid, 2, $limit, $orderby);
-		$youtubeposts = $model->getposts($groupid, 6, $limit, $orderby);
-		$linkedinposts = $model->getposts($groupid, 7, $limit, $orderby);
+
+        $this->groupid = $groupid;
+		$this->profiletypeid = $profiletypeid;
+		$this->limit = $limit;
+		$this->orderby = $orderby;
+		$this->headline = $headline;
+
+		$fbpost = $model->getposts($groupid, FACEBOOK, $limit, $orderby);
+		$twposts = $model->getposts($groupid, TWITTER, $limit, $orderby);
+		$youtubeposts = $model->getposts($groupid, YOUTUBE, $limit, $orderby);
+		$linkedinposts = $model->getposts($groupid, LINKEDIN, $limit, $orderby);
 
 		if (count($profiletypes) > 0)
 		{
-			if (in_array('1', $profiletypes))
+			if (in_array(FACEBOOK, $profiletypes))
 			{
-				$this->assignRef('fbposts', $fbpost);
+				$this->fbposts = $fbpost;
 			}
-			if (in_array('2', $profiletypes))
+			if (in_array(TWITTER, $profiletypes))
 			{
-				$this->assignRef('twposts', $twposts);
+				$this->twposts = $twposts;
 			}
-			if (in_array('6', $profiletypes))
+			if (in_array(YOUTUBE, $profiletypes))
 			{
-				$this->assignRef('youtubeposts', $youtubeposts);
+				$this->youtubeposts = $youtubeposts;
 			}
-			if (in_array('7', $profiletypes))
+			if (in_array(LINKEDIN, $profiletypes))
 			{
-				$this->assignRef('linkedinposts', $linkedinposts);
+				$this->linkedinposts = $linkedinposts;
 			}
 		}
 		parent::display($tpl);

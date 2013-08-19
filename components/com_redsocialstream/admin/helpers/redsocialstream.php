@@ -18,7 +18,7 @@ JLoader::registerPrefix('Red', dirname(__DIR__) . '/libraries');
 class RedSocialStreamHelper
 {
 	// Access token url
-    private static $_facebookAuthorizeUrl = "https://www.facebook.com/dialog/oauth"; //"https://www.facebook.com/oauth/access_token";
+    private static $_facebookAuthorizeUrl = "https://graph.facebook.com/oauth/access_token"; //"https://www.facebook.com/oauth/access_token";
 	private static $_twitterAccessTokenUrl = "https://api.twitter.com/oauth2/token";
     private $linkedinAuthorizeUrl = "https://www.facebook.com/dialog/oauth";
 
@@ -45,6 +45,10 @@ class RedSocialStreamHelper
             'client_secret' => $appSecret,
             'redirect_uri' => $callbackUrl,
             'grant_type' => 'client_credentials',
+
+            'scope' => 'manage_pages',
+            'manage_pages' => 1,
+            'publish_stream' => 1,
         );
 
         $url = self::toUrl(self::$_facebookAuthorizeUrl, $data);
@@ -55,12 +59,16 @@ class RedSocialStreamHelper
             $response = $http->get($url);
             $accessData = json_decode($response->body);
 
-            if(isset($accessData->errors))
+            if(isset($accessData->error))
             {
                 return "";
             }
+            else
+            {
+                $accessData = explode('=', $response->body);
 
-            return $accessData->access_token;
+                return $accessData[1];
+            }
         }
         catch(Exception $e)
         {

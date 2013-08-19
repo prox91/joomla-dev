@@ -14,6 +14,7 @@ define('FACEBOOK', 1);
 define('TWITTER', 2);
 define('LINKEDIN', 3);
 define('YOUTUBE', 4);
+define('DEFAULT_PRODUCT_ORDERING_METHOD', 1);
 
 $controller = JRequest::getCmd('view', 'redsocialstreams');
 

@@ -104,7 +104,7 @@ function makeLink($string)
 		</div>";
 
 
-	if ($this->groupinfo != "")
+	if (isset($this->groupinfo) && $this->groupinfo != "")
 	{
 		echo"<div class=\"redsocail_group_header\">
 			<div class=\"redsocial_group_title\"><h1>" . $this->groupinfo[0]->introtitle . "</h1></div>
@@ -113,7 +113,7 @@ function makeLink($string)
 	}
 
 	echo"<div class=\"redsocial_group\">";
-	if ($this->fbposts != "" && isset($this->fbposts[0]))
+	if (isset($this->fbposts) && $this->fbposts != "" && isset($this->fbposts[0]))
 	{
 
 		foreach ($this->fbposts as $feeditem)
@@ -152,7 +152,7 @@ function makeLink($string)
 			}
 		}
 	}
-	if ($this->twposts != "" && isset($this->twposts[0]))
+	if (isset($this->twposts) && $this->twposts != "" && isset($this->twposts[0]))
 	{
 		foreach ($this->twposts as $feeditem)
 		{
@@ -186,7 +186,7 @@ function makeLink($string)
 		}
 	}
 
-	if ($this->youtubeposts != "" && isset($this->youtubeposts[0]))
+	if (isset($this->youtubeposts) && $this->youtubeposts != "" && isset($this->youtubeposts[0]))
 	{
 		foreach ($this->youtubeposts as $feeditem)
 		{
@@ -236,7 +236,7 @@ function makeLink($string)
 			}
 		}
 	}
-	if ($this->linkedinposts != "" && isset($this->linkedinposts[0]))
+	if (isset($this->linkedinposts) && $this->linkedinposts != "" && isset($this->linkedinposts[0]))
 	{
 		foreach ($this->linkedinposts as $feeditem)
 		{
@@ -264,7 +264,7 @@ function makeLink($string)
 	}
 	echo "</div>";
 
-	if ($this->linkedinposts == "" && $this->youtubeposts == "" && $this->twposts == "" && $this->fbposts == "")
+	if (isset($this->linkedinposts) && $this->linkedinposts == "" && $this->youtubeposts == "" && $this->twposts == "" && $this->fbposts == "")
 	{
 
 		echo "<div class=\"redsocial_group\">";

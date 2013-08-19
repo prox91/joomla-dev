@@ -94,7 +94,6 @@ JHTML::_('behavior.tooltip');
 				$row->checked_out = 0;
 				$link = JRoute::_('index.php?option=com_redsocialstream&view=group&task=edit&cid[]=' . $row->id);
 				$checked = JHTML::_('grid.checkedout', $row, $i, 'id');
-				//$checked = "";
 				$published = JHTML::_('grid.published', $row, $i);
 
 				?>

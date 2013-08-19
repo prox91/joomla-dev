@@ -23,7 +23,8 @@ class redsocialstreamViewredsocialoutline extends JView
 		$model = $this->getModel('redsocialoutline');
 		$s = $model->redsocialoutlinecontent();
 		$this->outlinegroups = $s;
-		$this->assignRef("params", $params);
+		$this->params = $params;
+
 		parent::display($tpl);
 	}
 }

@@ -46,13 +46,14 @@ class groupsViewgroups extends JView
 		$items = $this->get('Data');
 		$total = $this->get('Total');
 		$pagination = $this->get('Pagination');
-		//DEVNOTE:save a reference into view	
-		$this->assignRef('user', JFactory::getUser());
+		//DEVNOTE:save a reference into view
+
+		$this->user = JFactory::getUser();
 		$this->assignRef('lists', $lists);
 		$this->assignRef('items', $items);
 		$this->assignRef('pagination', $pagination);
-		$this->assignRef('request_url', $uri->toString());
-		//DEVNOTE:call parent display
+		$this->request_url = $uri->toString();
+
 		parent::display($tpl);
 	}
 }

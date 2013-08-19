@@ -61,7 +61,7 @@ echo"<div class=\"redsocail_group_header\">
 			<div class=\"redsocial_group_title\"><h1>" . JText::_('COM_REDSOCIALSTREAM_ALLPOST_HEADLINE') . "</h1></div>
 			<div class=\"redsocial_group_teaser\"><p>" . JText::_('COM_REDSOCIALSTREAM_ALLPOST_INTROTEXT') . "</p></div>
 		</div>";
-if ($this->groupinfo != "")
+if (isset($this->groupinfo) && $this->groupinfo != "")
 {
 	echo"<div class=\"redsocail_group_header\">
 			<div class=\"redsocial_group_title\"><h1>" . $this->groupinfo[0]->introtitle . "</h1></div>
@@ -69,7 +69,7 @@ if ($this->groupinfo != "")
 		</div>";
 }
 echo"<div class=\"redsocial_group\">";
-if ($this->fbposts != "" && isset($this->fbposts[0]))
+if (isset($this->fbposts) && $this->fbposts != "" && isset($this->fbposts[0]))
 {
 
 	foreach ($this->fbposts as $feeditem)
@@ -108,7 +108,7 @@ if ($this->fbposts != "" && isset($this->fbposts[0]))
 		}
 	}
 }
-if ($this->twposts != "" && isset($this->twposts[0]))
+if (isset($this->twposts) && $this->twposts != "" && isset($this->twposts[0]))
 {
 	foreach ($this->twposts as $feeditem)
 	{
@@ -142,7 +142,7 @@ if ($this->twposts != "" && isset($this->twposts[0]))
 	}
 }
 
-if ($this->youtubeposts != "" && isset($this->youtubeposts[0]))
+if (isset($this->youtubeposts) && $this->youtubeposts != "" && isset($this->youtubeposts[0]))
 {
 	foreach ($this->youtubeposts as $feeditem)
 	{
@@ -192,7 +192,7 @@ if ($this->youtubeposts != "" && isset($this->youtubeposts[0]))
 		}
 	}
 }
-if ($this->linkedinposts != "" && isset($this->linkedinposts[0]))
+if (isset($this->linkedinposts) && $this->linkedinposts != "" && isset($this->linkedinposts[0]))
 {
 	foreach ($this->linkedinposts as $feeditem)
 	{
@@ -218,7 +218,7 @@ if ($this->linkedinposts != "" && isset($this->linkedinposts[0]))
 
 }
 echo "</div>";
-if ($this->linkedinposts == "" && $this->youtubeposts == "" && $this->twposts == "" && $this->fbposts == "")
+if (isset($this->linkedinposts) && $this->linkedinposts == "" && $this->youtubeposts == "" && $this->twposts == "" && $this->fbposts == "")
 {
 	echo "<div class=\"redsocial_group\">";
 	echo JText::_('COM_REDSOCIALSTREAM_NO_FEED');

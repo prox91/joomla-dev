@@ -12,11 +12,6 @@ jimport('joomla.application.component.controller');
 
 class PostsController extends JController
 {
-	function display()
-	{
-		parent::display();
-	}
-
 	function __construct($default = array())
 	{
 		parent::__construct($default);

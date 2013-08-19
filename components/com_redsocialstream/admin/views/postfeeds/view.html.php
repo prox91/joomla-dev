@@ -47,13 +47,13 @@ class postfeedsViewpostfeeds extends JView
 		$ordering = ($lists['order'] == 'm.ordering');
 
 		//DEVNOTE:save a reference into view	
-		$this->assignRef('user', JFactory::getUser());
+		$this->user = JFactory::getUser();
 		$this->assignRef('lists', $lists);
 		$this->assignRef('items', $items);
 		$this->assignRef('pagination', $pagination);
 		$this->assignRef('ordering', $ordering);
-		$this->assignRef('request_url', $uri->toString());
-		//DEVNOTE:call parent display
+		$this->request_url = $uri->toString();
+
 		parent::display($tpl);
 	}
 }

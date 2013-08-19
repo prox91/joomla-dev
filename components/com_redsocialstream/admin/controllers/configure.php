@@ -19,12 +19,6 @@ class configureController extends JController
 		$this->registerTask('save', 'apply', 'cancel');
 	}
 
-	function save()
-	{
-		//echo "save";
-		//die();
-	}
-
 	function apply()
 	{
 		$db = JFactory::getDBO();

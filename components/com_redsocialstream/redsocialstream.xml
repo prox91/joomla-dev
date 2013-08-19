@@ -35,7 +35,7 @@
         <folder>table</folder>
         <folder>assets</folder>
     </files>
-    <languages folder="site/languages">
+    <languages folder="site/language">
         <language tag="en-GB">en-GB.com_redsocialstream.ini</language>
     </languages>
     <administration>
@@ -59,7 +59,7 @@
             <folder>assets</folder>
             <folder>elements</folder>
         </files>
-        <languages folder="admin/languages">
+        <languages folder="admin/language">
             <language tag="en-GB">en-GB.com_redsocialstream.ini</language>
             <language tag="en-GB">en-GB.com_redsocialstream.sys.ini</language>
         </languages>

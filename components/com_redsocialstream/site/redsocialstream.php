@@ -1,6 +1,11 @@
 <?php
 defined('_JEXEC') or die;
 
+define('FACEBOOK', 1);
+define('TWITTER', 2);
+define('LINKEDIN', 3);
+define('YOUTUBE', 4);
+
 global $mainframe;
 $mainframe = JFactory::getApplication();
 jimport('joomla.html.parameter');

@@ -195,7 +195,7 @@ class redsocialstreamModelposts extends JModel
 		$linkedinprofiles = "";
 		foreach ($getfeedslist as $list)
 		{
-			if ($list->profiletypeid == 1)
+			if ($list->profiletypeid == FACEBOOK)
 			{
 				if ($list->profilename != "")
 				{
@@ -219,7 +219,7 @@ class redsocialstreamModelposts extends JModel
 				}
 
 			}
-			if ($list->profiletypeid == 6)
+			if ($list->profiletypeid == YOUTUBE)
 			{
 				if ($list->profilename != "")
 				{
@@ -242,7 +242,7 @@ class redsocialstreamModelposts extends JModel
 					$i++;
 				}
 			}
-			if ($list->profiletypeid == 2)
+			if ($list->profiletypeid == TWITTER)
 			{
 				if ($list->profilename != "")
 				{
@@ -273,7 +273,7 @@ class redsocialstreamModelposts extends JModel
 					$i++;
 				}
 			}
-			if ($list->profiletypeid == 7)
+			if ($list->profiletypeid == LINKEDIN)
 			{
 				$linkedlistdata['group_id'] = $list->groupid;
 				$linkedlistdata['profile_id'] = $list->id;
@@ -299,7 +299,7 @@ class redsocialstreamModelposts extends JModel
 			$tweetdatalist = $this->gettwitterdata($twitterprofiles, $oauth_token);
 
 		}
-		if ($list->profiletypeid == 7)
+		if ($list->profiletypeid == LINKEDIN)
 		{
 			$linkedindatalist = $this->getlinkedindata($linkedlistdata);
 		}
@@ -347,7 +347,7 @@ class redsocialstreamModelposts extends JModel
 				$data[$i]['data'] = $facebookpost;
 				$data[$i]['created_time'] = strtotime($facebookpost->created_time);
 				$data[$i]['type'] = 'facebook';
-				$savedata[$i]['type'] = 1;
+				$savedata[$i]['type'] = FACEBOOK;
 				$savedata[$i]['ext_post_name'] = addslashes($facebookpost->from->name);
 				$savedata[$i]['ext_profile_id'] = addslashes($facebookpost->from->id);
 				$savedata[$i]['ext_post_id'] = addslashes($facebookpost->id);
@@ -453,7 +453,7 @@ class redsocialstreamModelposts extends JModel
 
 					$youtubevideodata[$i]['type'] = 'youtube';
 
-					$savedata[$i]['type'] = 6;
+					$savedata[$i]['type'] = YOUTUBE;
 
 					foreach ($youtubevideo as $key => $test)
 					{
@@ -570,7 +570,7 @@ class redsocialstreamModelposts extends JModel
 					$tweetdatalist[$i]['created_time'] = date("Y-m-d H:i:s", strtotime($tweet->created_at));
 					$tweetdatalist[$i]['type'] = 'twitter';
 					$savedata[$i]['group_id'] = $twitterprofile['group_id'];
-					$savedata[$i]['type'] = 2;
+					$savedata[$i]['type'] = TWITTER;
 					$savedata[$i]['ext_profile_id'] = $tweet->user->id;
 					$savedata[$i]['ext_post_id'] = $tweet->id_str;
 					$savedata[$i]['ext_post_name'] = $tweet->user->screen_name;
@@ -689,7 +689,7 @@ class redsocialstreamModelposts extends JModel
 					$linkedinlist[$i]['created_time'] = date("Y-m-d", trim($share->timestamp));
 					$linkedinlist[$i]['type'] = 'linkedin';
 					$savedata[$i]['group_id'] = $linkedlistdata['group_id'];
-					$savedata[$i]['type'] = 7;
+					$savedata[$i]['type'] = LINKEDIN;
 					$savedata[$i]['ext_profile_id'] = $person->{id};
 					$savedata[$i]['ext_post_id'] = $share->{id};
 					$savedata[$i]['ext_post_name'] = $person->{'first-name'} . ' ' . $person->{'last-name'};
@@ -766,8 +766,6 @@ class redsocialstreamModelposts extends JModel
 		}
 		else
 		{
-
-
 			$sql = "INSERT into #__redsocialstream_twitter_accesstoken (id, profile_id , twitter_token, twitter_secret, created, updated)
  values ('', '$profile_id', '$token', '$secret', NOW(), NOW())";
 			$db->setQuery($sql);

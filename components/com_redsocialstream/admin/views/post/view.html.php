@@ -37,10 +37,11 @@ class postViewpost extends JView
 
 		$this->assignRef('lists', $lists);
 		$this->assignRef('detail', $detail);
-		$this->assignRef('request_url', $uri->toString());
+		$this->request_url = $uri->toString();
 		$this->assignRef('profiletypes', $profiletypes);
 		$this->assignRef('groups', $groups);
 		$this->assignRef('profiles', $profiles);
+
 		parent::display($tpl);
 	}
 }

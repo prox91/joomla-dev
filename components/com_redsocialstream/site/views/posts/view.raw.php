@@ -28,7 +28,7 @@ class redsocialstreamViewposts extends JView
 		//Get Group Information
 		$model = $this->getModel();
 		$group = $model->getgroupdata($groupid);
-		$this->assignRef('groupinfo', $group);
+		$this->groupinfo= $group;
 		//End
 
 		$profiletypeid = JRequest::getVar('profiletypeid');
@@ -47,23 +47,24 @@ class redsocialstreamViewposts extends JView
 			$limit = JRequest::getVar('limit');
 			$orderby = JRequest::getVar('orderby');
 
-			if (in_array('1', $types))
+			if (in_array(FACEBOOK, $types))
 			{
-				$this->assignRef('fbposts', $model->getposts($groupid, 1, $limit, $orderby));
+				$this->fbposts = $model->getposts($groupid, FACEBOOK, $limit, $orderby);
 			}
-			if (in_array('2', $types))
+			if (in_array(TWITTER, $types))
 			{
-				$this->assignRef('twposts', $model->getposts($groupid, 2, $limit, $orderby));
+				$this->twposts = $model->getposts($groupid, TWITTER, $limit, $orderby);
 			}
-			if (in_array('6', $types))
+			if (in_array(YOUTUBE, $types))
 			{
-				$this->assignRef('youtubeposts', $model->getposts($groupid, 6, $limit, $orderby));
+				$this->youtubeposts = $model->getposts($groupid, YOUTUBE, $limit, $orderby);
 			}
-			if (in_array('7', $types))
+			if (in_array(LINKEDIN, $types))
 			{
-				$this->assignRef('linkedinposts', $model->getposts($groupid, 7, $limit, $orderby));
+				$this->linkedinposts = $model->getposts($groupid, LINKEDIN, $limit, $orderby);
 			}
 			$tpl = "ajaxposts";
+
 			parent::display($tpl);
 		}
 	}

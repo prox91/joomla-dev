@@ -44,7 +44,11 @@ class AccessTokenController extends JController
                     $appId          = $settingData['app_id'];
                     $appSecret      = $settingData['app_secret'];
 
-                    RedSocialStreamHelper::getFacebookAccessToken($appId, $appSecret, $callbackUrl);
+                    $accessToken = RedSocialStreamHelper::getFacebookAccessToken($appId, $appSecret, $callbackUrl);
+
+                    //require_once(JPATH_SITE . '/components/com_redsocialstream/helpers/facebook/facebook.php');
+                    //header("location: https://www.facebook.com/dialog/oauth?client_id=" . $appId . "&redirect_uri=" . $callbackUrl . "&scope=manage_pages,publish_stream&manage_pages=1&publish_stream=1");
+
                     break;
 
                 case 'twitter':
@@ -110,6 +114,12 @@ class AccessTokenController extends JController
 
     public function getAccessToken()
     {
+        // 
+        $code = JRequest::getVar('code');
+        if ($code != "")
+        {
+            $abc = $code;
+        }
 
     }
 

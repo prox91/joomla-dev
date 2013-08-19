@@ -48,10 +48,11 @@ class redsocialstreamViewgroup extends JView
 		}
 
 		$feedlists = $model->getfeedslist($groupeid, $profiletypeid);
-		$this->assignRef('feedlists', $feedlists);
-		$this->assignRef('posts', $model->getposts($groupeid, $profiletypeid, $limit));
-		$this->assignRef('profiletypeid', $profiletypeid);
-		$this->assignRef('limit', $limit);
+		$this->feedlists = $feedlists;
+		$this->posts = $model->getposts($groupeid, $profiletypeid, $limit);
+		$this->profiletypeid = $profiletypeid;
+		$this->limit = $limit;
+
 		parent::display($tpl);
 	}
 }
