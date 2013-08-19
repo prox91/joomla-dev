@@ -9,10 +9,10 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted Access');
 
-JHtml::_('bootstrap.tooltip');
-JHtml::_('behavior.multiselect');
-JHtml::_('dropdown.init');
-JHtml::_('formbehavior.chosen', 'select');
+//JHtml::_('bootstrap.tooltip');
+//JHtml::_('behavior.multiselect');
+//JHtml::_('dropdown.init');
+//JHtml::_('formbehavior.chosen', 'select');
 ?>
 <script type="text/javascript">
 	Joomla.orderTable = function()
@@ -62,32 +62,35 @@ JHtml::_('formbehavior.chosen', 'select');
 		<form enctype="multipart/form-data"
 			action="<?php JRoute::_('index.php?option=com_englishconcept&view=englishconcept'); ?>" method="post" name="itemForm" id="itemForm"
 			class="form-validate form-horizontal">
-			<fieldset>
-				<ul class="nav nav-tabs">
-					<li class="active"><a href="#general" data-toggle="tab"><?php echo JText::_('SR_NEW_GENERAL_INFO')?></a></li>
-				</ul>
-				<div class="tab-content">
-					<div class="tab-pane active" id="general">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#media" data-toggle="tab"><?php echo JText::_('Media')?></a></li>
+				<li class=""><a href="#comprehension" data-toggle="tab"><?php echo JText::_('Comprehensions')?></a></li>
+				<li class=""><a href="#key-structure" data-toggle="tab"><?php echo JText::_('Key Structure')?></a></li>
+				<li class=""><a href="#spec-difficult" data-toggle="tab"><?php echo JText::_('Special Difficulties')?></a></li>
+				<li class=""><a href="#exercise" data-toggle="tab"><?php echo JText::_('Exercise')?></a></li>
+			</ul>
 
-						<div class="control-group">
-							<?php echo $this->form->getLabel('id'); ?>
-							<div class="controls">
-								<?php echo $this->form->getInput('id'); ?>
-							</div>
-						</div>
-						<div class="control-group">
-							<?php echo $this->form->getLabel('book_name'); ?>
-							<div class="controls">
-								<?php echo $this->form->getInput('book_name'); ?>
-							</div>
-						</div>
-
-					</div>
+			<div class="tab-content">
+				<div class="tab-pane active" id="media">
+					<?php echo $this->loadTemplate('media'); ?>
 				</div>
-				<input type="hidden" name="task" value="" />
-				<input type="hidden" name="jform[id]" value="<?php if(isset($this->item->id)){echo $this->item->id;}?>" />
-				<?php echo JHtml::_('form.token'); ?>
-			</fieldset>
+				<div class="tab-pane" id="comprehension">
+					<?php echo $this->loadTemplate('comprehension'); ?>
+				</div>
+				<div class="tab-pane" id="key-structure">
+					<?php echo $this->loadTemplate('keystructure'); ?>
+				</div>
+				<div class="tab-pane" id="spec-difficult">
+					<?php echo $this->loadTemplate('specialdifficult'); ?>
+				</div>
+				<div class="tab-pane" id="exercise">
+					<?php echo $this->loadTemplate('exercise'); ?>
+				</div>
+			</div>
+
+			<input type="hidden" name="task" value="" />
+			<input type="hidden" name="jform[id]" value="<?php if(isset($this->item->id)){echo $this->item->id;}?>" />
+			<?php echo JHtml::_('form.token'); ?>
 		</form>
 	</div>
 </div>

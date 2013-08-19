@@ -12,6 +12,6 @@ defined('_JEXEC') or die('Restricted Access');
 /**
  * Class EnglishConceptHelper
  */
-abstract class EnglishConceptHelper
+class EnglishConceptHelper
 {
 }

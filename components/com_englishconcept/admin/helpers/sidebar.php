@@ -9,14 +9,9 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted Access');
 
-/**
- * Solidres Side Navigation Helper class
- *
- * @package     Solidres
- */
 class EnglishConceptHelperSideBar
 {
-	public static $extention = 'com_solidres';
+	public static $extention = 'com_englishconcept';
 	
 	/**
 	 * Display the side navigation bar, ACL aware
