@@ -8,7 +8,6 @@
  */
 // No direct access to this file
 defined('_JEXEC') or die('Restricted Access');
-
 JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.multiselect');
 JHtml::_('dropdown.init');
@@ -49,12 +48,8 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 	}
 </script>
 <div class="ec-contain">
-	<?php //if (!empty( $this->sidebar)) : ?>
-	<div id="ec-panel-left" class="span2">
-		<div id="ec-sidebar-navigate" class="span2">
-			<?php //echo $this->sidebar; ?>
-		</div>
-	</div>
+	<?php echo $this->sidebar; ?>
+
 	<div id="ec-panel-right" class="span10">
 	<?php //else : ?>
 <!--	<div id="ec-main-container">-->

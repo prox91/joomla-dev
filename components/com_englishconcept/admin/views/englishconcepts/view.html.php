@@ -8,7 +8,7 @@
  */
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-
+require_once (JPATH_COMPONENT . '/helpers/sidebar.php');
 /**
  * Class EnglishConceptViewEnglishConcept
  */
@@ -32,6 +32,7 @@ class EnglishConceptViewEnglishConcepts extends JViewLegacy
 			return false;
 		}
 
+		$this->sidebar = EnglishConceptHelperSideBar::getSideNavigation();
 		// Set the tool bar
 		$this->addToolbar();
 

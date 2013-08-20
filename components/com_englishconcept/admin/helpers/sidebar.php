@@ -24,62 +24,29 @@ class EnglishConceptHelperSideBar
 		$input = JFactory::getApplication()->input;
 		$viewName 	= $input->get('view', '', 'cmd');
 		$disabled	= $input->get('disablesidebar', '0', 'int');
-		$link 		= 'index.php?option=com_solidres';
-		$doc 		= JFactory::getDocument();
-		JLoader::register('SRSystemHelper', JPATH_LIBRARIES . '/solidres/system/helper.php');
+		$link 		= 'index.php?option=com_englishconcept';
 
 		if ($disabled) return;
 
-		$menuStructure['SR_SUBMENU_ASSET'] = array(
-			0 => array( 'SR_SUBMENU_ASSETS_LIST', '&view=reservationassets' ),
-			1 => array( 'SR_SUBMENU_ROOM_TYPE_LIST', '&view=roomtypes' )
+		$menuStructure['EC_SUBMENU_MASTER'] = array(
+			0 => array( 'EC_SUBMENU_BOOK_LIST', '&view=books' ),
+			1 => array( 'EC_SUBMENU_CATEGORY_LIST', '&view=categories'),
+			2 => array( 'EC_SUBMENU_CATEGORY_LIST', '&view=levels')
 		);
 
-		$menuStructure['SR_SUBMENU_CUSTOMER'] = array(
-			0 => array( 'SR_SUBMENU_CUSTOMERS_LIST', '&view=customers' ),
-			1 => array( 'SR_SUBMENU_CUSTOMERGROUPS_LIST', '&view=customergroups' )
-		);
-
-		$menuStructure['SR_SUBMENU_RESERVATION'] = array(
-			0 => array( 'SR_SUBMENU_RESERVATIONS_LIST', '&view=reservations' )
-		);
-
-		$menuStructure['SR_SUBMENU_COUPON_EXTRA'] = array(
-			0 => array( 'SR_SUBMENU_COUPONS_LIST', '&view=coupons' ),
-			1 => array( 'SR_SUBMENU_EXTRAS_LIST', '&view=extras' )
-		);
-
-		if (SR_PLUGIN_FEEDBACK_ENABLED)
-		{
-			$menuStructure['SR_SUBMENU_CUSTOMER_FEEDBACK'] = array(
-				0 => array( 'SR_SUBMENU_COMMENT_LIST', '&view=feedbacks' ),
-				1 => array( 'SR_SUBMENU_CONDITION_LIST', '&view=feedbackconditions' ),
-				2 => array( 'SR_SUBMENU_CUSTOMER_FEEDBACK_TYPE_LIST', '&view=feedbacktypes')
-			);
-		}
-
-		$menuStructure['SR_SUBMENU_SYSTEM'] = array(
-			0 => array( 'SR_SUBMENU_CURRENCIES_LIST', '&view=currencies' ),
-			//0 => array( 'SR_SUBMENU_SYSTEM_BACKUP', '&task=system.backup' ),
-			//1 => array( 'SR_SUBMENU_SYSTEM_RESTORE', '&view=system&layout=restore' ),
-			//2 => array( 'SR_SUBMENU_SYSTEM_RESET_SAMPLE_DATA', '&task=system.resetsampledata'),
-			3 => array( 'SR_SUBMENU_SYSTEM_INSTALL_SAMPLE_DATA', '&task=system.installsampledata'),
-			4 => array( 'SR_SUBMENU_COUNTRY_LIST', '&view=countries'),
-			5 => array( 'SR_SUBMENU_STATE_LIST', '&view=states'),
-			6 => array( 'SR_SUBMENU_TAX_LIST', '&view=taxes'),
-			7 => array( 'SR_SUBMENU_EMPLOYEES', '&option=com_users')
+		$menuStructure['EC_SUBMENU_SYSTEM'] = array(
+			0 => array( 'EC_SUBMENU_SETTING_LIST', '&view=settings' ),
 		);
 
 		$html = '';
-		$html .= '<div id="sr_panel_left" class="span2">';
+		$html .= '<div id="ec_panel_left" class="span2">';
+		$html .= '<div id="ec-sidebar-navigate" class="span2">';
 		$html .= '<ul id="sr_side_navigation">';
 		
 		$html .= '<li class="sr_tools">
 					<a id="sr_dashboard" title="'.JText::_('SR_SUBMENU_DASHBOARD').'"
-					   href="'.JRoute::_('index.php?option=com_solidres').'">
-					   <img src="'.JUri::root().'media/com_solidres/assets/images/logo.png" alt="Solidres" title="Solidres" />
+					   href="'.JRoute::_('index.php?option=com_englishconcept').'">
 					</a>
-					<a id="sr_current_ver">'.SRVersion::getShortVersion().'</a>
 				  </li>';
 
 		$iconMap = array(
@@ -112,7 +79,7 @@ class EnglishConceptHelperSideBar
 		}
 
 		$html .= '</ul>';
-		$html .= SolidresLiveUpdate::getIcon();
+		$html .= '</div>';
 		$html .= '</div>';
 
 		return $html;
