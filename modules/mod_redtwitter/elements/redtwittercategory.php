@@ -1,33 +1,40 @@
 <?php
 /**
- * @package     RedTwitter.Frontend
- * @subpackage  mod_redtwitter
- *
- * @copyright   Copyright (C) 2005 - 2013 redCOMPONENT.com. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE
+ * @version    Id: JFormFieldRedtwitterCategory.php
+ * @package    Com_Redtwitter
+ * @author     Ronni K. G. Christiansen<email@redweb.dk> - http://www.redcomponent.com
+ * @copyright  Copyright (C) 2010 redCOMPONENT.com. All rights reserved.
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * Developed by email@recomponent.com - redCOMPONENT.com
  */
-// No direct access
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Module JFormFieldRedTwitterCategory
+ * JFormFieldRedtwitterCategory for the Joomla Platform.
+ * Supports an HTML select list of categories
  *
- * @package     RedTwitter.Frontend
- * @subpackage  Modules
- * @since       1.0
+ * @package     Joomla.Platform
+ * @subpackage  Form
+ * @since       11.1
  */
 class JFormFieldRedtwitterCategory extends JFormFieldList
 {
 	/**
-	 * @var string field type
+	 * The form field type.
+	 *
+	 * @var    string
+	 * @since  11.1
 	 */
 	public $type = 'redtwittercategory';
 
 	/**
-	 * Override get input function
-	 *
-	 * @return mixed|string
-	 */
+	* Method to get the field input markup for a generic list.
+	* Use the multiple attribute to enable multiselect.
+	*
+	* @return  string  The field input markup.
+	*
+	* @since   11.1
+	*/
 	protected function getInput()
 	{
 		$db = JFactory::getDBO();
@@ -46,7 +53,7 @@ class JFormFieldRedtwitterCategory extends JFormFieldList
 		if (!empty($twitterList))
 		{
 			ob_start();
-			$options = JHTML::_('select.genericlist', $twitterList, $this->name, '', 'twitter_user_name', 'display_name', $this->value);
+			$options = JHTML::_('select.genericlist', $twitterList, $this->name, 'multiple="multiple"', 'twitter_id', 'twitter_user_name', $this->value);
 			ob_end_clean();
 		}
 		else
