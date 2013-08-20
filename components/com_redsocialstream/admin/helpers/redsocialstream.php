@@ -18,7 +18,7 @@ JLoader::registerPrefix('Red', dirname(__DIR__) . '/libraries');
 class RedSocialStreamHelper
 {
 	// Access token url
-    private static $_facebookAuthorizeUrl = "https://graph.facebook.com/oauth/access_token"; //"https://www.facebook.com/oauth/access_token";
+    private static $_facebookAuthorizeUrl = "https://graph.facebook.com/oauth/access_token";
 	private static $_twitterAccessTokenUrl = "https://api.twitter.com/oauth2/token";
     private $linkedinAuthorizeUrl = "https://www.facebook.com/dialog/oauth";
 
@@ -38,7 +38,7 @@ class RedSocialStreamHelper
         return $loginData;
     }
 
-    public static function getFacebookAccessToken($appId, $appSecret, $callbackUrl)
+    public static function requestFbAccessToken($appId, $appSecret, $callbackUrl)
     {
         $data = array(
             'client_id' => $appId,
@@ -76,7 +76,7 @@ class RedSocialStreamHelper
         }
     }
 
-	public static function getTwitterAccessToken($consumerKey, $consumerSecret)
+	public static function requestTwitterAccessToken($consumerKey, $consumerSecret)
 	{
 		// Bearer token credentials
 		$consumerKey = str_replace('+', ' ', str_replace('%7E', '~', rawurlencode($consumerKey)));
@@ -106,6 +106,57 @@ class RedSocialStreamHelper
 			return "";
 		}
 	}
+
+    public static function getFacebookAccessToken($facebookProfileId = 0)
+    {
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+
+        $query->select('*')
+            ->from('#__redsocialstream_facebook_accesstoken')
+            ->where('profile_id = ' .$facebookProfileId);
+
+        $db->setQuery($query);
+
+        $result = $db->loadObject();
+
+        return $result;
+    }
+
+    public static function getTwitterAccessToken($twitterProfileId = 0)
+    {
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+
+        $query->select('*')
+            ->from('#__redsocialstream_twitter_accesstoken');
+        if($twitterProfileId != 0)
+        {
+            $query->where('profile_id = ' .$twitterProfileId);
+        }
+
+        $db->setQuery($query);
+
+        $result = $db->loadObject();
+
+        return $result;
+    }
+
+    public static function getLinkinAccessToken($linkedinProfileId = 0)
+    {
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+
+        $query->select('*')
+            ->from('#__redsocialstream_linkedin_accesstoken')
+            ->where('profile_id = ' .$linkedinProfileId);
+
+        $db->setQuery($query);
+
+        $result = $db->loadObject();
+
+        return $result;
+    }
 
     public static function getFacebookProfilesOptions()
     {

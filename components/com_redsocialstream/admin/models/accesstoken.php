@@ -77,54 +77,6 @@ class AccessTokenModelAccessToken extends JModel
 		}
 	}
 
-    public function getFacebookAccessToken($facebookProfileId = 0)
-    {
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-
-        $query->select('*')
-            ->from('#__redsocialstream_facebook_accesstoken')
-            ->where('profile_id = ' .$facebookProfileId);
-
-        $db->setQuery($query);
-
-        $result = $db->loadObject();
-
-        return $result;
-    }
-
-    public function getTwitterAccessToken($twitterProfileId = 0)
-    {
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-
-        $query->select('*')
-              ->from('#__redsocialstream_twitter_accesstoken')
-              ->where('profile_id = ' .$twitterProfileId);
-
-        $db->setQuery($query);
-
-        $result = $db->loadObject();
-
-        return $result;
-    }
-
-    public function getLinkinAccessToken($linkedinProfileId = 0)
-    {
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-
-        $query->select('*')
-            ->from('#__redsocialstream_linkedin_accesstoken')
-            ->where('profile_id = ' .$linkedinProfileId);
-
-        $db->setQuery($query);
-
-        $result = $db->loadObject();
-
-        return $result;
-    }
-
 	function saveFacebookAcceesToken($code)
 	{
 		$mainframe       = JFactory::getApplication();
@@ -176,48 +128,23 @@ values ('', '$fb_profile_id', '$access_token', '', NOW(), NOW())";
 		exit;
 	}
 
-	function saveTwitterAcceesToken($twitterProfileId = 0, $bearerToken = '')
+	function saveTwitterAcceesToken($data)
 	{
         // Get table
         $row = $this->getTable('TwitterAccessToken', $this->_tablePrefix);
-        if($twitterProfileId == 0 || $bearerToken == '')
+
+        if (!$row->bind($data))
         {
+            $this->setError($this->_db->getErrorMsg());
+
             return false;
         }
-        else
+
+        if (!$row->store())
         {
-            $now = date('Y-m-d H:i:s');
+            $this->setError($this->_db->getErrorMsg());
 
-            $data = $this->getTwitterAccessToken($twitterProfileId);
-            if(!empty($data))
-            {
-                $data->profile_id = $twitterProfileId;
-                $data->twitter_access_token = $bearerToken;
-                $data->updated = $now;
-            }
-            else
-            {
-                $data = new stdClass;
-
-                $data->profile_id = $twitterProfileId;
-                $data->twitter_access_token = $bearerToken;
-                $data->created = $now;
-                $data->updated = $now;
-            }
-
-            if (!$row->bind($data))
-            {
-                $this->setError($this->_db->getErrorMsg());
-
-                return false;
-            }
-
-            if (!$row->store())
-            {
-                $this->setError($this->_db->getErrorMsg());
-
-                return false;
-            }
+            return false;
         }
 
         return true;

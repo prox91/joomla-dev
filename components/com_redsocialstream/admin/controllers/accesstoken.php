@@ -44,7 +44,7 @@ class AccessTokenController extends JController
                     $appId          = $settingData['app_id'];
                     $appSecret      = $settingData['app_secret'];
 
-                    $accessToken = RedSocialStreamHelper::getFacebookAccessToken($appId, $appSecret, $callbackUrl);
+                    $accessToken = RedSocialStreamHelper::requestFbAccessToken($appId, $appSecret, $callbackUrl);
 
                     //require_once(JPATH_SITE . '/components/com_redsocialstream/helpers/facebook/facebook.php');
                     //header("location: https://www.facebook.com/dialog/oauth?client_id=" . $appId . "&redirect_uri=" . $callbackUrl . "&scope=manage_pages,publish_stream&manage_pages=1&publish_stream=1");
@@ -52,15 +52,29 @@ class AccessTokenController extends JController
                     break;
 
                 case 'twitter':
-                    $twitterProfileId   = $input->get('twitter_profile_id', 0, 'INT');
+                    $twitterProfileId  = $input->get('twitter_profile_id', 0, 'INT');
                     $consumerKey       = $settingData['twitter_consumer_key'];
                     $consumerSecret    = $settingData['twitter_consumer_sec'];
 
-                    $bearerToken = RedSocialStreamHelper::getTwitterAccessToken($consumerKey, $consumerSecret);
+                    $bearerToken = RedSocialStreamHelper::requestTwitterAccessToken($consumerKey, $consumerSecret);
                     if(!empty($bearerToken))
                     {
                         // Save to database
-                        if($model->saveTwitterAcceesToken($twitterProfileId, $bearerToken))
+                        $data = RedSocialStreamHelper::getTwitterAccessToken($twitterProfileId);
+
+                        $now = date('Y-m-d H:i:s');
+
+                        if(empty($data))
+                        {
+                            $data = new stdClass;
+                            $data->created = $now;
+                        }
+
+                        $data->profile_id = $twitterProfileId;
+                        $data->twitter_access_token = $bearerToken;
+                        $data->updated = $now;
+
+                        if($model->saveTwitterAcceesToken($data))
                         {
                             $msg = JText::_('COM_REDSOCIALSTREAM_TWITTER_TOKEN_GENERATED');
                             $level = 'MESSAGE';
@@ -86,13 +100,14 @@ class AccessTokenController extends JController
 
                 case 'linkedin':
                     break;
+
                 case 'youtube':
                     break;
+
                 default:
                     break;
             }
         }
-
 
         // Facebook
         $code = $input->get('code', '', 'STRING');

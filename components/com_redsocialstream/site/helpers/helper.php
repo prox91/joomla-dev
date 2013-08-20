@@ -9,14 +9,15 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-class redsocialhelper
+require_once(JPATH_ADMINISTRATOR . '/components/com_redsocialstream/helpers/redsocialstream.php');
+
+class redsocialHelper
 {
 	var $_table_prefix = null;
 	var $_db = null;
 
 	function __construct()
 	{
-		global $mainframe, $context;
 		$this->_table_prefix = '#__redsocialstream_';
 		$this->_db = JFactory::getDBO();
 	}
@@ -77,16 +78,6 @@ class redsocialhelper
 		return $row;
 	}
 
-	function getTwitterAccessToken()
-	{
-
-		$db = JFactory::getDbo();
-		$query = "SELECT * FROM #__redsocialstream_twitter_accesstoken";
-		$db->setQuery($query);
-		$row = $db->loadObjectList();
-		return $row;
-	}
-
 	function getLinkedinAccessToken()
 	{
 
@@ -106,4 +97,56 @@ class redsocialhelper
 		return $profilename;
 
 	}
+
+    public function getTwitterData($twitterProfiles)
+    {
+        $mainframe = JFactory::getApplication();
+        $params = $mainframe->getparams();
+
+        $limit = $params->get('limit');
+        $tweetDataList = array();
+
+        if(count($twitterProfiles) > 0)
+        {
+            $accessToken = RedSocialStreamHelper::getTwitterAccessToken();
+            include_once (JPATH_COMPONENT . '/helpers/twitter/statuses.php');
+
+            foreach ($twitterProfiles as $twitterProfile)
+            {
+                if (isset($accessToken->twitter_access_token) && !empty($accessToken->twitter_access_token))
+                {
+                    $twitterStatuses = new TwitterStatuses();
+
+                    $tweetList = $twitterStatuses->getUserTimeline($twitterProfile['title'], $accessToken->twitter_access_token, $limit);
+
+                    for ($i = 0; $i < count($tweetList); $i++)
+                    {
+                        $tweet = $tweetList[$i];
+
+                        $tweetDataList[$i]['data'] = $tweet;
+
+                        $tweetDataList[$i]['profile_id'] = $twitterProfile['id'];
+                        $tweetDataList[$i]['title'] = '';
+                        $tweetDataList[$i]['type'] = TWITTER;
+                        $tweetDataList[$i]['group_id'] = $twitterProfile['group_id'];
+                        $tweetDataList[$i]['sorce_link'] = "https://twitter.com/" . $tweet->user->screen_name . "/status" . $tweet->id_str;
+                        $tweetDataList[$i]['thumb_uri'] = $tweet->user->profile_image_url;
+                        if (isset($tweet->text))
+                        {
+                            $tweetDataList[$i]['message'] = addslashes($tweet->text);
+                        }
+                        $tweetDataList[$i]['ext_profile_id'] = $tweet->user->id;
+                        $tweetDataList[$i]['ext_post_id'] = $tweet->id_str;
+                        $tweetDataList[$i]['ext_post_name'] = $tweet->user->screen_name;
+
+                        $tweetDataList[$i]['duration'] = '';
+                        $tweetDataList[$i]['created_time'] = date("Y-m-d H:i:s", strtotime($tweet->created_at));
+                        $tweetDataList[$i]['published'] = 1;
+                    }
+                }
+            }
+        }
+
+        return $tweetDataList;
+    }
 }

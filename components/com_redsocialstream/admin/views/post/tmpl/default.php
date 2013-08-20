@@ -86,7 +86,7 @@ defined('_JEXEC') or die;
 					</label>
 				</td>
 				<td>
-					<input type="text" name="kildelink" value="<?php echo $this->detail->sorce_link; ?>"/>
+					<input type="text" name="kildelink" value="<?php echo $this->detail->source_link; ?>"/>
 				</td>
 			</tr>
 			<tr>

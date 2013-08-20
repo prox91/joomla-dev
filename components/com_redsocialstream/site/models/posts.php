@@ -9,16 +9,15 @@
 defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.model');
 require_once(JPATH_SITE . '/components/com_redsocialstream/helpers/helper.php');
+
 class redsocialstreamModelposts extends JModel
 {
-
 	var $_pagination = null; //paginatio
 	var $_total = null; //pagination
 	function __construct()
 	{
 		parent::__construct();
 		$this->_table_prefix = '#__';
-
 	}
 
 	function getfeedslist($groupid = "", $profiletypeid = "")
@@ -179,6 +178,8 @@ class redsocialstreamModelposts extends JModel
 
 	function getfeeds($groupid = "", $profiletypeid = "", $oauth_token = "")
 	{
+        $redsocialHelper = new redsocialHelper();
+
 		$red_facebook_unsorted_objlist = array();
 		$youtubevideodata = array();
 		$tweetdatalist = array();
@@ -191,7 +192,7 @@ class redsocialstreamModelposts extends JModel
 		$i = 1;
 		$FBids = "";
 		$youtubeusernames = "";
-		$twitterprofiles = "";
+		$twitterProfiles = "";
 		$linkedinprofiles = "";
 		foreach ($getfeedslist as $list)
 		{
@@ -217,8 +218,8 @@ class redsocialstreamModelposts extends JModel
 					}
 					$i++;
 				}
-
 			}
+
 			if ($list->profiletypeid == YOUTUBE)
 			{
 				if ($list->profilename != "")
@@ -242,6 +243,7 @@ class redsocialstreamModelposts extends JModel
 					$i++;
 				}
 			}
+
 			if ($list->profiletypeid == TWITTER)
 			{
 				if ($list->profilename != "")
@@ -250,29 +252,33 @@ class redsocialstreamModelposts extends JModel
 					$query = "SELECT created_time,ext_post_id FROM #__redsocialstream_posts WHERE profile_id = " . $list->id . " ORDER BY created_time DESC LIMIT 1";
 					$db->setQuery($query);
 					$created_time = $db->loadObject();
-					$twitterprofiles[$i]['title'] = $list->profilename;
-					$twitterprofiles[$i]['id'] = $list->id;
-					$twitterprofiles[$i]['update'] = $list->updatet_time;
+					$twitterProfiles[$i]['title'] = $list->profilename;
+					$twitterProfiles[$i]['id'] = $list->id;
+					$twitterProfiles[$i]['update'] = $list->updatet_time;
+
 					if (isset($created_time->created_time))
 					{
-						$twitterprofiles[$i]['newest_post'] = $created_time->created_time;
+						$twitterProfiles[$i]['newest_post'] = $created_time->created_time;
 					}
 					else
 					{
-						$twitterprofiles[$i]['newest_post'] = "";
+						$twitterProfiles[$i]['newest_post'] = "";
 					}
+
 					if (isset($created_time->ext_post_id))
 					{
-						$twitterprofiles[$i]['ext_post_id'] = $created_time->ext_post_id;
+						$twitterProfiles[$i]['ext_post_id'] = $created_time->ext_post_id;
 					}
 					else
 					{
-						$twitterprofiles[$i]['ext_post_id'] = "";
+						$twitterProfiles[$i]['ext_post_id'] = "";
 					}
-					$twitterprofiles[$i]['group_id'] = $list->groupid;
+
+					$twitterProfiles[$i]['group_id'] = $list->groupid;
 					$i++;
 				}
 			}
+
 			if ($list->profiletypeid == LINKEDIN)
 			{
 				$linkedlistdata['group_id'] = $list->groupid;
@@ -294,11 +300,17 @@ class redsocialstreamModelposts extends JModel
 		{
 			$youtubevideodata = $this->getyoutubedata($youtubeusernames);
 		}
-		if ($twitterprofiles != "" && isset($twitterprofiles))
-		{
-			$tweetdatalist = $this->gettwitterdata($twitterprofiles, $oauth_token);
 
+		if ($twitterProfiles != "" && isset($twitterProfiles))
+		{
+			$tweetDataList = $redsocialHelper->getTwitterData($twitterProfiles);
+
+            if (isset($tweetDataList))
+            {
+                $this->savePost($tweetDataList);
+            }
 		}
+
 		if ($list->profiletypeid == LINKEDIN)
 		{
 			$linkedindatalist = $this->getlinkedindata($linkedlistdata);
@@ -327,7 +339,6 @@ class redsocialstreamModelposts extends JModel
 				{
 					$obj[$FBid['id']]['data'] = json_decode($json);
 					$obj[$FBid['id']]['group_id'] = $FBid['group_id'];
-
 				}
 			}
 			$i = 0;
@@ -389,7 +400,7 @@ class redsocialstreamModelposts extends JModel
 		}
 		if (isset($savedata))
 		{
-			$this->savepost($savedata);
+			$this->savePost($savedata);
 		}
 
 		return $data;
@@ -520,95 +531,14 @@ class redsocialstreamModelposts extends JModel
 
 		if (isset($savedata))
 		{
-			$this->savepost($savedata);
+			$this->savePost($savedata);
 		}
 		return $youtubevideodata;
 	}
 
-	function gettwitterdata($twitterprofiles, $oauth_token)
-	{
-		$mainframe = JFactory::getApplication();
-		$session = JFactory::getSession();
-		$redsocialhelper = new redsocialhelper();
-		$login = $redsocialhelper->getsettings();
 
 
-		$params = $mainframe->getparams();
-		$limit = $params->get('limit');
-		$tweetdatalist = array();
-
-		foreach ($twitterprofiles as $twitterprofile)
-		{
-
-
-			$consumer_key = $login['twitter_consumer_key']; //your app's consumer key
-			$consumer_secret = $login['twitter_consumer_sec']; //your app's secret key
-
-
-			/* include the twitter OAuth library files */
-
-
-			include_once (JPATH_COMPONENT . '/helpers/twitter/twitterOAuth.php');
-			include_once (JPATH_COMPONENT . '/helpers/twitter/OAuth.php');
-			$access_tokens = $this->getTwitterAccessToken($twitterprofile);
-			$count = count($access_tokens);
-			if ($count > 0)
-			{
-
-				$access_token = $access_tokens[0]->twitter_token;
-				$access_secret = $access_tokens[0]->twitter_secret;
-
-				$twitteroauth = new TwitterOAuth ($consumer_key, $consumer_secret, $access_token, $access_secret);
-				$tweetlist = $twitteroauth->get('https://api.twitter.com/1/statuses/user_timeline.json?user_id=' . $twitterprofile['title'] . '&count=' . $limit);
-				for ($i = 0; $i < count($tweetlist); $i++)
-				{
-
-					$tweet = $tweetlist[$i];
-
-
-					$tweetdatalist[$i]['data'] = $tweet;
-					$tweetdatalist[$i]['created_time'] = date("Y-m-d H:i:s", strtotime($tweet->created_at));
-					$tweetdatalist[$i]['type'] = 'twitter';
-					$savedata[$i]['group_id'] = $twitterprofile['group_id'];
-					$savedata[$i]['type'] = TWITTER;
-					$savedata[$i]['ext_profile_id'] = $tweet->user->id;
-					$savedata[$i]['ext_post_id'] = $tweet->id_str;
-					$savedata[$i]['ext_post_name'] = $tweet->user->screen_name;
-					if (isset($tweet->text))
-					{
-						$savedata[$i]['message'] = addslashes($tweet->text);
-					}
-					$savedata[$i]['title'] = '';
-					$savedata[$i]['sorce_link'] = "https://twitter.com/" . $tweet->user->screen_name . "/status" . $tweet->id_str;
-					$savedata[$i]['created_time'] = date("Y-m-d H:i:s", strtotime($tweet->created_at));
-					$savedata[$i]['duration'] = '';
-					$savedata[$i]['profile_id'] = $twitterprofile['id'];
-
-					$savedata[$i]['published'] = 1;
-					$savedata[$i]['thumb_uri'] = $tweet->user->profile_image_url;
-
-				}
-
-			}
-
-
-		}
-		if (isset($savedata))
-		{
-			$this->savepost($savedata);
-			$session->set('oauth_access_token', NULL);
-			$session->set('oauth_access_token_secret', NULL);
-			$session->set('oauth_request_token', NULL);
-			$session->set('oauth_request_token_secret', NULL);
-		}
-
-
-		return $tweetdatalist;
-
-
-	}
-
-	function savepost($data)
+	function savePost($data)
 	{
 
 		$db = JFactory::getDbo();
@@ -712,7 +642,7 @@ class redsocialstreamModelposts extends JModel
 
 		if (isset($savedata))
 		{
-			$this->savepost($savedata);
+			$this->savePost($savedata);
 		}
 
 		return $linkedinlist;
@@ -745,44 +675,6 @@ class redsocialstreamModelposts extends JModel
 
 
 		return $logindata;
-	}
-
-	function saveTwitterAccessTokens($twitterprofile, $token, $secret)
-	{
-
-		$profile_id = $twitterprofile['id'];
-		$db = JFactory::getDbo();
-
-		$query = "SELECT * FROM #__redsocialstream_twitter_accesstoken where profile_id='" . $profile_id . "'";
-		$db->setQuery($query);
-		$row = $db->loadObjectList();
-		if (count($row) > 0)
-		{
-			$time = date("Y-m-d H:i:s");
-			$sql = "UPDATE #__redsocialstream_twitter_accesstoken set twitter_token='" . $token . "', twitter_secret='" . $secret . "', updated = '" . $time . "' where profile_id='" . $profile_id . "'";
-			$db->setQuery($sql);
-			$db->query();
-
-		}
-		else
-		{
-			$sql = "INSERT into #__redsocialstream_twitter_accesstoken (id, profile_id , twitter_token, twitter_secret, created, updated)
- values ('', '$profile_id', '$token', '$secret', NOW(), NOW())";
-			$db->setQuery($sql);
-			$db->query();
-
-		}
-	}
-
-	function getTwitterAccessToken($twitterprofile)
-	{
-		$profile_id = $twitterprofile['id'];
-		$db = JFactory::getDbo();
-		//$query = "SELECT * FROM #__redsocialstream_twitter_accesstoken where profile_id='".$profile_id."'";
-		$query = "SELECT * FROM #__redsocialstream_twitter_accesstoken";
-		$db->setQuery($query);
-		$row = $db->loadObjectList();
-		return $row;
 	}
 
 	function  getLinkedinAccessToken()

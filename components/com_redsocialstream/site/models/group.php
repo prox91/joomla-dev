@@ -541,7 +541,7 @@ class redsocialstreamModelgroup extends JModel
 			/* include the twitter OAuth library files */
 			include_once (JPATH_COMPONENT . '/helpers/twitter/twitterOAuth.php');
 			include_once (JPATH_COMPONENT . '/helpers/twitter/OAuth.php');
-			$access_tokens = $this->getTwitterAccessToken($twitterprofile);
+			$access_tokens = $this->getTwitterAccessToken();
 			$count = count($access_tokens);
 			if ($count > 0)
 			{
@@ -739,40 +739,9 @@ class redsocialstreamModelgroup extends JModel
 		return $logindata;
 	}
 
-	function saveTwitterAccessTokens($twitterprofile, $token, $secret)
+	function getTwitterAccessToken()
 	{
-
-		$profile_id = $twitterprofile['id'];
 		$db = JFactory::getDbo();
-
-		$query = "SELECT * FROM #__redsocialstream_twitter_accesstoken where profile_id='" . $profile_id . "'";
-		$db->setQuery($query);
-		$row = $db->loadObjectList();
-		if (count($row) > 0)
-		{
-			$time = date("Y-m-d H:i:s");
-			$sql = "UPDATE #__redsocialstream_twitter_accesstoken set twitter_token='" . $token . "', twitter_secret='" . $secret . "', updated = '" . $time . "' where profile_id='" . $profile_id . "'";
-			$db->setQuery($sql);
-			$db->query();
-
-		}
-		else
-		{
-
-
-			$sql = "INSERT into #__redsocialstream_twitter_accesstoken (id, profile_id , twitter_token, twitter_secret, created, updated)
- values ('', '$profile_id', '$token', '$secret', NOW(), NOW())";
-			$db->setQuery($sql);
-			$db->query();
-
-		}
-	}
-
-	function getTwitterAccessToken($twitterprofile)
-	{
-		$profile_id = $twitterprofile['id'];
-		$db = JFactory::getDbo();
-		//$query = "SELECT * FROM #__redsocialstream_twitter_accesstoken where profile_id='".$profile_id."'";
 		$query = "SELECT * FROM #__redsocialstream_twitter_accesstoken";
 		$db->setQuery($query);
 		$row = $db->loadObjectList();
