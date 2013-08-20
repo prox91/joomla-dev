@@ -12,7 +12,6 @@ jimport('joomla.application.component.model');
 
 require_once(JPATH_SITE . '/components/com_redsocialstream/helpers/helper.php');
 include(JPATH_SITE . '/components/com_redsocialstream/helpers/linkedin/linkedin.php');
-require_once(JPATH_SITE . '/components/com_redsocialstream/helpers/twitter/OAuth.php');
 
 class AccessTokenModelAccessToken extends JModel
 {

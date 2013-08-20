@@ -28,7 +28,7 @@ $document = JFactory::getDocument();
 $document->addStyleSheet(JURI::base() . 'components/com_redsocialstream/assets/css/com_redsocialstream.css');
 
 //set the controller page
-require_once (JPATH_COMPONENT . '/controllers/' . $controller . '.php');
+require_once JPATH_COMPONENT . '/controllers/' . $controller . '.php';
 
 // Create the controller
 $classname = $controller . 'controller';

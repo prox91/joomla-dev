@@ -9,7 +9,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.controller');
-require_once (JPATH_COMPONENT . '/helpers/redsocialstream.php');
+require_once JPATH_COMPONENT . '/helpers/redsocialstream.php';
 
 class AccessTokenController extends JController
 {
