@@ -45,9 +45,14 @@ class EnglishConceptViewEnglishConcept extends JViewLegacy
 
 	public function addToolbar()
 	{
+		//JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
+		JHtml::_('behavior.tooltip');
+
+		JToolbarHelper::title(JText::_('COM_ENGLISHCONCEPT_TITLE'));
 		JToolBarHelper::apply('englishconcept.apply', 'JToolbar_Apply');
-		JToolBarHelper::addNew('englishconcept.save2new', 'JToolbar_Save_and_new');
 		JToolBarHelper::save('englishconcept.save', 'JToolbar_Save');
+		JToolBarHelper::addNew('englishconcept.save2new', 'JToolbar_Save_and_new');
+		JToolBarHelper::cancel('englishconcept.cancel', 'JToolbar_Cancel');
 	}
 
 	public function setDocument()
