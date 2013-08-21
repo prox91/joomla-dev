@@ -98,6 +98,79 @@ class redsocialHelper
 
 	}
 
+    public function getFacebookData($fbProfiles)
+    {
+        if(count($fbProfiles) > 0)
+        {
+            $accessTokenData = RedSocialStreamHelper::getFacebookAccessToken();
+            include_once (JPATH_COMPONENT . '/helpers/facebook/user.php');
+            $fbUser = new FacebookUser();
+
+            $fbDataList = array();
+
+            foreach ($fbProfiles AS $key => $profile)
+            {
+                if (isset($accessTokenData->access_token) && !empty($accessTokenData->access_token))
+                {
+                    $fbFeedList = $fbUser->getFeeds($profile['title'], $accessTokenData->access_token);
+
+                    if(!empty($fbFeedList->data) && count($fbFeedList->data) > 0)
+                    {
+                        foreach($fbFeedList->data as $feed)
+                        {
+                            $fbDataList[$profile['id']]['data'] = $feed;
+                            $fbDataList[$profile['id']]['created_time'] = strtotime($feed->created_time);
+                            $fbDataList[$profile['id']]['type'] = FACEBOOK;
+                            $fbDataList[$profile['id']]['ext_post_name'] = addslashes($feed->from->name);
+                            $fbDataList[$profile['id']]['ext_profile_id'] = addslashes($feed->from->id);
+                            $fbDataList[$profile['id']]['ext_post_id'] = addslashes($feed->id);
+                            $fbDataList[$profile['id']]['message'] = "";
+
+                            if (isset($feed->message))
+                            {
+                                $fbDataList[$profile['id']]['message'] = $feed->message;
+                            }
+
+                            if (isset($feed->story))
+                            {
+                                $fbDataList[$profile['id']]['message'] .= $feed->story;
+                            }
+
+                            if (isset($fbDataList[$profile['id']]['message']))
+                            {
+                                preg_match_all('/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}[^<]*/', str_replace("\n", "<br />", $fbDataList[$profile['id']]['message']), $out, PREG_PATTERN_ORDER);
+
+                                foreach ($out[0] as $link)
+                                {
+                                    $fbDataList[$profile['id']]['message'] = str_replace($link, "<a href=\"" . $link . "\">" . $link . "</a>", $fbDataList[$profile['id']]['message']);
+                                }
+                            }
+
+                            if (isset($feed->picture))
+                            {
+                                $fbDataList[$profile['id']]['message'] .= "<div class=\"description_image facebook\">";
+                                $fbDataList[$profile['id']]['message'] .= "<img src=\"" . $feed->picture . "\">";
+                                $fbDataList[$profile['id']]['message'] .= "</div>";
+                            }
+                            $fbDataList[$profile['id']]['message'] = addslashes($fbDataList[$profile['id']]['message']);
+                            $fbDataList[$profile['id']]['title'] = '';
+                            $fbDataList[$profile['id']]['source_link'] = "kildelink";
+                            $fbDataList[$profile['id']]['created_time'] = date("Y-m-d H:i:s", strtotime($feed->created_time));
+                            $fbDataList[$profile['id']]['duration'] = '';
+                            $fbDataList[$profile['id']]['profile_id'] = $key;
+                            $fbDataList[$profile['id']]['group_id'] = $profile['group_id'];
+                            $fbDataList[$profile['id']]['published'] = 1;
+                            $fbDataList[$profile['id']]['thumb_uri'] = '';
+                        }
+                    }
+                }
+
+            }
+
+            return $fbDataList;
+        }
+    }
+
     public function getTwitterData($twitterProfiles)
     {
         $mainframe = JFactory::getApplication();
@@ -108,40 +181,40 @@ class redsocialHelper
 
         if(count($twitterProfiles) > 0)
         {
-            $accessToken = RedSocialStreamHelper::getTwitterAccessToken();
+            $accessTokenData = RedSocialStreamHelper::getTwitterAccessToken();
             include_once (JPATH_COMPONENT . '/helpers/twitter/statuses.php');
+
+            $twitterStatuses = new TwitterStatuses();
 
             foreach ($twitterProfiles as $twitterProfile)
             {
-                if (isset($accessToken->twitter_access_token) && !empty($accessToken->twitter_access_token))
+                if (isset($accessTokenData->access_token) && !empty($accessTokenData->access_token))
                 {
-                    $twitterStatuses = new TwitterStatuses();
-
-                    $tweetList = $twitterStatuses->getUserTimeline($twitterProfile['title'], $accessToken->twitter_access_token, $limit);
+                    $tweetList = $twitterStatuses->getUserTimeline($twitterProfile['title'], $accessTokenData->access_token, $limit);
 
                     for ($i = 0; $i < count($tweetList); $i++)
                     {
                         $tweet = $tweetList[$i];
 
-                        $tweetDataList[$i]['data'] = $tweet;
+                        $tweetDataList[$twitterProfile['id']]['data'] = $tweet;
 
-                        $tweetDataList[$i]['profile_id'] = $twitterProfile['id'];
-                        $tweetDataList[$i]['title'] = '';
-                        $tweetDataList[$i]['type'] = TWITTER;
-                        $tweetDataList[$i]['group_id'] = $twitterProfile['group_id'];
-                        $tweetDataList[$i]['sorce_link'] = "https://twitter.com/" . $tweet->user->screen_name . "/status" . $tweet->id_str;
-                        $tweetDataList[$i]['thumb_uri'] = $tweet->user->profile_image_url;
+                        $tweetDataList[$twitterProfile['id']]['profile_id'] = $twitterProfile['id'];
+                        $tweetDataList[$twitterProfile['id']]['title'] = '';
+                        $tweetDataList[$twitterProfile['id']]['type'] = TWITTER;
+                        $tweetDataList[$twitterProfile['id']]['group_id'] = $twitterProfile['group_id'];
+                        $tweetDataList[$twitterProfile['id']]['source_link'] = "https://twitter.com/" . $tweet->user->screen_name . "/status" . $tweet->id_str;
+                        $tweetDataList[$twitterProfile['id']]['thumb_uri'] = $tweet->user->profile_image_url;
                         if (isset($tweet->text))
                         {
-                            $tweetDataList[$i]['message'] = addslashes($tweet->text);
+                            $tweetDataList[$twitterProfile['id']]['message'] = addslashes($tweet->text);
                         }
-                        $tweetDataList[$i]['ext_profile_id'] = $tweet->user->id;
-                        $tweetDataList[$i]['ext_post_id'] = $tweet->id_str;
-                        $tweetDataList[$i]['ext_post_name'] = $tweet->user->screen_name;
+                        $tweetDataList[$twitterProfile['id']]['ext_profile_id'] = $tweet->user->id;
+                        $tweetDataList[$twitterProfile['id']]['ext_post_id'] = $tweet->id_str;
+                        $tweetDataList[$twitterProfile['id']]['ext_post_name'] = $tweet->user->screen_name;
 
-                        $tweetDataList[$i]['duration'] = '';
-                        $tweetDataList[$i]['created_time'] = date("Y-m-d H:i:s", strtotime($tweet->created_at));
-                        $tweetDataList[$i]['published'] = 1;
+                        $tweetDataList[$twitterProfile['id']]['duration'] = '';
+                        $tweetDataList[$twitterProfile['id']]['created_time'] = date("Y-m-d H:i:s", strtotime($tweet->created_at));
+                        $tweetDataList[$twitterProfile['id']]['published'] = 1;
                     }
                 }
             }

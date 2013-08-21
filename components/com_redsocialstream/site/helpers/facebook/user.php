@@ -8,26 +8,25 @@
  */
 JLoader::registerPrefix('Red', JPATH_ADMINISTRATOR . '/components/com_redtwitter/libraries');
 
-class TwitterStatuses
+class FacebookUser
 {
-    public function getUserTimeline($username, $accessToken, $limit = 20)
+    public function getFeeds($username, $accessToken, $limit = 20)
     {
-        $url = "https://api.twitter.com/1.1/statuses/user_timeline.json?include_rts=1&screen_name=" . $username . "&count=" . $limit;
-        $header = array('Authorization' => $accessToken,);
+        $url = "https://graph.facebook.com/" . $username . "/feed?access_token=" . $accessToken;
 
         try
         {
             $http = RedHttpFactory::getHttp();
-            $response = $http->get($url, $header);
+            $response = $http->get($url);
 
-            $userTimlines = json_decode($response->body);
+            $feedData = json_decode($response->body);
 
-            if(isset($userTimlines->error))
+            if(isset($feedData->error))
             {
                 return "";
             }
 
-            return $userTimlines;
+            return $feedData;
         }
         catch(Exception $e)
         {

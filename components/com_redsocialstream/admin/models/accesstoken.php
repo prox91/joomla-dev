@@ -76,58 +76,29 @@ class AccessTokenModelAccessToken extends JModel
 		}
 	}
 
-	function saveFacebookAcceesToken($code)
+	function saveFacebookAccessToken($data)
 	{
-		$mainframe       = JFactory::getApplication();
-		$db              = JFactory::getDBO();
-		$session         = JFactory::getSession();
-		$redsocialhelper = new redsocialhelper();
-		$login           = $redsocialhelper->getsettings();
-		//Set the page name or ID
-		$app_id     = $login['app_id'];
-		$app_secret = $login['app_secret'];
+        // Get table
+        $row = $this->getTable('FacebookAccessToken', $this->_tablePrefix);
 
-		$fb_profile_id = $session->get('fb_profile_id');
-		$return_url    = urlencode(JURI::base() . "index.php?option=com_redsocialstream&view=access_token");
-		$post_data     = 'https://graph.facebook.com/oauth/access_token?client_id=' . $app_id . '&redirect_uri=' . $return_url . '&client_secret=' . $app_secret . '&code=' . $code;
+        if (!$row->bind($data))
+        {
+            $this->setError($this->_db->getErrorMsg());
 
-		$CR = curl_init($post_data);
+            return false;
+        }
 
-		curl_setopt($CR, CURLOPT_POST, 1);
-		curl_setopt($CR, CURLOPT_FAILONERROR, true);
-		curl_setopt($CR, CURLOPT_POSTFIELDS, '');
-		curl_setopt($CR, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($CR, CURLOPT_SSL_VERIFYPEER, FALSE);
-		curl_setopt($CR, CURLOPT_CONNECTTIMEOUT, 20);
-		curl_setopt($CR, CURLOPT_TIMEOUT, 30);
+        if (!$row->store())
+        {
+            $this->setError($this->_db->getErrorMsg());
 
-		$token = curl_exec($CR);
-		$error = curl_error($CR);
+            return false;
+        }
 
-		if ($token)
-		{
-			$token        = explode("&", $token);
-			$access_token = explode("=", $token[0]);
-			$access_token = $access_token[1];
-		}
-
-		// Delete Old Token
-		$del_old_token = "DELETE from #__redsocialstream_facebook_accesstoken";
-		$db->setQuery($del_old_token);
-		$db->query();
-
-		// Add New Token
-		$sql = "INSERT into #__redsocialstream_facebook_accesstoken (id, profile_id , fb_token, fb_secret, created, updated)
-values ('', '$fb_profile_id', '$access_token', '', NOW(), NOW())";
-		$db->setQuery($sql);
-		$db->query();
-		$session->set('fb_profile_id', NULL);
-		$msg = JText::_('COM_REDSOCIALSTREAM_FACEBOOK_TOKEN_GENERATED');
-		$mainframe->Redirect('index.php?option=com_redsocialstream&view=access_token', $msg);
-		exit;
+        return true;
 	}
 
-	function saveTwitterAcceesToken($data)
+	function saveTwitterAccessToken($data)
 	{
         // Get table
         $row = $this->getTable('TwitterAccessToken', $this->_tablePrefix);

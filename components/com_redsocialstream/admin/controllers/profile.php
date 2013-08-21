@@ -41,7 +41,7 @@ class profileController extends JController
 		$cid                  = JRequest::getVar('cid', array(0), 'post', 'array');
 		$option               = JRequest::getVar('option');
 		$post['id']           = $cid[0];
-		$post['updatet_time'] = date('Y-m-d H:i:s');
+		$post['update_time'] = date('Y-m-d H:i:s');
 		$model                = $this->getModel();
 
 		if ($row = $model->store($post))

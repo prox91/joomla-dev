@@ -21,7 +21,7 @@ class Tableredsocialstream_profile extends JTable
 	var $published = null;
 	var $groupid = null;
 	var $checked_out = null;
-	var $updatet_time = null;
+	var $update_time = null;
 
 	// var $params = null;
 	//we need a constructor in this class which will specify the table in the database that this class links to  

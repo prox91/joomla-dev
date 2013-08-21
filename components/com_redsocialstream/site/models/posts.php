@@ -80,8 +80,7 @@ class redsocialstreamModelposts extends JModel
 			}
 			if ($groupid != "" OR $profiletypeid != "")
 			{
-				$query .= ") AND published = 1 AND updatet_time < '" . date('Y-m-d H:i:s') . "'";
-				// AND updatet_time < '".date ('Y-m-d H:i:s',strtotime("-30 minutes"))."'"
+				$query .= ") AND published = 1 AND update_time < '" . date('Y-m-d H:i:s') . "'";
 			}
 		}
 
@@ -206,7 +205,7 @@ class redsocialstreamModelposts extends JModel
 					$created_time = $db->loadObject();
 					$FBids[$i]['title'] = $list->profilename;
 					$FBids[$i]['id'] = $list->id;
-					$FBids[$i]['update'] = $list->updatet_time;
+					$FBids[$i]['update'] = $list->update_time;
 					$FBids[$i]['group_id'] = $list->groupid;
 					if (isset($created_time->created_time))
 					{
@@ -230,7 +229,7 @@ class redsocialstreamModelposts extends JModel
 					$created_time = $db->loadObject();
 					$youtubeusernames[$i]['title'] = $list->profilename;
 					$youtubeusernames[$i]['id'] = $list->id;
-					$youtubeusernames[$i]['update'] = $list->updatet_time;
+					$youtubeusernames[$i]['update'] = $list->update_time;
 					if (isset($created_time->created_time))
 					{
 						$youtubeusernames[$i]['newest_post'] = $created_time->created_time;
@@ -254,7 +253,7 @@ class redsocialstreamModelposts extends JModel
 					$created_time = $db->loadObject();
 					$twitterProfiles[$i]['title'] = $list->profilename;
 					$twitterProfiles[$i]['id'] = $list->id;
-					$twitterProfiles[$i]['update'] = $list->updatet_time;
+					$twitterProfiles[$i]['update'] = $list->update_time;
 
 					if (isset($created_time->created_time))
 					{
@@ -288,13 +287,17 @@ class redsocialstreamModelposts extends JModel
 		}
 
 		$db = JFactory::getDbo();
-		$query = "UPDATE #__redsocialstream_profilereference SET updatet_time=Now() WHERE id IN(" . implode(',', $ids) . ")";
+		$query = "UPDATE #__redsocialstream_profilereference SET update_time=Now() WHERE id IN(" . implode(',', $ids) . ")";
 		$db->setQuery($query);
 		$db->query();
 
 		if ($FBids != "" && isset($FBids))
 		{
-			$red_facebook_unsorted_objlist = $this->getfacebookdata($FBids);
+            $fbDataList = $redsocialHelper->getFacebookData($FBids);
+            if (isset($fbDataList))
+            {
+                $this->savePost($fbDataList);
+            }
 		}
 		if ($youtubeusernames != "" && isset($youtubeusernames))
 		{
@@ -318,7 +321,7 @@ class redsocialstreamModelposts extends JModel
 
 	}
 
-
+    /*
 	function getfacebookdata($FBids)
 	{
 
@@ -346,65 +349,66 @@ class redsocialstreamModelposts extends JModel
 			return $red_facebook_objlist;
 		}
 	}
+    */
 
-	function savefavebookdata($obj)
-	{
-		$data = array();
-		$i = 0;
-		foreach ($obj as $key => $facebookdataobj)
-		{
-			foreach ($facebookdataobj['data']->data as $order => $facebookpost)
-			{
-				$data[$i]['data'] = $facebookpost;
-				$data[$i]['created_time'] = strtotime($facebookpost->created_time);
-				$data[$i]['type'] = 'facebook';
-				$savedata[$i]['type'] = FACEBOOK;
-				$savedata[$i]['ext_post_name'] = addslashes($facebookpost->from->name);
-				$savedata[$i]['ext_profile_id'] = addslashes($facebookpost->from->id);
-				$savedata[$i]['ext_post_id'] = addslashes($facebookpost->id);
-				$savedata[$i]['message'] = "";
-				if (isset($facebookpost->message))
-				{
-					$savedata[$i]['message'] = $facebookpost->message;
-				}
-				if (isset($facebookpost->story))
-				{
-					$savedata[$i]['message'] .= $facebookpost->story;
-				}
-				if (isset($savedata[$i]['message']))
-				{
-					preg_match_all('/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}[^<]*/', str_replace("\n", "<br />", $savedata[$i]['message']), $out, PREG_PATTERN_ORDER);
-
-					foreach ($out[0] as $link)
-					{
-						$savedata[$i]['message'] = str_replace($link, "<a href=\"" . $link . "\">" . $link . "</a>", $savedata[$i]['message']);
-					}
-				}
-				if (isset($facebookpost->picture))
-				{
-					$savedata[$i]['message'] .= "<div class=\"description_image facebook\">";
-					$savedata[$i]['message'] .= "<img src=\"" . $facebookpost->picture . "\">";
-					$savedata[$i]['message'] .= "</div>";
-				}
-				$savedata[$i]['message'] = addslashes($savedata[$i]['message']);
-				$savedata[$i]['title'] = '';
-				$savedata[$i]['sorce_link'] = "kildelink";
-				$savedata[$i]['created_time'] = date("Y-m-d H:i:s", strtotime($facebookpost->created_time));
-				$savedata[$i]['duration'] = '';
-				$savedata[$i]['profile_id'] = $key;
-				$savedata[$i]['group_id'] = $facebookdataobj['group_id'];
-				$savedata[$i]['published'] = 1;
-				$savedata[$i]['thumb_uri'] = '';
-				$i++;
-			}
-		}
-		if (isset($savedata))
-		{
-			$this->savePost($savedata);
-		}
-
-		return $data;
-	}
+//	function savefavebookdata($obj)
+//	{
+//		$data = array();
+//		$i = 0;
+//		foreach ($obj as $key => $facebookdataobj)
+//		{
+//			foreach ($facebookdataobj['data']->data as $order => $facebookpost)
+//			{
+//				$data[$i]['data'] = $facebookpost;
+//				$data[$i]['created_time'] = strtotime($facebookpost->created_time);
+//				$data[$i]['type'] = 'facebook';
+//				$savedata[$i]['type'] = FACEBOOK;
+//				$savedata[$i]['ext_post_name'] = addslashes($facebookpost->from->name);
+//				$savedata[$i]['ext_profile_id'] = addslashes($facebookpost->from->id);
+//				$savedata[$i]['ext_post_id'] = addslashes($facebookpost->id);
+//				$savedata[$i]['message'] = "";
+//				if (isset($facebookpost->message))
+//				{
+//					$savedata[$i]['message'] = $facebookpost->message;
+//				}
+//				if (isset($facebookpost->story))
+//				{
+//					$savedata[$i]['message'] .= $facebookpost->story;
+//				}
+//				if (isset($savedata[$i]['message']))
+//				{
+//					preg_match_all('/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}[^<]*/', str_replace("\n", "<br />", $savedata[$i]['message']), $out, PREG_PATTERN_ORDER);
+//
+//					foreach ($out[0] as $link)
+//					{
+//						$savedata[$i]['message'] = str_replace($link, "<a href=\"" . $link . "\">" . $link . "</a>", $savedata[$i]['message']);
+//					}
+//				}
+//				if (isset($facebookpost->picture))
+//				{
+//					$savedata[$i]['message'] .= "<div class=\"description_image facebook\">";
+//					$savedata[$i]['message'] .= "<img src=\"" . $facebookpost->picture . "\">";
+//					$savedata[$i]['message'] .= "</div>";
+//				}
+//				$savedata[$i]['message'] = addslashes($savedata[$i]['message']);
+//				$savedata[$i]['title'] = '';
+//				$savedata[$i]['source_link'] = "kildelink";
+//				$savedata[$i]['created_time'] = date("Y-m-d H:i:s", strtotime($facebookpost->created_time));
+//				$savedata[$i]['duration'] = '';
+//				$savedata[$i]['profile_id'] = $key;
+//				$savedata[$i]['group_id'] = $facebookdataobj['group_id'];
+//				$savedata[$i]['published'] = 1;
+//				$savedata[$i]['thumb_uri'] = '';
+//				$i++;
+//			}
+//		}
+//		if (isset($savedata))
+//		{
+//			$this->savePost($savedata);
+//		}
+//
+//		return $data;
+//	}
 
 	function getyoutubedata($youtubeusernames)
 	{
@@ -519,7 +523,7 @@ class redsocialstreamModelposts extends JModel
 					$savedata[$i]['thumb_uri'] = $profileimgurl;
 					$savedata[$i]['ext_post_id'] = $youtubeid;
 					$savedata[$i]['ext_post_name'] = $youtubeusername['title'];
-					$savedata[$i]['sorce_link'] = $youtubevideo->content->src;
+					$savedata[$i]['source_link'] = $youtubevideo->content->src;
 					$savedata[$i]['created_time'] = date("Y-m-d H:i:s", strtotime($youtubepublishedtime));
 					$savedata[$i]['profile_id'] = $keyid;
 					$savedata[$i]['group_id'] = $group_id;
@@ -534,32 +538,6 @@ class redsocialstreamModelposts extends JModel
 			$this->savePost($savedata);
 		}
 		return $youtubevideodata;
-	}
-
-
-
-	function savePost($data)
-	{
-
-		$db = JFactory::getDbo();
-		$insert_values = "";
-
-		foreach ($data as $values)
-		{
-			$db = JFactory::getDbo();
-			$query = "SELECT * FROM #__redsocialstream_posts WHERE ext_post_id = '" . $values['ext_post_id'] . "' and group_id = '" . $values['group_id'] . "' ORDER BY created_time DESC LIMIT 1";
-			$db->setQuery($query);
-			$checkvalue = $db->loadObject();
-			if ($checkvalue == "")
-			{
-				$insert_values .= "(null,'" . $values['type'] . "','" . $values['ext_profile_id'] . "','" . $values['message'] . "','" . $values['sorce_link'] . "','" . $values['created_time'] . "','" . $values['duration'] . "','" . $values['profile_id'] . "', '" . $values['group_id'] . "', '" . $values['published'] . "', '" . $values['ext_post_id'] . "', '" . $values['ext_post_name'] . "', '" . $values['title'] . "', '" . $values['thumb_uri'] . "') , ";
-			}
-		}
-
-		$insert_values = substr($insert_values, 0, -2);
-		$q = "INSERT INTO #__redsocialstream_posts (id, type, ext_profile_id, message, sorce_link, created_time, duration, profile_id, group_id, published, ext_post_id, ext_post_name, title, thumb_uri) VALUES " . $insert_values;
-		$db->setQuery($q);
-		$db->query();
 	}
 
 	function getlinkedindata($linkedlistdata)
@@ -628,7 +606,7 @@ class redsocialstreamModelposts extends JModel
 						$savedata[$i]['message'] = addslashes($share->comment);
 					}
 					$savedata[$i]['title'] = '';
-					$savedata[$i]['sorce_link'] = $person->{'site-standard-profile-request'}->url;
+					$savedata[$i]['source_link'] = $person->{'site-standard-profile-request'}->url;
 					$savedata[$i]['created_time'] = date("Y-m-d", trim($share->timestamp));
 					$savedata[$i]['duration'] = '';
 					$savedata[$i]['profile_id'] = $linkedlistdata['profile_id'];
@@ -689,4 +667,29 @@ class redsocialstreamModelposts extends JModel
 	}
 
 
+    /**
+     * @param $data
+     */
+    function savePost($data)
+    {
+        $db = JFactory::getDbo();
+        $insert_values = "";
+
+        foreach ($data as $values)
+        {
+            $db = JFactory::getDbo();
+            $query = "SELECT * FROM #__redsocialstream_posts WHERE ext_post_id = '" . $values['ext_post_id'] . "' and group_id = '" . $values['group_id'] . "' ORDER BY created_time DESC LIMIT 1";
+            $db->setQuery($query);
+            $checkvalue = $db->loadObject();
+            if ($checkvalue == "")
+            {
+                $insert_values .= "(null,'" . $values['type'] . "','" . $values['ext_profile_id'] . "','" . $values['message'] . "','" . $values['source_link'] . "','" . $values['created_time'] . "','" . $values['duration'] . "','" . $values['profile_id'] . "', '" . $values['group_id'] . "', '" . $values['published'] . "', '" . $values['ext_post_id'] . "', '" . $values['ext_post_name'] . "', '" . $values['title'] . "', '" . $values['thumb_uri'] . "') , ";
+            }
+        }
+
+        $insert_values = substr($insert_values, 0, -2);
+        $q = "INSERT INTO #__redsocialstream_posts (id, type, ext_profile_id, message, source_link, created_time, duration, profile_id, group_id, published, ext_post_id, ext_post_name, title, thumb_uri) VALUES " . $insert_values;
+        $db->setQuery($q);
+        $db->query();
+    }
 } 

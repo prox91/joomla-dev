@@ -162,7 +162,7 @@ if ($this->posts != "" && isset($this->posts[0]))
 			echo    "<div class=\"youtube_video_title\">";
 			echo    $feeditem->title;
 			echo    "</div>";
-			echo    "<iframe width=\"560\" height=\"315\" src=\"" . $feeditem->sorce_link . "\" frameborder=\"0\" allowfullscreen></iframe>";
+			echo    "<iframe width=\"560\" height=\"315\" src=\"" . $feeditem->source_link . "\" frameborder=\"0\" allowfullscreen></iframe>";
 			echo    "<div class=\"youtube_duration\">";
 			echo    sec2hms($feeditem->duration);
 			echo    "</div>";

@@ -38,17 +38,15 @@ class RedSocialStreamHelper
         return $loginData;
     }
 
-    public static function requestFbAccessToken($appId, $appSecret, $callbackUrl)
+    public static function requestFbAccessToken($appId, $appSecret, $callbackUrl, $code)
     {
+        /*
+        $callbackUrl = urlencode(JURI::base() ."index.php?option=com_redsocialstream&controller=accesstoken&task=getaccesstoken&view=accesstoken");
         $data = array(
             'client_id' => $appId,
-            'client_secret' => $appSecret,
             'redirect_uri' => $callbackUrl,
-            'grant_type' => 'client_credentials',
-
-            'scope' => 'manage_pages',
-            'manage_pages' => 1,
-            'publish_stream' => 1,
+            'client_secret' => $appSecret,
+            'code' => $code
         );
 
         $url = self::toUrl(self::$_facebookAuthorizeUrl, $data);
@@ -71,6 +69,34 @@ class RedSocialStreamHelper
             }
         }
         catch(Exception $e)
+        {
+            return "";
+        }
+        */
+
+        $postData = 'https://graph.facebook.com/oauth/access_token?client_id=' . $appId . '&redirect_uri=' . $callbackUrl . '&client_secret=' . $appSecret . '&code=' . $code;
+
+        $CR = curl_init($postData);
+
+        curl_setopt($CR, CURLOPT_POST, 1);
+        curl_setopt($CR, CURLOPT_FAILONERROR, true);
+        curl_setopt($CR, CURLOPT_POSTFIELDS, '');
+        curl_setopt($CR, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($CR, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($CR, CURLOPT_CONNECTTIMEOUT, 20);
+        curl_setopt($CR, CURLOPT_TIMEOUT, 30);
+
+        $token = curl_exec($CR);
+
+        if ($token)
+        {
+            $token       = explode("&", $token);
+            $accessToken = explode("=", $token[0]);
+            $accessToken = $accessToken[1];
+
+            return $accessToken;
+        }
+        else
         {
             return "";
         }
@@ -113,8 +139,11 @@ class RedSocialStreamHelper
         $query = $db->getQuery(true);
 
         $query->select('*')
-            ->from('#__redsocialstream_facebook_accesstoken')
-            ->where('profile_id = ' .$facebookProfileId);
+            ->from('#__redsocialstream_facebook_accesstoken');
+        if($facebookProfileId != 0)
+        {
+            $query->where('profile_id = ' .$facebookProfileId);
+        }
 
         $db->setQuery($query);
 
@@ -148,8 +177,11 @@ class RedSocialStreamHelper
         $query = $db->getQuery(true);
 
         $query->select('*')
-            ->from('#__redsocialstream_linkedin_accesstoken')
-            ->where('profile_id = ' .$linkedinProfileId);
+            ->from('#__redsocialstream_linkedin_accesstoken');
+        if($linkedinProfileId != 0)
+        {
+            $query->where('profile_id = ' .$linkedinProfileId);
+        }
 
         $db->setQuery($query);
 

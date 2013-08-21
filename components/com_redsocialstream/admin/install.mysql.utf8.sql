@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `#__redsocialstream_profilereference` (
   `published` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
-
+savefavebookdata
 --
 -- Structure `redsocialstream_group`
 --
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `#__redsocialstream_posts` (
   `title` varchar(256) NOT NULL,
   `thumb_uri` varchar(256) NOT NULL,
   `message` varchar(518) NOT NULL,
-  `sorce_link` varchar(518) NOT NULL,
+  `source_link` varchar(518) NOT NULL,
   `created_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `duration` varchar(518) NOT NULL,
   `profile_id` int(11) NOT NULL,
@@ -114,8 +114,7 @@ CREATE TABLE IF NOT EXISTS `#__redsocialstream_postfeeds` (
 CREATE TABLE IF NOT EXISTS `#__redsocialstream_facebook_accesstoken` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `profile_id` int(11) DEFAULT NULL,
-  `fb_token` text DEFAULT NULL,
-  `fb_secret` text DEFAULT NULL,
+  `access_token` text DEFAULT NULL,
   `created` text DEFAULT NULL,
   `updated` text DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -127,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `#__redsocialstream_facebook_accesstoken` (
 CREATE TABLE IF NOT EXISTS `#__redsocialstream_twitter_accesstoken` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `profile_id` int(11) DEFAULT NULL,
-  `twitter_access_token` text DEFAULT NULL,
+  `access_token` text DEFAULT NULL,
   `created` text DEFAULT NULL,
   `updated` text DEFAULT NULL,
   PRIMARY KEY (`id`)
