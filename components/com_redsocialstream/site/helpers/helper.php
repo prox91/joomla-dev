@@ -80,7 +80,6 @@ class redsocialHelper
 
 	function getLinkedinAccessToken()
 	{
-
 		$db = JFactory::getDbo();
 		$query = "SELECT * FROM #__redsocialstream_linkedin_accesstoken";
 		$db->setQuery($query);
@@ -98,6 +97,7 @@ class redsocialHelper
 
 	}
 
+    // -----------------------------------------------------------
     public function getFacebookData($fbProfiles)
     {
         if(count($fbProfiles) > 0)
@@ -221,5 +221,132 @@ class redsocialHelper
         }
 
         return $tweetDataList;
+    }
+
+    public function getLinkedinData($linkedinProfiles)
+    {
+        $mainframe = JFactory::getApplication();
+        $params = $mainframe->getparams();
+
+        $limit = $params->get('limit');
+        $linkedinDataList = array();
+
+        if(count($linkedinProfiles) > 0)
+        {
+            $accessLinkedin = RedSocialStreamHelper::getLinkinAccessToken();
+            include_once (JPATH_COMPONENT . '/helpers/twitter/statuses.php');
+
+            $twitterStatuses = new TwitterStatuses();
+
+            foreach ($linkedinProfiles as $twitterProfile)
+            {
+                if (isset($accessLinkedin->access_token) && !empty($accessLinkedin->access_token))
+                {
+                    $tweetList = $twitterStatuses->getUserTimeline($twitterProfile['title'], $accessLinkedin->access_token, $limit);
+
+                    for ($i = 0; $i < count($tweetList); $i++)
+                    {
+                        $tweet = $tweetList[$i];
+
+                        $linkedinDataList[$twitterProfile['id']]['data'] = $tweet;
+
+                        $linkedinDataList[$twitterProfile['id']]['profile_id'] = $twitterProfile['id'];
+                        $linkedinDataList[$twitterProfile['id']]['title'] = '';
+                        $linkedinDataList[$twitterProfile['id']]['type'] = TWITTER;
+                        $linkedinDataList[$twitterProfile['id']]['group_id'] = $twitterProfile['group_id'];
+                        $linkedinDataList[$twitterProfile['id']]['source_link'] = "https://twitter.com/" . $tweet->user->screen_name . "/status" . $tweet->id_str;
+                        $linkedinDataList[$twitterProfile['id']]['thumb_uri'] = $tweet->user->profile_image_url;
+                        if (isset($tweet->text))
+                        {
+                            $linkedinDataList[$twitterProfile['id']]['message'] = addslashes($tweet->text);
+                        }
+                        $linkedinDataList[$twitterProfile['id']]['ext_profile_id'] = $tweet->user->id;
+                        $linkedinDataList[$twitterProfile['id']]['ext_post_id'] = $tweet->id_str;
+                        $linkedinDataList[$twitterProfile['id']]['ext_post_name'] = $tweet->user->screen_name;
+
+                        $linkedinDataList[$twitterProfile['id']]['duration'] = '';
+                        $linkedinDataList[$twitterProfile['id']]['created_time'] = date("Y-m-d H:i:s", strtotime($tweet->created_at));
+                        $linkedinDataList[$twitterProfile['id']]['published'] = 1;
+                    }
+                }
+            }
+        }
+
+        return $linkedinDataList;
+
+
+        $api_key = $login['linked_api_key']; // Linkedin Api key
+        $secret_key = $login['linked_secret_key']; //Linkedin Secret key
+
+        $access_tokens = $this->getLinkedinAccessToken();
+
+        include(JPATH_SITE . '/components/com_redsocialstream/helpers/linkedin/linkedin.php');
+        require_once(JPATH_SITE . '/components/com_redsocialstream/helpers/twitter/OAuth.php');
+
+
+        $API_CONFIG = array(
+            'appKey' => $api_key,
+            'appSecret' => $secret_key,
+            'callbackUrl' => ""
+        );
+        $linkedin = new LinkedIn($API_CONFIG);
+        $access_token = $access_tokens[0]->linkedin_token;
+        $access_secret = $access_tokens[0]->linkedin_secret;
+        $token = Array
+        (
+
+            "oauth_token" => $access_token,
+            "oauth_token_secret" => $access_secret,
+
+        );
+        $linkedin->setTokenAccess($token);
+
+        $query = '?type=SHAR&count=30';
+        $response = $linkedin->updates($query);
+
+        if ($response['success'] === TRUE)
+        {
+            $updates = new SimpleXMLElement($response['linkedin']);
+
+            if ((int) $updates['total'] > 0)
+            {
+                $i = 0;
+                foreach ($updates->update as $update)
+                {
+
+                    $person = $update->{'update-content'}->person;
+                    $share = $update->{'update-content'}->person->{'current-share'};
+
+                    $linkedinlist[$i]['data'] = $update;
+                    $linkedinlist[$i]['created_time'] = date("Y-m-d", trim($share->timestamp));
+                    $linkedinlist[$i]['type'] = 'linkedin';
+                    $savedata[$i]['group_id'] = $linkedlistdata['group_id'];
+                    $savedata[$i]['type'] = LINKEDIN;
+                    $savedata[$i]['ext_profile_id'] = $person->{id};
+                    $savedata[$i]['ext_post_id'] = $share->{id};
+                    $savedata[$i]['ext_post_name'] = $person->{'first-name'} . ' ' . $person->{'last-name'};
+                    if (isset($share->comment))
+                    {
+                        $savedata[$i]['message'] = addslashes($share->comment);
+                    }
+                    $savedata[$i]['title'] = '';
+                    $savedata[$i]['source_link'] = $person->{'site-standard-profile-request'}->url;
+                    $savedata[$i]['created_time'] = date("Y-m-d", trim($share->timestamp));
+                    $savedata[$i]['duration'] = '';
+                    $savedata[$i]['profile_id'] = $linkedlistdata['profile_id'];
+
+                    $savedata[$i]['published'] = 1;
+                    $savedata[$i]['thumb_uri'] = $person->{'picture-url'};
+                    $i++;
+                }
+            }
+        }
+
+        if (isset($savedata))
+        {
+            $this->savePost($savedata);
+        }
+
+        return $linkedinlist;
     }
 }

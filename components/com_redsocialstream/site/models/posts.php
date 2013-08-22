@@ -12,8 +12,8 @@ require_once(JPATH_SITE . '/components/com_redsocialstream/helpers/helper.php');
 
 class redsocialstreamModelposts extends JModel
 {
-	var $_pagination = null; //paginatio
-	var $_total = null; //pagination
+	var $_pagination = null;
+	var $_total = null;
 	function __construct()
 	{
 		parent::__construct();
@@ -39,6 +39,7 @@ class redsocialstreamModelposts extends JModel
 				$profiletypeid = $params->get('profiletypeid');
 			}
 		}
+
 		$db = JFactory::getDbo();
 		$query = "SELECT * FROM #__redsocialstream_profilereference";
 		if ($groupid != "" or $profiletypeid != "")
@@ -84,12 +85,10 @@ class redsocialstreamModelposts extends JModel
 			}
 		}
 
-
 		$db->setQuery($query);
 		$row = $db->loadObjectList();
 		return $row;
 	}
-
 
 	function getposts($group_id = "", $profile_type_id = "", $limit = "", $orderby = "p.created_time DESC")
 	{
@@ -173,7 +172,6 @@ class redsocialstreamModelposts extends JModel
 
 		return $row;
 	}
-
 
 	function getfeeds($groupid = "", $profiletypeid = "", $oauth_token = "")
 	{
@@ -321,95 +319,6 @@ class redsocialstreamModelposts extends JModel
 
 	}
 
-    /*
-	function getfacebookdata($FBids)
-	{
-
-		$login = $this->getsettings();
-
-		//Set the page name or ID
-		$app_id = $login['app_id'];
-		$app_secret = $login['app_secret'];
-		$limit = 1;
-		if ($access_token = file_get_contents("https://graph.facebook.com/oauth/access_token?type=client_cred&client_id=" . $app_id . "&client_secret=" . $app_secret))
-		{
-
-			$obj = array();
-			foreach ($FBids AS $key => $FBid)
-			{
-				$jsonurl = "https://graph.facebook.com/" . $FBid['title'] . "/feed?" . $access_token;
-				if ($json = file_get_contents($jsonurl))
-				{
-					$obj[$FBid['id']]['data'] = json_decode($json);
-					$obj[$FBid['id']]['group_id'] = $FBid['group_id'];
-				}
-			}
-			$i = 0;
-			$red_facebook_objlist = $this->savefavebookdata($obj);
-			return $red_facebook_objlist;
-		}
-	}
-    */
-
-//	function savefavebookdata($obj)
-//	{
-//		$data = array();
-//		$i = 0;
-//		foreach ($obj as $key => $facebookdataobj)
-//		{
-//			foreach ($facebookdataobj['data']->data as $order => $facebookpost)
-//			{
-//				$data[$i]['data'] = $facebookpost;
-//				$data[$i]['created_time'] = strtotime($facebookpost->created_time);
-//				$data[$i]['type'] = 'facebook';
-//				$savedata[$i]['type'] = FACEBOOK;
-//				$savedata[$i]['ext_post_name'] = addslashes($facebookpost->from->name);
-//				$savedata[$i]['ext_profile_id'] = addslashes($facebookpost->from->id);
-//				$savedata[$i]['ext_post_id'] = addslashes($facebookpost->id);
-//				$savedata[$i]['message'] = "";
-//				if (isset($facebookpost->message))
-//				{
-//					$savedata[$i]['message'] = $facebookpost->message;
-//				}
-//				if (isset($facebookpost->story))
-//				{
-//					$savedata[$i]['message'] .= $facebookpost->story;
-//				}
-//				if (isset($savedata[$i]['message']))
-//				{
-//					preg_match_all('/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}[^<]*/', str_replace("\n", "<br />", $savedata[$i]['message']), $out, PREG_PATTERN_ORDER);
-//
-//					foreach ($out[0] as $link)
-//					{
-//						$savedata[$i]['message'] = str_replace($link, "<a href=\"" . $link . "\">" . $link . "</a>", $savedata[$i]['message']);
-//					}
-//				}
-//				if (isset($facebookpost->picture))
-//				{
-//					$savedata[$i]['message'] .= "<div class=\"description_image facebook\">";
-//					$savedata[$i]['message'] .= "<img src=\"" . $facebookpost->picture . "\">";
-//					$savedata[$i]['message'] .= "</div>";
-//				}
-//				$savedata[$i]['message'] = addslashes($savedata[$i]['message']);
-//				$savedata[$i]['title'] = '';
-//				$savedata[$i]['source_link'] = "kildelink";
-//				$savedata[$i]['created_time'] = date("Y-m-d H:i:s", strtotime($facebookpost->created_time));
-//				$savedata[$i]['duration'] = '';
-//				$savedata[$i]['profile_id'] = $key;
-//				$savedata[$i]['group_id'] = $facebookdataobj['group_id'];
-//				$savedata[$i]['published'] = 1;
-//				$savedata[$i]['thumb_uri'] = '';
-//				$i++;
-//			}
-//		}
-//		if (isset($savedata))
-//		{
-//			$this->savePost($savedata);
-//		}
-//
-//		return $data;
-//	}
-
 	function getyoutubedata($youtubeusernames)
 	{
 		$mainframe = JFactory::getApplication();
@@ -542,12 +451,10 @@ class redsocialstreamModelposts extends JModel
 
 	function getlinkedindata($linkedlistdata)
 	{
-
 		$session = JFactory::getSession();
 		$redsocialhelper = new redsocialhelper();
 
 		$login = $redsocialhelper->getsettings();
-
 
 		global $mainframe;
 
@@ -636,25 +543,6 @@ class redsocialstreamModelposts extends JModel
 		return $row;
 	}
 
-	function getsettings()
-	{
-		$db = JFactory::getDbo();
-		$q = "SELECT * FROM #__redsocialstream_settings where dataname = 'app_id'";
-		$db->setQuery($q);
-		$rows = $db->loadObjectList();
-
-		$logindata['app_id'] = $rows[0]->data;
-
-		$q = "SELECT * FROM #__redsocialstream_settings where dataname = 'app_secret'";
-		$db->setQuery($q);
-		$rows = $db->loadObjectList();
-
-		$logindata['app_secret'] = $rows[0]->data;
-
-
-		return $logindata;
-	}
-
 	function  getLinkedinAccessToken()
 	{
 		//$profile_id = $twitterprofile['id'];
@@ -665,7 +553,6 @@ class redsocialstreamModelposts extends JModel
 		$row = $db->loadObjectList();
 		return $row;
 	}
-
 
     /**
      * @param $data

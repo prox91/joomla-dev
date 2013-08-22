@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `#__redsocialstream_profilereference` (
   `published` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
-savefavebookdata
+
 --
 -- Structure `redsocialstream_group`
 --
@@ -137,9 +137,8 @@ CREATE TABLE IF NOT EXISTS `#__redsocialstream_twitter_accesstoken` (
 --
 CREATE TABLE IF NOT EXISTS `#__redsocialstream_linkedin_accesstoken` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `profile_id` int(11) DEFAULT NULL,
-  `linkedin_token` text DEFAULT NULL,
-  `linkedin_secret` text DEFAULT NULL,
+  `profile_id` int(11) DEFAULT 0,
+  `access_token` text DEFAULT '',
   `created` text DEFAULT NULL,
   `updated` text DEFAULT NULL,
   PRIMARY KEY (`id`)

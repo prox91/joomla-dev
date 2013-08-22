@@ -20,7 +20,7 @@ class RedSocialStreamHelper
 	// Access token url
     private static $_facebookAuthorizeUrl = "https://graph.facebook.com/oauth/access_token";
 	private static $_twitterAccessTokenUrl = "https://api.twitter.com/oauth2/token";
-    private $linkedinAuthorizeUrl = "https://www.facebook.com/dialog/oauth";
+    private static $_linkedinAccessTokenUrl = "https://www.linkedin.com/uas/oauth2/accessToken";
 
     public static function getSettingData()
     {
@@ -132,6 +132,36 @@ class RedSocialStreamHelper
 			return "";
 		}
 	}
+
+    public static function requestLinkedinAccessToken($cliendId, $cliendSecret, $callbackUrl, $code)
+    {
+        $callbackUrl=urlencode("http://localhost.com/");
+        $data = array(
+            'grant_type' => 'authorization_code',
+            'code' => $code,
+            'redirect_uri' => $callbackUrl,
+            'client_id' => $cliendId,
+            'client_secret' => $cliendSecret,
+        );
+
+        try
+        {
+            $http = RedHttpFactory::getHttp();
+            $response = $http->post(self::$_linkedinAccessTokenUrl, $data);
+            $accessData = json_decode($response->body);
+
+            if(isset($accessData->error))
+            {
+                return "";
+            }
+
+            return $accessData->access_token;
+        }
+        catch(Exception $e)
+        {
+            return "";
+        }
+    }
 
     public static function getFacebookAccessToken($facebookProfileId = 0)
     {

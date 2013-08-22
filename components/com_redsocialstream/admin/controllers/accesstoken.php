@@ -54,6 +54,11 @@ class AccessTokenController extends JController
                     break;
 
                 case 'linkedin':
+
+                    $session->set('linkedinProfileId', $input->get('linkedin_profile_id', 0, 'INT'));
+                    $session->set('callbackUrl', $callbackUrl);
+                    $loginUrl = "https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=" . $settingData['linked_api_key'] . "&redirect_uri=" . $callbackUrl . "&state=".uniqid('', true);
+                    header("location: $loginUrl");
                     break;
 
                 case 'youtube':
@@ -63,16 +68,6 @@ class AccessTokenController extends JController
                     break;
             }
         }
-
-        /*
-        $oauth_verifier = $input->get('oauth_verifier', '', 'STRING');
-        $oauth_token = $input->get('oauth_token', '', 'STRING');
-        if ($oauth_verifier != "" && $oauth_token != "")
-        {
-            $model = $this->getModel('AccessToken');
-            $model->saveLinkedinAcceesToken($oauth_token, $oauth_verifier);
-        }
-        */
     }
 
     public function getAccessToken()
@@ -191,6 +186,56 @@ class AccessTokenController extends JController
                 break;
 
             case 'linkedin':
+                $code = $input->get('code', '', 'STRING');
+                $linkedinProfileId = $session->get('linkedinProfileId');
+                $callbackUrl = $session->get('callbackUrl');
+                $session->clear('linkedinProfileId');
+                $session->clear('callbackUrl');
+                $accessToken = "";
+                if ($code != "")
+                {
+                    $accessToken = RedSocialStreamHelper::requestLinkedinAccessToken($settingData['linked_api_key'], $settingData['linked_secret_key'], $callbackUrl, $code);
+                }
+
+                if(!empty($accessToken))
+                {
+                    // Save to database
+                    $data = RedSocialStreamHelper::getLinkinAccessToken($linkedinProfileId);
+
+                    $now = date('Y-m-d H:i:s');
+
+                    if(empty($data))
+                    {
+                        $data = new stdClass;
+                        $data->created = $now;
+                    }
+
+                    $data->profile_id = $linkedinProfileId;
+                    $data->access_token = $accessToken;
+                    $data->updated = $now;
+
+                    if($model->saveLinkedinAccessToken($data))
+                    {
+                        $msg = JText::_('COM_REDSOCIALSTREAM_LINKEDIN_TOKEN_GENERATED');
+                        $level = 'MESSAGE';
+                    }
+                    else
+                    {
+                        $msg = $model->getError();
+                        if(empty($msg))
+                        {
+                            $msg = JText::_('COM_REDSOCIALSTREAM_LINKEDIN_TOKEN_UNGENERATED');
+                        }
+                        $level = 'WARNING';
+                    }
+                }
+                else
+                {
+                    $msg = JText::_('COM_REDSOCIALSTREAM_LINKEDIN_TOKEN_UNGENERATED');
+                    $level = 'WARNING';
+                }
+                $this->setRedirect('index.php?option=com_redsocialstream&view=accesstoken', $msg, $level);
+
                 break;
 
             case 'youtube':

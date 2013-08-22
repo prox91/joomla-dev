@@ -121,48 +121,26 @@ class AccessTokenModelAccessToken extends JModel
 
 	}
 
-	function saveLinkedinAcceesToken($oauth_token, $oauth_verifier)
+	function saveLinkedinAcceesToken($data)
 	{
-		$mainframe       = JFactory::getApplication();
-		$redsocialhelper = new redsocialhelper();
-		$login           = $redsocialhelper->getsettings();
-		$db              = JFactory::getDBO();
-		$session         = JFactory::getSession();
+        // Get table
+        $row = $this->getTable('LinkedinAccessToken', $this->_tablePrefix);
 
-		$api_key      = $login['linked_api_key']; //Linkedin APi Key
-		$secret_key   = $login['linked_secret_key']; //Linkedin Secret Key
-		$redirect_url = JURI::base() . "index.php?option=com_redsocialstream&view=access_token";
+        if (!$row->bind($data))
+        {
+            $this->setError($this->_db->getErrorMsg());
 
-		$API_CONFIG        = array(
-			'appKey'      => $api_key,
-			'appSecret'   => $secret_key,
-			'callbackUrl' => $redirect_url
-		);
-		$linkedin          = new LinkedIn($API_CONFIG);
-		$oauth_token_array = $session->get('oauthReqToken');
+            return false;
+        }
 
+        if (!$row->store())
+        {
+            $this->setError($this->_db->getErrorMsg());
 
-		$oauth_token         = $oauth_token_array['oauth_token'];
-		$oauth_token_secret  = $oauth_token_array['oauth_token_secret'];
-		$response            = $linkedin->retrieveTokenAccess($oauth_token, $oauth_token_secret, $oauth_verifier);
-		$token               = $response['linkedin']['oauth_token'];
-		$secret              = $response['linkedin']['oauth_token_secret'];
-		$linkedin_profile_id = $session->get('linkedin_profile_id');
-		// Delete Old Token
-		$del_old_token = "DELETE from #__redsocialstream_linkedin_accesstoken";
-		$db->setQuery($del_old_token);
-		$db->query();
+            return false;
+        }
 
-		// Add New Token
-		$sql = "INSERT into #__redsocialstream_linkedin_accesstoken (id, profile_id , linkedin_token, linkedin_secret, created, updated)
-values ('', '$linkedin_profile_id', '$token', '$secret', NOW(), NOW())";
-		$db->setQuery($sql);
-		$db->query();
-		$session->set('linkedin_profile_id', NULL);
-		$msg = JText::_('COM_REDSOCIALSTREAM_LINKEDIN_TOKEN_GENERATED');
-		$mainframe->Redirect('index.php?option=com_redsocialstream&view=access_token', $msg);
-		exit;
-
+        return true;
 	}
 }
 
