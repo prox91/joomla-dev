@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 // no direct access
-defined('_JEXEC') or die;
+defined('_JEXEC') or die('Restricted Access');
 
 class EnglishConceptModelEnglishConcepts extends JModelList
 {

@@ -1,6 +1,9 @@
-DROP TABLE IF EXISTS `#__lesson`;
-DROP TABLE IF EXISTS `#__lesson_script`;
+DROP TABLE IF EXISTS `#__books`;
+DROP TABLE IF EXISTS `#__categories`;
+DROP TABLE IF EXISTS `#__levels`;
+DROP TABLE IF EXISTS `#__lessons`;
+DROP TABLE IF EXISTS `#__lesson_scripts`;
+DROP TABLE IF EXISTS `#__lesson_comprehensions`;
 DROP TABLE IF EXISTS `#__lesson_key_structures`;
-DROP TABLE IF EXISTS `#__lesson_comprehension`;
 DROP TABLE IF EXISTS `#__lesson_special_difficulties`;
-DROP TABLE IF EXISTS `#__lesson_exercises`;
+DROP TABLE IF EXISTS `#__lessons_exercises`;

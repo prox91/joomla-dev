@@ -31,7 +31,7 @@ class EnglishConceptHelperSideBar
 		$menuStructure['EC_SUBMENU_MASTER'] = array(
 			0 => array( 'EC_SUBMENU_BOOK_LIST', '&view=books' ),
 			1 => array( 'EC_SUBMENU_CATEGORY_LIST', '&view=categories'),
-			2 => array( 'EC_SUBMENU_CATEGORY_LIST', '&view=levels')
+			2 => array( 'EC_SUBMENU_LEVEL_LIST', '&view=levels')
 		);
 
 		$menuStructure['EC_SUBMENU_SYSTEM'] = array(
@@ -39,28 +39,29 @@ class EnglishConceptHelperSideBar
 		);
 
 		$html = '';
-		$html .= '<div id="ec_panel_left" class="span2">';
-		$html .= '<div id="ec-sidebar-navigate" class="span2">';
-		$html .= '<ul id="sr_side_navigation">';
+		$html .= '<div id="ec-panel-left" class="span2">';
+		$html .= '<ul id="ec-sidebar-navigation">';
 		
-		$html .= '<li class="sr_tools">
-					<a id="sr_dashboard" title="'.JText::_('SR_SUBMENU_DASHBOARD').'"
+		$html .= '<li class="ec-tools">
+					<a id="ec-dashboard" title="'.JText::_('EC_SUBMENU_DASHBOARD').'"
 					   href="'.JRoute::_('index.php?option=com_englishconcept').'">
 					</a>
 				  </li>';
 
 		$iconMap = array(
-			'asset' => 'icon-home',
-			'customer' => 'icon-user',
-			'reservation' => 'icon-key',
-			'coupon_extra' => 'icon-file-add',
-			'customer_feedback' => 'icon-comments-2',
+			'master' => 'icon-home',
+			//'customer' => 'icon-user',
+			//'reservation' => 'icon-key',
+			//'coupon_extra' => 'icon-file-add',
+			//'customer_feedback' => 'icon-comments-2',
 			'system' => 'icon-wrench'
 		);
 
 		foreach ($menuStructure as $menuName => $menuDetails)
 		{
-			$html .= '<li class="sr_toggle" id="sr_sn_'.strtolower(substr($menuName, 11)).'"><a class="sr_indicator">Open</a><a class="sr_title"><i class="'. $iconMap[strtolower(substr($menuName, 11))] .'"></i> '.JText::_($menuName).'</a>';
+			$html .= '<li class="ec-toggle" id="ec-sn_'.strtolower(substr($menuName, 11)).'">
+			            <a class="ec-indicator">Open</a>
+			            <a class="ec-title"><i class="'. $iconMap[strtolower(substr($menuName, 11))] .'"></i> '.JText::_($menuName).'</a>';
 			$html .= '<ul>';
 			foreach ($menuDetails as $menu)
 			{
