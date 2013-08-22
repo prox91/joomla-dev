@@ -8,18 +8,10 @@
  */
 defined('_JEXEC') or die('Restricted Access');
 
-// Import Joomla admin controller from the library
 jimport('joomla.application.component.controlleradmin');
 
-/**
- * HelloWorlds Controller
- */
 class EnglishConceptControllerEnglishConcepts extends JControllerAdmin
 {
-	/**
-	 * Proxy for getModel.
-	 * @since       2.5
-	 */
 	public function getModel($name = 'Lessons', $prefix = 'EnglishConeptModel')
 	{
 		$model = parent::getModel($name, $prefix, array('ignore_request' => true));

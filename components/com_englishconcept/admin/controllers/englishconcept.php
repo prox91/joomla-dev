@@ -8,9 +8,6 @@
  */
 defined('_JEXEC') or die('Restricted Access');
 
-/**
- * Class EnglishConceptControllerEnglishConcept
- */
 class EnglishConceptControllerEnglishConcept extends JControllerForm
 {
 
