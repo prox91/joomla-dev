@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
 	<fieldset>
-		<!-- Media Tab -->
-		<field name="bookName"
+
+		<field name="name"
 		       type="text"
 		       class="inputbox"
 		       description="Book name"
@@ -11,104 +11,29 @@
 		       required="true"
 		       labelclass="control-label"/>
 
-		<field name="lessonName"
+		<field name="alias"
 		       type="text"
 		       class="inputbox"
-		       label="Lesson name"
-		       description="Lesson name"
+		       label="Alias Name"
+		       description="Book Name Alias"
 		       size="30"
 		       required="true"
 		       labelclass="control-label"/>
 
-		<field name="lessonNameTrans"
+		<field name="img_url"
 		       type="text"
 		       class="inputbox"
-		       label="Lesson Translated Name"
-		       description="Lesson Translated Name"
+		       label="Cover Image"
+		       description="Book Cover Image"
 		       size="30"
 		       labelclass="control-label"/>
 
-		<field name="mediaScript"
-		       type="file"
-		       class="inputbox"
-		       label="Media Script"
-		       description="Media Script"
-		       size="30"
-		       labelclass="control-label"/>
-
-		<field name="lessonScript"
+		<field name="description"
 		       type="editor"
 		       class="inputbox"
-		       label="Lesson Script"
-		       description="Lesson Script"
-		       filter="safehtml" buttons="false" width="80%"
-		       labelclass="control-label"/>
-
-		<field name="lessonScriptTrans"
-		       type="editor"
-		       class="inputbox"
-		       label="Lesson Translated Script"
-		       description="Lesson Translated Script"
-		       filter="safehtml" buttons="false" width="80%"
-		       labelclass="control-label"/>
-
-		<!-- Comprehension Tab -->
-		<field name="compreQuesion"
-		       type="text"
-		       class="inputbox"
-		       label="Comprehension Question"
-		       description="Comprehension Question"
-		       size="30"
-		       labelclass="control-label"/>
-
-		<field name="compreQuesionTrans"
-		       type="text"
-		       class="inputbox"
-		       label="Compre Trans Question"
-		       description="Comprehension Translated Question"
-		       size="30"
-		       labelclass="control-label"/>
-
-		<!-- Key Structure Tab -->
-		<field name="keyStructScript"
-		       type="editor"
-		       class="inputbox"
-		       label="Key Struct Script"
-		       description="Key Structure Script"
-		       filter="safehtml" buttons="false" width="80%"
-		       labelclass="control-label"/>
-
-		<field name="keyStructScriptTrans"
-		       type="editor"
-		       class="inputbox"
-		       label="Key Struct Trans Script"
-		       description="Key Struct Translated Script"
-		       filter="safehtml" buttons="false" width="80%"
-		       labelclass="control-label"/>
-
-		<!-- Special Difficult Tab -->
-		<field name="specialDiffScript"
-		       type="editor"
-		       class="inputbox"
-		       label="Spec Diff Script"
-		       description="Special Difficult Script"
-		       filter="safehtml" buttons="false" width="80%"
-		       labelclass="control-label"/>
-
-		<field name="specialDiffScriptTrans"
-		       type="editor"
-		       class="inputbox"
-		       label="Spec Diff Trans Script"
-		       description="Special Difficult Translated Script"
-		       filter="safehtml" buttons="false" width="80%"
-		       labelclass="control-label"/>
-
-		<!-- Exercise Tab -->
-		<field name="exerciseQuestion"
-		       type="text"
-		       class="inputbox"
-		       label="Exercise Question"
-		       description="Exercise Question"
+		       label="Description"
+		       description="Book introduction/Description"
+		       filter="safehtml" buttons="false" width="90%"
 		       labelclass="control-label"/>
 
 		<field name="groups"

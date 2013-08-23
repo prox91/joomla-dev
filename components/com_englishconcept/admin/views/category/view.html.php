@@ -9,7 +9,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-class EnglishConceptViewCategory extends JViewLegacy
+class EnglishConceptViewCategory extends ECViewAdmin
 {
 	protected $state;
 	protected $item;

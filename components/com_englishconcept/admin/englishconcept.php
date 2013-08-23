@@ -11,6 +11,7 @@ defined('_JEXEC') or die('Restricted access');
 
 // require helper file
 JLoader::register('EnglishConceptHelper', dirname(__FILE__) . '/helpers/englishconcept.php');
+require_once (JPATH_ADMINISTRATOR . '/components/com_englishconcept/classes/ec.view.admin.php');
 
 // Get an instance of the controller
 $controller = JControllerLegacy::getInstance('EnglishConcept');
