@@ -20,9 +20,9 @@ class EnglishConceptControllerLevels extends JControllerAdmin
      * Proxy for getModel.
      * @since       2.5
      */
-    public function getModel($name = 'Levels', $prefix = 'EnglishConeptModel')
+    public function getModel($name = 'Levels', $prefix = 'EnglishConceptModel', $config = array('ignore_request' => true))
     {
-        $model = parent::getModel($name, $prefix, array('ignore_request' => true));
+        $model = parent::getModel($name, $prefix, $config);
         return $model;
     }
 }

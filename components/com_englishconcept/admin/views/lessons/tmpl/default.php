@@ -50,7 +50,7 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 <div class="ec-contain">
 	<?php echo $this->sidebar; ?>
 	<div id="ec-panel-right" class="span10">
-		<form action="<?php echo JRoute::_('index.php?option=com_englishconcept&view=books'); ?>" method="post" name="adminForm" id="adminForm">
+		<form action="<?php echo JRoute::_('index.php?option=com_englishconcept&view=lessons'); ?>" method="post" name="adminForm" id="adminForm">
 			<div class="ec-main-container">
 				<div id="filter-bar" class="btn-toolbar">
 					<div class="filter-search btn-group pull-left">
@@ -91,7 +91,7 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 						</th>
 						<th width="20%">
 							<?php //echo JHtml::_('grid.sort', 'JCATEGORY', 'category_title', $listDirn, $listOrder); ?>
-							Book Name
+							Lesson Name
 						</th>
 						<th width="40">
 							<?php //echo JHtml::_('grid.sort', 'JGRID_HEADING_CREATED_BY', 'a.created_by', $listDirn, $listOrder); ?>
@@ -131,7 +131,7 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 							<td class="center">
 								<?php //echo JHtml::_('jgrid.published', $item->state, $i, 'articles.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
 								<?php //echo $item->status; ?>
-								<?php echo JHtml::_('jgrid.published', $item->state, $i, 'books.', 'cb'); ?>
+								<?php echo JHtml::_('jgrid.published', $item->published, $i, '', 'cb'); ?>
 							</td>
 							<td class="center">
 								<?php echo (int) $item->id; ?>

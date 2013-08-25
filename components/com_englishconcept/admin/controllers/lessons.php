@@ -14,13 +14,13 @@ jimport('joomla.application.component.controlleradmin');
 /**
  * HelloWorlds Controller
  */
-class EnglishConceptControllerCategories extends JControllerAdmin
+class EnglishConceptControllerLessons extends JControllerAdmin
 {
     /**
      * Proxy for getModel.
      * @since       2.5
      */
-    public function getModel($name = 'Categories', $prefix = 'EnglishConceptModel', $config = array('ignore_request' => true))
+    public function getModel($name = 'Lessons', $prefix = 'EnglishConceptModel', $config = array('ignore_request' => true))
     {
         $model = parent::getModel($name, $prefix, $config);
         return $model;

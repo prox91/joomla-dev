@@ -12,9 +12,9 @@ jimport('joomla.application.component.controlleradmin');
 
 class EnglishConceptControllerEnglishConcepts extends JControllerAdmin
 {
-	public function getModel($name = 'Lessons', $prefix = 'EnglishConeptModel')
+	public function getModel($name = 'Lessons', $prefix = 'EnglishConeptModel', $config = array('ignore_request' => true))
 	{
-		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
+		$model = parent::getModel($name, $prefix, $config);
 		return $model;
 	}
 }

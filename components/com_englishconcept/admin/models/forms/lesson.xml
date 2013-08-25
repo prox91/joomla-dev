@@ -2,11 +2,38 @@
 <form>
 	<fieldset>
 
+		<field name="book_id"
+		       type="books"
+		       class="inputbox"
+		       label="Book Name"
+		       description="Book Name"
+		       size="30"
+		       required="true"
+		       labelclass="control-label"/>
+
+		<field name="cat_id"
+		       type="categories"
+		       class="inputbox"
+		       label="Category Name"
+		       description="Category Name"
+		       size="30"
+		       required="true"
+		       labelclass="control-label"/>
+
+		<field name="level_id"
+		       type="levels"
+		       class="inputbox"
+		       label="Level Name"
+		       description="Level Name"
+		       size="30"
+		       required="true"
+		       labelclass="control-label"/>
+
 		<field name="name"
 		       type="text"
 		       class="inputbox"
-		       description="Book name"
-		       label="Book Name"
+		       description="Lesson name"
+		       label="Lesson Name"
 		       size="30"
 		       required="true"
 		       labelclass="control-label"/>
@@ -15,17 +42,9 @@
 		       type="text"
 		       class="inputbox"
 		       label="Alias Name"
-		       description="Book Name Alias"
+		       description="Lesson Name Alias"
 		       size="30"
 		       required="true"
-		       labelclass="control-label"/>
-
-		<field name="img_url"
-		       type="file"
-		       class="inputbox"
-		       label="Cover Image"
-		       description="Book Cover Image"
-		       size="30"
 		       labelclass="control-label"/>
 
 		<field name="description"

@@ -31,7 +31,8 @@ class EnglishConceptHelperSideBar
 		$menuStructure['EC_SUBMENU_MASTER'] = array(
 			0 => array( 'EC_SUBMENU_BOOK_LIST', '&view=books' ),
 			1 => array( 'EC_SUBMENU_CATEGORY_LIST', '&view=categories'),
-			2 => array( 'EC_SUBMENU_LEVEL_LIST', '&view=levels')
+			2 => array( 'EC_SUBMENU_LEVEL_LIST', '&view=levels'),
+			3 => array( 'EC_SUBMENU_LESSON_LIST', '&view=lessons')
 		);
 
 		$menuStructure['EC_SUBMENU_SYSTEM'] = array(
