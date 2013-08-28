@@ -36,7 +36,7 @@ defined('_JEXEC') or die('Restricted Access');
                 });
                 Joomla.submitbutton = function(task)
                 {
-                    if (task == 'englishconcept.cancel' || jQuery('#itemForm').valid())
+                    if (task == 'level.cancel' || jQuery('#itemForm').valid())
                     {
                         <?php //echo $this->form->getField('book')->save(); ?>
                         Joomla.submitform(task, document.getElementById('itemForm'));
