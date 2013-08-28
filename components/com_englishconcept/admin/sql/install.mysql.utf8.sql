@@ -117,8 +117,8 @@ CREATE TABLE IF NOT EXISTS `#__ec_lesson_comprehensions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
-DROP TABLE IF EXISTS `#__ec_lesson_key_structures`;
-CREATE TABLE IF NOT EXISTS `#__ec_lesson_key_structures` (
+DROP TABLE IF EXISTS `#__ec_lesson_grammars`;
+CREATE TABLE IF NOT EXISTS `#__ec_lesson_grammars` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lesson_id` int(11) NOT NULL,
   `text` text DEFAULT '',
@@ -129,8 +129,8 @@ CREATE TABLE IF NOT EXISTS `#__ec_lesson_key_structures` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
-DROP TABLE IF EXISTS `#__ec_lesson_special_difficulties`;
-CREATE TABLE IF NOT EXISTS `#__ec_lesson_special_difficulties` (
+DROP TABLE IF EXISTS `#__ec_lesson_usages`;
+CREATE TABLE IF NOT EXISTS `#__ec_lesson_usages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lesson_id` int(11) NOT NULL,
   `text` text DEFAULT '',
