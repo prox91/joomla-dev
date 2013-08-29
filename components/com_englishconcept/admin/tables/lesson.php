@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 class EnglishConceptTableLesson extends JTable
 {
-	function __construct(&$_db)
+	function __construct($_db)
 	{
 		parent::__construct('#__ec_lessons', 'id', $_db);
 	}

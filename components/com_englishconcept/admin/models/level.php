@@ -160,7 +160,7 @@ class EnglishConceptModelLevel extends JModelAdmin
 		$user = JFactory::getUser();
 
 		$table->name		= htmlspecialchars_decode($table->name, ENT_QUOTES);
-		$table->modified_date	= $date->toSql();
-		$table->modified_by		= $user->get('id');
+		$table->modified	= $date->toSql();
+		$table->modified_by	= $user->get('id');
 	}
 }

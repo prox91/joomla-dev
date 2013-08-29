@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+
+		<field name="lesson_id"
+		       type="lessons"
+		       class="inputbox"
+		       label="Lesson Name"
+		       description="Lesson Name"
+		       size="30"
+		       required="true"
+		       labelclass="control-label"/>
+
+		<field name="description"
+		       type="editor"
+		       class="inputbox"
+		       label="Description"
+		       description="Book introduction/Description"
+		       filter="safehtml" buttons="false" width="90%"
+		       labelclass="control-label"/>
+
+		<field name="groups"
+		       type="hidden"/>
+		<field name="bac"
+		       type="hidden"/>
+
+	</fieldset>
+</form>

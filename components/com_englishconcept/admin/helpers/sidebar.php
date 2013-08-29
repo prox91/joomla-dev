@@ -32,7 +32,15 @@ class EnglishConceptHelperSideBar
 			0 => array( 'EC_SUBMENU_BOOK_LIST', '&view=books' ),
 			1 => array( 'EC_SUBMENU_CATEGORY_LIST', '&view=categories'),
 			2 => array( 'EC_SUBMENU_LEVEL_LIST', '&view=levels'),
-			3 => array( 'EC_SUBMENU_LESSON_LIST', '&view=lessons')
+			3 => array( 'EC_SUBMENU_LESSON_LIST', '&view=lessons'),
+		);
+
+		$menuStructure['EC_SUBMENU_CONTENT'] = array(
+			0 => array( 'EC_SUBMENU_COMPREHENSION_LIST', '&view=comprehensions' ),
+			1 => array( 'EC_SUBMENU_COMPOSITION_LIST', '&view=compositions'),
+			2 => array( 'EC_SUBMENU_PRECIS_LIST', '&view=precises'),
+			3 => array( 'EC_SUBMENU_GRAMMAR_LIST', '&view=grammars'),
+			4 => array( 'EC_SUBMENU_USAGE_LIST', '&view=usages'),
 		);
 
 		$menuStructure['EC_SUBMENU_SYSTEM'] = array(
@@ -52,9 +60,9 @@ class EnglishConceptHelperSideBar
 		$iconMap = array(
 			'master' => 'icon-home',
 			//'customer' => 'icon-user',
-			//'reservation' => 'icon-key',
-			//'coupon_extra' => 'icon-file-add',
-			//'customer_feedback' => 'icon-comments-2',
+			'content' => 'icon-key',
+			//'' => 'icon-file-add',
+			//'' => 'icon-comments-2',
 			'system' => 'icon-wrench'
 		);
 
