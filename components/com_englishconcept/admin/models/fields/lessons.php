@@ -33,11 +33,11 @@ class JFormFieldLessons extends JFormField
 		{
 			foreach($results as $item)
 			{
-				$options[] = JHTML::_('select.option', $item->id, $item->name);
+				$options[] = JHTML::_('select.option', $item->id, $item->id . ' - ' . $item->title);
 			}
 		}
 
-		$html[] = JHtml::_('select.genericlist', $options, $this->name, null,'value','text', $selectedId);
+		$html[] = JHtml::_('select.genericlist', $options, $this->title, null,'value','text', $selectedId);
 
 		return implode($html);
 	}

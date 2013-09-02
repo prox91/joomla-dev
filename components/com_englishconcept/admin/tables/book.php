@@ -1,9 +1,6 @@
 <?php
 defined('_JEXEC') or die;
 
-/**
- * Class EnglishConceptTableBook
- */
 class EnglishConceptTableBook extends JTable
 {
 	function __construct($_db)
@@ -11,4 +8,3 @@ class EnglishConceptTableBook extends JTable
 		parent::__construct('#__ec_books', 'id', $_db);
 	}
 }
-

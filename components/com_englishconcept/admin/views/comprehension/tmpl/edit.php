@@ -52,25 +52,16 @@ defined('_JEXEC') or die('Restricted Access');
                 class="form-validate form-horizontal">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#general" data-toggle="tab"><?php echo JText::_('General')?></a></li>
+	                <li class=""><a href="#question" data-toggle="tab"><?php echo JText::_('Question')?></a></li>
                 </ul>
 
                 <div class="tab-content">
-                    <div class="tab-pane active" id="generall">
-                        <fieldset class="adminform" id="exercise-tab">
-                            <div class="control-group">
-                                <?php echo $this->form->getLabel('lesson_id'); ?>
-                                <div class="controls">
-                                    <?php echo $this->form->getInput('lesson_id'); ?>
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <?php echo $this->form->getLabel('description'); ?>
-                                <div class="controls">
-                                    <?php echo $this->form->getInput('description'); ?>
-                                </div>
-                            </div>
-                        </fieldset>
+                    <div class="tab-pane active" id="general">
+	                    <?php echo $this->loadTemplate('general'); ?>
                     </div>
+	                <div class="tab-pane" id="question">
+		                <?php echo $this->loadTemplate('question'); ?>
+	                </div>
                 </div>
 
                 <input type="hidden" name="task" value="" />

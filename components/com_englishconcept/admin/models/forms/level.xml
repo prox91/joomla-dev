@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
     <fieldset>
+	    <field name="id"
+	           type="text"
+	           default="0"
+	           label="ID"
+	           description="ID"
+	           readonly="true"
+	           class="readonly"
+	           labelclass="control-label"/>
 
         <field name="name"
                type="text"
@@ -30,8 +38,5 @@
 
         <field name="groups"
                type="hidden"/>
-        <field name="bac"
-               type="hidden"/>
-
     </fieldset>
 </form>

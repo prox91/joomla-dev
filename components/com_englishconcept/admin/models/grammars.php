@@ -31,4 +31,3 @@ class EnglishConceptModelGrammars extends JModelList
         return $query;
     }
 }
-

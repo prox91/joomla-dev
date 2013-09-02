@@ -8,4 +8,3 @@ class EnglishConceptTableLevel extends JTable
 		parent::__construct('#__ec_levels', 'id', $_db);
 	}
 }
-

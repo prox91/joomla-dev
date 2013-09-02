@@ -31,4 +31,3 @@ class EnglishConceptModelLessons extends JModelList
         return $query;
     }
 }
-

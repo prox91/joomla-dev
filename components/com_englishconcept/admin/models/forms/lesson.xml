@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
 	<fieldset>
+		<field name="id"
+		       type="text"
+		       default="0"
+		       label="ID"
+		       description="ID"
+		       readonly="true"
+		       class="readonly"
+		       labelclass="control-label"/>
 
 		<field name="book_id"
 		       type="books"
@@ -44,21 +52,74 @@
 		       label="Alias Name"
 		       description="Lesson Name Alias"
 		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="title"
+		       type="text"
+		       class="inputbox"
+		       label="Title"
+		       description="Title of Lesson"
+		       size="30"
 		       required="true"
 		       labelclass="control-label"/>
 
 		<field name="description"
-		       type="editor"
+		       type="textarea"
 		       class="inputbox"
 		       label="Description"
 		       description="Book introduction/Description"
 		       filter="safehtml" buttons="false" width="90%"
 		       labelclass="control-label"/>
 
+		<field name="title_trans"
+		       type="text"
+		       class="inputbox"
+		       label="Translated Title"
+		       description="The translated title of lesson"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="audio_upload"
+		       type="file"
+		       class="inputbox"
+		       label="Lesson Recording"
+		       description="The audio script of lesson"
+		       labelclass="control-label"/>
+
+		<field name="audio_url"
+		       type="text"
+		       class="inputbox"
+		       label=""
+		       description=""
+		       size="30"
+		       readonly="true"
+		       labelclass="control-label"/>
+
+		<field name="text"
+		       type="editor"
+		       class="inputbox"
+		       label="Text Script"
+		       description="The lesson text script"
+		       filter="safehtml" buttons="false" width="90%"
+		       labelclass="control-label"/>
+
+		<field name="text_trans"
+		       type="editor"
+		       class="inputbox"
+		       label="Translated Text Script"
+		       description="The lesson translated text script"
+		       filter="safehtml" buttons="false" width="90%"
+		       labelclass="control-label"/>
+
+		<field name="published"
+		       type="Publishes"
+		       class="inputbox"
+		       label="State"
+		       description="State of lesson"
+		       filter="safehtml" buttons="false" width="90%"
+		       labelclass="control-label"/>
+
 		<field name="groups"
 		       type="hidden"/>
-		<field name="bac"
-		       type="hidden"/>
-
 	</fieldset>
 </form>

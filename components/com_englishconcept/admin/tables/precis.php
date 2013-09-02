@@ -1,9 +1,6 @@
 <?php
 defined('_JEXEC') or die;
 
-/**
- * Class EnglishConceptTableBook
- */
 class EnglishConceptTablePrecis extends JTable
 {
 	function __construct($_db)
@@ -11,4 +8,3 @@ class EnglishConceptTablePrecis extends JTable
 		parent::__construct('#__ec_lesson_precises', 'id', $_db);
 	}
 }
-

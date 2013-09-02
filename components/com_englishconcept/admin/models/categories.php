@@ -31,4 +31,3 @@ class EnglishConceptModelCategories extends JModelList
         return $query;
     }
 }
-

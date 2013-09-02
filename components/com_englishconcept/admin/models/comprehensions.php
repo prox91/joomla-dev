@@ -31,4 +31,3 @@ class EnglishConceptModelComprehensions extends JModelList
         return $query;
     }
 }
-

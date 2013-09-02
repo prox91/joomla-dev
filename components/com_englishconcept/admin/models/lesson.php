@@ -159,6 +159,19 @@ class EnglishConceptModelLesson extends JModelAdmin
 		$date = JFactory::getDate();
 		$user = JFactory::getUser();
 
+		$audioFile = JFactory::getApplication()->input->files->get('jform', '', 'array');
+		$audioFile = $audioFile['audio_upload'];
+		// Make the filename safe
+		$audioFile['name'] = JFile::makeSafe($audioFile['name']);
+		$fileExt = explode('.', $audioFile['name']);
+		if(isset($audioFile['name']))
+		{
+			$hash_name      = md5($audioFile['name']);
+			if($hash_name == md5(JFile::makeSafe($table->audio_url)))
+			{
+				$table->audio_url_hash	= $hash_name . '.' . $fileExt[1];
+			}
+		}
 		$table->name		= htmlspecialchars_decode($table->name, ENT_QUOTES);
 		$table->modified	= $date->toSql();
 		$table->modified_by	= $user->get('id');

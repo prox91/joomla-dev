@@ -31,4 +31,3 @@ class EnglishConceptModelBooks extends JModelList
         return $query;
     }
 }
-

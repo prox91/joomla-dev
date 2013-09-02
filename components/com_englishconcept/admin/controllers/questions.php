@@ -11,9 +11,6 @@ defined('_JEXEC') or die('Restricted Access');
 // Import Joomla admin controller from the library
 jimport('joomla.application.component.controlleradmin');
 
-/**
- * HelloWorlds Controller
- */
 class EnglishConceptControllerQuestions extends JControllerAdmin
 {
     /**

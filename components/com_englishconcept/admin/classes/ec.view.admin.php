@@ -10,13 +10,11 @@ require_once (JPATH_COMPONENT . '/helpers/sidebar.php');
 
 class ECViewAdmin extends JViewLegacy
 {
-
     public function __construct($config = array())
     {
         // Side bar
         $this->sidebar = EnglishConceptHelperSideBar::getSideNavigation();
 
         parent::__construct($config);
-
     }
 }

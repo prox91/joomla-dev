@@ -122,7 +122,7 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 								<?php echo $this->escape($item->lesson_id); ?>
 							</td>
 							<td>
-								<?php echo $this->escape($item->description); ?>
+								<?php echo $item->description; ?>
 							</td>
 							<td class="center">
 								<?php echo (int) $item->id; ?>

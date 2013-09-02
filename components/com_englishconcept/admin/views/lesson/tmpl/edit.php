@@ -25,6 +25,12 @@ defined('_JEXEC') or die('Restricted Access');
 		}
 		Joomla.tableOrdering(order, dirn, '');
 	}
+
+	jQuery(document).ready(function() {
+		jQuery('#jform_audio_upload').live('change', function(){
+			jQuery('#jform_audio_url').val(jQuery(this).val());
+		});
+	});
 </script>
 <div class="ec-contain">
     <?php echo $this->sidebar; ?>
@@ -52,49 +58,16 @@ defined('_JEXEC') or die('Restricted Access');
                 class="form-validate form-horizontal">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#general" data-toggle="tab"><?php echo JText::_('General')?></a></li>
+	                <li class=""><a href="#media" data-toggle="tab"><?php echo JText::_('Content')?></a></li>
                 </ul>
 
                 <div class="tab-content">
-                    <div class="tab-pane active" id="generall">
-                        <fieldset class="adminform" id="exercise-tab">
-	                        <div class="control-group">
-		                        <?php echo $this->form->getLabel('book_id'); ?>
-		                        <div class="controls">
-			                        <?php echo $this->form->getInput('book_id'); ?>
-		                        </div>
-	                        </div>
-	                        <div class="control-group">
-		                        <?php echo $this->form->getLabel('cat_id'); ?>
-		                        <div class="controls">
-			                        <?php echo $this->form->getInput('cat_id'); ?>
-		                        </div>
-	                        </div>
-	                        <div class="control-group">
-		                        <?php echo $this->form->getLabel('level_id'); ?>
-		                        <div class="controls">
-			                        <?php echo $this->form->getInput('level_id'); ?>
-		                        </div>
-	                        </div>
-                            <div class="control-group">
-                                <?php echo $this->form->getLabel('name'); ?>
-                                <div class="controls">
-                                    <?php echo $this->form->getInput('name'); ?>
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <?php echo $this->form->getLabel('alias'); ?>
-                                <div class="controls">
-                                    <?php echo $this->form->getInput('alias'); ?>
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <?php echo $this->form->getLabel('description'); ?>
-                                <div class="controls">
-                                    <?php echo $this->form->getInput('description'); ?>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
+	                <div class="tab-pane active" id="general">
+		                <?php echo $this->loadTemplate('general'); ?>
+	                </div>
+	                <div class="tab-pane" id="media">
+		                <?php echo $this->loadTemplate('media'); ?>
+	                </div>
                 </div>
 
                 <input type="hidden" name="task" value="" />

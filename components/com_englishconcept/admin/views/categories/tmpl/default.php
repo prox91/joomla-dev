@@ -126,7 +126,7 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 								<?php echo $this->escape($item->name); ?>
 							</td>
 							<td>
-								<?php echo $this->escape($item->description); ?>
+								<?php echo $item->description; ?>
 							</td>
 							<td class="center">
 								<?php //echo JHtml::_('jgrid.published', $item->state, $i, 'articles.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
