@@ -159,7 +159,6 @@ class EnglishConceptModelComprehension extends JModelAdmin
 		$date = JFactory::getDate();
 		$user = JFactory::getUser();
 
-		$table->name		= htmlspecialchars_decode($table->name, ENT_QUOTES);
 		$table->modified	= $date->toSql();
 		$table->modified_by	= $user->get('id');
 	}

@@ -26,14 +26,6 @@
 		       filter="safehtml" buttons="false" width="90%"
 		       labelclass="control-label"/>
 
-		<field name="description"
-		       type="editor"
-		       class="inputbox"
-		       label="Description"
-		       description="Book introduction/Description"
-		       filter="safehtml" buttons="false" width="90%"
-		       labelclass="control-label"/>
-
 		<!-- Question tab-->
 
 		<field name="groups"

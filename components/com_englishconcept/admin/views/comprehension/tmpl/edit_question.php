@@ -35,7 +35,7 @@ defined('_JEXEC') or die('Restricted Access');
 					<a title="Remove" class="delete-tier-row btn"><i class="icon-minus-sign"></i></a>
 				</td>
 				<td width="8%">
-					<span class="add-on"><?php echo $i ?></span>
+					<span class="num"><?php echo $i ?></span>
 				</td>
 				<td width="80%">
 					<input type="text" value="<?php echo $value->title ?>" name="jform[question][<?php echo $i ?>][title]" class="">
@@ -51,3 +51,25 @@ defined('_JEXEC') or die('Restricted Access');
 	?>
 	</tbody>
 </table>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $('#new-question-tier').click( function(event) {
+            event.preventDefault();
+            initialRowQuestion();
+        });
+
+        function initialRowQuestion() {
+            $('#comprehension_question_tbl tbody').append('<tr id="<?php echo 1; ?>"></tr>');
+
+            var rowData = $('#' + 1);
+            var htmlStr = "";
+            htmlStr += "<td><a class='delete-tier-row btn'><i class='icon-minus-sign'></i></a></td>";
+            htmlStr += "<td width='8%'><span class='num'><?php echo 1 ?></span></td>";
+            htmlStr += "<td width='80%'><input type='text' value='<?php echo 1 ?>' name='jform[question][<?php echo 1 ?>][title]' class=''></td>";
+            htmlStr += "<td width='10%'>1</td>";
+
+            rowData.append(htmlStr);
+        }
+    });
+</script>

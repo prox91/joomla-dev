@@ -37,7 +37,7 @@ class JFormFieldLessons extends JFormField
 			}
 		}
 
-		$html[] = JHtml::_('select.genericlist', $options, $this->title, null,'value','text', $selectedId);
+		$html[] = JHtml::_('select.genericlist', $options, $this->name, null,'value','text', $selectedId);
 
 		return implode($html);
 	}

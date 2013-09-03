@@ -23,29 +23,29 @@ class EnglishConceptTableLesson extends JTable
 	{
 		$file = JFactory::getApplication()->input->files->get('jform', '', 'array');
 		$file = $file['audio_upload'];
-		// Make the filename safe
-		$audioFile = JFile::makeSafe($file['name']);
-		$fileExt = explode('.', $audioFile);
-		if(isset($audioFile))
-		{
-			$filepath = JPath::clean(JPATH_SITE . '/media/englishconcept/audio/' . strtolower(md5($file['name'])) . '.' . $fileExt[1]);
-			$objectFile = new JObject($file);
-			$objectFile->filepath = $filepath;
+        if(empty($file['error']))
+        {
+            // Make the filename safe
+            $audioFile = JFile::makeSafe($file['name']);
+            $fileExt = explode('.', $audioFile);
+            if(isset($audioFile))
+            {
+                $filepath = JPath::clean(JPATH_SITE . '/media/englishconcept/audio/' . strtolower(md5($file['name'])) . '.' . $fileExt[1]);
+                $objectFile = new JObject($file);
+                $objectFile->filepath = $filepath;
 
-			if (JFile::exists($objectFile->filepath))
-			{
-				JFile::delete($objectFile->filepath);
-			}
+                if (JFile::exists($objectFile->filepath))
+                {
+                    JFile::delete($objectFile->filepath);
+                }
 
-			if (JFile::upload($objectFile->tmp_name, $objectFile->filepath))
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-		return false;
+                if (!JFile::upload($objectFile->tmp_name, $objectFile->filepath))
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
 	}
 }
