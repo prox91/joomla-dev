@@ -162,4 +162,107 @@ class EnglishConceptModelComprehension extends JModelAdmin
 		$table->modified	= $date->toSql();
 		$table->modified_by	= $user->get('id');
 	}
+
+    /**
+     * Method to get a single record.
+     *
+     * @param   integer  $pk  The id of the primary key.
+     *
+     * @return  mixed    Object on success, false on failure.
+     *
+     * @since   11.1
+     */
+    public function getItem($pk = null)
+    {
+        $item = parent::getItem($pk);
+
+        if (!empty($item)) {
+            // Get data question for comprehension
+
+            $query = $this->_db->getQuery(true);
+            $query->select("*")
+                ->from("#__ec_lesson_comprehension_questions")
+                ->where("comprehension_id='" . $item->id . "'");
+            $this->_db->setQuery($query);
+
+            $questions = $this->_db->loadObjectList();
+            if (!empty($questions)) {
+                $item->questions = $questions;
+            }
+        }
+
+        return $item;
+    }
+
+
+    /**
+     * Method to save the form data.
+     *
+     * @param   array  $data  The form data.
+     *
+     * @return  boolean  True on success, False on error.
+     *
+     * @since   11.1
+     */
+    public function save($data)
+    {
+        if(parent::save($data))
+        {
+            $comprehension_id = '';
+            if(isset($data['id']))
+            {
+                // Delete old data
+                $q = $this->_db->getQuery(true);
+                $q->delete('#__ec_lesson_comprehension_questions')
+                    ->where('comprehension_id', $data['id']);
+                $this->_db->setQuery($q);
+                $this->_db->execute();
+
+                if ($error = $this->_db->getErrorMsg())
+                {
+                    $this->setError($error);
+                    return false;
+                }
+                $comprehension_id = $data['id'];
+            }
+            else
+            {
+                // Create
+                $comprehension_id = $this->_db->insertid();
+            }
+
+            // Save data question of comprehension
+            $input = JFactory::getApplication()->input;
+            $postData = $input->get('jform', '', 'ARRAY');
+            $questionList = $postData['question'];
+
+            if(is_array($questionList) && count($questionList) > 0)
+            {
+                $query = $this->_db->getQuery(true);
+                $query->clear()
+                      ->insert('#__ec_lesson_comprehension_questions')
+                      ->columns('comprehension_id, question');
+
+                foreach ($questionList['title'] as $key => $value)
+                {
+                    $query->values($comprehension_id . ',' . $this->_db->quote($value));
+                }
+
+                $this->_db->setQuery($query);
+                $this->_db->execute();
+
+                if ($error = $this->_db->getErrorMsg())
+                {
+                    $this->setError($error);
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

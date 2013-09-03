@@ -20,7 +20,6 @@ defined('_JEXEC') or die('Restricted Access');
 		<th><?php echo JText::_('EC_COMPREHENSION_QUESTION_ACTION'); ?></th>
 		<th><?php echo JText::_('EC_COMPREHENSION_QUESTION_NUM'); ?></th>
 		<th><?php echo JText::_('EC_COMPREHENSION_QUESTION_TITLE'); ?></th>
-		<th><?php echo JText::_('EC_COMPREHENSION_QUESTION_STATUS'); ?></th>
 	</tr>
 	</thead>
 
@@ -32,16 +31,14 @@ defined('_JEXEC') or die('Restricted Access');
 	?>
 			<tr id="question-tier-<?php echo $i ?>" class="question-tier">
 				<td width="2%">
-					<a title="Remove" class="delete-tier-row btn"><i class="icon-minus-sign"></i></a>
+					<a title="Remove" class="delete-question-tier btn"><i class="icon-minus-sign"></i></a>
 				</td>
 				<td width="8%">
 					<span class="num"><?php echo $i ?></span>
 				</td>
-				<td width="80%">
-					<input type="text" value="<?php echo $value->title ?>" name="jform[question][<?php echo $i ?>][title]" class="">
-				</td>
-				<td width="10%">
-					<?php echo JHtml::_('jgrid.published', $value->published, $i, '', 'cb'); ?>
+				<td width="90%">
+                    <input type="hidden" value="<?php echo $value->id ?>" name="jform[question][id][<?php echo $value->id ?>]">
+					<input type="text" value="<?php echo $value->question ?>" name="jform[question][title][<?php echo $i ?>]" class="">
 				</td>
 			</tr>
 	<?php
@@ -53,23 +50,44 @@ defined('_JEXEC') or die('Restricted Access');
 </table>
 
 <script type="text/javascript">
+    var rowId = 1;
+    <?php
+    if (isset($this->item->questions) && is_array($this->item->questions)) :
+        if(count($this->item->questions) > 0) :
+    ?>
+        rowId = <?php echo count($this->item->questions) + 1; ?>
+    <?
+        endif;
+    endif;
+    ?>
     jQuery(document).ready(function($) {
-        $('#new-question-tier').click( function(event) {
+        $('#new-question-tier').click(function(event) {
             event.preventDefault();
-            initialRowQuestion();
+            initialRowQuestion(rowId);
+            rowId++;
         });
 
-        function initialRowQuestion() {
-            $('#comprehension_question_tbl tbody').append('<tr id="<?php echo 1; ?>"></tr>');
+        function initialRowQuestion(rowId) {
+            $('#comprehension_question_tbl tbody').append('<tr id="'+rowId+'"></tr>');
 
-            var rowData = $('#' + 1);
+            var rowData = $('#' + rowId);
             var htmlStr = "";
-            htmlStr += "<td><a class='delete-tier-row btn'><i class='icon-minus-sign'></i></a></td>";
-            htmlStr += "<td width='8%'><span class='num'><?php echo 1 ?></span></td>";
-            htmlStr += "<td width='80%'><input type='text' value='<?php echo 1 ?>' name='jform[question][<?php echo 1 ?>][title]' class=''></td>";
-            htmlStr += "<td width='10%'>1</td>";
+            htmlStr += "<td width='2%'><a class='delete-question-tier btn'><i class='icon-minus-sign'></i></a></td>";
+            htmlStr += "<td width='8%'><span class='num'>"+rowId+"</span></td>";
+            htmlStr += "<input type='hidden' value='' name='jform[question][id]["+rowId+"]'>";
+            htmlStr += "<td width='90%'><input type='text' value='' name='jform[question][title]["+rowId+"]' class=''></td>";
 
             rowData.append(htmlStr);
+            bindDeleteQuestionRowEvent();
         }
+
+        var bindDeleteQuestionRowEvent = function() {
+            $('.delete-question-tier').unbind().click(function() {
+                $(this).parent().parent().remove();
+                rowId--;
+            });
+        };
+
+        bindDeleteQuestionRowEvent();
     });
 </script>
