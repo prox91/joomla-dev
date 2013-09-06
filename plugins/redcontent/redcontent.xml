@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="search">
+	<name>plg_search_redcontent</name>
+    <name>redCONTENT Search Plugin</name>
+    <creationDate>12-11-2012</creationDate>
+    <author>Redweb.dk</author>
+    <authorEmail>email@redweb.dk</authorEmail>
+    <authorUrl>www.redcomponent.com</authorUrl>
+    <copyright>www.redcomponent.com</copyright>
+    <license>GNU/GPL</license>
+    <version>1.1</version>
+    <description>PLG_SEARCH_REDCONTENT_XML_DESCRIPTION</description>
+
+	<files>
+		<filename plugin="redcontent">redcontent.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.plg_search_redcontent.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.plg_search_redcontent.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="search_redcontent_limit" type="text"
+					default="50"
+					description="PLG_SEARCH_REDCONTENT_FIELD_SEARCHLIMIT_DESC"
+					label="PLG_SEARCH_REDCONTENT_FIELD_SEARCHLIMIT_LABEL"
+					size="5"
+				/>
+
+				<field name="search_redcontent" type="radio"
+					default="0"
+					description="PLG_SEARCH_REDCONTENT_FIELD_CONTENT_DESC"
+					label="PLG_SEARCH_REDCONTENT_FIELD_CONTENT_LABEL"
+				>
+					<option value="0">JOFF</option>
+					<option value="1">JON</option>
+				</field>
+
+			</fieldset>
+		</fields>
+	</config>
+</extension>
