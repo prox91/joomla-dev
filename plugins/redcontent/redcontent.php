@@ -35,9 +35,6 @@ class plgSearchRedcontent extends JPlugin
 		$groups	= implode(',', $user->getAuthorisedViewLevels());
 		$tag = JFactory::getLanguage()->getTag();
 
-        //$menu   = $app->getMenu();
-        //$activeMenuId = $menu->getActive();
-
 		require_once JPATH_SITE . '/components/com_content/helpers/route.php';
 		require_once JPATH_ADMINISTRATOR . '/components/com_search/helpers/search.php';
 
@@ -70,10 +67,11 @@ class plgSearchRedcontent extends JPlugin
         {
             $session = JFactory::getSession();
             $session->set('searchword', (int)($text), 'redcontent_search');
-            $categoryListSearchByWeek = $session->get('categoryIdList', 'SearchByWeekModule');
+            $categoryListSearchByWeek = $session->get('categoryIdList', '', 'SearchByWeekModule');
+	        $session->clear('categoryIdList', 'SearchByWeekModule');
 
             $week = is_numeric($text) ? $text : 0;
-            $date = date('Y-m-d H:m:s', strtotime('-' . $week . ' week'));
+            $dateFromWeek = date('Y-m-d H:m:s', strtotime('-' . $week . ' week'));
         }
 
 		if ($text == '') {
@@ -87,7 +85,7 @@ class plgSearchRedcontent extends JPlugin
                 {
                     if($week > 0)
                     {
-                        $wheres2[] = "DATE(a.timecreated) >= DATE('" . $date . "')";
+                        $wheres2[] = "DATE(a.timecreated) >= DATE('" . $dateFromWeek . "')";
                     }
                 }
                 else
@@ -109,7 +107,7 @@ class plgSearchRedcontent extends JPlugin
                 {
                     if($week > 0)
                     {
-                        $wheres[] = "DATE(a.timecreated) >= DATE('" . $date . "')";
+                        $wheres[] = "DATE(a.timecreated) >= DATE('" . $dateFromWeek . "')";
                     }
                 }
                 else
@@ -177,7 +175,6 @@ class plgSearchRedcontent extends JPlugin
 
 			$db->setQuery($query, 0, $limit);
 			$list = $db->loadObjectList();
-			$limit -= count($list);
 
 			if (isset($list))
 			{
@@ -191,10 +188,10 @@ class plgSearchRedcontent extends JPlugin
                         {
                             foreach($categoriesArr as $category)
                             {
-                                $key = array_search($category, $categoryListSearchByWeek);
-                                if($key !== false)
+                                $arrKey = array_search($category, $categoryListSearchByWeek);
+                                if($arrKey !== false)
                                 {
-                                    $catid = $categoryListSearchByWeek[$key];
+                                    $catid = $categoryListSearchByWeek[$arrKey];
                                     break;
                                 }
                             }
@@ -236,6 +233,13 @@ class plgSearchRedcontent extends JPlugin
             $categoryList = $sesson->get('categoryIdList', '', 'SearchModule');
             $sesson->clear('categoryIdList', 'SearchModule');
         }
+
+		if(!empty($searchByWeek) && $searchByWeek && !empty($categoryListSearchByWeek) && count($categoryListSearchByWeek) > 0)
+		{
+			$categoryList = $categoryListSearchByWeek;
+		}
+
+		$limit -= count($list);
 
 		$results = array();
 		if (is_array($rows) && count($rows))
