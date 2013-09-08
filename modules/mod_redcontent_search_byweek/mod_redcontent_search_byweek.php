@@ -14,5 +14,4 @@ $session->set('categoryIdList', $categoryList, 'SearchByWeekModule');
 $limit	= $params->get('limit');
 $Itemid	= $params->get('itemid');
 
-
 require JModuleHelper::getLayoutPath('mod_redcontent_search_byweek', $params->get('layout', 'default'));
