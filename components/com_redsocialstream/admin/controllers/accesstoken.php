@@ -140,6 +140,7 @@ class AccessTokenController extends JController
                 break;
 
             case 'twitter':
+
                 $twitterProfileId  = $session->get('twitterProfileId');
                 $session->clear('twitterProfileId');
 
@@ -186,6 +187,7 @@ class AccessTokenController extends JController
                 break;
 
             case 'linkedin':
+
                 $code = $input->get('code', '', 'STRING');
                 $linkedinProfileId = $session->get('linkedinProfileId');
                 $callbackUrl = $session->get('callbackUrl');

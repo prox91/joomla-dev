@@ -40,40 +40,39 @@ class RedSocialStreamHelper
 
     public static function requestFbAccessToken($appId, $appSecret, $callbackUrl, $code)
     {
+         //$callbackUrl = urlencode(JURI::base() ."index.php?option=com_redsocialstream&controller=accesstoken&task=getaccesstoken&view=accesstoken");
+         $data = array(
+             'client_id' => $appId,
+             'redirect_uri' => $callbackUrl,
+             'client_secret' => $appSecret,
+             'code' => $code
+         );
+
+         $url = self::toUrl(self::$_facebookAuthorizeUrl, $data);
+
+         try
+         {
+             $http = RedHttpFactory::getHttp();
+             $response = $http->get($url);
+             $accessData = json_decode($response->body);
+
+             if(isset($accessData->error))
+             {
+                 return "";
+             }
+             else
+             {
+                 $accessData = explode('=', $response->body);
+
+                 return $accessData[1];
+             }
+         }
+         catch(Exception $e)
+         {
+             return "";
+         }
+
         /*
-        $callbackUrl = urlencode(JURI::base() ."index.php?option=com_redsocialstream&controller=accesstoken&task=getaccesstoken&view=accesstoken");
-        $data = array(
-            'client_id' => $appId,
-            'redirect_uri' => $callbackUrl,
-            'client_secret' => $appSecret,
-            'code' => $code
-        );
-
-        $url = self::toUrl(self::$_facebookAuthorizeUrl, $data);
-
-        try
-        {
-            $http = RedHttpFactory::getHttp();
-            $response = $http->get($url);
-            $accessData = json_decode($response->body);
-
-            if(isset($accessData->error))
-            {
-                return "";
-            }
-            else
-            {
-                $accessData = explode('=', $response->body);
-
-                return $accessData[1];
-            }
-        }
-        catch(Exception $e)
-        {
-            return "";
-        }
-        */
-
         $postData = 'https://graph.facebook.com/oauth/access_token?client_id=' . $appId . '&redirect_uri=' . $callbackUrl . '&client_secret=' . $appSecret . '&code=' . $code;
 
         $CR = curl_init($postData);
@@ -100,6 +99,7 @@ class RedSocialStreamHelper
         {
             return "";
         }
+        */
     }
 
 	public static function requestTwitterAccessToken($consumerKey, $consumerSecret)

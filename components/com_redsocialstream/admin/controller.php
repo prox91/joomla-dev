@@ -60,5 +60,4 @@ class redsocialstreamController extends JController
 
 		$this->setRedirect($link, $msg);
 	}
-
 }

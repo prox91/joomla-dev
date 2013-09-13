@@ -50,6 +50,7 @@ class AccessTokenModelAccessToken extends JModel
 				break;
 
 			case 'linkedin':
+
 				//Linkedin APi Key
 				$api_key = $login['linked_api_key'];
 				//Linkedin Secret Key
@@ -118,7 +119,6 @@ class AccessTokenModelAccessToken extends JModel
         }
 
         return true;
-
 	}
 
 	function saveLinkedinAcceesToken($data)
