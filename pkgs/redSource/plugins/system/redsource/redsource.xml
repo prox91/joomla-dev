@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<extension version="3.0" type="plugin" group="system">
+    <name>PLG_SYSTEM_REDSOURCE</name>
+    <author>redCOMPONENT</author>
+    <creationDate>September 2013</creationDate>
+    <copyright>Copyright (C) 2012 - 2013 redCOMPONENT.com. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <authorEmail>email@redcomponent.com</authorEmail>
+    <authorUrl>www.redcomponent.com</authorUrl>
+    <version>1.0.0</version>
+    <description>PLG_SYSTEM_REDSOURCE_XML_DESCRIPTION</description>
+
+    <files>
+        <filename>index.html</filename>
+        <filename plugin="redsource">redsource.php</filename>
+    </files>
+
+    <languages folder="language">
+        <language tag="en-GB">en-GB/en-GB.plg_system_redsource.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_system_redsource.sys.ini</language>
+    </languages>
+</extension>

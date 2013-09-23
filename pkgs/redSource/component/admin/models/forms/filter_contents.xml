@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset>
+        <field
+                name="filter_state"
+                type="rpublished"
+                label="JOPTION_SELECT_PUBLISHED"
+                description="JOPTION_SELECT_PUBLISHED_DESC"
+                statuses="0,1"
+                class="chosen"
+                onchange="this.form.submit();"
+                >
+            <option value="">JOPTION_SELECT_PUBLISHED</option>
+        </field>
+    </fieldset>
+</form>

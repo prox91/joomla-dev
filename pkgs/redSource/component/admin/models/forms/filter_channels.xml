@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset addfieldpath="/libraries/redsource/form/fields">
+		<field
+			name="filter_state"
+			type="rpublished"
+			label="JOPTION_SELECT_PUBLISHED"
+			description="JOPTION_SELECT_PUBLISHED_DESC"
+			statuses="0,1"
+			class="chosen"
+			onchange="this.form.submit();"
+			>
+			<option value="">JOPTION_SELECT_PUBLISHED</option>
+		</field>
+		<field
+			name="filter_type"
+			type="channeltype"
+			label="COM_REDSOURCE_FIELD_CHANNEL_TYPE"
+			description="COM_REDSOURCE_FIELD_CHANNEL_TYPE_DESC"
+			statuses="0,1"
+			class="chosen"
+			onchange="this.form.submit();"
+			>
+			<option value="">COM_REDSOURCE_SELECT_CHANNEL_TYPE</option>
+		</field>
+	</fieldset>
+</form>

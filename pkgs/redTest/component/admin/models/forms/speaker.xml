@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset addfieldpath="/libraries/jab/fields">
+		<field name="id" type="hidden"
+			default="0"
+			label="COM_JAB_ID_LABEL"
+			description="COM_JAB_ID_DESC"
+			readonly="true"
+			size="10"
+		/>
+		<field name="name" type="text"
+			label="COM_JAB_NAME_LABEL"
+			description="COM_JAB_NAME_DESC"
+			required="true"
+			size="30"
+		/>
+		<field name="country_id" type="jabcountry"
+			label="COM_JAB_COUNTRY_LABEL"
+			description="COM_JAB_COUNTRY_DESC"
+			default="" >
+			<option value="">COM_JAB_SELECT_COUNTRY</option>
+		</field>
+		<field name="state_id" type="jabstate"
+			label="COM_JAB_STATE_LABEL"
+			description="COM_JAB_STATE_DESC"
+			default="" >
+			<option value="">COM_JAB_SELECT_STATE</option>
+		</field>
+		<field name="published" type="radio"
+			label="COM_JAB_STATUS_LABEL"
+			description="COM_JAB_STATUS_DESC"
+			class="btn-group"
+			required="true"
+			size="1" default="1" >
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+		<field name="language" type="contentlanguage"
+			label="JFIELD_LANGUAGE_LABEL"
+			description="COM_JAB_FIELD_LANGUAGE_DESC"
+			class="inputbox"
+		>
+			<option value="*">JALL</option>
+		</field>
+	</fieldset>
+	<fields name="metadata">
+		<fieldset name="jmetadata"
+			label="JGLOBAL_FIELDSET_METADATA_OPTIONS">
+			<field name="tags" type="tag"
+				label="JTAG" description="JTAG_DESC"
+				class="inputbox" multiple="true"
+			>
+			</field>
+		</fieldset>
+	</fields>
+</form>

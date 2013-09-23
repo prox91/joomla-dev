@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addfieldpath="/libraries/redsource/fields">
+	<fieldset name="basic">
+		<field
+			addfieldpath="/administrator/components/com_redsource/models/fields"
+			name="type"
+			type="fieldtype"
+			default="text"
+			label="COM_REDSOURCE_TYPE"
+			xdescription="COM_REDSOURCE_TYPE_DESC"
+			required="true"
+			>
+			<option name="">-- Select Type --</option>
+		</field>
+		<field
+			name="name"
+			type="text"
+			label="COM_REDSOURCE_NAME"
+			xdescription="COM_REDSOURCE_NAME_DESC"
+			required="true"
+		/>
+		<field
+			name="label"
+			type="text"
+			label="COM_REDSOURCE_LABEL"
+			xdescription="COM_REDSOURCE_LABEL_DESC"
+			required="true"
+		/>
+		<field
+			name="description"
+			type="textarea"
+			label="COM_REDSOURCE_DESCRIPTION"
+			xdescription="COM_REDSOURCE_DESCRIPTION_DESC"
+		/>
+		<field
+			name="hidden"
+			type="radio"
+			class="btn-group"
+			default="0"
+			label="COM_REDSOURCE_HIDDEN"
+			xdescription="COM_REDSOURCE_HIDDEN_DESC"
+			>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+		<field
+			name="required"
+			type="radio"
+			class="btn-group"
+			default="0"
+			label="COM_REDSOURCE_REQUIRED"
+			xdescription="COM_REDSOURCE_REQUIRED_DESC"
+			>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+	</fieldset>
+	<fieldset name="type" label="COM_REDSOURCE_FIELDSET_TYPE">
+		<field
+			name="validate"
+			type="text"
+			label="COM_REDSOURCE_VALIDATE"
+			xdescription="COM_REDSOURCE_VALIDATE_DESC"
+		/>
+		<field
+			name="multiple"
+			type="radio"
+			class="btn-group"
+			default="0"
+			label="COM_REDSOURCE_MULTIPLE"
+			xdescription="COM_REDSOURCE_MULTIPLE_DESC"
+			>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+	</fieldset>
+	<fieldset name="advanced" label="COM_REDSOURCE_FIELDSET_ADVANCED">
+		<field
+			name="id"
+			type="text"
+			label="COM_REDSOURCE_ID"
+			xdescription="COM_REDSOURCE_ID_DESC"
+		/>
+		<field
+			name="class"
+			type="text"
+			label="COM_REDSOURCE_CLASS"
+			xdescription="COM_REDSOURCE_CLASS_DESC"
+		/>
+		<field
+			name="labelclass"
+			type="text"
+			label="COM_REDSOURCE_LABELCLASS"
+			xdescription="COM_REDSOURCE_LABELCLASS_DESC"
+		/>
+		<field
+			name="translate_label"
+			type="radio"
+			class="btn-group"
+			default="1"
+			label="COM_REDSOURCE_TRANSLATE_LABEL"
+			xdescription="COM_REDSOURCE_TRANSLATE_LABEL_DESC"
+			>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+		<field
+			name="translate_description"
+			type="radio"
+			class="btn-group"
+			default="1"
+			label="COM_REDSOURCE_TRANSLATE_DESCRIPTION"
+			xdescription="COM_REDSOURCE_TRANSLATE_DESCRIPTION_DESC"
+			>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+	</fieldset>
+</form>

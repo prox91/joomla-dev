@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="2.5.0" method="upgrade">
+    <name>COM_REDSOURCE</name>
+    <creationDate>September 17th, 2013</creationDate>
+    <author>redCOMPONENT</author>
+    <authorEmail>email@redcomponent.com</authorEmail>
+    <authorUrl>www.redcomponent.com</authorUrl>
+    <copyright>Copyright (C) 2008 - 2013 redCOMPONENT.com. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later, see LICENSE.</license>
+    <version>1.0.1</version>
+    <description>COM_REDSOURCE_DESC</description>
+    <scriptfile>install.php</scriptfile>
+    <redrad version="1.0" />
+    <install folder="component/admin">
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install/mysql/install.sql</file>
+            <file driver="mysqli" charset="utf8">sql/install/mysql/install.sql</file>
+            <file driver="mysql" charset="utf8">sql/install/mysql/data.sql</file>
+        </sql>
+    </install>
+    <uninstall folder="component/admin">
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install/mysql/uninstall.sql</file>
+            <file driver="mysqli" charset="utf8">sql/install/mysql/uninstall.sql</file>
+        </sql>
+    </uninstall>
+    <update folder="component/admin">
+        <schemas>
+            <schemapath type="mysql">sql/updates/mysql</schemapath>
+            <schemapath type="mysqli">sql/updates/mysql</schemapath>
+        </schemas>
+    </update>
+    <media destination="com_redsource" folder="media/com_redsource">
+        <folder>css</folder>
+        <folder>images</folder>
+        <folder>js</folder>
+    </media>
+    <languages folder="component/site/language">
+        <language tag="en-GB">en-GB/en-GB.com_redsource.ini</language>
+    </languages>
+
+    <administration>
+        <files folder="component/admin">
+            <folder>controllers</folder>
+            <folder>helpers</folder>
+            <folder>layouts</folder>
+            <folder>models</folder>
+            <folder>sql</folder>
+            <folder>tables</folder>
+            <folder>views</folder>
+            <filename>access.xml</filename>
+            <filename>controller.php</filename>
+            <filename>redsource.php</filename>
+            <filename>LICENSE</filename>
+        </files>
+        <languages folder="component/admin/language">
+            <language tag="en-GB">en-GB/en-GB.com_redsource.ini</language>
+            <language tag="en-GB">en-GB/en-GB.com_redsource.sys.ini</language>
+        </languages>
+
+        <menu view="dashboard">COM_REDSOURCE</menu>
+    </administration>
+
+    <!-- Libraries to install -->
+    <libraries>
+        <library name="redsource" />
+    </libraries>
+
+    <!-- Plugins to install -->
+    <plugins>
+        <plugin name="redsource" group="system" />
+        <plugin name="webservice" group="rschannel" />
+        <plugin name="file" group="rsfield" />
+    </plugins>
+</extension>

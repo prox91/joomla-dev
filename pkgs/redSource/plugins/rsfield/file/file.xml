@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<extension version="3.0" type="plugin" group="rsfield">
+    <name>plg_rsfield_file</name>
+    <author>redCOMPONENT</author>
+    <creationDate>September 2013</creationDate>
+    <copyright>Copyright (C) 2012 - 2013 redCOMPONENT.com. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <authorEmail>email@redcomponent.com</authorEmail>
+    <authorUrl>www.redcomponent.com</authorUrl>
+    <version>1.0.0</version>
+    <description>PLG_RSFIELD_FILE_XML_DESCRIPTION</description>
+
+    <files>
+        <folder>tmpl</folder>
+        <filename plugin="file">file.php</filename>
+    </files>
+
+    <languages folder="language">
+        <language tag="en-GB">en-GB/en-GB.plg_rsfield_file.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_rsfield_file.sys.ini</language>
+    </languages>
+
+    <config>
+        <fields name="params">
+            <fieldset
+                    name="basic"
+                    addfieldpath="/libraries/redsource/form/fields"
+                    >
+                <field
+                    name="title"
+                    type="text"
+                    default=""
+                    label="PLG_RSFIELD_FILE_FIELD_TITLE_LABEL"
+                    description="PLG_RSFIELD_FILE_FIELD_TITLE_DESC"
+                />
+            </fieldset>
+        </fields>
+    </config>
+
+</extension>

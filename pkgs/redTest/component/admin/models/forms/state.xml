@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset addfieldpath="/libraries/jab/fields">
+		<field name="id" type="hidden"
+			default="0"
+			label="COM_JAB_ID_LABEL"
+			description="COM_JAB_ID_DESC"
+			readonly="true"
+			size="10"
+		/>
+		<field name="name" type="text"
+			label="COM_JAB_NAME_LABEL"
+			description="COM_JAB_NAME_DESC"
+			required="true"
+			size="30"
+		/>
+		<field name="iso_code" type="text"
+			label="COM_JAB_FIELD_ISO_CODE_LABEL"
+			description="COM_JAB_FIELD_ISO_CODE_DESC"
+			size="5"
+		/>
+		<field name="zone_id" type="zones"
+			label="COM_JAB_FIELD_ZONE_LABEL"
+			description="COM_JAB_FIELD_ZONE_DESC"
+		/>
+		<field name="country_id" type="jabcountry"
+			label="COM_JAB_FIELD_COUNTRY_LABEL"
+			description="COM_JAB_FIELD_COUNTRY_DESC"
+			>
+			<option value="">COM_JAB_SELECT_COUNTRY</option>
+		</field>
+		<field name="published" type="radio"
+			label="COM_JAB_STATE_LABEL"
+			description="COM_JAB_STATE_DESC"
+			required="true"
+			class="btn-group"
+			size="1" default="1" >
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+		<field name="language" type="contentlanguage"
+			label="JFIELD_LANGUAGE_LABEL"
+			description="COM_JAB_FIELD_LANGUAGE_DESC"
+			class="inputbox"
+		>
+			<option value="*">JALL</option>
+		</field>
+	</fieldset>
+</form>

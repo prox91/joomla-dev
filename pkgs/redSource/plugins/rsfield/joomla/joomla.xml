@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<extension version="3.0" type="plugin" group="rsfield">
+    <name>plg_rsfield_joomla</name>
+    <author>redCOMPONENT</author>
+    <creationDate>September 2013</creationDate>
+    <copyright>Copyright (C) 2012 - 2013 redCOMPONENT.com. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <authorEmail>email@redcomponent.com</authorEmail>
+    <authorUrl>www.redcomponent.com</authorUrl>
+    <version>1.0.0</version>
+    <description>PLG_RSFIELD_JOOMLA_XML_DESCRIPTION</description>
+
+    <files>
+        <folder>tmpl</folder>
+        <filename plugin="joomla">joomla.php</filename>
+        <filename>index.html</filename>
+    </files>
+
+    <languages folder="language">
+        <language tag="en-GB">en-GB/en-GB.plg_rsfield_joomla.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_rsfield_joomla.sys.ini</language>
+    </languages>
+
+    <config>
+        <fields name="params">
+            <fieldset name="types" label="PLG_RSFIELD_FIELDSET_TYPES">
+                <field name="accesslevel" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_ACCESSLEVEL">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="cachehandler" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_CACHEHANDLER">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="calendar" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_CALENDAR">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="category" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_CATEGORY">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="checkbox" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_CHECKBOX">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="checkboxes" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_CHECKBOXES">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="contentlanguages" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_CONTENTLANGUAGES">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="contenttype" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_CONTENTTYPE">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="editor" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_EDITOR">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="email" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_EMAIL">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="file" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_FILE">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="filelist" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_FILELIST">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="folderlist" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_FOLDERLIST">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="groupedlist" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_GROUPEDLIST">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="headertag" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_HEADERTAG">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="hidden" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_HIDDEN">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="imagelist" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_IMAGELIST">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="integer" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_INTEGER">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="language" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_LANGUAGE">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="list" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_LIST">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="media" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_MEDIA">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="note" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_NOTE">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="password" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_PASSWORD">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="radio" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_RADIO">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="spacer" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_SPACER">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="sql" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_SQL">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="tag" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_TAG">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="tel" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_TEL">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="text" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_TEXT">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="textarea" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_TEXTAREA">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="timezone" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_TIMEZONE">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="url" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_URL">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="user" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_USER">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="usergroup" type="radio" class="btn-group" default="1" label="PLG_RSFIELD_TYPE_USERGROUP">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+
+</extension>

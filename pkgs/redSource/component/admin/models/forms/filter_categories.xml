@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field
+			name="filter_state"
+			type="rpublished"
+			label="JOPTION_SELECT_PUBLISHED"
+			description="JOPTION_SELECT_PUBLISHED_DESC"
+			statuses="0,1"
+			class="chosen"
+			onchange="this.form.submit();"
+			>
+			<option value="">JOPTION_SELECT_PUBLISHED</option>
+		</field>
+		<field
+			name="filter_access"
+			type="accesslevel"
+			label="JOPTION_SELECT_ACCESS"
+			description="JOPTION_SELECT_ACCESS"
+			class="chosen"
+			onchange="this.form.submit();"
+			>
+			<option value="">JOPTION_SELECT_ACCESS</option>
+		</field>
+		<field
+			name="filter_language"
+			type="language"
+			label="JOPTION_SELECT_LANGUAGE"
+			description="JOPTION_SELECT_LANGUAGE"
+			class="chosen"
+			onchange="this.form.submit();"
+			>
+			<option value="">JOPTION_SELECT_LANGUAGE</option>
+		</field>
+	</fieldset>
+</form>

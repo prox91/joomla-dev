@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="library" method="upgrade" version="2.5">
+	<name>JAB - Libraries</name>
+	<libraryname>jab</libraryname>
+    <creationDate>June 2013</creationDate>
+    <author>redCOMPONENT</author>
+	<authorEmail>email@redcomponent.com</authorEmail>
+	<authorUrl>www.redcomponent.com</authorUrl>
+	<copyright>Copyright (C) 2008 - 2013 redCOMPONENT.com. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later, see LICENSE.</license>
+    <version>1.0.0</version>
+	<description>JAB - Libraries</description>
+	<files>
+		<folder>fields</folder>
+		<folder>helper</folder>
+		<folder>view</folder>
+	</files>
+</extension>

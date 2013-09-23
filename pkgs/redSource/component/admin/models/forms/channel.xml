@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset addfieldpath="/libraries/redsource/form/fields">
+		<field
+			name="id"
+			type="hidden"
+			default="0"
+			label="COM_REDSOURCE_ID_LABEL"
+			description="COM_REDSOURCE_ID_DESC"
+			readonly="true"
+		/>
+		<field
+			name="state"
+			type="radio"
+			label="COM_REDSOURCE_STATE_LABEL"
+			description="COM_REDSOURCE_STATE_DESC"
+			required="true"
+			class="btn-group"
+			default="1"
+			>
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+		<field
+			name="type"
+			type="channeltype"
+			label="COM_REDSOURCE_FIELD_CHANNEL_TYPE"
+			description="COM_REDSOURCE_FIELD_CHANNEL_TYPE_DESC"
+			class="ch_type"
+			required="true"
+			>
+				<option value="">COM_REDSOURCE_SELECT_CHANNEL_TYPE</option>
+		</field>
+		<field
+			name="name"
+			type="text"
+			label="COM_REDSOURCE_NAME"
+			description="COM_REDSOURCE_NAME_DESC"
+			required="true"
+		/>
+		<field
+			name="description"
+			type="textarea"
+			label="COM_REDSOURCE_DESCRIPTION"
+			description="COM_REDSOURCE_DESCRIPTION_DESC"
+		/>
+		<field
+			name="created_date"
+			type="text"
+			label="COM_REDSOURCE_CREATED_DATE_LABEL"
+			readonly="true"
+		/>
+		<field
+			name="created_by"
+			type="ruser"
+			label="COM_REDSOURCE_CREATED_BY_LABEL"
+			readonly="true"
+		/>
+		<field
+			name="modified_date"
+			type="text"
+			label="COM_REDSOURCE_MODIFIED_DATE_LABEL"
+			readonly="true"
+		/>
+		<field
+			name="channel_params"
+			type="hidden"
+			label="COM_REDSOURCE_CHANNEL_PARAMS_LABEL"
+			/>
+		<field
+			name="modified_by"
+			type="ruser"
+			label="COM_REDSOURCE_MODIFIED_BY_LABEL"
+			readonly="true"
+		/>
+		<field
+			name="checked_out"
+			type="hidden"
+			filter="unset"
+		/>
+		<field
+			name="checked_out_time"
+			type="hidden"
+			filter="unset"
+		/>
+	</fieldset>
+</form>

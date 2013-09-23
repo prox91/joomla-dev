@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<extension version="3.0" type="plugin" group="rschannel">
+	<name>plg_rschannel_webservice</name>
+	<author>redCOMPONENT</author>
+	<creationDate>September 2013</creationDate>
+	<copyright>Copyright (C) 2012 - 2013 redCOMPONENT.com. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>email@redcomponent.com</authorEmail>
+	<authorUrl>www.redcomponent.com</authorUrl>
+	<version>1.0.0</version>
+	<description>PLG_RSCHANNEL_WEBSERVICE_XML_DESCRIPTION</description>
+
+	<files>
+		<folder>tmpl</folder>
+		<filename plugin="webservice">webservice.php</filename>
+		<filename>parameters.xml</filename>
+	</files>
+
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.plg_rschannel_webservice.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_rschannel_webservice.sys.ini</language>
+	</languages>
+
+	<config>
+		<fields name="params">
+			<fieldset
+				name="basic"
+				addfieldpath="/libraries/redsource/form/fields"
+				>
+				<field
+					name="title"
+					type="text"
+					default=""
+					label="PLG_RSCHANNEL_WEBSERVICE_FIELD_TITLE_LABEL"
+					description="PLG_RSCHANNEL_WEBSERVICE_FIELD_TITLE_DESC"
+				/>
+			</fieldset>
+		</fields>
+	</config>
+
+</extension>
