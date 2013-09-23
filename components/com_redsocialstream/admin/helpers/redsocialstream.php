@@ -40,37 +40,36 @@ class RedSocialStreamHelper
 
     public static function requestFbAccessToken($appId, $appSecret, $callbackUrl, $code)
     {
-         //$callbackUrl = urlencode(JURI::base() ."index.php?option=com_redsocialstream&controller=accesstoken&task=getaccesstoken&view=accesstoken");
-         $data = array(
-             'client_id' => $appId,
-             'redirect_uri' => $callbackUrl,
-             'client_secret' => $appSecret,
-             'code' => $code
-         );
+        $data = array(
+            'client_id' => $appId,
+            'client_secret' => $appSecret,
+            'code' => $code,
+            'redirect_uri' => $callbackUrl,
+        );
 
-         $url = self::toUrl(self::$_facebookAuthorizeUrl, $data);
+        $url = self::toUrl(self::$_facebookAuthorizeUrl, $data);
 
-         try
-         {
-             $http = RedHttpFactory::getHttp();
-             $response = $http->get($url);
-             $accessData = json_decode($response->body);
+        try
+        {
+            $http = RedHttpFactory::getHttp();
+            $response = $http->get($url);
+            $accessData = json_decode($response->body);
 
-             if(isset($accessData->error))
-             {
-                 return "";
-             }
-             else
-             {
-                 $accessData = explode('=', $response->body);
+            if(isset($accessData->error))
+            {
+                return "";
+            }
+            else
+            {
+                $accessData = explode('=', $response->body);
 
-                 return $accessData[1];
-             }
-         }
-         catch(Exception $e)
-         {
-             return "";
-         }
+                return $accessData[1];
+            }
+        }
+        catch(Exception $e)
+        {
+            return "";
+        }
 
         /*
         $postData = 'https://graph.facebook.com/oauth/access_token?client_id=' . $appId . '&redirect_uri=' . $callbackUrl . '&client_secret=' . $appSecret . '&code=' . $code;
@@ -135,13 +134,12 @@ class RedSocialStreamHelper
 
     public static function requestLinkedinAccessToken($cliendId, $cliendSecret, $callbackUrl, $code)
     {
-        $callbackUrl=urlencode("http://localhost.com/");
         $data = array(
             'grant_type' => 'authorization_code',
             'code' => $code,
-            'redirect_uri' => $callbackUrl,
             'client_id' => $cliendId,
             'client_secret' => $cliendSecret,
+            'redirect_uri' => $callbackUrl,
         );
 
         try

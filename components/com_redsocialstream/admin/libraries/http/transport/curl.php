@@ -124,7 +124,21 @@ class RedHttpTransportCurl implements RedHttpTransport
 		}
 
 		// Set the request URL.
-		$options[CURLOPT_URL] = (string) $uri;
+        $strUri = (string) $uri;
+        $redirectPos = strpos($strUri, 'redirect_uri');
+        if($redirectPos !== false)
+        {
+            $unRedirectParam = substr($strUri, 0, $redirectPos + strlen('redirect_uri') + 1);
+            $redirectUrl = substr($strUri, $redirectPos + strlen('redirect_uri') + 1, strlen($strUri));
+            $redirectUrl = urlencode($redirectUrl);
+            $requestUrl = $unRedirectParam . $redirectUrl;
+
+            $options[CURLOPT_URL] = (string) $requestUrl;
+        }
+        else
+        {
+            $options[CURLOPT_URL] = (string) $uri;
+        }
 
 		// We want our headers. :-)
 		$options[CURLOPT_HEADER] = true;
