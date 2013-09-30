@@ -25,7 +25,7 @@ class EnglishConceptModelPrecises extends JModelList
         $query->select($this->getState('list.select','pr.*'));
 
         // From the hello table
-        $query->from('#__ec_compositions AS pr');
+        $query->from('#__ec_lesson_precises AS pr');
         $query->where('pr.deleted_flg = 0');
 
         return $query;

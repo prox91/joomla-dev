@@ -1,0 +1,131 @@
+{
+	"general":
+	{
+		"mandatory": "f1, f2, f3",
+		"optional": "f4, f5",
+		"actions": "like, unlike, hit, count",
+		"map":
+		{
+			"id": "content_id",
+			"created_at": "created_date",
+			"user_id": "created_user_id",
+			"f1": "field1",
+			"f2": "field2",
+			"f3": "field3",
+			"f4": "field4",
+			"f5": "field5",
+			"likes": "likes",
+			"hits": "hits"
+		}
+	},
+	
+	"application":
+	{
+		"mandatory": "title, description, user_id",
+		"optional": "website, screenshots",
+		"actions": "like, unlike, hit, count",
+		"map":
+		{
+			"id": "content_id",
+			"created_at": "created_date",
+			"user_id": "created_user_id",
+			"title": "title",
+			"website": "website",
+			"description": "body",
+			"screenshots": "mediaArray",
+			"likes": "likesArray",
+			"hits": "hits",
+			"modified_at": "modified_date"
+		}
+	},
+	
+	"screenshot":
+	{
+		"mandatory": "application_id",
+		"optional": "",
+		"actions": "count",
+		"map":
+		{
+			"screenshots": "mediaArray"
+		} 
+	},
+	
+	"like":
+	{
+		"mandatory": "application_id",
+		"optional": "",
+		"map":
+		{
+			"likes": "likesArray"
+		} 
+	},
+	
+	"tag":
+	{
+		"mandatory": "name",
+		"alternative": 
+		{
+			"0":
+			{
+				"key": "name",
+				"field": "list",
+				"condition": ""
+			},
+			
+			"1":
+			{
+				"key": "name",
+				"field": "ids",
+				"condition": "application_id"
+			}
+		},
+		"optional": "application_id",
+		"actions": "count",
+		"map":
+		{
+			"id": "content_id",
+			"created_at": "created_date",
+			"name": "body",
+			"application_id": "application_id"
+		}
+	},
+	
+	"user":
+	{
+		"mandatory": "name, username, email, password",
+		"optional": "last_visit, usertype, send_email, activation",
+		"actions": "hit, count",
+		"map":
+		{
+			"id": "content_id",
+			"created_at": "created_date",
+			"name": "name",
+			"username": "username",
+			"email": "email",
+			"password": "password",
+			"last_visit": "lastvisitDate",
+			"user_type": "usertype",
+			"send_email": "sendEmail",
+			"activation": "activation",
+			"hits": "hits",
+			"modified_at": "modified_date"
+		}
+	},
+	
+	"comment":
+	{
+		"mandatory": "message, application_id, user_id",
+		"optional": "",
+		"actions": "like, unlike, count, hit",
+		"map":
+		{
+			"id": "content_id",
+			"created_at": "created_date",
+			"modified_at": "modified_date",
+			"user_id": "created_user_id",
+			"likes": "likesArray",
+			"hits": "hits",
+			"message": "body"
+		}
+	}
+}

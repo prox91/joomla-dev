@@ -1,0 +1,9 @@
+.project
+.settings
+.buildpath
+.DS_Store
+
+*.swp
+report/*
+build/*
+www/uploads/*
