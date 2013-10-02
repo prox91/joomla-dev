@@ -1,0 +1,186 @@
+{
+	"301": 
+	{
+		"code": "JWS001",
+		"message": "Content id should be a positive value.",
+		"more_info": "",
+		"response_code": "400"
+	},
+	
+	"302": 
+	{
+		"code": "JWS002",
+		"message": "Offset should be a positive number. Default value: 0.",
+		"more_info": "",
+		"response_code": "400"
+	},
+	
+	"303": 
+	{
+		"code": "JWS003",
+		"message": "Limit should be a positive number. Default value: 20.",
+		"more_info": "",
+		"response_code": "400"
+	},
+	
+	"304": 
+	{
+		"code": "JWS004",
+		"message": "Since should be a valid date. Default value: 01-01-1970.",
+		"more_info": "",
+		"response_code": "400"
+	},
+	
+	"305": 
+	{
+		"code": "JWS005",
+		"message": "Before should be a valid date. Default value: now.",
+		"more_info": "",
+		"response_code": "400"
+	},
+	
+	"306": 
+	{
+		"code": "JWS006",
+		"message": "suppress_response_codes should be set to true or false. Default value: false.",
+		"more_info": "",
+		"response_code": "400"
+	},
+	
+	"307": 
+	{
+		"code": "JWS007",
+		"message": "Order fields are incorrect. Check the available fields using options.",
+		"more_info": "",
+		"response_code": "400"
+	},
+	
+	"308": 
+	{
+		"code": "JWS008",
+		"message": "Mandatory field $1 is missing.",
+		"more_info": "",
+		"response_code": "400"
+	},
+	
+	"309": 
+	{
+		"code": "JWS009",
+		"message": "A specific content id should be refeered.",
+		"more_info": "",
+		"response_code": "400"
+	},
+	
+	
+	"310": 
+	{
+		"code": "JWS010",
+		"message": "User id that liked the content missing.",
+		"more_info": "",
+		"response_code": "400"
+	},
+	
+	"100": 
+	{
+		"code": "JWS400",
+		"message": "Error while updating the content.",
+		"more_info": "",
+		"response_code": "400"
+	},
+	
+	"101": 
+	{
+		"code": "JWS401",
+		"message": "Nothing to update.",
+		"more_info": "",
+		"response_code": "400"
+	},
+	
+	"102": 
+	{
+		"code": "JWS402",
+		"message": "Nothing to delete.",
+		"more_info": "",
+		"response_code": "400"
+	},
+	
+	"103": 
+	{
+		"code": "JWS403",
+		"message": "Bad file to upload. Exception: $1",
+		"more_info": "",
+		"response_code": "400"
+	},
+	
+	"201": 
+	{
+		"code": "JWS201",
+		"message": "The user with the id $1 doesn't exist in database.",
+		"more_info": "",
+		"response_code": "400"
+	},
+	
+	"202": 
+	{
+		"code": "JWS202",
+		"message": "The specified application doesn't exist in database.",
+		"more_info": "",
+		"response_code": "400"
+	},
+	
+	"203": 
+	{
+		"code": "JWS203",
+		"message": "Missing content id.",
+		"more_info": "",
+		"response_code": "400"
+	},
+	
+	"204": 
+	{
+		"code": "JWS204",
+		"message": "The $1 $2 doesn't exist in database.",
+		"more_info": "",
+		"response_code": "400"
+	},
+	
+	"501": 
+	{
+		"code": "JWS501",
+		"message": "The tag with the id $1 doesn't exist.",
+		"more_info": "",
+		"response_code": "400"
+	},
+	
+	"502":
+	{
+		"code": "JWS502",
+		"message": "Invalid action \"$1\".",
+		"more_info": "",
+		"response_code": "400"
+	},
+	
+	"601":
+	{
+		"code": "JWS601",
+		"message": "Invalid HTTP method for $1.",
+		 "more_info": "",
+		"response_code": "400"
+	},
+	
+	"701":
+	{
+		"code": "JWS701",
+		"message": "Invalid uploaded file type.",
+		 "more_info": "",
+		"response_code": "400"
+	},
+	
+	"808":
+	{
+		"code": "JWS808",
+		"message": "Exception: $1",
+		 "more_info": "",
+		"response_code": "400"
+	}
+}

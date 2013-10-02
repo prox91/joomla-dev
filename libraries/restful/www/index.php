@@ -10,19 +10,13 @@
 
 // Bootstrap the application.
 $path = getenv('WEBSERVICE_HOME');
-
-// Look for the Joomla Platform.
-$JPLATFORMHOME = getenv('JPLATFORM_HOME') ? getenv('JPLATFORM_HOME') : dirname(__FILE__) . '/libraries';
-define('JPATH_PLATFORM', $JPLATFORMHOME);
-define('JPATH_LIBRARIES', $JPLATFORMHOME);
-
 if ($path)
 {
-    require_once $path . '/bootstrap.php';
+require_once $path . '/bootstrap.php';
 }
 else
 {
-    require_once realpath(__DIR__ . '/code/bootstrap.php');
+require_once realpath(__DIR__ . '/../code/bootstrap.php');
 }
 
 try
@@ -38,7 +32,7 @@ try
 
     // Execute the application.
     $application
-//    ->loadSession()
+    ->loadSession()
     ->loadDatabase()
     ->loadRouter()
     ->execute();
