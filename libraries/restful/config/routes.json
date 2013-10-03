@@ -15,4 +15,6 @@
     "/screenshots/:content_id":                     "screenshots",
     "/applications/:application_id/likes":          "likes",
     "/comments/:comment_id/likes":                  "likes"
+
+    "/test": "testcontroller"
 }
