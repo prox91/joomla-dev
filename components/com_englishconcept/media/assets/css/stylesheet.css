@@ -115,3 +115,80 @@
 	text-indent : -9999px;
 	background  : url(../images/arrow-down.png) no-repeat 50% 50%;
 }
+
+/***********************************************/
+#pagecontent
+{
+	margin: 0 auto;
+	width: 980px;
+	z-index: 10;
+	min-hight: 500px;
+}
+#pagecontent #page {
+	float: left;
+	padding: 0 10px 0 23px;
+	position: relative;
+	width: 690px;
+	z-index: 11;
+}
+#pagecontent #widgets {
+	float: left;
+	padding-top: 10px;
+	position: relative;
+	width: 229px;
+}
+
+#content {
+	color: #444444;
+	font-size: 0.75em;
+	letter-spacing: 0.02em;
+	line-height: 1.5em;
+	padding-top: 0;
+	width: 678px;
+}
+#content ul, p {
+	margin: 1.12em 0;
+}
+#content ul {
+	list-style-type: disc;
+	margin-bottom: 0;
+	margin-left: 15px;
+	margin-top: 0;
+}
+#content ol {
+	list-style-type: decimal;
+	margin-bottom: 0;
+	margin-left: 25px;
+	margin-top: 0;
+}
+#content p {
+	display: block;
+}
+.box {
+	margin-bottom: 15px;
+}
+
+.box > .heading {
+	background: url("../images/box.png") repeat-x scroll 0 0 rgba(0, 0, 0, 0);
+	border: 1px solid #DBDBDB;
+	border-radius: 7px 7px 0 0;
+	height: 38px;
+	padding-left: 7px;
+	padding-right: 7px;
+}
+
+.box > .heading h1 img {
+	float: left;
+	margin-left: 3px;
+	margin-right: 8px;
+	margin-top: -1px;
+}
+
+.box > .content {
+	border-bottom: 1px solid #CCCCCC;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+	min-height: 300px;
+	overflow: auto;
+	padding: 10px;
+}
