@@ -24,7 +24,7 @@ if (!defined('JPATH_BASE'))
 	define('JPATH_BASE', realpath(__DIR__));
 }
 
-Phar::loadPhar(realpath(JPATH_BASE . '/../libraries/joomla.phar'));
+//Phar::loadPhar(realpath(JPATH_BASE . '/../libraries/joomla.phar'));
 
 // Define the path for the Joomla Platform.
 if (!defined('JPATH_PLATFORM'))

@@ -282,7 +282,7 @@ class WebServiceControllerV1JsonBaseCreate extends WebServiceControllerV1Base
 			return;
 		}
 
-		// Create contnet
+		// Create content
 		$data = $this->createContent();
 
 		// Parse the result

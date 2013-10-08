@@ -127,5 +127,39 @@
 			"hits": "hits",
 			"message": "body"
 		}
+	},
+
+	"test":
+	{
+		"mandatory": "message, application_id, user_id",
+		"optional": "",
+		"actions": "like, unlike, count, hit",
+		"map":
+		{
+			"id": "id",
+			"created_at": "created_date",
+			"modified_at": "modified_date",
+			"user_id": "created_user_id",
+			"likes": "likesArray",
+			"hits": "hits",
+			"message": "body"
+		}
+	},
+
+	"products":
+	{
+		"mandatory": "message, application_id, user_id",
+		"optional": "",
+		"actions": "like, unlike, count, hit",
+		"map":
+		{
+			"id": "id",
+			"created_at": "created_date",
+			"modified_at": "modified_date",
+			"user_id": "created_user_id",
+			"likes": "likesArray",
+			"hits": "hits",
+			"message": "body"
+		}
 	}
 }
