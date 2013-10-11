@@ -6,32 +6,30 @@
 # ======= Enable the Rewrite Engine =======
 
 RewriteEngine On
-RewriteBase /
-
-DirectoryIndex index.php
-
-###########################################
-
-
-###########################################
-# ======== Remove multiple slashes ========
-
-RewriteCond %{HTTP_HOST} !=""
-RewriteCond %{THE_REQUEST} ^[A-Z]+\s//+(.*)\sHTTP/[0-9.]+$ [OR]
-RewriteCond %{THE_REQUEST} ^[A-Z]+\s(.*/)/+\sHTTP/[0-9.]+$
-RewriteRule .* http://%{HTTP_HOST}/%1 [R=301,L]
+#RewriteBase /
+RewriteBase /restful
 
 ###########################################
 
+#this rule removes www from the URL if its used
+RewriteCond %{HTTP_HOST} ^www.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 
-###########################################
-# ======== Joomla! API URL Routing ========
-
+## Begin - Joomla! core SEF Section.
+#
+# If the requested path and file is not /index.php and the request
+# has not already been internally rewritten to the index.php script
+RewriteCond %{REQUEST_URI} !^/index\.php
+# and the request is for something within the component folder,
+# or for the site root, or for an extensionless URL, or the
+# requested URL ends with one of the listed extensions
+#RewriteCond %{REQUEST_URI} /([*]+)/|(/[^.]*|\.(php|html?|feed|pdf|vcf|raw))$ [NC]
+# and the requested path and file doesn't directly match a physical file
 RewriteCond %{REQUEST_FILENAME} !-f
+# and the requested path and file doesn't directly match a physical folder
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} !^/uploads
-RewriteCond %{REQUEST_URI} !^/index.php
-RewriteCond %{REQUEST_URI} !^/docs
-RewriteRule (.*) index.php
-
+# internally rewrite the request to the index.php script
+RewriteRule .* index.php [L]
+#
+## End - Joomla! core SEF Section.
 ###########################################

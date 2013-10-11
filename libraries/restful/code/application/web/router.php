@@ -44,6 +44,167 @@ class WebServiceApplicationWebRouter extends JApplicationWebRouterRest
 	 */
 	protected $actions = array('like', 'unlike', 'count', 'hit');
 
+    /**
+     * Add a route map to the router.  If the pattern already exists it will be overwritten.
+     *
+     * @param   string  $pattern     The route pattern to use for matching.
+     * @param   string  $controller  The controller name to map to the given pattern.
+     *
+     * @return  JApplicationWebRouter  This object for method chaining.
+     *
+     * @since   12.2
+     */
+    public function addMap($pattern, $controller)
+    {
+        // Sanitize and explode the pattern.
+        $pattern = explode('/', trim(parse_url((string) $pattern, PHP_URL_PATH), ' /'));
+
+        // Prepare the route variables
+        $vars = array();
+
+        // Initialize regular expression
+        $regex = array();
+
+        $subFolder = array();
+
+        $hasFolder = true;
+
+        // Loop on each segment
+        foreach ($pattern as $segment)
+        {
+            // In case there is sub folder in the route
+            // After the controller, there is not a subfoler
+            if($segment == $controller)
+            {
+                $hasFolder = false;
+            }
+
+            if ($hasFolder == true)
+            {
+                $subFolder[] =  $segment;
+                $regex[] = preg_quote($segment);
+            }
+            else
+            {
+                // Match a splat with no variable.
+                if ($segment == '*')
+                {
+                    $regex[] = '.*';
+                }
+                // Match a splat and capture the data to a named variable.
+                elseif ($segment[0] == '*')
+                {
+                    $vars[] = substr($segment, 1);
+                    $regex[] = '(.*)';
+                }
+                // Match an escaped splat segment.
+                elseif ($segment[0] == '\\' && $segment[1] == '*')
+                {
+                    $regex[] = '\*' . preg_quote(substr($segment, 2));
+                }
+                // Match an unnamed variable without capture.
+                elseif ($segment == ':')
+                {
+                    $regex[] = '[^/]*';
+                }
+                // Match a named variable and capture the data.
+                elseif ($segment[0] == ':')
+                {
+                    $vars[] = substr($segment, 1);
+                    $regex[] = '([^/]*)';
+                }
+                // Match a semgent with an escaped variable character prefix.
+                elseif ($segment[0] == '\\' && $segment[1] == ':')
+                {
+                    $regex[] = preg_quote(substr($segment, 1));
+                }
+                // Match the standard segment.
+                else
+                {
+                    $regex[] = preg_quote($segment);
+                }
+            }
+        }
+
+        $this->maps[] = array(
+            'regex' => chr(1) . '^' . implode('/', $regex) . '$' . chr(1),
+            'vars' => $vars,
+            'controller' => (string) $controller,
+            'subfolder' => $subFolder
+        );
+
+        return $this;
+    }
+
+    /**
+     * Parse the given route and return the name of a controller mapped to the given route.
+     *
+     * @param   string  $route  The route string for which to find and execute a controller.
+     *
+     * @return  string  The controller name for the given route excluding prefix.
+     *
+     * @since   12.2
+     * @throws  InvalidArgumentException
+     */
+    protected function parseRoute($route)
+    {
+        $controller = false;
+
+        // Trim the query string off.
+        $route = preg_replace('/([^?]*).*/u', '\1', $route);
+
+        // Sanitize and explode the route.
+        $route = trim(parse_url($route, PHP_URL_PATH), ' /');
+
+        // If the route is empty then simply return the default route.  No parsing necessary.
+        if ($route == '')
+        {
+            return $this->default;
+        }
+
+        // Iterate through all of the known route maps looking for a match.
+        foreach ($this->maps as $rule)
+        {
+            if (preg_match($rule['regex'], $route, $matches))
+            {
+                // If we have gotten this far then we have a positive match.
+                $controller = '';
+                if(is_array($rule['subfolder']) && count($rule['subfolder']) > 0)
+                {
+
+                    foreach($rule['subfolder'] as $subfolder)
+                    {
+                        $controller .= ucfirst($subfolder);
+                    }
+                }
+
+                $controller .= ucfirst($rule['controller']);
+
+                // Time to set the input variables.
+                // We are only going to set them if they don't already exist to avoid overwriting things.
+                foreach ($rule['vars'] as $i => $var)
+                {
+                    $this->input->def($var, $matches[$i + 1]);
+
+                    // Don't forget to do an explicit set on the GET superglobal.
+                    $this->input->get->def($var, $matches[$i + 1]);
+                }
+
+                $this->input->def('_rawRoute', $route);
+
+                break;
+            }
+        }
+
+        // We were unable to find a route match for the request.  Panic.
+        if (!$controller)
+        {
+            throw new InvalidArgumentException(sprintf('Unable to handle request for route `%s`.', $route), 404);
+        }
+
+        return $controller;
+    }
+
 	/**
 	 * Find and execute the appropriate controller based on a given route.
 	 *
@@ -65,11 +226,11 @@ class WebServiceApplicationWebRouter extends JApplicationWebRouterRest
 		// Get actions from route
 		$route = $this->actionRoute($route);
 
-		// Get version and extention from route
+		// Get version and extension from route
 		$route = $this->rewriteRoute($route);
 
 		// Set controller prefix
-		$this->setControllerPrefix('WebServiceController' . ucfirst($this->apiVersion) . ucfirst($this->apiType));
+		$this->setControllerPrefix('WebServiceControllers' . ucfirst($this->apiVersion) . ucfirst($this->apiType));
 
 		// Get the controller name based on the route patterns and requested route.
 		$name = $this->parseRoute($route);
@@ -77,9 +238,6 @@ class WebServiceApplicationWebRouter extends JApplicationWebRouterRest
 		// Singularize type
 		$stringInflector = JStringInflector::getInstance();
 		$type = $stringInflector->toSingular($name);
-
-		// Append the HTTP method based suffix.
-		$name .= $this->fetchControllerSuffix();
 
 		// Get the controller object by name.
 		$controller = $this->fetchController($name, $type);
@@ -224,7 +382,7 @@ class WebServiceApplicationWebRouter extends JApplicationWebRouterRest
 	protected function fetchController($name, $type)
 	{
 		// Derive the controller class name.
-		$class = $this->controllerPrefix . ucfirst($name);
+		$class = $this->controllerPrefix . ucfirst($name. $this->fetchControllerSuffix());
 
 		// If the controller class does not exist panic.
 		if (!class_exists($class) || !is_subclass_of($class, 'JController'))
@@ -233,8 +391,10 @@ class WebServiceApplicationWebRouter extends JApplicationWebRouterRest
 		}
 
 		// Instantiate the controller.
-		$controller = new $class($type, $this->input, $this->app);
+		$controller = new $class($name, $type, $this->input, $this->app);
 
 		return $controller;
 	}
+
+
 }

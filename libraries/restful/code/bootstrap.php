@@ -71,5 +71,7 @@ define('UPLOADS', 'http://ws.localhost/uploads/');
 
 // Setup the autoloader for the WebService application classes.
 JLoader::registerPrefix('J', __DIR__ . '/joomla', true);
+
+// Load Joomla Framework/ Joomla Library
 JLoader::registerPrefix('J', JPATH_PLATFORM . '/joomla');
 JLoader::registerPrefix('WebService', __DIR__);

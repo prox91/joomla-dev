@@ -3,8 +3,8 @@
 	"db_host":"localhost",
 	"db_user":"root",
 	"db_pass":"root",
-	"db_name":"ws",
-	"db_prefix":"ws_",
+	"db_name":"joomla-tutor",
+	"db_prefix":"job_",
 
 	"mail_transport":"mail",
 	"sendmail_path":"\/usr\/sbin\/sendmail",

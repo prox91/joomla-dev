@@ -243,7 +243,7 @@ class WebServiceApplicationWeb extends JApplicationWeb
 
 			$this->loadDispatcher();
 
-			// Refister event for changing content after loading it
+			// Register event for changing content after loading it
 			$this->registerEvent('onContentAfterLoad', 'WebServiceApplicationWeb::contentAfterLoad');
 
 			// Get routes
