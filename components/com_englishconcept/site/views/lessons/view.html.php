@@ -15,7 +15,7 @@ jimport('legacy.view.legacy');
 class EnglishConceptViewLessons extends JViewLegacy
 {
 	// Overwriting JView display method
-	function display($tpl = null)
+	public function display($tpl = null)
 	{
 		// Display the view
 		parent::display($tpl);

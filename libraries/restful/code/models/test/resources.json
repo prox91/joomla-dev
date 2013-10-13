@@ -1,39 +1,46 @@
 {
-    "create":
-    {
-        "felds": "name, username, email, password",
-        "table": "activation",
-        "join": "hit, count",
-        "on": "",
-        "where": "",
-        "order": ""
-    },
+	"create":
+	{
+		"fields": "name, username, email, password",
+		"table": "users",
+		"join":
+		{
+			"table": "",
+			"conditions": ""
+		},
+		"on": "",
+		"where": "",
+		"order": ""
+	},
 
 	"get":
 	{
-		"felds": "name, username, email, password",
-		"table": "activation",
-		"join": "hit, count",
+		"fields": "name, username, email, password",
+		"table": "users",
+		"join": "",
 		"on": "",
-        "where": ""
+		"where": "",
+		"order": ""
 	},
 
-    "update":
-    {
-        "felds": "name, username, email, password",
-        "table": "activation",
-        "join": "hit, count",
-        "on": "",
-        "where": ""
-    },
+	"update":
+	{
+		"fields": "name, username, email, password",
+		"table": "users",
+		"join": "",
+		"on": "",
+		"where": "",
+		"order": ""
+	},
 
 
-    "delete":
-    {
-        "felds": "name, username, email, password",
-        "table": "activation",
-        "join": "hit, count",
-        "on": "",
-        "where": ""
-    }
+	"delete":
+	{
+		"fields": "name, username, email, password",
+		"table": "users",
+		"join": "",
+		"on": "",
+		"where": "",
+		"order": ""
+	}
 }

@@ -17,34 +17,5 @@
  */
 class WebServiceControllersV1JsonTestUsersGet extends WebServiceControllersV1JsonBaseGet
 {
-    /**
-     * Do the mapping with of tags with applications
-     *
-     * @return  void
-     *
-     * @since   1.0
-     */
-    protected function doMap()
-    {
-        // Get user id
-        $userId = $this->input->get->getString('user_id');
 
-        // Check if application was passed to input
-        if (isset($userId))
-        {
-            // Check if application exists in database
-            if ($this->itemExists($userId, 'application'))
-            {
-                // Get content state
-                $modelState = $this->model->getState();
-
-                // Set content type that we need
-                $modelState->set('users.id', $userId);
-            }
-            else
-            {
-                $this->app->errors->addError('204', array('application_id', $userId));
-            }
-        }
-    }
 }

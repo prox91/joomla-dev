@@ -99,6 +99,10 @@ abstract class WebServiceModelsBase extends JModelBase
         }
     }
 
+	public function getMap()
+	{
+		return $this->map;
+	}
 	/**
 	 * Method to get a list of content items.
 	 *
@@ -121,14 +125,45 @@ abstract class WebServiceModelsBase extends JModelBase
 	 */
 	abstract protected function countItems();
 
-	/**
-	 * Method to get a database query object to load a list of items.
-	 *
-	 * @return  object  A JDatabaseQuery object.
-	 *
-	 * @since   1.0
-	 */
-	abstract protected function getListQuery();
+	protected function getListQuery()
+	{
+		// Build the query object.
+		$query = $this->db->getQuery(true);
+		$map = $this->getMap();
+
+		if(isset($map->get))
+		{
+			// Select
+			if(isset($map->get->fields) || !empty($map->get->fields))
+			{
+				$query->select($map->get->fields);
+			}
+			else
+			{
+				$query->select('*');
+			}
+
+			// Table
+			if(isset($map->get->table) && !empty($map->get->table))
+			{
+				$query->from("#__{$map->get->table}");
+			}
+
+			// Join
+			if(isset($map->get->joins) && !empty($map->get->joins))
+			{
+				//$query->join('#__{$map->get->table}');
+			}
+
+			// Where
+			if(isset($map->get->where) && !empty($map->get->where))
+			{
+
+			}
+		}
+
+		return $query;
+	}
 
 	/**
 	 * Method to get a content item.

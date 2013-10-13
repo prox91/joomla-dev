@@ -58,16 +58,6 @@ class WebServiceModelsUsers extends WebServiceModelsBase
         return parent::getItem();
     }
 
-    protected function getListQuery()
-    {
-        // Build the query object.
-        $query = $this->db->getQuery(true);
-        $query->select('u.id, u.name, u.username, u.email, u.password');
-        $query->from('#__users AS u');
-
-        return $query;
-    }
-
     /**
      * Method to get a list of content items.
      *

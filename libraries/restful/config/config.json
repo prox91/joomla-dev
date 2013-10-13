@@ -4,7 +4,7 @@
 	"db_user":"root",
 	"db_pass":"root",
 	"db_name":"joomla-tutor",
-	"db_prefix":"job_",
+	"db_prefix":"jltt_",
 
 	"mail_transport":"mail",
 	"sendmail_path":"\/usr\/sbin\/sendmail",
