@@ -14,9 +14,16 @@ jimport('legacy.view.legacy');
 
 class EnglishConceptViewLessons extends JViewLegacy
 {
+    protected $lessons;
+    protected $pagination;
+
+
 	// Overwriting JView display method
 	public function display($tpl = null)
 	{
+        $this->lessons = $this->get("Lesson");
+        $this->pagination = $this->get('Pagination');
+
 		// Display the view
 		parent::display($tpl);
 	}

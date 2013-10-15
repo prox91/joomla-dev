@@ -25,8 +25,8 @@ defined('_JEXEC') or die('Restricted access');
 		<div class="introduction">
 			<p></p>
 		</div>
-		<?php if (count($lessons) > 0) {
-			foreach ($lessons as $lesson_id => $lesson) {
+		<?php if (count($this->lessons) > 0) {
+			foreach ($$this->lessons as $lesson_id => $lesson) {
 				?>
 				<div class="heading">
 					<h1>

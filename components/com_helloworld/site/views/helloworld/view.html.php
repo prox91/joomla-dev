@@ -14,6 +14,8 @@ jimport('legacy.view.legacy');
 
 class HelloWorldViewHelloWorld extends JViewLegacy
 {
+    protected $item;
+
 	// Overwriting JView display method
 	function display($tpl = null)
 	{

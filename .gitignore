@@ -1,42 +1,18 @@
-# OSX
-.DS_Store
-._*
-.Spotlight-V100
-.Trashes
+.gitignore
 
 # Windows
 Thumbs.db
 Desktop.ini
 
-# Netbeans
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-nbactions.xml
-nb-configuration.xml
-
 # PHPStorm
-.idea/*
-
+.idea/
 
 # Eclipse
-*.pydevproject
-.project
-.metadata
-bin/**
-tmp/**
-tmp/**/*
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.classpath
-.settings/
-.loadpath
-.externalToolBuilders/
-*.launch
-.cproject
 .buildpath
+.project
+.settings
+
+# Never ignore
+!.gitignore
+!index.html
+!index.php
