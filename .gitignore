@@ -1,4 +1,12 @@
 .gitignore
+.htaccess
+*.txt
+
+# OSX
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
 
 # Windows
 Thumbs.db
@@ -11,6 +19,19 @@ Desktop.ini
 .buildpath
 .project
 .settings
+
+# Netbeans (custom)
+.netbeans/*
+
+# Temp files
+*.tmp
+*.bak
+*.swp
+*~.nib
+*~
+
+# Phing build script
+build.properties
 
 # Never ignore
 !.gitignore

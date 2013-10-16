@@ -26,82 +26,82 @@ defined('_JEXEC') or die('Restricted access');
 			<p></p>
 		</div>
 		<?php if (count($this->lessons) > 0) {
-			foreach ($$this->lessons as $lesson_id => $lesson) {
+			foreach ($this->lessons as $lesson) {
 				?>
 				<div class="heading">
 					<h1>
-						<img alt="" src="<?php echo Asset::get_filepath_img('lesson-book.png', true)?>">
-						<span>Lesson <?php echo $lesson_id; ?></span>
+						<img alt="" src="<?php //echo Asset::get_filepath_img('lesson-book.png', true)?>">
+						<span>Lesson <?php echo $lesson->id; ?></span>
 					</h1>
 				</div>
 				<div class="content">
 					<form id="form" enctype="multipart/form-data" method="post" action="#">
 						<div style="padding-bottom: 10px;">
 							<audio height="100" width="100">
-								<source src="<?php echo HTTP_IMAGE.$lesson['script']['script_file_name'] ;?>"/>
+								<source src="<?php //echo HTTP_IMAGE.$lesson['script']['script_file_name'] ;?>"/>
 							</audio>
-							<?php if(!empty($lesson['script']['script_text'])) { ?>
+							<?php //if(!empty($lesson['script']['script_text'])) { ?>
 								<div class="hidden-text-expander inline" title="show/hidden lesson content">
 									<a class="show_lesson" href="javascript:;">…</a>
 								</div>
-							<?php } ?>
+							<?php //} ?>
 						</div>
-						<?php if(!empty($lesson['script']['script_text'])) { ?>
+						<?php //if(!empty($lesson['script']['script_text'])) { ?>
 							<div id="lesson_content" class="hidden" style="padding-bottom: 10px; font-size: 12px; line-height: 18px; padding-left: 2px;" >
-								<?php if(isset($lesson['script']['script_text'])) { echo $lesson['script']['script_text']; } ?>
+								<?php //if(isset($lesson['script']['script_text'])) { echo $lesson['script']['script_text']; } ?>
 							</div>
-						<?php } ?>
+						<?php //} ?>
 
-						<?php if(!empty($lesson['compre']) && count($lesson['compre']) > 0) {?>
+						<?php //if(!empty($lesson['compre']) && count($lesson['compre']) > 0) {?>
 							<div style="background-color: rgb(239, 239, 239); font-weight: bold; margin-top: 0px; padding-top: 5px; padding-bottom: 5px; padding-left: 8px; border-width: 1px; color: #1B0069;">
 								<span>Comprehension Précis and Composition</span>
 							</div>
 							<table class="list">
 								<tbody>
-								<?php foreach ($lesson['compre'] as $compre) { ?>
+								<?php //foreach ($lesson['compre'] as $compre) { ?>
 									<tr>
-										<td class="left"><?php echo $compre['question_no'].'. '. $compre['question'];?></td>
+										<td class="left"><?php //echo $compre['question_no'].'. '. $compre['question'];?></td>
 									</tr>
-								<?php } ?>
+								<?php //} ?>
 								</tbody>
 							</table>
-						<?php } ?>
+						<?php //} ?>
 
-						<?php if(!empty($lesson['key_struct']['text'])) {?>
+						<?php //if(!empty($lesson['key_struct']['text'])) {?>
 							<div style="background-color: rgb(239, 239, 239); font-weight: bold; margin-top: 0px; padding-top: 5px; padding-bottom: 5px; padding-left: 8px; border-width: 1px; color: #1B0069;">
 								<span>Key Structures</span>
 							</div>
 							<div style="padding-bottom: 10px; font-size: 12px; line-height: 18px; padding-left: 2px;">
-								<?php echo $lesson['key_struct']['text']; ?>
+								<?php //echo $lesson['key_struct']['text']; ?>
 							</div>
-						<?php } ?>
+						<?php //} ?>
 
-						<?php if(!empty($lesson['special_diff']['text'])) {?>
+						<?php //if(!empty($lesson['special_diff']['text'])) {?>
 							<div style="background-color: rgb(239, 239, 239); font-weight: bold; margin-top: 0px; padding-top: 5px; padding-bottom: 5px; padding-left: 8px; border-width: 1px; color: #1B0069;">
 								<span>Special Difficulties</span>
 							</div>
 							<div>
-								<?php echo $lesson['special_diff']['text']; ?>
+								<?php //echo $lesson['special_diff']['text']; ?>
 							</div>
-						<?php } ?>
+						<?php //} ?>
 
-						<?php if(!empty($lesson['exercise']) && count($lesson['exercise']) > 0) {?>
+						<?php //if(!empty($lesson['exercise']) && count($lesson['exercise']) > 0) {?>
 							<div style="background-color: rgb(239, 239, 239); font-weight: bold; margin-top: 0px; padding-top: 5px; padding-bottom: 5px; padding-left: 8px; border-width: 1px; color: #1B0069;">
 								<span>Exercises</span>
 							</div>
 							<table class="list">
 								<tbody>
-								<?php foreach ($lesson['exercise'] as $exercise) { ?>
+								<?php //foreach ($lesson['exercise'] as $exercise) { ?>
 									<tr>
-										<td class="left"><?php echo $exercise['question_no'].'. '. $exercise['question'];?></td>
+										<td class="left"><?php //echo $exercise['question_no'].'. '. $exercise['question'];?></td>
 									</tr>
-								<?php } ?>
+								<?php //} ?>
 								</tbody>
 							</table>
-						<?php } ?>
+						<?php //} ?>
 					</form>
 					<div class="pagination">
-						<?php if(isset($pagination)){ echo $pagination; }?>
+                        <?php if(isset($this->pagination)){ echo $this->pagination; }?>
 					</div>
 				</div>
 			<?php

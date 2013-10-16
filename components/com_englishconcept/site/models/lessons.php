@@ -11,6 +11,36 @@ defined('_JEXEC') or die('Restricted Access');
 class EnglishConceptModelLessons extends JModelList
 {
     /**
+     * Method to auto-populate the model state.
+     *
+     * This method should only be called once per instantiation and is designed
+     * to be called on the first call to the getState() method unless the model
+     * configuration flag to ignore the request is set.
+     *
+     * Note. Calling getState in this method will result in recursion.
+     *
+     * @param   string  $ordering   An optional ordering field.
+     * @param   string  $direction  An optional direction (asc|desc).
+     *
+     * @return  void
+     *
+     * @since   12.2
+     */
+    protected function populateState($ordering = null, $direction = null)
+    {
+        parent::populateState($ordering, $direction);
+
+        // Get the pagination request variables
+        $app    = JFactory::getApplication();
+
+        // Get the english concept params
+		$englishConceptParams = JComponentHelper::getParams('com_englishconcept', true);
+
+        $this->setState('list.limit', 1);
+        $this->setState('list.start', $app->input->get('limitstart', 0, 'uint'));
+    }
+
+    /**
      * Method to build a sql to load the list data
      *
      * @return   string  An SQL query
@@ -31,7 +61,7 @@ class EnglishConceptModelLessons extends JModelList
         return $query;
     }
 
-	public function getLesson($lesson_id) {
+    public function getLesson($lesson_id) {
 		$lesson_data = array();
 
 		// get lesson info
@@ -55,31 +85,26 @@ class EnglishConceptModelLessons extends JModelList
 		return $lesson_data;
 	}
 
-	public function getTotalLesson(){
-		$this->db->where('del_flg', 0);
-		return $this->db->count_all_results('lesson');
-	}
-
-	public function getLessons($condition = array()) {
-
-		$lesson_data = array();
-
-		$this->db->where('del_flg', 0);
-		$start = 0;
-		$limit = 1;
-		if (!empty($condition) && isset($condition['start']) && isset($condition['limit'])) {
-			$start = $condition['start'];
-			$limit = $condition['limit'];
-		}
-		$this->db->limit($limit, $start);
-		$query = $this->db->get('lesson');
-
-		foreach ($query->result() as $row){
-			$lesson_data[$row->id] = $this->getLesson($row->id);
-		}
-
-		return $lesson_data;
-	}
+//	public function getLessons($condition = array()) {
+//
+//		$lesson_data = array();
+//
+//		$this->db->where('del_flg', 0);
+//		$start = 0;
+//		$limit = 1;
+//		if (!empty($condition) && isset($condition['start']) && isset($condition['limit'])) {
+//			$start = $condition['start'];
+//			$limit = $condition['limit'];
+//		}
+//		$this->db->limit($limit, $start);
+//		$query = $this->db->get('lesson');
+//
+//		foreach ($query->result() as $row){
+//			$lesson_data[$row->id] = $this->getLesson($row->id);
+//		}
+//
+//		return $lesson_data;
+//	}
 
 	private function _getLessonInfo($lesson_id) {
 		$this->db->where('id', $lesson_id);

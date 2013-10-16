@@ -21,7 +21,7 @@ class EnglishConceptViewLessons extends JViewLegacy
 	// Overwriting JView display method
 	public function display($tpl = null)
 	{
-        $this->lessons = $this->get("Lesson");
+        $this->lessons = $this->get("Items");
         $this->pagination = $this->get('Pagination');
 
 		// Display the view
