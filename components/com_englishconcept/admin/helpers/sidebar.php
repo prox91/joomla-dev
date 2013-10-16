@@ -44,7 +44,7 @@ class EnglishConceptHelperSideBar
 		);
 
 		$menuStructure['EC_SUBMENU_SYSTEM'] = array(
-			0 => array( 'EC_SUBMENU_SETTING_LIST', '&view=settings' ),
+			0 => array( 'EC_SUBMENU_SETTING_LIST', '&view=setting' ),
 		);
 
 		$html = '';

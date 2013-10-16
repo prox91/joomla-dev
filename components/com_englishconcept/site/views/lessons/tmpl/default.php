@@ -101,7 +101,7 @@ defined('_JEXEC') or die('Restricted access');
 						<?php //} ?>
 					</form>
 					<div class="pagination">
-                        <?php if(isset($this->pagination)){ echo $this->pagination; }?>
+                        <?php if(isset($this->pagination)){ echo $this->pagination->getListFooter(); }?>
 					</div>
 				</div>
 			<?php
