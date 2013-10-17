@@ -48,8 +48,7 @@ class EnglishConceptModelLessons extends JModelList
     public function getListQuery()
     {
         // Create a new query object
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
+        $query = $this->_db->getQuery(true);
 
         // Select some field
         $query->select($this->getState('list.select','ls.*'));
@@ -109,8 +108,8 @@ class EnglishConceptModelLessons extends JModelList
 
 	private function _getLessonInfo($lesson_id)
     {
-		$this->db->where('id', $lesson_id);
-		$query = $this->db->get('lesson');
+		$this->_db->where('id', $lesson_id);
+		$query = $this->_db->get('lesson');
 		return $query->row_array();
 	}
 
