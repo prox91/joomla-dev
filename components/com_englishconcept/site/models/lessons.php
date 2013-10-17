@@ -61,7 +61,8 @@ class EnglishConceptModelLessons extends JModelList
         return $query;
     }
 
-    public function getLesson($lesson_id) {
+    public function getLesson($lesson_id)
+    {
 		$lesson_data = array();
 
 		// get lesson info
@@ -106,37 +107,43 @@ class EnglishConceptModelLessons extends JModelList
 //		return $lesson_data;
 //	}
 
-	private function _getLessonInfo($lesson_id) {
+	private function _getLessonInfo($lesson_id)
+    {
 		$this->db->where('id', $lesson_id);
 		$query = $this->db->get('lesson');
 		return $query->row_array();
 	}
 
-	private function _getScriptInfo($lesson_id) {
+	private function _getScriptInfo($lesson_id)
+    {
 		$this->db->where('lesson_id', $lesson_id);
 		$query = $this->db->get('lesson_script');
 		return $query->row_array();
 	}
 
-	private function _getComprehensionInfo($lesson_id) {
+	private function _getComprehensionInfo($lesson_id)
+    {
 		$this->db->where('lesson_id', $lesson_id);
 		$query = $this->db->get('lesson_comprehension');
 		return $query->result_array();
 	}
 
-	private function _getKeyStructureInfo($lesson_id) {
+	private function _getKeyStructureInfo($lesson_id)
+    {
 		$this->db->where('lesson_id', $lesson_id);
 		$query = $this->db->get('lesson_key_structures');
 		return $query->row_array();
 	}
 
-	private function _getSpecialDifficultyInfo($lesson_id) {
+	private function _getSpecialDifficultyInfo($lesson_id)
+    {
 		$this->db->where('lesson_id', $lesson_id);
 		$query = $this->db->get('lesson_special_difficulties');
 		return $query->row_array();
 	}
 
-	private function _getExerciseInfo($lesson_id) {
+	private function _getExerciseInfo($lesson_id)
+    {
 		$this->db->where('lesson_id', $lesson_id);
 		$query = $this->db->get('lesson_exercises');
 		return $query->result_array();
