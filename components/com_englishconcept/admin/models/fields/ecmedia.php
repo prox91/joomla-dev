@@ -183,11 +183,11 @@ class JFormFieldECMedia extends JFormField
 		if ($this->value && file_exists(JPATH_ROOT . '/' . $this->value))
 		{
 			$folder = explode('/', $this->value);
-			$folder = array_diff_assoc($folder, explode('/', JComponentHelper::getParams('com_englishconcept')->get('media_path', 'media/englishconcept/media')));
+			$folder = array_diff_assoc($folder, explode('/', JComponentHelper::getParams('com_englishconcept')->get('media_path', 'englishconcept/media')));
 			array_pop($folder);
 			$folder = implode('/', $folder);
 		}
-		elseif (file_exists(JPATH_ROOT . '/' . JComponentHelper::getParams('com_englishconcept')->get('media_path', 'media/englishconcept/media') . '/' . $directory))
+		elseif (file_exists(JPATH_ROOT . '/' . JComponentHelper::getParams('com_englishconcept')->get('media_path', 'englishconcept/media') . '/' . $directory))
 		{
 			$folder = $directory;
 		}
