@@ -64,7 +64,7 @@
 
         <!-- Frontend of component -->
         <copy todir="${des.com.site}" overwrite="true">
-            <fileset id="com-backend-dir" dir="${src.com.site}">
+            <fileset id="com-frontend-dir" dir="${src.com.site}">
                 <include name="**"/>
                 <exclude name="${src.com.site.lang}/**"/>
             </fileset>
