@@ -56,7 +56,7 @@ defined('_JEXEC') or die('Restricted Access');
         if(count($this->item->questions) > 0) :
     ?>
         rowId = <?php echo count($this->item->questions); ?>;
-    <?
+    <?php
         endif;
     endif;
     ?>

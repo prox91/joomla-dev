@@ -5,6 +5,6 @@ class EnglishConceptTableSetting extends JTable
 {
 	function __construct($_db)
 	{
-		parent::__construct('#__ec_lesson_settings', 'id', $_db);
+		parent::__construct('#__ec_settings', 'id', $_db);
 	}
 }

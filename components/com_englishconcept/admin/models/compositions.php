@@ -22,10 +22,11 @@ class EnglishConceptModelCompositions extends JModelList
         $query = $db->getQuery(true);
 
         // Select some field
-        $query->select($this->getState('list.select','cs.*'));
+        $query->select($this->getState('list.select','cs.*, ls.title AS title'));
 
-        // From the hello table
+        // From the composition and lesson table
         $query->from('#__ec_lesson_compositions AS cs');
+	    $query->leftJoin('#__ec_lessons ls ON ls.id = cs.lesson_id');
         $query->where('cs.deleted_flg = 0');
 
         return $query;

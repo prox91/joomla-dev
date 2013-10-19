@@ -26,7 +26,21 @@
 		       filter="safehtml" buttons="false" width="90%"
 		       labelclass="control-label"/>
 
-		<!-- Question tab-->
+		<field name="question"
+		       type="editor"
+		       class="inputbox"
+		       label="Question"
+		       description="Book introduction/Description"
+		       filter="safehtml" buttons="false" width="90%"
+		       labelclass="control-label"/>
+
+		<field name="question_trans"
+		       type="editor"
+		       class="inputbox"
+		       label="Question Translate"
+		       description="Book introduction/Description"
+		       filter="safehtml" buttons="false" width="90%"
+		       labelclass="control-label"/>
 
 		<field name="groups"
 		       type="hidden"/>
