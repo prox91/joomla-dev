@@ -29,7 +29,7 @@
 		       labelclass="control-label"/>
 
 		<field name="img_url"
-		       type="ecmedia"
+		       type="media"
 		       class="inputbox"
 		       label="Cover Image"
 		       description="Book Cover Image"

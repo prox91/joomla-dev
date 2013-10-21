@@ -22,10 +22,11 @@ class EnglishConceptModelComprehensions extends JModelList
         $query = $db->getQuery(true);
 
         // Select some field
-        $query->select($this->getState('list.select','cp.*'));
+        $query->select($this->getState('list.select','cp.*, ls.title AS title'));
 
-        // From the hello table
+        // From the comprehension and lesson table
         $query->from('#__ec_lesson_comprehensions AS cp');
+	    $query->leftJoin('#__ec_lessons ls ON ls.id = cp.lesson_id');
         $query->where('cp.deleted_flg = 0');
 
         return $query;

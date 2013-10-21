@@ -22,4 +22,16 @@ defined('_JEXEC') or die('Restricted Access');
 			<?php echo $this->form->getInput('description'); ?>
 		</div>
 	</div>
+	<div class="control-group">
+		<?php echo $this->form->getLabel('question'); ?>
+		<div class="controls">
+			<?php echo $this->form->getInput('question'); ?>
+		</div>
+	</div>
+	<div class="control-group">
+		<?php echo $this->form->getLabel('question_trans'); ?>
+		<div class="controls">
+			<?php echo $this->form->getInput('question_trans'); ?>
+		</div>
+	</div>
 </fieldset>

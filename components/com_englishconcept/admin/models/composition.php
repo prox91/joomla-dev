@@ -161,8 +161,7 @@ class EnglishConceptModelComposition extends JModelAdmin
 		$date = JFactory::getDate();
 		$user = JFactory::getUser();
 
-		$table->name		= htmlspecialchars_decode($table->name, ENT_QUOTES);
-		$table->modifiede	= $date->toSql();
+		$table->modified	= $date->toSql();
 		$table->modified_by	= $user->get('id');
 	}
 }

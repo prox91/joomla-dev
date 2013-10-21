@@ -9,7 +9,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 /**
- * Class EnglishConceptViewEnglishConcept
+ * Class EnglishConceptViewCompositions
  */
 class EnglishConceptViewCompositions extends ECViewAdmin
 {

@@ -251,8 +251,8 @@ CREATE TABLE IF NOT EXISTS `#__ec_questions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
-DROP TABLE IF EXISTS `#__ec_lesson_settings`;
-CREATE TABLE IF NOT EXISTS `#__ec_lesson_settings` (
+DROP TABLE IF EXISTS `#__ec_settings`;
+CREATE TABLE IF NOT EXISTS `#__ec_settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lesson_id` int(11) NOT NULL,
   `description` text,

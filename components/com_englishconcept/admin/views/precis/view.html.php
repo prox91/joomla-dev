@@ -46,10 +46,10 @@ class EnglishConceptViewPrecis extends ECViewAdmin
 		JHtml::_('behavior.tooltip');
 
 		JToolbarHelper::title(JText::_('COM_ENGLISHCONCEPT_TITLE'));
-		JToolBarHelper::apply('composition.apply', 'JToolbar_Apply');
-		JToolBarHelper::save('composition.save', 'JToolbar_Save');
-		JToolBarHelper::addNew('composition.save2new', 'JToolbar_Save_and_new');
-		JToolBarHelper::cancel('composition.cancel', 'JToolbar_Cancel');
+		JToolBarHelper::apply('precis.apply', 'JToolbar_Apply');
+		JToolBarHelper::save('precis.save', 'JToolbar_Save');
+		JToolBarHelper::addNew('precis.save2new', 'JToolbar_Save_and_new');
+		JToolBarHelper::cancel('precis.cancel', 'JToolbar_Cancel');
 	}
 
 	public function setDocument()
