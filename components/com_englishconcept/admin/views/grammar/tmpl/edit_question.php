@@ -13,7 +13,6 @@ defined('_JEXEC') or die('Restricted Access');
 	<i class="icon-plus-2"></i>
 	<?php echo JText::_('SC_COMPREHENSION_NEW_QUESTION')?>
 </a>
-
 <table id="comprehension_question_tbl" class="table" cellspacing="0">
 	<thead>
 	<tr>
@@ -75,7 +74,12 @@ defined('_JEXEC') or die('Restricted Access');
             htmlStr += "<td width='2%'><a class='delete-question-tier btn'><i class='icon-minus-sign'></i></a></td>";
             htmlStr += "<td width='8%'><span class='num'>"+rowId+"</span></td>";
             htmlStr += "<input type='hidden' value='' name='jform[question][id]["+rowId+"]'>";
-            htmlStr += "<td width='90%'><input type='text' value='' name='jform[question][title]["+rowId+"]' class=''></td>";
+            htmlStr += "<td width='70%'><input type='text' value='' name='jform[question][title]["+rowId+"]' class=''></td>";
+
+            htmlStr += "<td with='20%'>";
+            <?php $link = 'index.php?option=com_englishconcept&task=grammarexercise.edit&id=1&tmpl=component&view=grammarexercise&layout=modal'; ?>
+            htmlStr += "<a class=\"modal\" href=\"<?php echo $link;?>\" rel=\"{handler: 'iframe', size: {x: 900, y: 550}}\" title=\"XXX\">Link to...</a>";
+            htmlStr += "</td>";
 
             rowData.append(htmlStr);
             bindDeleteQuestionRowEvent();
@@ -88,6 +92,11 @@ defined('_JEXEC') or die('Restricted Access');
             });
         };
 
+        var bindClickButtonModal = function() {
+            $('.modal').unbind().click();
+        };
+
+        bindClickButtonModal();
         bindDeleteQuestionRowEvent();
     });
 </script>

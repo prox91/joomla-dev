@@ -21,9 +21,5 @@ defined('_JEXEC') or die('Restricted Access');
 		<div class="controls">
 			<?php echo $this->form->getInput('description'); ?>
 		</div>
-        <div>
-            <?php $link = 'index.php?option=com_englishconcept&amp;task=grammarexercise.edit&amp;id=1&amp;tmpl=component&amp;view=grammarexercise&amp;layout=modal'; ?>
-            <a class="modal" href="<?php echo $link;?>" rel="{handler: 'iframe', size: {x: 900, y: 550}}" title="XXX">Link to modal</a>
-        </div>
 	</div>
 </fieldset>
