@@ -23,12 +23,11 @@ $link = 'index.php?option=com_englishconcept&task=grammarexercise.edit&id=1&tmpl
 		<th><?php echo JText::_('EC_COMPREHENSION_QUESTION_TITLE'); ?></th>
 	</tr>
 	</thead>
-
 	<tbody>
 	<?php
 	$i = 0;
-	if (isset($this->item->questions) && is_array($this->item->questions)) :
-		foreach($this->item->questions as $key => $value) :
+	if (isset($this->item->exercises) && is_array($this->item->exercises)) :
+		foreach($this->item->exercises as $key => $value) :
 	?>
 			<tr id="question-tier-<?php echo $i ?>" class="question-tier">
 				<td width="2%">
@@ -39,7 +38,7 @@ $link = 'index.php?option=com_englishconcept&task=grammarexercise.edit&id=1&tmpl
 				</td>
 				<td width="90%">
                     <input type="hidden" value="<?php echo $value->id ?>" name="jform[question][id][<?php echo $value->id ?>]">
-					<input type="text" value="<?php echo $value->question ?>" name="jform[question][title][<?php echo $i ?>]" class="">
+					<input type="text" value="<?php echo $value->exercise_text ?>" name="jform[question][title][<?php echo $i ?>]" class="">
 				</td>
 			</tr>
 	<?php
@@ -49,3 +48,25 @@ $link = 'index.php?option=com_englishconcept&task=grammarexercise.edit&id=1&tmpl
 	?>
 	</tbody>
 </table>
+<script type="text/javascript">
+    var rowId = 1;
+    <?php
+    if (isset($this->item->questions) && is_array($this->item->questions)) :
+        if(count($this->item->questions) > 0) :
+    ?>
+    rowId = <?php echo count($this->item->questions); ?>;
+    <?php
+        endif;
+    endif;
+    ?>
+    jQuery(document).ready(function($) {
+        var bindDeleteQuestionRowEvent = function() {
+            $('.delete-question-tier').unbind().click(function() {
+                $(this).parent().parent().remove();
+                rowId--;
+            });
+        };
+
+        bindDeleteQuestionRowEvent();
+    });
+</script>
