@@ -22,10 +22,11 @@ class EnglishConceptModelGrammars extends JModelList
         $query = $db->getQuery(true);
 
         // Select some field
-        $query->select($this->getState('list.select','gr.*'));
+        $query->select($this->getState('list.select','gr.*, ls.title AS title'));
 
         // From the hello table
         $query->from('#__ec_lesson_grammars AS gr');
+	    $query->leftJoin('#__ec_lessons ls ON ls.id = gr.lesson_id');
         $query->where('gr.deleted_flg = 0');
 
         return $query;

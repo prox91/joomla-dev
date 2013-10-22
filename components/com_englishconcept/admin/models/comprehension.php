@@ -181,7 +181,7 @@ class EnglishConceptModelComprehension extends JModelAdmin
 
             $query = $this->_db->getQuery(true);
             $query->select("*")
-                ->from("#__ec_lesson_comprehension_questions")
+                ->from("#__ec_lesson_comprehensions_questions")
                 ->where("comprehension_id='" . $item->id . "'");
             $this->_db->setQuery($query);
 
@@ -213,7 +213,7 @@ class EnglishConceptModelComprehension extends JModelAdmin
             {
                 // Delete old data
                 $q = $this->_db->getQuery(true);
-                $q->delete('#__ec_lesson_comprehension_questions')
+                $q->delete('#__ec_lesson_comprehensions_questions')
                     ->where('comprehension_id', $data['id']);
                 $this->_db->setQuery($q);
                 $this->_db->execute();
@@ -240,7 +240,7 @@ class EnglishConceptModelComprehension extends JModelAdmin
             {
                 $query = $this->_db->getQuery(true);
                 $query->clear()
-                      ->insert('#__ec_lesson_comprehension_questions')
+                      ->insert('#__ec_lesson_comprehensions_questions')
                       ->columns('comprehension_id, question');
 
                 foreach ($questionList['title'] as $key => $value)

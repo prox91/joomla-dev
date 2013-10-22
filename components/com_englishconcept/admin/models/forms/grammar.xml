@@ -26,6 +26,15 @@
 		       filter="safehtml" buttons="false" width="90%"
 		       labelclass="control-label"/>
 
+		<!-- Exercise tab-->
+		<field name="exercise"
+		       type="grammarexercise"
+		       class="inputbox"
+		       label="Add Exercise"
+		       description="Add new exercise"
+		       filter="safehtml" buttons="false" width="90%"
+		       labelclass="control-label"/>
+
 		<!-- Question tab-->
 
 		<field name="groups"

@@ -13,7 +13,9 @@ defined('_JEXEC') or die('Restricted Access');
 	<i class="icon-plus-2"></i>
 	<?php echo JText::_('SC_COMPREHENSION_NEW_QUESTION')?>
 </a>
-
+<?php
+echo $this->form->getInput('exercise');
+?>
 <table id="comprehension_question_tbl" class="table" cellspacing="0">
 	<thead>
 	<tr>
