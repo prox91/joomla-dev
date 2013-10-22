@@ -8,8 +8,6 @@
  */
 // No direct access to this file
 defined('_JEXEC') or die('Restricted Access');
-// Include the component HTML helpers.
-JHtml::_('behavior.modal');
 ?>
 <script type="text/javascript">
 	Joomla.orderTable = function()
@@ -29,7 +27,6 @@ JHtml::_('behavior.modal');
 	}
 </script>
 <div class="ec-contain">
-    <?php echo $this->sidebar; ?>
     <div id="ec-panel-right" class="span10">
         <div class="ec-main-container">
             <script type="text/javascript">
@@ -50,20 +47,16 @@ JHtml::_('behavior.modal');
                 }
             </script>
             <form enctype="multipart/form-data"
-                action="<?php JRoute::_('index.php?option=com_englishconcept&view=grammar'); ?>" method="post" name="itemForm" id="itemForm"
+                action="<?php JRoute::_('index.php?option=com_englishconcept&view=grammarexercise'); ?>" method="post" name="itemForm" id="itemForm"
                 class="form-validate form-horizontal">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#general" data-toggle="tab"><?php echo JText::_('General')?></a></li>
-	                <li class=""><a href="#question" data-toggle="tab"><?php echo JText::_('Question')?></a></li>
                 </ul>
 
                 <div class="tab-content">
                     <div class="tab-pane active" id="general">
 	                    <?php echo $this->loadTemplate('general'); ?>
                     </div>
-	                <div class="tab-pane" id="question">
-		                <?php echo $this->loadTemplate('exercise'); ?>
-	                </div>
                 </div>
 
                 <input type="hidden" name="task" value="" />

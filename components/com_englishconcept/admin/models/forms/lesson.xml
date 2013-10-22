@@ -80,7 +80,7 @@
 		       labelclass="control-label"/>
 
 		<field name="audio_upload"
-		       type="ecmedia"
+		       type="file"
 		       class="inputbox"
 		       label="Lesson Recording"
 		       description="The audio script of lesson"
