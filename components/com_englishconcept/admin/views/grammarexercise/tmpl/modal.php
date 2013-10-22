@@ -20,7 +20,25 @@ defined('_JEXEC') or die('Restricted Access');
     </div>
     <div class="clearfix"></div>
 </div>
-
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#general" data-toggle="tab"><?php echo JText::_('General')?></a></li>
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="general">
+			<fieldset class="adminform" id="general-tab">
+				<div class="control-group">
+					<?php echo $this->form->getLabel('grammar_id'); ?>
+					<div class="controls">
+						<?php echo $this->form->getInput('grammar_id'); ?>
+					</div>
+				</div>
+				<div class="control-group">
+					<?php echo $this->form->getLabel('exercise_text'); ?>
+					<div class="controls">
+						<?php echo $this->form->getInput('exercise_text'); ?>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</div>
 <?php
-$this->setLayout('edit');
-echo $this->loadTemplate();

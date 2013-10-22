@@ -10,23 +10,22 @@
 		       class="readonly"
 		       labelclass="control-label"/>
 
-		<field name="lesson_id"
-		       type="lessons"
-		       class="inputbox"
-		       label="Lesson Name"
-		       description="Lesson Name"
+		<field name="grammar_id"
+		       type="text"
+		       class="readonly"
+		       readonly="true"
+		       label="Grammar ID"
+		       description="Grammar ID"
 		       required="true"
 		       labelclass="control-label"/>
 
-		<field name="description"
-		       type="user"
+		<field name="exercise_text"
+		       type="editor"
 		       class="inputbox"
-		       label="User"
-		       description="User choose"
+		       label="Exercise Text"
+		       description="Exercise Text"
 		       filter="safehtml" buttons="false" width="90%"
 		       labelclass="control-label"/>
-
-		<!-- Question tab-->
 
 		<field name="groups"
 		       type="hidden"/>
