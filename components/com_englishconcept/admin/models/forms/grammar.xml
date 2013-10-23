@@ -27,13 +27,22 @@
 		       labelclass="control-label"/>
 
 		<!-- Exercise tab-->
-		<field name="exercise"
-		       type="grammarexercise"
-		       class="inputbox"
-		       label="Add Exercise"
-		       description="Add new exercise"
-		       filter="safehtml" buttons="false" width="90%"
-		       labelclass="control-label"/>
+        <field name="grammar_id"
+               type="text"
+               class="readonly"
+               readonly="true"
+               label="Grammar ID"
+               description="Grammar ID"
+               required="true"
+               labelclass="control-label"/>
+
+        <field name="exercise_text"
+               type="editor"
+               class="inputbox"
+               label="Exercise Text"
+               description="Exercise Text"
+               filter="safehtml" buttons="false" width="90%"
+               labelclass="control-label"/>
 
 		<!-- Question tab-->
 

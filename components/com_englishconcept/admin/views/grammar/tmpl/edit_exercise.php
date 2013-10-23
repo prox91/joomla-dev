@@ -8,10 +8,14 @@
 */
 // No direct access to this file
 defined('_JEXEC') or die('Restricted Access');
-$link = 'index.php?option=com_englishconcept&task=grammarexercise.edit&id=1&tmpl=component&view=grammarexercise&layout=modal';
+$link = 'index.php?option=com_englishconcept&task=grammar.edit&id=1&tmpl=component&view=grammar&layout=modal';
 ?>
 <?php  ?>
-<a id="modal" class="modal btn" href="<?php echo $link;?>" rel="{handler: 'iframe', size: {x: 900, y: 550}}" title="title">
+<a id="modal" class="modal btn" href="<?php echo $link;?>" rel="{handler: 'iframe', size: {x: 900, y: 550}, onClose:function(){var js = window.location.reload();}}" title="title">
+
+    <!-- onClick:function(){window.parent.location.reload();} -->
+    <!-- onClose:function(){var js = window.location.reload();} -->
+
 	<i class="icon-plus-2"></i>
 	<?php echo JText::_('SC_COMPREHENSION_NEW_EXERCISE')?>
 </a>

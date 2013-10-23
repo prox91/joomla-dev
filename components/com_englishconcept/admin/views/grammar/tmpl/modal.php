@@ -10,12 +10,12 @@
 defined('_JEXEC') or die('Restricted Access');
 ?>
 <form enctype="multipart/form-data"
-      action="<?php JRoute::_('index.php?option=com_englishconcept&view=grammarexercise'); ?>" method="post" name="itemForm" id="itemForm"
+      action="<?php echo JRoute::_('index.php?option=com_englishconcept&task=grammar.saveexercise&view=grammar'); ?>" method="post" name="itemForm" id="itemForm"
       class="form-validate form-horizontal">
     <fieldset class="filter clearfix">
         <div class="btn-toolbar">
             <div class="btn-group pull-left">
-                <button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('grammarexercise.save');">
+                <button type="button" class="btn btn-primary" onclick="this.form.submit();">
                     <?php echo JText::_('JSAVE');?></button>
             </div>
             <div class="btn-group">

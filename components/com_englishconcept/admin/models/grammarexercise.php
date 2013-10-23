@@ -91,7 +91,7 @@ class EnglishConceptModelGrammarExercise extends JModelAdmin
 	 * @since   12.2
 	 * @throws  Exception
 	 */
-	public function getTable($name = 'grammar', $prefix = 'EnglishConceptTable', $options = array())
+	public function getTable($name = 'grammarexercise', $prefix = 'EnglishConceptTable', $options = array())
 	{
 		return parent::getTable($name, $prefix, $options);
 	}
@@ -108,15 +108,15 @@ class EnglishConceptModelGrammarExercise extends JModelAdmin
 	 */
 	public function getForm($data = array(), $loadData = true)
 	{
-		$form = $this->loadForm('com_englishconcept.grammar',
-			'grammar',
+		$form = $this->loadForm('com_englishconcept.grammarexercise',
+			'grammarexercise',
 			array('control' => 'jform', 'load_data' => $loadData));
 		if (empty($form)) {
 			return false;
 		}
 
 		// Determine correct permissions to check.
-		if ($this->getState('grammars.id')) {
+		if ($this->getState('grammarsexercise.id')) {
 			// Existing record. Can only edit in selected categories.
 			//$form->setFieldAttribute('catid', 'action', 'core.edit');
 		} else {
@@ -161,7 +161,6 @@ class EnglishConceptModelGrammarExercise extends JModelAdmin
 		$date = JFactory::getDate();
 		$user = JFactory::getUser();
 
-		$table->name		= htmlspecialchars_decode($table->name, ENT_QUOTES);
 		$table->modified	= $date->toSql();
 		$table->modified_by	= $user->get('id');
 	}
