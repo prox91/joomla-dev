@@ -10,42 +10,42 @@
 defined('_JEXEC') or die('Restricted Access');
 ?>
 <form enctype="multipart/form-data"
-      action="<?php JRoute::_('index.php?option=com_englishconcept&view=grammarexercise'); ?>" method="post" name="itemForm" id="itemForm"
-      class="form-validate form-horizontal">
-    <fieldset class="filter clearfix">
-        <div class="btn-toolbar">
-            <div class="btn-group pull-left">
-                <button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('grammarexercise.save');">
-                    <?php echo JText::_('JSAVE');?></button>
-            </div>
-            <div class="btn-group">
-                <button type="button" class="btn" onclick="window.parent.SqueezeBox.close();">
-                    <?php echo JText::_('JCANCEL');?></button>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </fieldset>
-    <fieldset>
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="#general" data-toggle="tab"><?php echo JText::_('General')?></a></li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane active" id="general">
-                <fieldset class="adminform" id="general-tab">
-                    <div class="control-group">
-                        <?php echo $this->form->getLabel('grammar_id'); ?>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('grammar_id'); ?>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <?php echo $this->form->getLabel('exercise_text'); ?>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('exercise_text'); ?>
-                        </div>
-                    </div>
-                </fieldset>
-            </div>
-        </div>
-    </fieldset>
+	action="<?php echo JRoute::_('index.php?option=com_englishconcept&task=grammarexercise.saveexercise&view=grammarexercise'); ?>" method="post" name="itemForm" id="itemForm"
+	class="form-validate form-horizontal">
+	<fieldset class="filter clearfix">
+		<div class="btn-toolbar">
+			<div class="btn-group pull-left">
+				<button type="button" class="btn btn-primary" onclick="this.form.submit();">
+					<?php echo JText::_('JSAVE');?></button>
+			</div>
+			<div class="btn-group">
+				<button type="button" class="btn" onclick="window.parent.SqueezeBox.close();">
+					<?php echo JText::_('JCANCEL');?></button>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</fieldset>
+	<fieldset>
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#general" data-toggle="tab"><?php echo JText::_('General')?></a></li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane active" id="general">
+				<fieldset class="adminform" id="general-tab">
+					<div class="control-group">
+						<?php echo $this->form->getLabel('grammar_id'); ?>
+						<div class="controls">
+							<?php echo $this->form->getInput('grammar_id'); ?>
+						</div>
+					</div>
+					<div class="control-group">
+						<?php echo $this->form->getLabel('exercise_text'); ?>
+						<div class="controls">
+							<?php echo $this->form->getInput('exercise_text'); ?>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+	</fieldset>
 </form>

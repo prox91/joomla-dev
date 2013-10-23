@@ -8,7 +8,8 @@
 */
 // No direct access to this file
 defined('_JEXEC') or die('Restricted Access');
-$link = 'index.php?option=com_englishconcept&task=grammar.edit&id=1&tmpl=component&view=grammar&layout=modal';
+//$link = 'index.php?option=com_englishconcept&task=grammar.edit&id=1&tmpl=component&view=grammar&layout=modal';
+$link = 'index.php?option=com_englishconcept&task=grammarexercise.edit&id=1&tmpl=component&view=grammarexercise&layout=modal';
 ?>
 <?php  ?>
 <a id="modal" class="modal btn" href="<?php echo $link;?>" rel="{handler: 'iframe', size: {x: 900, y: 550}, onClose:function(){var js = window.location.reload();}}" title="title">

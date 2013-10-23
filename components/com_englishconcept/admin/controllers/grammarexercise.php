@@ -10,14 +10,14 @@ defined('_JEXEC') or die('Restricted Access');
 
 class EnglishConceptControllerGrammarExercise extends JControllerForm
 {
-	function __construct($config = array())
+	public function __construct($config = array())
 	{
 		parent::__construct($config);
 	}
 
-    public function saveexercise()
-    {
-        // Check for request forgeries
+	public function saveexercise()
+	{
+		// Check for request forgeries
 //        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 //
 //        $user   = JFactory::getUser();
@@ -53,7 +53,8 @@ class EnglishConceptControllerGrammarExercise extends JControllerForm
 //                JError::raiseWarning(500, $model->getError());
 //            }
 //        }
-        $this->setMessage('Text', 'WARNING');
-        $this->setRedirect('index.php?option=com_englishconcept&view=grammar&layout=edit&id=2');
-    }
+		$this->setMessage('Text', 'WARNING');
+		//$this->setRedirect('index.php?option=com_englishconcept&view=grammar&layout=edit&id=2');
+		$this->setRedirect('index.php?option=com_englishconcept&task=grammarexercise.edit&id=1&tmpl=component&view=grammarexercise&layout=modal');
+	}
 }
