@@ -33,7 +33,6 @@
                readonly="true"
                label="Grammar ID"
                description="Grammar ID"
-               required="true"
                labelclass="control-label"/>
 
         <field name="exercise_text"

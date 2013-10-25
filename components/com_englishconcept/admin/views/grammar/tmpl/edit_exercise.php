@@ -9,7 +9,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted Access');
 //$link = 'index.php?option=com_englishconcept&task=grammar.edit&id=1&tmpl=component&view=grammar&layout=modal';
-$link = 'index.php?option=com_englishconcept&task=grammarexercise.edit&id=1&tmpl=component&view=grammarexercise&layout=modal';
+$link = JRoute::_('index.php?option=com_englishconcept&tmpl=component&view=grammarexercise&layout=modal&exercise_id=' . $this->item->id);
 ?>
 <?php  ?>
 <a id="modal" class="modal btn" href="<?php echo $link;?>" rel="{handler: 'iframe', size: {x: 900, y: 550}, onClose:function(){var js = window.location.reload();}}" title="title">
@@ -43,7 +43,10 @@ $link = 'index.php?option=com_englishconcept&task=grammarexercise.edit&id=1&tmpl
 				</td>
 				<td width="90%">
                     <input type="hidden" value="<?php echo $value->id ?>" name="jform[question][id][<?php echo $value->id ?>]">
-					<input type="text" value="<?php echo $value->exercise_text ?>" name="jform[question][title][<?php echo $i ?>]" class="">
+                    <?php
+                    $linkEdit = JRoute::_('index.php?option=com_englishconcept&task=grammarexercise.apply&view=grammarexercise&tmpl=component&layout=modal&exercise_id=' . $this->item->id . '&id=' . $value->id . '&token=' .JSession()::getFormToken());
+                    ?>
+					<a href="<?php echo $linkEdit; ?>" title=""><?php echo $value->exercise_text ?></a>
 				</td>
 			</tr>
 	<?php

@@ -77,6 +77,15 @@ class EnglishConceptModelGrammarExercise extends JModelAdmin
 		$this->event_before_save 	= 'onGrammarBeforeSave';
 		$this->event_change_state 	= 'onGrammarChangeState';
 		$this->text_prefix 			= strtoupper($this->option);
+
+        $app = JFactory::$application;
+        $input = $app->input;
+
+        $exerciseId = $input->get('exercise_id', 0, 'INT');
+        if(!empty($exerciseId))
+        {
+            $this->setState('exerciseId', $exerciseId);
+        }
 	}
 
 	/**
