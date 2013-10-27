@@ -8,7 +8,7 @@
  */
 defined('_JEXEC') or die('Restricted Access');
 
-class EnglishConceptControllerGrammarExercise extends JControllerForm
+class EnglishConceptControllerGrammarExerciseQuestion extends JControllerForm
 {
 	public function __construct($config = array())
 	{
@@ -61,7 +61,7 @@ class EnglishConceptControllerGrammarExercise extends JControllerForm
 
 			$this->setRedirect(
 				JRoute::_(
-					'index.php?option=' . $this->option . '&view=' . $this->view_list
+					'index.php?option=' . $this->option . '&exercise_id=' . $data['exercise_id'] . '&view=' . $this->view_list
 						. $this->getRedirectToListAppend(), false
 				)
 			);
@@ -84,7 +84,7 @@ class EnglishConceptControllerGrammarExercise extends JControllerForm
 
 				$this->setRedirect(
 					JRoute::_(
-						'index.php?option=' . $this->option . '&view=' . $this->view_item
+						'index.php?option=' . $this->option . '&exercise_id=' . $data['exercise_id'] . '&view=' . $this->view_item
 							. $this->getRedirectToItemAppend($recordId, $urlVar), false
 					)
 				);
@@ -105,7 +105,7 @@ class EnglishConceptControllerGrammarExercise extends JControllerForm
 
 			$this->setRedirect(
 				JRoute::_(
-					'index.php?option=' . $this->option . '&view=' . $this->view_list
+					'index.php?option=' . $this->option . '&exercise_id=' . $data['exercise_id'] . '&view=' . $this->view_list
 						. $this->getRedirectToListAppend(), false
 				)
 			);
@@ -152,7 +152,7 @@ class EnglishConceptControllerGrammarExercise extends JControllerForm
 			// Redirect back to the edit screen.
 			$this->setRedirect(
 				JRoute::_(
-					'index.php?option=' . $this->option . '&view=' . $this->view_item
+					'index.php?option=' . $this->option . '&exercise_id=' . $data['exercise_id'] . '&view=' . $this->view_item
 						. $this->getRedirectToItemAppend($recordId, $urlVar), false
 				)
 			);
@@ -177,7 +177,7 @@ class EnglishConceptControllerGrammarExercise extends JControllerForm
 
 			$this->setRedirect(
 				JRoute::_(
-					'index.php?option=' . $this->option . '&view=' . $this->view_item
+					'index.php?option=' . $this->option . '&exercise_id=' . $data['exercise_id'] . '&view=' . $this->view_item
 						. $this->getRedirectToItemAppend($recordId, $urlVar), false
 				)
 			);
@@ -197,7 +197,7 @@ class EnglishConceptControllerGrammarExercise extends JControllerForm
 
 			$this->setRedirect(
 				JRoute::_(
-					'index.php?option=' . $this->option . '&view=' . $this->view_item
+					'index.php?option=' . $this->option . '&exercise_id=' . $data['exercise_id'] . '&view=' . $this->view_item
 						. $this->getRedirectToItemAppend($recordId, $urlVar), false
 				)
 			);
@@ -226,7 +226,7 @@ class EnglishConceptControllerGrammarExercise extends JControllerForm
 				// Redirect back to the edit screen.
 				$this->setRedirect(
 					JRoute::_(
-						'index.php?option=' . $this->option . '&view=' . $this->view_item
+						'index.php?option=' . $this->option . '&exercise_id=' . $data['exercise_id'] . '&view=' . $this->view_item
 							. $this->getRedirectToItemAppend($recordId, $urlVar), false
 					)
 				);
@@ -240,7 +240,7 @@ class EnglishConceptControllerGrammarExercise extends JControllerForm
 				// Redirect back to the edit screen.
 				$this->setRedirect(
 					JRoute::_(
-						'index.php?option=' . $this->option . '&view=' . $this->view_item
+						'index.php?option=' . $this->option . '&exercise_id=' . $data['exercise_id'] . '&view=' . $this->view_item
 							. $this->getRedirectToItemAppend(null, $urlVar), false
 					)
 				);
@@ -254,7 +254,7 @@ class EnglishConceptControllerGrammarExercise extends JControllerForm
 				// Redirect to the list screen.
 				$this->setRedirect(
 					JRoute::_(
-						'index.php?option=' . $this->option . '&view=' . $this->view_list
+						'index.php?option=' . $this->option . '&exercise_id=' . $data['exercise_id'] . '&view=' . $this->view_list
 							. $this->getRedirectToListAppend(), false
 					)
 				);

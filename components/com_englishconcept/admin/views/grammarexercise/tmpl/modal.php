@@ -8,16 +8,15 @@
  */
 // No direct access to this file
 defined('_JEXEC') or die('Restricted Access');
-$exerciseId = $this->state->get('exerciseId');
+$grammarId = $this->state->get('grammarId');
 if(isset($this->item->id) && !empty($this->item->id))
 {
-    $link = JRoute::_('index.php?option=com_englishconcept&task=grammarexercise.apply&view=grammarexercise&tmpl=component&layout=modal&exercise_id=' . $exerciseId . '&id=' . $this->item->id);
+    $link = JRoute::_('index.php?option=com_englishconcept&task=grammarexercise.apply&view=grammarexercise&tmpl=component&layout=modal&grammar_id=' . $grammarId . '&id=' . $this->item->id);
 }
 else
 {
-    $link = JRoute::_('index.php?option=com_englishconcept&task=grammarexercise.apply&view=grammarexercise&tmpl=component&layout=modal&exercise_id=' . $exerciseId);
+    $link = JRoute::_('index.php?option=com_englishconcept&task=grammarexercise.apply&view=grammarexercise&tmpl=component&layout=modal&grammar_id=' . $grammarId);
 }
-
 ?>
 <form enctype="multipart/form-data"
 	action="<?php echo $link; ?>" method="post" name="itemForm" id="itemForm"
@@ -45,7 +44,7 @@ else
 					<div class="control-group">
 						<?php echo $this->form->getLabel('grammar_id'); ?>
 						<div class="controls">
-							<?php echo $this->form->getInput('grammar_id', null, $exerciseId); ?>
+							<?php echo $this->form->getInput('grammar_id', null, $grammarId); ?>
 						</div>
 					</div>
 					<div class="control-group">

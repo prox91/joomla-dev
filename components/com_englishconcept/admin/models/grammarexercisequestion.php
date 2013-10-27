@@ -9,7 +9,7 @@
 // no direct access
 defined('_JEXEC') or die('Restricted Access');
 
-class EnglishConceptModelGrammarExercise extends JModelAdmin
+class EnglishConceptModelGrammarExerciseQuestion extends JModelAdmin
 {
 	/**
 	 * The prefix to use with controller messages.
@@ -78,14 +78,14 @@ class EnglishConceptModelGrammarExercise extends JModelAdmin
 		$this->event_change_state 	= 'onGrammarChangeState';
 		$this->text_prefix 			= strtoupper($this->option);
 
-        $app = JFactory::$application;
-        $input = $app->input;
+		$app = JFactory::$application;
+		$input = $app->input;
 
-        $grammarId = $input->get('grammar_id', 0, 'INT');
-        if(!empty($grammarId))
-        {
-            $this->setState('grammarId', $grammarId);
-        }
+		$exerciseId = $input->get('exercise_id', 0, 'INT');
+		if(!empty($exerciseId))
+		{
+			$this->setState('exerciseId', $exerciseId);
+		}
 	}
 
 	/**
@@ -100,7 +100,7 @@ class EnglishConceptModelGrammarExercise extends JModelAdmin
 	 * @since   12.2
 	 * @throws  Exception
 	 */
-	public function getTable($name = 'grammarexercise', $prefix = 'EnglishConceptTable', $options = array())
+	public function getTable($name = 'grammarexercisequestion', $prefix = 'EnglishConceptTable', $options = array())
 	{
 		return parent::getTable($name, $prefix, $options);
 	}
@@ -117,15 +117,15 @@ class EnglishConceptModelGrammarExercise extends JModelAdmin
 	 */
 	public function getForm($data = array(), $loadData = true)
 	{
-		$form = $this->loadForm('com_englishconcept.grammarexercise',
-			'grammarexercise',
+		$form = $this->loadForm('com_englishconcept.grammarexercisequestion',
+			'grammarexercisequestion',
 			array('control' => 'jform', 'load_data' => $loadData));
 		if (empty($form)) {
 			return false;
 		}
 
 		// Determine correct permissions to check.
-		if ($this->getState('grammarsexercise.id')) {
+		if ($this->getState('grammarsexercisequestion.id')) {
 			// Existing record. Can only edit in selected categories.
 			//$form->setFieldAttribute('catid', 'action', 'core.edit');
 		} else {
@@ -146,7 +146,7 @@ class EnglishConceptModelGrammarExercise extends JModelAdmin
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_englishconcept.edit.grammarexercise.data', array());
+		$data = JFactory::getApplication()->getUserState('com_englishconcept.edit.grammarexercisequestion.data', array());
 
 		if (empty($data)) {
 			$data = $this->getItem();
@@ -175,23 +175,94 @@ class EnglishConceptModelGrammarExercise extends JModelAdmin
 	}
 
 	/**
-	 * Method to auto-populate the model state.
+	 * Method to get a single record.
 	 *
-	 * Note. Calling getState in this method will result in recursion.
+	 * @param   integer  $pk  The id of the primary key.
 	 *
-	 * @return  void
-	 * @since   1.6
+	 * @return  mixed    Object on success, false on failure.
+	 *
+	 * @since   11.1
 	 */
-	protected function populateState($ordering = null, $direction = null)
+	public function getItem($pk = null)
 	{
-		$app = JFactory::getApplication('administrator');
-		$id = $app->input->getInt('id', 0);
-		if(!empty($id))
-		{
-			$app->setUserState('com_englishconcept.edit.grammarexercise.id', $id);
+		$item = parent::getItem($pk);
+		$exerciseId = $this->getState('exerciseId', 0);
+
+		if (!empty($exerciseId)) {
+			// Get data question for exercise
+			$query = $this->_db->getQuery(true);
+			$query->select("*")
+				->from("#__ec_lesson_grammars_exercises_questions")
+				->where("exercise_id=" . $exerciseId);
+			$this->_db->setQuery($query);
+
+			$questions = $this->_db->loadObjectList();
+			if (!empty($questions)) {
+				$item->questions = $questions;
+			}
 		}
 
-		// List state information.
-		parent::populateState($ordering, $direction);
+		return $item;
+	}
+	/**
+	 * Method to save the form data.
+	 *
+	 * @param   array  $data  The form data.
+	 *
+	 * @return  boolean  True on success, False on error.
+	 *
+	 * @since   11.1
+	 */
+	public function save($data)
+	{
+		if(isset($data['exercise_id']))
+		{
+			// Delete old data
+			$q = $this->_db->getQuery(true);
+			$q->delete('#__ec_lesson_grammars_exercises_questions')
+				->where('exercise_id', $data['exercise_id']);
+			$this->_db->setQuery($q);
+			$this->_db->execute();
+
+			if ($error = $this->_db->getErrorMsg())
+			{
+				$this->setError($error);
+				return false;
+			}
+			$exercise_id = $data['exercise_id'];
+		}
+		else
+		{
+			return false;
+		}
+
+		// Save data question of exercise
+		$input = JFactory::getApplication()->input;
+		$postData = $input->get('jform', '', 'ARRAY');
+		$questionList = $postData['question'];
+
+		if(is_array($questionList) && count($questionList) > 0)
+		{
+			$query = $this->_db->getQuery(true);
+			$query->clear()
+				->insert('#__ec_lesson_grammars_exercises_questions')
+				->columns('exercise_id, question');
+
+			foreach ($questionList['title'] as $value)
+			{
+				$query->values($exercise_id . ',' . $this->_db->quote($value));
+			}
+
+			$this->_db->setQuery($query);
+			$this->_db->execute();
+
+			if ($error = $this->_db->getErrorMsg())
+			{
+				$this->setError($error);
+				return false;
+			}
+		}
+
+		return true;
 	}
 }

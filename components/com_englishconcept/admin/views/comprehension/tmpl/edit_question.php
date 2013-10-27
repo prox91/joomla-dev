@@ -17,9 +17,9 @@ defined('_JEXEC') or die('Restricted Access');
 <table id="comprehension_question_tbl" class="table" cellspacing="0">
 	<thead>
 	<tr>
-		<th><?php echo JText::_('EC_COMPREHENSION_QUESTION_ACTION'); ?></th>
-		<th><?php echo JText::_('EC_COMPREHENSION_QUESTION_NUM'); ?></th>
-		<th><?php echo JText::_('EC_COMPREHENSION_QUESTION_TITLE'); ?></th>
+		<th width="2%"><?php echo JText::_('EC_COMPREHENSION_QUESTION_ACTION'); ?></th>
+		<th width="8%"><?php echo JText::_('EC_COMPREHENSION_QUESTION_NUM'); ?></th>
+		<th width="90%"><?php echo JText::_('EC_COMPREHENSION_QUESTION_TITLE'); ?></th>
 	</tr>
 	</thead>
 
@@ -30,13 +30,13 @@ defined('_JEXEC') or die('Restricted Access');
 		foreach($this->item->questions as $key => $value) :
 	?>
 			<tr id="question-tier-<?php echo $i ?>" class="question-tier">
-				<td width="2%">
+				<td>
 					<a title="Remove" class="delete-question-tier btn"><i class="icon-minus-sign"></i></a>
 				</td>
-				<td width="8%">
+				<td>
 					<span class="num"><?php echo $i ?></span>
 				</td>
-				<td width="90%">
+				<td>
                     <input type="hidden" value="<?php echo $value->id ?>" name="jform[question][id][<?php echo $value->id ?>]">
 					<input type="text" value="<?php echo $value->question ?>" name="jform[question][title][<?php echo $i ?>]" class="">
 				</td>
@@ -72,10 +72,10 @@ defined('_JEXEC') or die('Restricted Access');
 
             var rowData = $('#' + rowId);
             var htmlStr = "";
-            htmlStr += "<td width='2%'><a class='delete-question-tier btn'><i class='icon-minus-sign'></i></a></td>";
-            htmlStr += "<td width='8%'><span class='num'>"+rowId+"</span></td>";
+            htmlStr += "<td><a class='delete-question-tier btn'><i class='icon-minus-sign'></i></a></td>";
+            htmlStr += "<td><span class='num'>"+rowId+"</span></td>";
             htmlStr += "<input type='hidden' value='' name='jform[question][id]["+rowId+"]'>";
-            htmlStr += "<td width='90%'><input type='text' value='' name='jform[question][title]["+rowId+"]' class=''></td>";
+            htmlStr += "<td><input type='text' value='' name='jform[question][title]["+rowId+"]' class=''></td>";
 
 	        //htmlStr += "<td with='20%'>";
 	        <?php //$link = 'index.php?option=com_englishconcept&task=grammarexercise.edit&id=1&tmpl=component&view=grammarexercise&layout=modal'; ?>
