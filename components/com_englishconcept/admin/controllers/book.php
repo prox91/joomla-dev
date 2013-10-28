@@ -14,4 +14,14 @@ class EnglishConceptControllerBook extends JControllerForm
 	{
 		parent::__construct($config);
 	}
+
+	public function trash()
+	{
+
+	}
+
+	public function delete()
+	{
+
+	}
 }
