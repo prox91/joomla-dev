@@ -9,7 +9,7 @@
 // no direct access
 defined('_JEXEC') or die('Restricted Access');
 
-class EnglishConceptModelLesson extends JModelAdmin
+class EnglishConceptModelUsageExercise extends JModelAdmin
 {
 	/**
 	 * The prefix to use with controller messages.
@@ -71,12 +71,21 @@ class EnglishConceptModelLesson extends JModelAdmin
 	{
 		parent::__construct($config);
 
-		$this->event_after_delete 	= 'onLessonAfterDelete';
-		$this->event_after_save 	= 'onLessonAfterSave';
-		$this->event_before_delete 	= 'onLessonBeforeDelete';
-		$this->event_before_save 	= 'onLessonBeforeSave';
-		$this->event_change_state 	= 'onLessonChangeState';
+		$this->event_after_delete 	= 'onGrammarAfterDelete';
+		$this->event_after_save 	= 'onGrammarAfterSave';
+		$this->event_before_delete 	= 'onGrammarBeforeDelete';
+		$this->event_before_save 	= 'onGrammarBeforeSave';
+		$this->event_change_state 	= 'onGrammarChangeState';
 		$this->text_prefix 			= strtoupper($this->option);
+
+        $app = JFactory::$application;
+        $input = $app->input;
+
+        $usageId = $input->get('usage_id', 0, 'INT');
+        if(!empty($usageId))
+        {
+            $this->setState('usageId', $usageId);
+        }
 	}
 
 	/**
@@ -91,7 +100,7 @@ class EnglishConceptModelLesson extends JModelAdmin
 	 * @since   12.2
 	 * @throws  Exception
 	 */
-	public function getTable($name = 'lesson', $prefix = 'EnglishConceptTable', $options = array())
+	public function getTable($name = 'usageexercise', $prefix = 'EnglishConceptTable', $options = array())
 	{
 		return parent::getTable($name, $prefix, $options);
 	}
@@ -99,8 +108,8 @@ class EnglishConceptModelLesson extends JModelAdmin
 	/**
 	 * Abstract method for getting the form from the model.
 	 *
-	 * @param   array $data      Data for the form.
-	 * @param   boolean $loadData  True if the form is to load its own data (default case), false if not.
+	 * @param   array    $data      Data for the form.
+	 * @param   boolean  $loadData  True if the form is to load its own data (default case), false if not.
 	 *
 	 * @return  mixed  A JForm object on success, false on failure
 	 *
@@ -108,13 +117,15 @@ class EnglishConceptModelLesson extends JModelAdmin
 	 */
 	public function getForm($data = array(), $loadData = true)
 	{
-		$form = $this->loadForm('com_englishconcept.lesson', 'lesson', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_englishconcept.usageexercise',
+			'usageexercise',
+			array('control' => 'jform', 'load_data' => $loadData));
 		if (empty($form)) {
 			return false;
 		}
 
 		// Determine correct permissions to check.
-		if ($this->getState('lessons.id')) {
+		if ($this->getState('usagesexercise.id')) {
 			// Existing record. Can only edit in selected categories.
 			//$form->setFieldAttribute('catid', 'action', 'core.edit');
 		} else {
@@ -135,7 +146,7 @@ class EnglishConceptModelLesson extends JModelAdmin
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_englishconcept.edit.lesson.data', array());
+		$data = JFactory::getApplication()->getUserState('com_englishconcept.edit.usageexercise.data', array());
 
 		if (empty($data)) {
 			$data = $this->getItem();
@@ -153,35 +164,34 @@ class EnglishConceptModelLesson extends JModelAdmin
 	 *
 	 * @since   12.2
 	 */
-    protected function prepareTable($table)
-    {
-        jimport('joomla.filter.output');
-        $date = JFactory::getDate();
-        $user = JFactory::getUser();
+	protected function prepareTable($table)
+	{
+		jimport('joomla.filter.output');
+		$date = JFactory::getDate();
+		$user = JFactory::getUser();
 
-        $input = JFactory::getApplication()->input;
-        $audioFile = $input->files->get('jform', '', 'ARRAY');
+		$table->modified	= $date->toSql();
+		$table->modified_by	= $user->get('id');
+	}
 
-        $post = $input->post->get('jform', '', 'ARRAY');
-        $bookId = $post['book_id'];
+	/**
+	 * Method to auto-populate the model state.
+	 *
+	 * Note. Calling getState in this method will result in recursion.
+	 *
+	 * @return  void
+	 * @since   1.6
+	 */
+	protected function populateState($ordering = null, $direction = null)
+	{
+		$app = JFactory::getApplication('administrator');
+		$id = $app->input->getInt('id', 0);
+		if(!empty($id))
+		{
+			$app->setUserState('com_englishconcept.edit.usageexercise.id', $id);
+		}
 
-        $audioFile = $audioFile['audio_upload'];
-        if (empty($audioFile['error']))
-        {
-            // Make the filename safe
-            $audioFile['name'] = JFile::makeSafe($audioFile['name']);
-            $fileExt = explode('.', $audioFile['name']);
-            if (isset($audioFile['name']))
-            {
-                $hash_name = md5($bookId . $audioFile['name']);
-                if ($hash_name == md5($bookId . JFile::makeSafe($table->audio_url)))
-                {
-                    $table->audio_url_hash = $hash_name . '.' . $fileExt[1];
-                }
-            }
-        }
-        $table->name = htmlspecialchars_decode($table->name, ENT_QUOTES);
-        $table->modified = $date->toSql();
-        $table->modified_by = $user->get('id');
-    }
+		// List state information.
+		parent::populateState($ordering, $direction);
+	}
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field name="id"
+		       type="text"
+		       default="0"
+		       label="ID"
+		       description="ID"
+		       readonly="true"
+		       class="readonly"
+		       labelclass="control-label"/>
+
+		<field name="usage_id"
+		       type="text"
+		       class="readonly"
+		       readonly="true"
+		       label="Usage ID"
+		       description="Usage ID"
+		       required="true"
+		       labelclass="control-label"/>
+
+		<field name="exercise_text"
+		       type="editor"
+		       class="inputbox"
+		       label="Exercise Text"
+		       description="Exercise Text"
+		       filter="safehtml" buttons="false" width="90%"
+		       labelclass="control-label"/>
+
+		<field name="groups"
+		       type="hidden"/>
+	</fieldset>
+</form>

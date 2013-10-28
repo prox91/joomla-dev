@@ -19,18 +19,21 @@ class EnglishConceptTableLesson extends JTable
 	 * @link    http://docs.joomla.org/JTable/check
 	 * @since   11.1
 	 */
-	public function check()
-	{
-		$file = JFactory::getApplication()->input->files->get('jform', '', 'array');
-		$file = $file['audio_upload'];
-        if(empty($file['error']))
+    public function check()
+    {
+        $input = JFactory::getApplication()->input;
+        $file = $input->files->get('jform', '', 'ARRAY');
+        $post = $input->post->get('jform', '', 'ARRAY');
+        $bookId = $post['book_id'];
+        $file = $file['audio_upload'];
+        if (empty($file['error']))
         {
             // Make the filename safe
             $audioFile = JFile::makeSafe($file['name']);
             $fileExt = explode('.', $audioFile);
-            if(isset($audioFile))
+            if (isset($audioFile))
             {
-                $filepath = JPath::clean(JPATH_SITE . '/media/englishconcept/audio/' . strtolower(md5($file['name'])) . '.' . $fileExt[1]);
+                $filepath = JPath::clean(JPATH_SITE . '/media/englishconcept/media/audio/' . strtolower(md5($bookId . $file['name'])) . '.' . $fileExt[1]);
                 $objectFile = new JObject($file);
                 $objectFile->filepath = $filepath;
 
@@ -47,5 +50,5 @@ class EnglishConceptTableLesson extends JTable
         }
 
         return true;
-	}
+    }
 }

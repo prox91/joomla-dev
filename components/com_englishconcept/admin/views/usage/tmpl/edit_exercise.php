@@ -8,7 +8,7 @@
  */
 // No direct access to this file
 defined('_JEXEC') or die('Restricted Access');
-$link = JRoute::_('index.php?option=com_englishconcept&tmpl=component&view=grammarexercise&layout=modal&grammar_id=' . $this->item->id . '&' . JSession::getFormToken() . '=1');
+$link = JRoute::_('index.php?option=com_englishconcept&tmpl=component&view=usageexercise&layout=modal&usage_id=' . $this->item->id . '&' . JSession::getFormToken() . '=1');
 ?>
 <?php ?>
 <a id="modal" class="modal btn" href="<?php echo $link; ?>"
@@ -42,7 +42,7 @@ $link = JRoute::_('index.php?option=com_englishconcept&tmpl=component&view=gramm
                 </td>
                 <td>
                     <?php
-                    $linkEdit = JRoute::_('index.php?option=com_englishconcept&tmpl=component&view=grammarexercise&layout=modal&grammar_id=' . $this->item->id . '&id=' . $value->id . '&' . JSession::getFormToken() . '=1');
+                    $linkEdit = JRoute::_('index.php?option=com_englishconcept&tmpl=component&view=usageexercise&layout=modal&usage_id=' . $this->item->id . '&id=' . $value->id . '&' . JSession::getFormToken() . '=1');
                     ?>
                     <a id="modal" class="modal" href="<?php echo $linkEdit; ?>"
                        rel="{handler: 'iframe', size: {x: 900, y: 550}, onClose:function(){var js = window.location.reload();}}"
@@ -50,7 +50,7 @@ $link = JRoute::_('index.php?option=com_englishconcept&tmpl=component&view=gramm
                 </td>
                 <td>
                     <?php
-                    $linkAddQuestion = JRoute::_('index.php?option=com_englishconcept&tmpl=component&view=grammarexercisequestion&layout=modal&exercise_id=' . $value->id . '&' . JSession::getFormToken() . '=1');
+                    $linkAddQuestion = JRoute::_('index.php?option=com_englishconcept&tmpl=component&view=usageexercisequestion&layout=modal&exercise_id=' . $value->id . '&' . JSession::getFormToken() . '=1');
                     ?>
                     <a id="modal" class="modal" href="<?php echo $linkAddQuestion; ?>"
                        rel="{handler: 'iframe', size: {x: 900, y: 550}}"
@@ -100,7 +100,7 @@ $link = JRoute::_('index.php?option=com_englishconcept&tmpl=component&view=gramm
             // Delete exercise through ajax
             $.ajax({
                 type: "GET",
-                url: "<?php echo JRoute::_('index.php?option=com_englishconcept&task=grammarexercise.delete&format=json', false); ?>&id=" + id,
+                url: "<?php echo JRoute::_('index.php?option=com_englishconcept&task=usageexercise.delete&format=json', false); ?>&id=" + id,
                 success: function (result, status, xhr) {
                     var result = $.parseJSON(result);
                     if (result.status) {

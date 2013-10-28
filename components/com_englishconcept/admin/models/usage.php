@@ -161,8 +161,38 @@ class EnglishConceptModelUsage extends JModelAdmin
 		$date = JFactory::getDate();
 		$user = JFactory::getUser();
 
-		$table->name		= htmlspecialchars_decode($table->name, ENT_QUOTES);
 		$table->modified	= $date->toSql();
 		$table->modified_by	= $user->get('id');
 	}
+
+    /**
+     * Method to get a single record.
+     *
+     * @param   integer  $pk  The id of the primary key.
+     *
+     * @return  mixed    Object on success, false on failure.
+     *
+     * @since   11.1
+     */
+    public function getItem($pk = null)
+    {
+        $item = parent::getItem($pk);
+
+        if (!empty($item)) {
+
+            // Get data exercise for grammar
+            $query = $this->_db->getQuery(true);
+            $query->select("*")
+                ->from("#__ec_lesson_usages_exercises")
+                ->where("usage_id='" . $item->id . "'");
+            $this->_db->setQuery($query);
+
+            $exercises = $this->_db->loadObjectList();
+            if (!empty($exercises)) {
+                $item->exercises = $exercises;
+            }
+        }
+
+        return $item;
+    }
 }

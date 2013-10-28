@@ -256,6 +256,45 @@ CREATE TABLE IF NOT EXISTS `#__ec_lesson_usages` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
+DROP TABLE IF EXISTS `#__ec_lesson_usages_exercises`;
+CREATE TABLE IF NOT EXISTS `#__ec_lesson_usages_exercises` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `usage_id` int(11) NOT NULL,
+  `exercise_text` text,
+  `exercise_text_explain` text,
+  `exercise_text_trans` text,
+  `page_num` int (11) NOT NULL DEFAULT 0 COMMENT 'page number of book',
+  `page_ref` int (11) NOT NULL DEFAULT 0 COMMENT 'related to the page number of book',
+  `created` datetime DEFAULT '0000-00-00 00:00:00',
+  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `created_by_alias` varchar(255) NOT NULL DEFAULT '',
+  `modified` datetime DEFAULT '0000-00-00 00:00:00',
+  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `deleted` datetime DEFAULT '0000-00-00 00:00:00',
+  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
+
+DROP TABLE IF EXISTS `#__ec_lesson_usages_exercises_questions`;
+CREATE TABLE IF NOT EXISTS `#__ec_lesson_usages_exercises_questions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `exercise_id` int(11) NOT NULL,
+  `question` text,
+  `question_trans` text,
+  `page_num` int (11) NOT NULL DEFAULT 0 COMMENT 'page number of book',
+  `page_ref` int (11) NOT NULL DEFAULT 0 COMMENT 'related to the page number of book',
+  `created` datetime DEFAULT '0000-00-00 00:00:00',
+  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `created_by_alias` varchar(255) NOT NULL DEFAULT '',
+  `modified` datetime DEFAULT '0000-00-00 00:00:00',
+  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `deleted` datetime DEFAULT '0000-00-00 00:00:00',
+  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
+
 DROP TABLE IF EXISTS `#__ec_lesson_exercises`;
 CREATE TABLE IF NOT EXISTS `#__ec_lesson_exercises` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

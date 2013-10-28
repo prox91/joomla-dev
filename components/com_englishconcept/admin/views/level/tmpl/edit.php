@@ -74,6 +74,12 @@ defined('_JEXEC') or die('Restricted Access');
                                     <?php echo $this->form->getInput('description'); ?>
                                 </div>
                             </div>
+                            <div class="control-group">
+                                <?php echo $this->form->getLabel('published'); ?>
+                                <div class="controls">
+                                    <?php echo $this->form->getInput('published'); ?>
+                                </div>
+                            </div>
                         </fieldset>
                     </div>
                 </div>

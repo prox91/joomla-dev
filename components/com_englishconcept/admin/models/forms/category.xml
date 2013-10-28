@@ -36,6 +36,14 @@
                filter="safehtml" buttons="false" width="90%"
                labelclass="control-label"/>
 
+        <field name="published"
+               type="Publishes"
+               class="inputbox"
+               label="State"
+               description="State of Category"
+               filter="safehtml" buttons="false" width="90%"
+               labelclass="control-label"/>
+
         <field name="groups"
                type="hidden"/>
     </fieldset>

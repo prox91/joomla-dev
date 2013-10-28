@@ -9,7 +9,7 @@
 // no direct access
 defined('_JEXEC') or die('Restricted Access');
 
-class EnglishConceptModelGrammarExerciseQuestion extends JModelAdmin
+class EnglishConceptModelUsageExerciseQuestion extends JModelAdmin
 {
 	/**
 	 * The prefix to use with controller messages.
@@ -100,7 +100,7 @@ class EnglishConceptModelGrammarExerciseQuestion extends JModelAdmin
 	 * @since   12.2
 	 * @throws  Exception
 	 */
-	public function getTable($name = 'grammarexercisequestion', $prefix = 'EnglishConceptTable', $options = array())
+	public function getTable($name = 'usageexercisequestion', $prefix = 'EnglishConceptTable', $options = array())
 	{
 		return parent::getTable($name, $prefix, $options);
 	}
@@ -117,15 +117,15 @@ class EnglishConceptModelGrammarExerciseQuestion extends JModelAdmin
 	 */
 	public function getForm($data = array(), $loadData = true)
 	{
-		$form = $this->loadForm('com_englishconcept.grammarexercisequestion',
-			'grammarexercisequestion',
+		$form = $this->loadForm('com_englishconcept.usageexercisequestion',
+			'usageexercisequestion',
 			array('control' => 'jform', 'load_data' => $loadData));
 		if (empty($form)) {
 			return false;
 		}
 
 		// Determine correct permissions to check.
-		if ($this->getState('grammarexercisequestion.id')) {
+		if ($this->getState('usageexercisequestion.id')) {
 			// Existing record. Can only edit in selected categories.
 			//$form->setFieldAttribute('catid', 'action', 'core.edit');
 		} else {
@@ -146,7 +146,7 @@ class EnglishConceptModelGrammarExerciseQuestion extends JModelAdmin
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_englishconcept.edit.grammarexercisequestion.data', array());
+		$data = JFactory::getApplication()->getUserState('com_englishconcept.edit.usageexercisequestion.data', array());
 
 		if (empty($data)) {
 			$data = $this->getItem();
@@ -192,7 +192,7 @@ class EnglishConceptModelGrammarExerciseQuestion extends JModelAdmin
 			// Get data question for exercise
 			$query = $this->_db->getQuery(true);
 			$query->select("*")
-				->from("#__ec_lesson_grammars_exercises_questions")
+				->from("#__ec_lesson_usages_exercises_questions")
 				->where("exercise_id=" . $exerciseId);
 			$this->_db->setQuery($query);
 
@@ -219,7 +219,7 @@ class EnglishConceptModelGrammarExerciseQuestion extends JModelAdmin
 		{
 			// Delete old data
 			$q = $this->_db->getQuery(true);
-			$q->delete('#__ec_lesson_grammars_exercises_questions')
+			$q->delete('#__ec_lesson_usages_exercises_questions')
 				->where('exercise_id', $data['exercise_id']);
 			$this->_db->setQuery($q);
 			$this->_db->execute();
@@ -245,7 +245,7 @@ class EnglishConceptModelGrammarExerciseQuestion extends JModelAdmin
 		{
 			$query = $this->_db->getQuery(true);
 			$query->clear()
-				->insert('#__ec_lesson_grammars_exercises_questions')
+				->insert('#__ec_lesson_usages_exercises_questions')
 				->columns('exercise_id, question');
 
 			foreach ($questionList['title'] as $value)

@@ -14,10 +14,4 @@ class EnglishConceptControllerGrammar extends JControllerForm
 	{
 		parent::__construct($config);
 	}
-
-	public function delete()
-	{
-		echo 'xxx';
-		exit();
-	}
 }

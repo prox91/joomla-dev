@@ -8,6 +8,8 @@
  */
 // No direct access to this file
 defined('_JEXEC') or die('Restricted Access');
+// Include the component HTML helpers.
+JHtml::_('behavior.modal');
 ?>
 <script type="text/javascript">
 	Joomla.orderTable = function()
@@ -52,16 +54,20 @@ defined('_JEXEC') or die('Restricted Access');
                 class="form-validate form-horizontal">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#general" data-toggle="tab"><?php echo JText::_('General')?></a></li>
-	                <li class=""><a href="#question" data-toggle="tab"><?php echo JText::_('Question')?></a></li>
+                <?php if(!empty($this->item->id)) : ?>
+	                <li class=""><a href="#exercises" data-toggle="tab"><?php echo JText::_('Exercises')?></a></li>
+                <?php endif; ?>
                 </ul>
 
                 <div class="tab-content">
                     <div class="tab-pane active" id="general">
 	                    <?php echo $this->loadTemplate('general'); ?>
                     </div>
-	                <div class="tab-pane" id="question">
-		                <?php echo $this->loadTemplate('question'); ?>
+                <?php if(!empty($this->item->id)) : ?>
+	                <div class="tab-pane" id="exercises">
+		                <?php echo $this->loadTemplate('exercise'); ?>
 	                </div>
+                <?php endif; ?>
                 </div>
 
                 <input type="hidden" name="task" value="" />
