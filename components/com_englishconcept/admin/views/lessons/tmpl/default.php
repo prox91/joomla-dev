@@ -131,7 +131,7 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 							<td class="center">
 								<?php //echo JHtml::_('jgrid.published', $item->state, $i, 'articles.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
 								<?php //echo $item->status; ?>
-								<?php echo JHtml::_('jgrid.published', $item->published, $i, '', 'cb'); ?>
+								<?php echo JHtml::_('jgrid.published', $item->published, $i, 'lessons.', 'cb'); ?>
 							</td>
 							<td class="center">
 								<?php echo (int) $item->id; ?>

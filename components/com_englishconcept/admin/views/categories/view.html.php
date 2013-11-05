@@ -44,6 +44,8 @@ class EnglishConceptViewCategories extends ECViewAdmin
 		JToolbarHelper::title(JText::_('COM_ENGLISHCONCEPT_TITLE'));
 		JToolbarHelper::addNew('category.add');
 		JToolbarHelper::editList('category.edit');
+        JToolbarHelper::trash('category.trash');
+        JToolbarHelper::deleteList('Do you want to delete it?', 'category.delete');
 	}
 
 	public function setDocument()

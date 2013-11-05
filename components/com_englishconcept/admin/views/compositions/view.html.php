@@ -46,6 +46,8 @@ class EnglishConceptViewCompositions extends ECViewAdmin
 		JToolbarHelper::title(JText::_('COM_ENGLISHCONCEPT_TITLE'));
 		JToolbarHelper::addNew('composition.add');
 		JToolbarHelper::editList('composition.edit');
+        JToolbarHelper::trash('composition.trash');
+        JToolbarHelper::deleteList('Do you want to delete it?', 'composition.delete');
 	}
 
 	public function setDocument()

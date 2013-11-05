@@ -46,6 +46,8 @@ class EnglishConceptViewComprehensions extends ECViewAdmin
 		JToolbarHelper::title(JText::_('COM_ENGLISHCONCEPT_TITLE'));
 		JToolbarHelper::addNew('comprehension.add');
 		JToolbarHelper::editList('comprehension.edit');
+        JToolbarHelper::trash('comprehension.trash');
+        JToolbarHelper::deleteList('Do you want to delete it?', 'comprehension.delete');
 	}
 
 	public function setDocument()

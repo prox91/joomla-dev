@@ -46,6 +46,8 @@ class EnglishConceptViewLessons extends ECViewAdmin
 		JToolbarHelper::title(JText::_('COM_ENGLISHCONCEPT_TITLE'));
 		JToolbarHelper::addNew('lesson.add');
 		JToolbarHelper::editList('lesson.edit');
+        JToolbarHelper::trash('lesson.trash');
+        JToolbarHelper::deleteList('Do you want to delete it?', 'lesson.delete');
 	}
 
 	public function setDocument()

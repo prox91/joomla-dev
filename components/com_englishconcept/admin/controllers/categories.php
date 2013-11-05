@@ -20,7 +20,7 @@ class EnglishConceptControllerCategories extends JControllerAdmin
      * Proxy for getModel.
      * @since       2.5
      */
-    public function getModel($name = 'Categories', $prefix = 'EnglishConceptModel', $config = array('ignore_request' => true))
+    public function getModel($name = 'Category', $prefix = 'EnglishConceptModel', $config = array('ignore_request' => true))
     {
         $model = parent::getModel($name, $prefix, $config);
         return $model;

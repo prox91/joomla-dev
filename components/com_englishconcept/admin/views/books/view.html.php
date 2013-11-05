@@ -47,7 +47,7 @@ class EnglishConceptViewBooks extends ECViewAdmin
 		JToolbarHelper::addNew('book.add');
 		JToolbarHelper::editList('book.edit');
 		JToolbarHelper::trash('book.trash');
-		JToolbarHelper::deleteList('book.delete');
+		JToolbarHelper::deleteList('Do you want to delete it?', 'book.delete');
 	}
 
 	public function setDocument()

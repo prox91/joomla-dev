@@ -46,6 +46,8 @@ class EnglishConceptViewGrammars extends ECViewAdmin
 		JToolbarHelper::title(JText::_('COM_ENGLISHCONCEPT_TITLE'));
 		JToolbarHelper::addNew('grammar.add');
 		JToolbarHelper::editList('grammar.edit');
+        JToolbarHelper::trash('grammar.trash');
+        JToolbarHelper::deleteList('Do you want to delete it?', 'grammar.delete');
 	}
 
 	public function setDocument()

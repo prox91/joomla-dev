@@ -46,6 +46,8 @@ class EnglishConceptViewUsages extends ECViewAdmin
 		JToolbarHelper::title(JText::_('COM_ENGLISHCONCEPT_TITLE'));
 		JToolbarHelper::addNew('usage.add');
 		JToolbarHelper::editList('usage.edit');
+        JToolbarHelper::trash('usage.trash');
+        JToolbarHelper::deleteList('Do you want to delete it?', 'usage.delete');
 	}
 
 	public function setDocument()

@@ -46,6 +46,8 @@ class EnglishConceptViewPrecises extends ECViewAdmin
 		JToolbarHelper::title(JText::_('COM_ENGLISHCONCEPT_TITLE'));
 		JToolbarHelper::addNew('precis.add');
 		JToolbarHelper::editList('precis.edit');
+        JToolbarHelper::trash('precis.trash');
+        JToolbarHelper::deleteList('Do you want to delete it?', 'precis.delete');
 	}
 
 	public function setDocument()

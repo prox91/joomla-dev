@@ -44,6 +44,8 @@ class EnglishConceptViewLevels extends ECViewAdmin
 		JToolbarHelper::title(JText::_('COM_ENGLISHCONCEPT_TITLE'));
 		JToolbarHelper::addNew('level.add');
 		JToolbarHelper::editList('level.edit');
+        JToolbarHelper::trash('level.trash');
+        JToolbarHelper::deleteList('Do you want to delete it?', 'level.delete');
 	}
 
 	public function setDocument()
