@@ -9,6 +9,13 @@
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+$input = JFactory::getApplication()->input;
+$start = $input->get->get('start', 0, 'INT');
+$numLesson = 1;
+if(!empty($start))
+{
+    $numLesson = $start + 1;
+}
 ?>
 <div id="content">
 	<div class="box">
@@ -21,6 +28,46 @@ defined('_JEXEC') or die('Restricted access');
 			</div>
 		</div>
 		 -->
+
+        <!--Audio Demo-->
+        <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+        <div id="jp_container_1" class="jp-audio">
+            <div class="jp-type-single">
+                <div class="jp-gui jp-interface">
+                    <ul class="jp-controls">
+                        <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+                        <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+                        <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+                        <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+                        <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+                        <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+                    </ul>
+                    <div class="jp-progress">
+                        <div class="jp-seek-bar">
+                            <div class="jp-play-bar"></div>
+                        </div>
+                    </div>
+                    <div class="jp-volume-bar">
+                        <div class="jp-volume-bar-value"></div>
+                    </div>
+                    <div class="jp-time-holder">
+                        <div class="jp-current-time"></div>
+                        <div class="jp-duration"></div>
+                        <ul class="jp-toggles">
+                            <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+                            <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="jp-title">
+                    <ul>
+                        <li>Bubble</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--Audio Demo-->
+
 		<div class="clear"></div>
 		<div class="introduction">
 			<p></p>
@@ -31,7 +78,7 @@ defined('_JEXEC') or die('Restricted access');
 				<div class="heading">
 					<h1>
 						<img alt="" src="<?php //echo Asset::get_filepath_img('lesson-book.png', true)?>">
-						<span>Lesson <?php echo $lesson->id; ?></span>
+						<span>Lesson <?php echo $numLesson; ?></span>
 					</h1>
 				</div>
 				<div class="content">
@@ -111,18 +158,29 @@ defined('_JEXEC') or die('Restricted access');
 	</div>
 </div>
 <script>
-	$(document).ready(function () {
-		audiojs.events.ready(function() {
-			var as = audiojs.createAll();
-		});
+    jQuery(document).ready(function () {
+        audiojs.events.ready(function() {
+            var as = audiojs.createAll();
+        });
 
-		$('.show_lesson').bind('click', function() {
-			var disp = $('#lesson_content').css('display');
-			if (disp == 'none') {
-				$('#lesson_content').removeClass('hidden');
-			} else {
-				$('#lesson_content').addClass('hidden');
-			}
-		});
-	});
+        jQuery('.show_lesson').bind('click', function() {
+            var disp = jQuery('#lesson_content').css('display');
+            if (disp == 'none') {
+                jQuery('#lesson_content').removeClass('hidden');
+            } else {
+                jQuery('#lesson_content').addClass('hidden');
+            }
+        });
+
+        jQuery("#jquery_jplayer_1").jPlayer({
+            ready: function () {
+                $(this).jPlayer("setMedia", {
+                    m4a: "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
+                    oga: "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
+                });
+            },
+            swfPath: "/media/englishconcept/asset/js/jQuery.jPlayer",
+            supplied: "m4a, oga"
+        });
+    });
 </script>

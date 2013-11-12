@@ -57,6 +57,7 @@ class EnglishConceptControllerLesson extends JControllerForm
 
     public function delete()
     {
+        $this->trash();
 //        $cidArr = JFactory::getApplication()->input->get('cid', '', 'ARRAY');
 //        $id = $cidArr[0];
 //

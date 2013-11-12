@@ -21,6 +21,8 @@ class EnglishConceptViewLessons extends JViewLegacy
 	// Overwriting JView display method
 	public function display($tpl = null)
 	{
+        JHTML::Script(Juri::base() . 'media/englishconcept/assets/js/jQuery.jPlayer/jquery.jplayer.min.js');
+
         $this->lessons = $this->get("Items");
         $this->pagination = $this->get('Pagination');
 
