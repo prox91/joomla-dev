@@ -23,6 +23,11 @@ class EnglishConceptViewLessons extends JViewLegacy
 	{
         JHTML::Script(Juri::base() . 'media/englishconcept/assets/js/jQuery.jPlayer/jquery.jplayer.min.js');
 
+        JHTML::Script(Juri::base() . 'media/englishconcept/assets/js/jwplayer/jwplayer.js');
+
+        //JHTML::Script(Juri::base() . 'media/englishconcept/assets/js/jwplayer/jwplayer.html5.js');
+        //JHTML::Script(Juri::base() . 'media/englishconcept/assets/js/jwplayer/jwplayer.flash.swf');
+
         $this->lessons = $this->get("Items");
         $this->pagination = $this->get('Pagination');
 

@@ -66,6 +66,8 @@ if(!empty($start))
                 </div>
             </div>
         </div>
+
+        <div id="myElement"></div>
         <!--Audio Demo-->
 
 		<div class="clear"></div>
@@ -173,14 +175,24 @@ if(!empty($start))
         });
 
         jQuery("#jquery_jplayer_1").jPlayer({
-            ready: function () {
-                $(this).jPlayer("setMedia", {
+            ready:function () {
+                jQuery(this).jPlayer("setMedia", {
                     m4a: "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
                     oga: "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
                 });
             },
             swfPath: "/media/englishconcept/asset/js/jQuery.jPlayer",
             supplied: "m4a, oga"
+        });
+
+        jwplayer("myElement").setup({
+            playlist: "http://google.com/playlist.rss",
+            height: 360,
+            listbar: {
+                position: 'right',
+                size: 320
+            },
+            width: 960
         });
     });
 </script>
