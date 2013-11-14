@@ -145,33 +145,41 @@ body.contentpane {
 	width: 229px;
 }
 
-/*
-#content {
+#lesson-content {
 	color: #444444;
-	font-size: 0.75em;
-	letter-spacing: 0.02em;
-	line-height: 1.5em;
 	padding-top: 0;
-	width: 678px;
+	width: 74.5%;
 }
-#content ul, p {
+#lesson-content ul, p {
 	margin: 1.12em 0;
 }
-#content ul {
+#lesson-content ul {
 	list-style-type: disc;
 	margin-bottom: 0;
 	margin-left: 15px;
 	margin-top: 0;
 }
-#content ol {
+#lesson-content ol {
 	list-style-type: decimal;
 	margin-bottom: 0;
 	margin-left: 25px;
 	margin-top: 0;
 }
-#content p {
+#lesson-content p {
 	display: block;
 }
+#title {
+	margin: 0;
+	padding: 0;
+}
+#title h1 {
+	padding-bottom: 0;
+}
+#title p {
+	color: #0099CC;
+	display: none;
+}
+
 .box {
 	margin-bottom: 15px;
 }
@@ -200,4 +208,17 @@ body.contentpane {
 	overflow: auto;
 	padding: 10px;
 }
-*/
+
+#lesson-content table.list .left {
+	padding: 7px;
+	text-align: left;
+}
+#lesson-content table.list tbody td {
+	background: none repeat scroll 0 0 #FFFFFF;
+	padding: 0 5px;
+	vertical-align: middle;
+}
+#lesson-content table.list td {
+	border-bottom: 1px solid #DDDDDD;
+	border-right: 1px solid #DDDDDD;
+}

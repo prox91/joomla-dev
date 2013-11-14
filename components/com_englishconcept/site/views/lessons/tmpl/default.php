@@ -17,7 +17,7 @@ if(!empty($start))
     $numLesson = $start + 1;
 }
 ?>
-<div id="content">
+<div id="lesson-content">
 	<div class="box">
 		<!--
 		<div id="media">
@@ -28,52 +28,7 @@ if(!empty($start))
 			</div>
 		</div>
 		 -->
-
-        <!--Audio Demo-->
-        <div id="jquery_jplayer_1" class="jp-jplayer"></div>
-        <div id="jp_container_1" class="jp-audio">
-            <div class="jp-type-single">
-                <div class="jp-gui jp-interface">
-                    <ul class="jp-controls">
-                        <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
-                        <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
-                        <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
-                        <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
-                        <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
-                        <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
-                    </ul>
-                    <div class="jp-progress">
-                        <div class="jp-seek-bar">
-                            <div class="jp-play-bar"></div>
-                        </div>
-                    </div>
-                    <div class="jp-volume-bar">
-                        <div class="jp-volume-bar-value"></div>
-                    </div>
-                    <div class="jp-time-holder">
-                        <div class="jp-current-time"></div>
-                        <div class="jp-duration"></div>
-                        <ul class="jp-toggles">
-                            <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
-                            <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="jp-title">
-                    <ul>
-                        <li>Bubble</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div id="myElement"></div>
-        <!--Audio Demo-->
-
 		<div class="clear"></div>
-		<div class="introduction">
-			<p></p>
-		</div>
 		<?php if (count($this->lessons) > 0) {
 			foreach ($this->lessons as $lesson) {
 				?>
@@ -86,9 +41,7 @@ if(!empty($start))
 				<div class="content">
 					<form id="form" enctype="multipart/form-data" method="post" action="#">
 						<div style="padding-bottom: 10px;">
-							<audio height="100" width="100">
-								<source src="<?php //echo HTTP_IMAGE.$lesson['script']['script_file_name'] ;?>"/>
-							</audio>
+							<div height="100" width="100" id="audio"></div>
 							<?php //if(!empty($lesson['script']['script_text'])) { ?>
 								<div class="hidden-text-expander inline" title="show/hidden lesson content">
 									<a class="show_lesson" href="javascript:;">…</a>
@@ -159,12 +112,9 @@ if(!empty($start))
 		?>
 	</div>
 </div>
-<script>
+<div class="clear"></div>
+<script type="text/javascript">
     jQuery(document).ready(function () {
-        audiojs.events.ready(function() {
-            var as = audiojs.createAll();
-        });
-
         jQuery('.show_lesson').bind('click', function() {
             var disp = jQuery('#lesson_content').css('display');
             if (disp == 'none') {
@@ -173,26 +123,11 @@ if(!empty($start))
                 jQuery('#lesson_content').addClass('hidden');
             }
         });
+    });
 
-        jQuery("#jquery_jplayer_1").jPlayer({
-            ready:function () {
-                jQuery(this).jPlayer("setMedia", {
-                    m4a: "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
-                    oga: "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
-                });
-            },
-            swfPath: "/media/englishconcept/asset/js/jQuery.jPlayer",
-            supplied: "m4a, oga"
-        });
-
-        jwplayer("myElement").setup({
-            playlist: "http://google.com/playlist.rss",
-            height: 360,
-            listbar: {
-                position: 'right',
-                size: 320
-            },
-            width: 960
-        });
+    jwplayer("audio").setup({
+	    //autostart: true,
+	    file:"<?php echo JUri::root(); ?>media/englishconcept/audio/3bb12ead6413df21b3b25ec831dfc945.mp3",
+	    flashplayer:"<?php echo JUri::root(); ?>media/englishconcept/assets/js/jwplayer/jwplayer.flash.swf"
     });
 </script>
