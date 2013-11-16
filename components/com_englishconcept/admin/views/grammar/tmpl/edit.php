@@ -10,6 +10,7 @@
 defined('_JEXEC') or die('Restricted Access');
 // Include the component HTML helpers.
 JHtml::_('behavior.modal');
+JHtml::_('behavior.formvalidation');
 ?>
 <script type="text/javascript">
 	Joomla.orderTable = function()
@@ -33,12 +34,9 @@ JHtml::_('behavior.modal');
     <div id="ec-panel-right" class="span10">
         <div class="ec-main-container">
             <script type="text/javascript">
-                jQuery(document).ready(function($) {
-                    jQuery('#itemForm').validate();
-                });
                 Joomla.submitbutton = function(task)
                 {
-                    if (task == 'comprehension.cancel' || jQuery('#itemForm').valid())
+                    if (task == 'comprehension.cancel' || document.formvalidator.isValid(document.id('itemForm')))
                     {
 	                    <?php //echo $this->form->getField('book')->save(); ?>
                         Joomla.submitform(task, document.getElementById('itemForm'));

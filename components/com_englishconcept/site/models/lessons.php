@@ -60,91 +60,125 @@ class EnglishConceptModelLessons extends JModelList
         return $query;
     }
 
-    public function getLesson($lesson_id)
-    {
-		$lesson_data = array();
+	public function getItems()
+	{
+		$result = parent::getItems();
 
-		// get lesson info
-		$lesson_data['lesson_base'] = $this->_getLessonInfo($lesson_id);
+		if(is_array($result) && !empty($result[0]))
+		{
+			$item = $result[0];
 
-		// get lesson script
-		$lesson_data['script'] = $this->_getScriptInfo($lesson_id);
+			// Get compositions info
+			$item->compositions = $this->_getCompositionInfos($item->id);
 
-		// get lesson comprehension
-		$lesson_data['compre'] = $this->_getComprehensionInfo($lesson_id);
+			// Get comprehension info
+			$item->comprenhensions = $this->_getComprehensionInfos($item->id);
 
-		// get lesson key structures
-		$lesson_data['key_struct'] = $this->_getKeyStructureInfo($lesson_id);
+			// Get precises info
+			$item->precises = $this->_getPrecisInfos($item->id);
 
-		// get lesson special difficulties
-		$lesson_data['special_diff'] = $this->_getSpecialDifficultyInfo($lesson_id);
+			// Get grammar info
+			$item->grammars = $this->_getGrammarInfos($item->id);
 
-		// get lesson exercises
-		$lesson_data['exercise'] = $this->_getExerciseInfo($lesson_id);
+			// Get usage info
+			$item->usages = $this->_getUsageInfos($item->id);
 
-		return $lesson_data;
+			// Get exercise info
+			$item->exercises = $this->_getExerciseInfo($item->id);
+
+			$result = $item;
+		}
+
+		return $result;
 	}
 
-//	public function getLessons($condition = array()) {
-//
-//		$lesson_data = array();
-//
-//		$this->db->where('del_flg', 0);
-//		$start = 0;
-//		$limit = 1;
-//		if (!empty($condition) && isset($condition['start']) && isset($condition['limit'])) {
-//			$start = $condition['start'];
-//			$limit = $condition['limit'];
-//		}
-//		$this->db->limit($limit, $start);
-//		$query = $this->db->get('lesson');
-//
-//		foreach ($query->result() as $row){
-//			$lesson_data[$row->id] = $this->getLesson($row->id);
-//		}
-//
-//		return $lesson_data;
-//	}
-
-	private function _getLessonInfo($lesson_id)
+	private function _getCompositionInfos($lessonId)
     {
-		$this->_db->where('id', $lesson_id);
-		$query = $this->_db->get('lesson');
-		return $query->row_array();
+	    // Create a new query object
+	    $query = $this->_db->getQuery(true);
+	    $query->select('*')
+		    ->from('#__ec_lesson_compositions')
+		    ->where('deleted_flg = 0 AND lesson_id='.$lessonId);
+
+		$this->_db->setQuery($query);
+	    $result = $this->_db->loadObjectList();
+		return $result;
 	}
 
-	private function _getScriptInfo($lesson_id)
+	private function _getComprehensionInfos($lessonId)
     {
-		$this->db->where('lesson_id', $lesson_id);
-		$query = $this->db->get('lesson_script');
-		return $query->row_array();
+	    // Create a new query object
+	    $query = $this->_db->getQuery(true);
+	    $query->select('*')
+		    ->from('#__ec_lesson_comprehensions')
+		    ->where('deleted_flg = 0 AND lesson_id='.$lessonId);
+
+	    $this->_db->setQuery($query);
+	    $result = $this->_db->loadObject();
+
+	    // Get question
+	    if(!empty($result))
+	    {
+		    $query = $this->_db->getQuery(true);
+		    $query->select('*')
+			    ->from('#__ec_lesson_comprehensions')
+			    ->where('deleted_flg = 0 AND comprehension_id='.$result->id);
+
+		    $questions = $this->_db->loadObjectList();
+			$result->questions = $questions;
+	    }
+	    return $result;
 	}
 
-	private function _getComprehensionInfo($lesson_id)
-    {
-		$this->db->where('lesson_id', $lesson_id);
-		$query = $this->db->get('lesson_comprehension');
-		return $query->result_array();
+	private function _getPrecisInfos($lessonId)
+	{
+		// Create a new query object
+		$query = $this->_db->getQuery(true);
+		$query->select('*')
+			->from('#__ec_lesson_precises')
+			->where('deleted_flg = 0 AND lesson_id='.$lessonId);
+
+		$this->_db->setQuery($query);
+		$result = $this->_db->loadObjectList();
+		return $result;
 	}
 
-	private function _getKeyStructureInfo($lesson_id)
+	private function _getGrammarInfos($lessonId)
     {
-		$this->db->where('lesson_id', $lesson_id);
-		$query = $this->db->get('lesson_key_structures');
-		return $query->row_array();
+	    // Create a new query object
+	    $query = $this->_db->getQuery(true);
+	    $query->select('*')
+		    ->from('#__ec_lesson_grammars')
+		    ->where('deleted_flg = 0 AND lesson_id='.$lessonId);
+
+	    $this->_db->setQuery($query);
+	    $result = $this->_db->loadObjectList();
+	    return $result;
 	}
 
-	private function _getSpecialDifficultyInfo($lesson_id)
+	private function _getUsageInfos($lessonId)
     {
-		$this->db->where('lesson_id', $lesson_id);
-		$query = $this->db->get('lesson_special_difficulties');
-		return $query->row_array();
+	    // Create a new query object
+	    $query = $this->_db->getQuery(true);
+	    $query->select('*')
+		    ->from('#__ec_lesson_grammars')
+		    ->where('deleted_flg = 0 AND lesson_id='.$lessonId);
+
+	    $this->_db->setQuery($query);
+	    $result = $this->_db->loadObjectList();
+	    return $result;
 	}
 
-	private function _getExerciseInfo($lesson_id)
+	private function _getExerciseInfo($lessonId)
     {
-		$this->db->where('lesson_id', $lesson_id);
-		$query = $this->db->get('lesson_exercises');
-		return $query->result_array();
+	    // Create a new query object
+	    $query = $this->_db->getQuery(true);
+	    $query->select('*')
+		    ->from('#__ec_lesson_exercises')
+		    ->where('deleted_flg = 0 AND lesson_id='.$lessonId);
+
+	    $this->_db->setQuery($query);
+	    $result = $this->_db->loadObjectList();
+	    return $result;
 	}
 }

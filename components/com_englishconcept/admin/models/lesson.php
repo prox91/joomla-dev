@@ -169,6 +169,7 @@ class EnglishConceptModelLesson extends JModelAdmin
         if (empty($audioFile['error']))
         {
             // Make the filename safe
+	        jimport('joomla.filesystem.file');
             $audioFile['name'] = JFile::makeSafe($audioFile['name']);
             $fileExt = explode('.', $audioFile['name']);
             if (isset($audioFile['name']))

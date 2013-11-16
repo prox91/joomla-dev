@@ -42,7 +42,9 @@ else
 			<div class="tab-pane active" id="general">
 				<fieldset class="adminform" id="general-tab">
 					<div class="control-group">
-						<label title="Exercise ID::Exercise ID" class="hasTip required control-label" for="jform_exercise_id" id="jform_exercise_id-lbl">Exercise ID<span class="star">&nbsp;*</span></label>
+						<div class="control-label">
+							<label title="Exercise ID::Exercise ID" class="hasTip required control-label" for="jform_exercise_id" id="jform_exercise_id-lbl">Exercise ID<span class="star">&nbsp;*</span></label>
+						</div>
 						<div class="controls">
 							<input type="text" readonly="readonly" class="readonly required" value="<?php echo $exerciseId; ?>" id="jform_exercise_id" name="jform[exercise_id]">
 						</div>

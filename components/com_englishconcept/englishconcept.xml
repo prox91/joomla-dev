@@ -55,6 +55,7 @@
 			<filename>englishconcept.php</filename>
             <filename>config.xml</filename>
 			<filename>index.html</filename>
+			<folder>classes</folder>
 			<folder>controllers</folder>
 			<folder>helpers</folder>
 			<folder>language</folder>

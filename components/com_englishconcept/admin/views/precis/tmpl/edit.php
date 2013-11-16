@@ -8,6 +8,7 @@
  */
 // No direct access to this file
 defined('_JEXEC') or die('Restricted Access');
+JHtml::_('behavior.formvalidation');
 ?>
 <script type="text/javascript">
 	Joomla.orderTable = function()
@@ -31,12 +32,9 @@ defined('_JEXEC') or die('Restricted Access');
     <div id="ec-panel-right" class="span10">
         <div class="ec-main-container">
             <script type="text/javascript">
-                jQuery(document).ready(function($) {
-                    jQuery('#itemForm').validate();
-                });
                 Joomla.submitbutton = function(task)
                 {
-                    if (task == 'precis.cancel' || jQuery('#itemForm').valid())
+                    if (task == 'precis.cancel' || document.formvalidator.isValid(document.id('itemForm')))
                     {
 	                    <?php //echo $this->form->getField('book')->save(); ?>
                         Joomla.submitform(task, document.getElementById('itemForm'));

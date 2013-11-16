@@ -11,13 +11,17 @@ defined('_JEXEC') or die('Restricted Access');
 ?>
 <fieldset class="adminform" id="general-tab">
 	<div class="control-group">
-		<?php echo $this->form->getLabel('lesson_id'); ?>
+		<div class="control-label">
+			<?php echo $this->form->getLabel('lesson_id'); ?>
+		</div>
 		<div class="controls">
 			<?php echo $this->form->getInput('lesson_id'); ?>
 		</div>
 	</div>
 	<div class="control-group">
-		<?php echo $this->form->getLabel('description'); ?>
+		<div class="control-label">
+			<?php echo $this->form->getLabel('description'); ?>
+		</div>
 		<div class="controls">
 			<?php echo $this->form->getInput('description'); ?>
 		</div>

@@ -11,43 +11,57 @@ defined('_JEXEC') or die('Restricted Access');
 ?>
 <fieldset class="adminform" id="general-tab">
 	<div class="control-group">
-		<?php echo $this->form->getLabel('book_id'); ?>
+		<div class="control-label">
+			<?php echo $this->form->getLabel('book_id'); ?>
+		</div>
 		<div class="controls">
 			<?php echo $this->form->getInput('book_id'); ?>
 		</div>
 	</div>
 	<div class="control-group">
-		<?php echo $this->form->getLabel('cat_id'); ?>
+		<div class="control-label">
+			<?php echo $this->form->getLabel('cat_id'); ?>
+		</div>
 		<div class="controls">
 			<?php echo $this->form->getInput('cat_id'); ?>
 		</div>
 	</div>
 	<div class="control-group">
-		<?php echo $this->form->getLabel('level_id'); ?>
+		<div class="control-label">
+			<?php echo $this->form->getLabel('level_id'); ?>
+		</div>
 		<div class="controls">
 			<?php echo $this->form->getInput('level_id'); ?>
 		</div>
 	</div>
 	<div class="control-group">
-		<?php echo $this->form->getLabel('name'); ?>
+		<div class="control-label">
+			<?php echo $this->form->getLabel('name'); ?>
+		</div>
 		<div class="controls">
 			<?php echo $this->form->getInput('name'); ?>
 		</div>
 	</div>
 	<div class="control-group">
-		<?php echo $this->form->getLabel('alias'); ?>
+		<div class="control-label">
+			<?php echo $this->form->getLabel('alias'); ?>
+		</div>
 		<div class="controls">
 			<?php echo $this->form->getInput('alias'); ?>
 		</div>
 	</div>
 	<div class="control-group">
-		<?php echo $this->form->getLabel('description'); ?>
+		<div class="control-label">
+			<?php echo $this->form->getLabel('description'); ?>
+		</div>
 		<div class="controls">
 			<?php echo $this->form->getInput('description'); ?>
 		</div>
 	</div>
 	<div class="control-group">
-		<?php echo $this->form->getLabel('published'); ?>
+		<div class="control-label">
+			<?php echo $this->form->getLabel('published'); ?>
+		</div>
 		<div class="controls">
 			<?php echo $this->form->getInput('published'); ?>
 		</div>

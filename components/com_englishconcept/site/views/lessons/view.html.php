@@ -14,7 +14,7 @@ jimport('legacy.view.legacy');
 
 class EnglishConceptViewLessons extends JViewLegacy
 {
-    protected $lessons;
+    protected $lesson;
     protected $pagination;
 
 
@@ -25,7 +25,7 @@ class EnglishConceptViewLessons extends JViewLegacy
         //JHTML::Script(Juri::base() . 'media/englishconcept/assets/js/jQuery.jPlayer/jquery.jplayer.min.js');
         JHTML::Script(Juri::base() . 'media/englishconcept/assets/js/jwplayer/jwplayer.js');
 
-        $this->lessons = $this->get("Items");
+        $this->lesson = $this->get("Items");
         $this->pagination = $this->get('Pagination');
 
 		// Display the view

@@ -8,6 +8,7 @@
  */
 // No direct access to this file
 defined('_JEXEC') or die('Restricted Access');
+JHtml::_('behavior.formvalidation');
 ?>
 <script type="text/javascript">
 	Joomla.orderTable = function()
@@ -31,12 +32,9 @@ defined('_JEXEC') or die('Restricted Access');
     <div id="ec-panel-right" class="span10">
         <div class="ec-main-container">
             <script type="text/javascript">
-                jQuery(document).ready(function($) {
-                    jQuery('#itemForm').validate();
-                });
                 Joomla.submitbutton = function(task)
                 {
-	                if (task == 'category.cancel' || jQuery('#itemForm').valid())
+	                if (task == 'category.cancel' || document.formvalidator.isValid(document.id('itemForm')))
 	                {
 		                <?php //echo $this->form->getField('book')->save(); ?>
 		                Joomla.submitform(task, document.getElementById('itemForm'));
@@ -58,25 +56,33 @@ defined('_JEXEC') or die('Restricted Access');
                     <div class="tab-pane active" id="generall">
                         <fieldset class="adminform" id="exercise-tab">
                             <div class="control-group">
-                                <?php echo $this->form->getLabel('name'); ?>
+	                            <div class="control-label">
+                                    <?php echo $this->form->getLabel('name'); ?>
+		                        </div>
                                 <div class="controls">
                                     <?php echo $this->form->getInput('name'); ?>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <?php echo $this->form->getLabel('alias'); ?>
+	                            <div class="control-label">
+                                    <?php echo $this->form->getLabel('alias'); ?>
+		                        </div>
                                 <div class="controls">
                                     <?php echo $this->form->getInput('alias'); ?>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <?php echo $this->form->getLabel('description'); ?>
+	                            <div class="control-label">
+                                    <?php echo $this->form->getLabel('description'); ?>
+		                        </div>
                                 <div class="controls">
                                     <?php echo $this->form->getInput('description'); ?>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <?php echo $this->form->getLabel('published'); ?>
+	                            <div class="control-label">
+                                    <?php echo $this->form->getLabel('published'); ?>
+		                        </div>
                                 <div class="controls">
                                     <?php echo $this->form->getInput('published'); ?>
                                 </div>

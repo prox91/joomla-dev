@@ -42,13 +42,17 @@ else
 			<div class="tab-pane active" id="general">
 				<fieldset class="adminform" id="general-tab">
 					<div class="control-group">
-						<?php echo $this->form->getLabel('grammar_id'); ?>
+						<div class="control-label">
+							<?php echo $this->form->getLabel('grammar_id'); ?>
+						</div>
 						<div class="controls">
 							<?php echo $this->form->getInput('grammar_id', null, $grammarId); ?>
 						</div>
 					</div>
 					<div class="control-group">
-						<?php echo $this->form->getLabel('exercise_text'); ?>
+						<div class="control-label">
+							<?php echo $this->form->getLabel('exercise_text'); ?>
+						</div>
 						<div class="controls">
 							<?php echo $this->form->getInput('exercise_text'); ?>
 						</div>
