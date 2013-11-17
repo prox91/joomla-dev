@@ -19,6 +19,14 @@
 		       required="true"
 		       labelclass="control-label"/>
 
+		<field name="title"
+		       type="inputbox"
+		       class="inputbox"
+		       label="Exercise Title"
+		       description="Exercise Title"
+		       required="true"
+		       labelclass="control-label"/>
+
 		<field name="exercise_text"
 		       type="editor"
 		       class="inputbox"

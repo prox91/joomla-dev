@@ -95,7 +95,7 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 						</th>
 						<th width="40">
 							<?php //echo JHtml::_('grid.sort', 'JGRID_HEADING_CREATED_BY', 'a.created_by', $listDirn, $listOrder); ?>
-							Description
+							Short Description
 						</th>
 						<th width="1%" class="nowrap">
 							<?php //echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
@@ -119,10 +119,10 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 								<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 							</td>
 							<td>
-								<?php echo $this->escape($item->title); ?>
+								<?php echo $this->escape($item->name); ?>
 							</td>
 							<td>
-								<?php echo $item->description; ?>
+								<?php echo $item->title; ?>
 							</td>
 							<td class="center">
 								<?php echo (int) $item->id; ?>

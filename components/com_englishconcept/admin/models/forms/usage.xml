@@ -18,6 +18,14 @@
                required="true"
                labelclass="control-label"/>
 
+	    <field name="title"
+	           type="inputbox"
+	           class="inputbox"
+	           label="Title"
+	           description="Usage Title"
+	           required="true"
+	           labelclass="control-label"/>
+
         <field name="description"
                type="editor"
                class="inputbox"

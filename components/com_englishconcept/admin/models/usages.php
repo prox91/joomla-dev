@@ -22,7 +22,7 @@ class EnglishConceptModelUsages extends JModelList
         $query = $db->getQuery(true);
 
         // Select some field
-        $query->select($this->getState('list.select','us.*, ls.title AS title'));
+        $query->select($this->getState('list.select','us.*, ls.title AS name'));
 
         // From the hello table
         $query->from('#__ec_lesson_usages AS us');
