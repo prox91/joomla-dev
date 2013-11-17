@@ -74,14 +74,14 @@ if(!empty($start))
 						</div>
 					<?php endif; ?>
 
-					<?php //if(!empty($lesson['special_diff']['text'])) {?>
+					<?php if(!empty($this->lesson->usages)): ?>
 						<div style="background-color: rgb(239, 239, 239); font-weight: bold; margin-top: 0px; padding-top: 5px; padding-bottom: 5px; padding-left: 8px; border-width: 1px; color: #1B0069;">
 							<span>Special Difficulties</span>
 						</div>
 						<div>
-							<?php //echo $lesson['special_diff']['text']; ?>
+							<?php echo $this->lesson->usages->description; ?>
 						</div>
-					<?php //} ?>
+					<?php endif; ?>
 
 					<?php //if(!empty($lesson['exercise']) && count($lesson['exercise']) > 0) {?>
 						<div style="background-color: rgb(239, 239, 239); font-weight: bold; margin-top: 0px; padding-top: 5px; padding-bottom: 5px; padding-left: 8px; border-width: 1px; color: #1B0069;">

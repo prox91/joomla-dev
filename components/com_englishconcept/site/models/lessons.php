@@ -162,11 +162,11 @@ class EnglishConceptModelLessons extends JModelList
 	    // Create a new query object
 	    $query = $this->_db->getQuery(true);
 	    $query->select('*')
-		    ->from('#__ec_lesson_grammars')
+		    ->from('#__ec_lesson_usages')
 		    ->where('deleted_flg = 0 AND lesson_id='.$lessonId);
 
 	    $this->_db->setQuery($query);
-	    $result = $this->_db->loadObjectList();
+	    $result = $this->_db->loadObject();
 	    return $result;
 	}
 
