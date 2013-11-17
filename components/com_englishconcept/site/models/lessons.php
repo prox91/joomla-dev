@@ -153,7 +153,7 @@ class EnglishConceptModelLessons extends JModelList
 		    ->where('deleted_flg = 0 AND lesson_id='.$lessonId);
 
 	    $this->_db->setQuery($query);
-	    $result = $this->_db->loadObjectList();
+	    $result = $this->_db->loadObject();
 	    return $result;
 	}
 

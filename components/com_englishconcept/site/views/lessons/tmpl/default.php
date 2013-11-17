@@ -65,14 +65,14 @@ if(!empty($start))
 						<?php endif; ?>
 					<?php endif; ?>
 
-					<?php //if(!empty($lesson['key_struct']['text'])) {?>
+					<?php if(!empty($this->lesson->grammars)): ?>
 						<div style="background-color: rgb(239, 239, 239); font-weight: bold; margin-top: 0px; padding-top: 5px; padding-bottom: 5px; padding-left: 8px; border-width: 1px; color: #1B0069;">
 							<span>Key Structures</span>
 						</div>
 						<div style="padding-bottom: 10px; font-size: 12px; line-height: 18px; padding-left: 2px;">
-							<?php //echo $lesson['key_struct']['text']; ?>
+							<?php echo $this->lesson->grammars->description; ?>
 						</div>
-					<?php //} ?>
+					<?php endif; ?>
 
 					<?php //if(!empty($lesson['special_diff']['text'])) {?>
 						<div style="background-color: rgb(239, 239, 239); font-weight: bold; margin-top: 0px; padding-top: 5px; padding-bottom: 5px; padding-left: 8px; border-width: 1px; color: #1B0069;">
