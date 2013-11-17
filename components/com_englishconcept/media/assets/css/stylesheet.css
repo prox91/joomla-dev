@@ -170,6 +170,7 @@ body.contentpane {
 }
 #lesson-content p {
 	display: block;
+	margin: 0 0 5px;
 }
 #title {
 	margin: 0;
@@ -186,7 +187,6 @@ body.contentpane {
 .box {
 	margin-bottom: 15px;
 }
-
 .box > .heading {
 	background: url("../images/box.png") repeat-x scroll 0 0 rgba(0, 0, 0, 0);
 	border: 1px solid #DBDBDB;
@@ -195,14 +195,12 @@ body.contentpane {
 	padding-left: 7px;
 	padding-right: 7px;
 }
-
 .box > .heading h1 img {
 	float: left;
 	margin-left: 3px;
 	margin-right: 8px;
 	margin-top: -1px;
 }
-
 .box > .content {
 	border-bottom: 1px solid #CCCCCC;
 	border-left: 1px solid #CCCCCC;
@@ -212,6 +210,14 @@ body.contentpane {
 	padding: 10px;
 }
 
+#lesson-content table.list {
+	border-collapse: collapse;
+	border-left: 1px solid #DDDDDD;
+	border-top: 1px solid #DDDDDD;
+	font: 12px Arial,Helvetica,"Lucida Grande",serif;
+	margin-bottom: 20px;
+	width: 100%;
+}
 #lesson-content table.list .left {
 	padding: 7px;
 	text-align: left;
@@ -224,4 +230,25 @@ body.contentpane {
 #lesson-content table.list td {
 	border-bottom: 1px solid #DDDDDD;
 	border-right: 1px solid #DDDDDD;
+}
+.hidden-text-expander.inline {
+	display: inline-block;
+	float: right;
+	line-height: 0;
+	margin-left: 5px;
+	position: relative;
+	top: -17px;
+}
+.hidden-text-expander a {
+	background: none repeat scroll 0 0 #DDDDDD;
+	border-radius: 1px;
+	color: #555555;
+	display: inline-block;
+	font-size: 12px;
+	font-weight: bold;
+	height: 18px;
+	line-height: 6px;
+	padding: 0 5px;
+	text-decoration: none;
+	vertical-align: middle;
 }

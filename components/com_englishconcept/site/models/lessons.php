@@ -121,9 +121,10 @@ class EnglishConceptModelLessons extends JModelList
 	    {
 		    $query = $this->_db->getQuery(true);
 		    $query->select('*')
-			    ->from('#__ec_lesson_comprehensions')
-			    ->where('deleted_flg = 0 AND comprehension_id='.$result->id);
+			    ->from('#__ec_lesson_comprehensions_questions')
+			    ->where('comprehension_id='.$result->id);
 
+			$this->_db->setQuery($query);
 		    $questions = $this->_db->loadObjectList();
 			$result->questions = $questions;
 	    }

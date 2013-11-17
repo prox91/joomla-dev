@@ -19,7 +19,6 @@ if(!empty($start))
 ?>
 <div id="lesson-content">
 	<div class="box">
-		<div class="clear"></div>
 		<?php if (!empty($this->lesson)): ?>
 			<div class="heading">
 				<h3 style="margin-top:12px; margin-bottom:0px;">
@@ -51,9 +50,14 @@ if(!empty($start))
 						<?php if(!empty($this->lesson->comprenhensions->questions)): ?>
 						<table class="list">
 							<tbody>
-							<?php foreach ($this->lesson->comprenhensions->questions as $question): ?>
+							<tr>
+								<td class="left">
+									<?php echo $this->lesson->comprenhensions->description; ?>
+								</td>
+							</tr>
+							<?php foreach ($this->lesson->comprenhensions->questions as $key => $question): ?>
 								<tr>
-									<td class="left"><?php echo $question->id.'. '. $question->question;?></td>
+									<td class="left"><?php echo ($key + 1) .'. '. $question->question;?></td>
 								</tr>
 							<?php endforeach; ?>
 							</tbody>
@@ -108,8 +112,8 @@ if(!empty($start))
 				});
 
 				jwplayer("audio").setup({
-					//autostart: true,
-					height: 30,
+					height: "30px",
+					width: "90%",
 					file:"<?php echo JUri::root(); ?>media/englishconcept/media/audio/<?php if(!empty($this->lesson->audio_url_hash)) { echo $this->lesson->audio_url_hash;} ?>",
 					flashplayer:"<?php echo JUri::root(); ?>media/englishconcept/assets/js/jwplayer/jwplayer.flash.swf"
 				});

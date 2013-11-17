@@ -22,6 +22,7 @@
 		       type="editor"
 		       class="inputbox"
 		       label="Description"
+		       required="true"
 		       description="Book introduction/Description"
 		       filter="safehtml" buttons="false" width="90%"
 		       labelclass="control-label"/>
