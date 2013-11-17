@@ -20,6 +20,14 @@ defined('_JEXEC') or die('Restricted Access');
 	</div>
 	<div class="control-group">
 		<div class="control-label">
+			<?php echo $this->form->getLabel('title'); ?>
+		</div>
+		<div class="controls">
+			<?php echo $this->form->getInput('title'); ?>
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="control-label">
 			<?php echo $this->form->getLabel('description'); ?>
 		</div>
 		<div class="controls">

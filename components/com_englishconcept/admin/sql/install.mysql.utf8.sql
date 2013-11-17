@@ -179,6 +179,7 @@ DROP TABLE IF EXISTS `#__ec_lesson_grammars`;
 CREATE TABLE IF NOT EXISTS `#__ec_lesson_grammars` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lesson_id` int(11) NOT NULL,
+  `title` text,
   `description` text,
   `text` text,
   `text_explain` text,
@@ -200,6 +201,7 @@ DROP TABLE IF EXISTS `#__ec_lesson_grammars_exercises`;
 CREATE TABLE IF NOT EXISTS `#__ec_lesson_grammars_exercises` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `grammar_id` int(11) NOT NULL,
+  `title` text,
   `exercise_text` text,
   `exercise_text_explain` text,
   `exercise_text_trans` text,

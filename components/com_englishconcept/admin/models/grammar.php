@@ -178,8 +178,8 @@ class EnglishConceptModelGrammar extends JModelAdmin
     {
         $item = parent::getItem($pk);
 
-        if (!empty($item)) {
-
+        if (!empty($item))
+        {
             // Get data exercise for grammar
             $query = $this->_db->getQuery(true);
             $query->select("*")
@@ -188,7 +188,8 @@ class EnglishConceptModelGrammar extends JModelAdmin
             $this->_db->setQuery($query);
 
             $exercises = $this->_db->loadObjectList();
-            if (!empty($exercises)) {
+            if (!empty($exercises))
+            {
                 $item->exercises = $exercises;
             }
         }

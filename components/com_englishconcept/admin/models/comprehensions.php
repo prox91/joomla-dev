@@ -22,7 +22,7 @@ class EnglishConceptModelComprehensions extends JModelList
         $query = $db->getQuery(true);
 
         // Select some field
-        $query->select($this->getState('list.select','cp.*, ls.title AS title'));
+        $query->select($this->getState('list.select','cp.*, ls.title AS name'));
 
         // From the comprehension and lesson table
         $query->from('#__ec_lesson_comprehensions AS cp');

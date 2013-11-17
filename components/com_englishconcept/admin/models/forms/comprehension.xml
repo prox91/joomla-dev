@@ -23,11 +23,9 @@
 		       class="inputbox"
 		       label="Description"
 		       required="true"
-		       description="Book introduction/Description"
+		       description="Comprehension Description"
 		       filter="safehtml" buttons="false" width="90%"
 		       labelclass="control-label"/>
-
-		<!-- Question tab-->
 
 		<field name="groups"
 		       type="hidden"/>

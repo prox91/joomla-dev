@@ -22,7 +22,7 @@ class EnglishConceptModelGrammars extends JModelList
         $query = $db->getQuery(true);
 
         // Select some field
-        $query->select($this->getState('list.select','gr.*, ls.title AS title'));
+        $query->select($this->getState('list.select','gr.*, ls.title AS name'));
 
         // From the hello table
         $query->from('#__ec_lesson_grammars AS gr');

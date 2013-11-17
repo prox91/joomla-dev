@@ -19,7 +19,7 @@ defined('_JEXEC') or die('Restricted Access');
 	<tr>
 		<th width="2%"><?php echo JText::_('EC_COMPREHENSION_QUESTION_ACTION'); ?></th>
 		<th width="8%"><?php echo JText::_('EC_COMPREHENSION_QUESTION_NUM'); ?></th>
-		<th width="90%"><?php echo JText::_('EC_COMPREHENSION_QUESTION_TITLE'); ?></th>
+		<th width="90%"><?php echo JText::_('EC_COMPREHENSION_QUESTION_QUESTION'); ?></th>
 	</tr>
 	</thead>
 

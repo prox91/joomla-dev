@@ -119,10 +119,10 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 								<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 							</td>
 							<td>
-								<?php echo $this->escape($item->title); ?>
+								<?php echo $this->escape($item->name); ?>
 							</td>
 							<td>
-								<?php echo $item->description; ?>
+								<?php echo $item->title; ?>
 							</td>
 							<td class="center">
 								<?php echo (int) $item->id; ?>
