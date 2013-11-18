@@ -69,7 +69,7 @@ if(!empty($start))
 						<div style="background-color: rgb(239, 239, 239); font-weight: bold; margin-top: 0px; padding-top: 5px; padding-bottom: 5px; padding-left: 8px; border-width: 1px; color: #1B0069;">
 							<span>Key Structures</span>
 						</div>
-						<div style="padding-bottom: 10px; font-size: 12px; line-height: 18px; padding-left: 2px;">
+						<div style="padding-bottom: 10px; font-size: 12px; line-height: 18px; padding-left: 2px; border-collapse: collapse; border: 1px solid rgb(221, 221, 221); margin-bottom: 20px;">
 							<?php echo $this->lesson->grammars->description; ?>
 						</div>
 					<?php endif; ?>
@@ -78,12 +78,12 @@ if(!empty($start))
 						<div style="background-color: rgb(239, 239, 239); font-weight: bold; margin-top: 0px; padding-top: 5px; padding-bottom: 5px; padding-left: 8px; border-width: 1px; color: #1B0069;">
 							<span>Special Difficulties</span>
 						</div>
-						<div>
+						<div style="padding-bottom: 10px; font-size: 12px; line-height: 18px; padding-left: 2px; border-collapse: collapse; border: 1px solid rgb(221, 221, 221); margin-bottom: 20px;">
 							<?php echo $this->lesson->usages->description; ?>
 						</div>
 					<?php endif; ?>
 
-					<?php //if(!empty($lesson['exercise']) && count($lesson['exercise']) > 0) {?>
+					<?php if(!empty($this->lesson->exercises)): ?>
 						<div style="background-color: rgb(239, 239, 239); font-weight: bold; margin-top: 0px; padding-top: 5px; padding-bottom: 5px; padding-left: 8px; border-width: 1px; color: #1B0069;">
 							<span>Exercises</span>
 						</div>
@@ -96,7 +96,7 @@ if(!empty($start))
 							<?php //} ?>
 							</tbody>
 						</table>
-					<?php //} ?>
+					<?php endif; ?>
 				</form>
 			</div>
 			<script type="text/javascript">
