@@ -43,11 +43,19 @@ class EnglishConceptViewBooks extends ECViewAdmin
 
 	public function addToolbar()
 	{
+		$canDo	= EnglishConceptHelper::getActions();
+
 		JToolbarHelper::title(JText::_('COM_ENGLISHCONCEPT_TITLE'));
 		JToolbarHelper::addNew('book.add');
 		JToolbarHelper::editList('book.edit');
 		JToolbarHelper::trash('book.trash');
 		JToolbarHelper::deleteList('Do you want to delete it?', 'book.delete');
+
+		if ($canDo->get('core.admin'))
+		{
+			//JToolbarHelper::preferences('com_englisconcept');
+			//JToolbarHelper::divider();
+		}
 	}
 
 	public function setDocument()
