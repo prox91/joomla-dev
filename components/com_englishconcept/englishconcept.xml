@@ -53,6 +53,7 @@
 		<files folder="admin">
 			<filename>controller.php</filename>
 			<filename>englishconcept.php</filename>
+			<filename>access.xml</filename>
             <filename>config.xml</filename>
 			<filename>index.html</filename>
 			<folder>classes</folder>
