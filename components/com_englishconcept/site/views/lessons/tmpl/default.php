@@ -42,7 +42,6 @@ if(!empty($start))
 						</div>
 					<?php endif; ?>
 
-					<?php //if(!empty($lesson['compre']) && count($lesson['compre']) > 0) {?>
 					<?php if(!empty($this->lesson->comprenhensions)): ?>
 						<div style="background-color: rgb(239, 239, 239); font-weight: bold; margin-top: 0px; padding-top: 5px; padding-bottom: 5px; padding-left: 8px; border-width: 1px; color: #1B0069;">
 							<span>Comprehension Précis and Composition</span>
@@ -57,7 +56,7 @@ if(!empty($start))
 							</tr>
 							<?php foreach ($this->lesson->comprenhensions->questions as $key => $question): ?>
 								<tr>
-									<td class="left"><?php echo ($key + 1) .'. '. $question->question;?></td>
+									<td class="left"><?php echo ($key + 1) .'. '. $question->question; ?></td>
 								</tr>
 							<?php endforeach; ?>
 							</tbody>
@@ -69,7 +68,7 @@ if(!empty($start))
 						<div style="background-color: rgb(239, 239, 239); font-weight: bold; margin-top: 0px; padding-top: 5px; padding-bottom: 5px; padding-left: 8px; border-width: 1px; color: #1B0069;">
 							<span>Key Structures</span>
 						</div>
-						<div style="padding-bottom: 10px; font-size: 12px; line-height: 18px; padding-left: 2px; border-collapse: collapse; border: 1px solid rgb(221, 221, 221); margin-bottom: 20px;">
+						<div style="padding-left: 8px; padding-bottom: 10px; font-size: 12px; line-height: 18px; border-collapse: collapse; border: 1px solid rgb(221, 221, 221); margin-bottom: 20px;">
 							<?php echo $this->lesson->grammars->description; ?>
                             <?php if(!empty($this->lesson->grammars->exercises)): ?>
                                 <div>
@@ -85,7 +84,7 @@ if(!empty($start))
 						<div style="background-color: rgb(239, 239, 239); font-weight: bold; margin-top: 0px; padding-top: 5px; padding-bottom: 5px; padding-left: 8px; border-width: 1px; color: #1B0069;">
 							<span>Special Difficulties</span>
 						</div>
-						<div style="padding-bottom: 10px; font-size: 12px; line-height: 18px; padding-left: 2px; border-collapse: collapse; border: 1px solid rgb(221, 221, 221); margin-bottom: 20px;">
+						<div style="padding-left: 8px; padding-bottom: 10px; font-size: 12px; line-height: 18px; border-collapse: collapse; border: 1px solid rgb(221, 221, 221); margin-bottom: 20px;">
 							<?php echo $this->lesson->usages->description; ?>
                             <?php if(!empty($this->lesson->usages->exercises)): ?>
                                 <div>
@@ -113,6 +112,7 @@ if(!empty($start))
 					<?php endif; ?>
 				</form>
 			</div>
+
 			<script type="text/javascript">
 				jQuery(document).ready(function () {
 					jQuery('.show_lesson').bind('click', function() {
@@ -124,7 +124,6 @@ if(!empty($start))
 						}
 					});
 				});
-
 				jwplayer("audio").setup({
 					height: "30px",
 					width: "90%",
