@@ -108,16 +108,16 @@ else
 	endif;
 	?>
 	jQuery(document).ready(function($) {
-		$('#new-question-tier').click(function(event) {
+		jQuery('#new-question-tier').click(function(event) {
 			event.preventDefault();
 			initialRowQuestion(rowId);
 			rowId++;
 		});
 
 		function initialRowQuestion(rowId) {
-			$('#comprehension_question_tbl tbody').append('<tr id="'+rowId+'"></tr>');
+			jQuery('#comprehension_question_tbl tbody').append('<tr id="'+rowId+'"></tr>');
 
-			var rowData = $('#' + rowId);
+			var rowData = jQuery('#' + rowId);
 			var htmlStr = "";
 			htmlStr += "<td><a class='delete-question-tier btn'><i class='icon-minus-sign'></i></a></td>";
 			htmlStr += "<td><span class='num'>"+rowId+"</span></td>";
@@ -129,8 +129,8 @@ else
 		}
 
 		var bindDeleteQuestionRowEvent = function() {
-			$('.delete-question-tier').unbind().click(function() {
-				$(this).parent().parent().remove();
+			jQuery('.delete-question-tier').unbind().click(function() {
+				jQuery(this).parent().parent().remove();
 				rowId--;
 			});
 		};

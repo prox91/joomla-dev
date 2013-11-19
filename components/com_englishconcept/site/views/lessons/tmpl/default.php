@@ -71,6 +71,13 @@ if(!empty($start))
 						</div>
 						<div style="padding-bottom: 10px; font-size: 12px; line-height: 18px; padding-left: 2px; border-collapse: collapse; border: 1px solid rgb(221, 221, 221); margin-bottom: 20px;">
 							<?php echo $this->lesson->grammars->description; ?>
+                            <?php if(!empty($this->lesson->grammars->exercises)): ?>
+                                <div>
+                                    <?php foreach($this->lesson->grammars->exercises as $exercise): ?>
+                                        <?php echo $exercise->exercise_text; ?>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
 						</div>
 					<?php endif; ?>
 
@@ -80,6 +87,13 @@ if(!empty($start))
 						</div>
 						<div style="padding-bottom: 10px; font-size: 12px; line-height: 18px; padding-left: 2px; border-collapse: collapse; border: 1px solid rgb(221, 221, 221); margin-bottom: 20px;">
 							<?php echo $this->lesson->usages->description; ?>
+                            <?php if(!empty($this->lesson->usages->exercises)): ?>
+                                <div>
+                                    <?php foreach($this->lesson->usages->exercises as $exercise): ?>
+                                        <?php echo $exercise->exercise_text; ?>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
 						</div>
 					<?php endif; ?>
 

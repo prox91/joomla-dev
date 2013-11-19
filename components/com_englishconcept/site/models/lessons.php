@@ -154,6 +154,19 @@ class EnglishConceptModelLessons extends JModelList
 
 	    $this->_db->setQuery($query);
 	    $result = $this->_db->loadObject();
+        if(!empty($result))
+        {
+            $query = $this->_db->getQuery(true);
+            $query->select('*')
+                ->from('#__ec_lesson_grammars_exercises')
+                ->where('deleted_flg = 0 AND grammar_id = '.$result->id);
+
+            $this->_db->setQuery($query);
+            $exercises = $this->_db->loadObjectList();
+
+            $result->exercises = $exercises;
+        }
+
 	    return $result;
 	}
 
@@ -167,6 +180,18 @@ class EnglishConceptModelLessons extends JModelList
 
 	    $this->_db->setQuery($query);
 	    $result = $this->_db->loadObject();
+        if(!empty($result))
+        {
+            $query =  $this->_db->getQuery(true);
+            $query->select('*')
+                ->from('#__ec_lesson_usages_exercises')
+                ->where('deleted_flg = 0 AND usage_id='.$result->id);
+
+            $this->_db->setQuery($query);
+            $exercises = $this->_db->loadObjectList();
+
+            $result->exercises = $exercises;
+        }
 	    return $result;
 	}
 

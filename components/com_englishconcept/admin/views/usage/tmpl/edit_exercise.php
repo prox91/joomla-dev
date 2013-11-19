@@ -68,7 +68,7 @@ $link = JRoute::_('index.php?option=com_englishconcept&tmpl=component&view=usage
 <script type="text/javascript">
     function deleteExercise(obj, id) {
         jQuery(document).ready(function ($) {
-            $('#dialogBox').dialog({
+            jQuery('#dialogBox').dialog({
                 height: 140,
                 autoOpen: true,
                 modal: true,
@@ -84,10 +84,10 @@ $link = JRoute::_('index.php?option=com_englishconcept&tmpl=component&view=usage
                 buttons: {
                     'Delete': function () {
                         deleteViaAjax(obj, id);
-                        $(this).dialog("close");
+                        jQuery(this).dialog("close");
                     },
                     'Cancel': function () {
-                        $(this).dialog("close");
+                        jQuery(this).dialog("close");
                     }
                 }
             });
@@ -98,24 +98,24 @@ $link = JRoute::_('index.php?option=com_englishconcept&tmpl=component&view=usage
     function deleteViaAjax(obj, id) {
         jQuery(document).ready(function ($) {
             // Delete exercise through ajax
-            $.ajax({
+            jQuery.ajax({
                 type: "GET",
                 url: "<?php echo JRoute::_('index.php?option=com_englishconcept&task=usageexercise.delete&format=json', false); ?>&id=" + id,
                 success: function (result, status, xhr) {
-                    var result = $.parseJSON(result);
+                    var result = jQuery.parseJSON(result);
                     if (result.status) {
-                        $(obj).parent().parent().remove();
+                        jQuery(obj).parent().parent().remove();
                         var html = "<button data-dismiss=\"alert\" class=\"close\" type=\"button\">×</button>";
                         html += "<div class=\"alert alert-success\">";
                         html += "Delete successful!";
                         html += "</div>";
-                        $('#system-message-container').html(html);
+                        jQuery('#system-message-container').html(html);
                     } else {
                         var html = "<button data-dismiss=\"alert\" class=\"close\" type=\"button\">×</button>";
                         html += "<div class=\"alert alert-error\">";
                         html += "Delete unsuccessful!";
                         html += "</div>";
-                        $('#system-message-container').html(html);
+                        jQuery('#system-message-container').html(html);
                     }
                 },
                 error: function (xhr, status, error) {
@@ -123,7 +123,7 @@ $link = JRoute::_('index.php?option=com_englishconcept&tmpl=component&view=usage
                     html += "<div class=\"alert alert-error\">";
                     html += "Delete unsuccessful!";
                     html += "</div>";
-                    $('#system-message-container').html(html);
+                    jQuery('#system-message-container').html(html);
                 }
             });
         });

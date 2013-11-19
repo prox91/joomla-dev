@@ -264,7 +264,6 @@ CREATE TABLE IF NOT EXISTS `#__ec_lesson_usages_exercises` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `usage_id` int(11) NOT NULL,
   `title` text,
-  `text` text,
   `exercise_text` text,
   `exercise_text_explain` text,
   `exercise_text_trans` text,
