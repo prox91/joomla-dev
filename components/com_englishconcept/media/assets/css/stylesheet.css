@@ -172,6 +172,32 @@ body.contentpane {
 	display: block;
 	margin: 0 0 5px;
 }
+#lesson-content .part-title {
+	 background-color: rgb(239, 239, 239);
+	 font-weight: bold;
+	 margin-top: 0px;
+	 padding-top: 5px;
+	 padding-bottom: 5px;
+	 padding-left: 8px;
+	 border-width: 1px;
+	 color: #1B0069;
+ }
+#lesson-content .part-content {
+	padding-left: 8px;
+	padding-bottom: 10px;
+	padding-top: 5px;
+	font-size: 12px;
+	line-height: 18px;
+	border-collapse: collapse;
+	border: 1px solid rgb(221, 221, 221);
+	margin-bottom: 10px;
+}
+#lesson-text {
+	padding-bottom: 10px;
+	font-size: 12px;
+	line-height: 18px;
+	padding-left: 2px;
+}
 #title {
 	margin: 0;
 	padding: 0;
@@ -215,7 +241,7 @@ body.contentpane {
 	border-left: 1px solid #DDDDDD;
 	border-top: 1px solid #DDDDDD;
 	font: 12px Arial,Helvetica,"Lucida Grande",serif;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	width: 100%;
 }
 #lesson-content table.list .left {

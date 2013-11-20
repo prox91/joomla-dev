@@ -37,13 +37,13 @@ if(!empty($start))
 						<?php endif; ?>
 					</div>
 					<?php if(!empty($this->lesson->text)): ?>
-						<div id="lesson_content" class="hidden" style="padding-bottom: 10px; font-size: 12px; line-height: 18px; padding-left: 2px;" >
+						<div id="lesson-text" class="hidden">
 							<?php echo $this->lesson->text; ?>
 						</div>
 					<?php endif; ?>
 
 					<?php if(!empty($this->lesson->comprenhensions)): ?>
-						<div style="background-color: rgb(239, 239, 239); font-weight: bold; margin-top: 0px; padding-top: 5px; padding-bottom: 5px; padding-left: 8px; border-width: 1px; color: #1B0069;">
+						<div class="part-title">
 							<span>Comprehension Précis and Composition</span>
 						</div>
 						<?php if(!empty($this->lesson->comprenhensions->questions)): ?>
@@ -65,10 +65,10 @@ if(!empty($start))
 					<?php endif; ?>
 
 					<?php if(!empty($this->lesson->grammars)): ?>
-						<div style="background-color: rgb(239, 239, 239); font-weight: bold; margin-top: 0px; padding-top: 5px; padding-bottom: 5px; padding-left: 8px; border-width: 1px; color: #1B0069;">
+						<div class="part-title">
 							<span>Key Structures</span>
 						</div>
-						<div style="padding-left: 8px; padding-bottom: 10px; padding-top: 5px; font-size: 12px; line-height: 18px; border-collapse: collapse; border: 1px solid rgb(221, 221, 221); margin-bottom: 20px;">
+						<div class="part-content">
 							<?php echo $this->lesson->grammars->description; ?>
                             <?php if(!empty($this->lesson->grammars->exercises)): ?>
                                 <div>
@@ -81,10 +81,10 @@ if(!empty($start))
 					<?php endif; ?>
 
 					<?php if(!empty($this->lesson->usages)): ?>
-						<div style="background-color: rgb(239, 239, 239); font-weight: bold; margin-top: 0px; padding-top: 5px; padding-bottom: 5px; padding-left: 8px; border-width: 1px; color: #1B0069;">
+						<div class="part-title">
 							<span>Special Difficulties</span>
 						</div>
-						<div style="padding-left: 8px; padding-bottom: 10px; padding-top: 5px; font-size: 12px; line-height: 18px; border-collapse: collapse; border: 1px solid rgb(221, 221, 221); margin-bottom: 20px;">
+						<div class="part-content">
 							<?php echo $this->lesson->usages->description; ?>
                             <?php if(!empty($this->lesson->usages->exercises)): ?>
                                 <div>
@@ -97,7 +97,7 @@ if(!empty($start))
 					<?php endif; ?>
 
 					<?php if(!empty($this->lesson->exercises)): ?>
-						<div style="background-color: rgb(239, 239, 239); font-weight: bold; margin-top: 0px; padding-top: 5px; padding-bottom: 5px; padding-left: 8px; border-width: 1px; color: #1B0069;">
+						<div class="part-title">
 							<span>Exercises</span>
 						</div>
 						<table class="list">
@@ -116,11 +116,11 @@ if(!empty($start))
 			<script type="text/javascript">
 				jQuery(document).ready(function () {
 					jQuery('.show_lesson').bind('click', function() {
-						var disp = jQuery('#lesson_content').css('display');
+						var disp = jQuery('#lesson-text').css('display');
 						if (disp == 'none') {
-							jQuery('#lesson_content').removeClass('hidden');
+							jQuery('#lesson-text').removeClass('hidden');
 						} else {
-							jQuery('#lesson_content').addClass('hidden');
+							jQuery('#lesson-text').addClass('hidden');
 						}
 					});
 				});
