@@ -190,7 +190,32 @@ class EnglishConceptModelLessons extends JModelList
             $this->_db->setQuery($query);
             $exercises = $this->_db->loadObjectList();
 
-            $result->exercises = $exercises;
+	        if(!empty($exercises) && count($exercises) > 0)
+	        {
+		        $exerciseIds = array();
+		        foreach($exercises as $exercise)
+		        {
+			        $exerciseIds[] = $exercise->id;
+		        }
+
+		        // Get all question which id in exercise id list above
+		        $query = $$this->_db->getQuery(true);
+		        $query->select('*')
+					->from('#__ec_lesson_usages_exercises_questions')
+					->where('exercise_id IN (' . implode(',', $exerciseIds) . ')');
+				$this->_db->setQuery($query);
+				$allQuestions = $this->_db->loadObjectList();
+
+		        if(!empty($allQuestions) && count($allQuestions) > 0)
+		        {
+			        foreach($exercises as $exercise)
+			        {
+						//if()
+			        }
+		        }
+
+		        $result->exercises = $exercises;
+	        }
         }
 	    return $result;
 	}
