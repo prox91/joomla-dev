@@ -90,6 +90,17 @@ if(!empty($start))
                                 <div>
                                     <?php foreach($this->lesson->usages->exercises as $exercise): ?>
                                         <?php echo $exercise->exercise_text; ?>
+		                                <?php if(!empty($exercise->questions)): ?>
+			                                <table class="list" style="width: 99%;">
+				                                <tbody>
+				                                <?php foreach ($exercise->questions as $key => $question): ?>
+					                                <tr>
+						                                <td class="left"><?php echo ($key + 1) .'. '. $question->question; ?></td>
+					                                </tr>
+				                                <?php endforeach; ?>
+				                                </tbody>
+			                                </table>
+		                                <?php endif; ?>
                                     <?php endforeach; ?>
                                 </div>
                             <?php endif; ?>
