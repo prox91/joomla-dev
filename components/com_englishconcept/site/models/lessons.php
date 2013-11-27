@@ -173,7 +173,7 @@ class EnglishConceptModelLessons extends JModelList
                 }
 
                 // Get all question which id in exercise id list above
-                $query = $$this->_db->getQuery(true);
+                $query = $this->_db->getQuery(true);
                 $query->select('*')
                     ->from('#__ec_lesson_grammars_exercises_questions')
                     ->where('exercise_id IN (' . implode(',', $exerciseIds) . ')');
@@ -232,7 +232,7 @@ class EnglishConceptModelLessons extends JModelList
 		        }
 
 		        // Get all question which id in exercise id list above
-		        $query = $$this->_db->getQuery(true);
+		        $query = $this->_db->getQuery(true);
 		        $query->select('*')
 					->from('#__ec_lesson_usages_exercises_questions')
 					->where('exercise_id IN (' . implode(',', $exerciseIds) . ')');
