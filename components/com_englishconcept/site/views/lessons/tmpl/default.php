@@ -23,7 +23,7 @@ if (!empty($start))
 			<div class="heading">
 				<h3 style="margin-top:12px; margin-bottom:0px;">
 					<img src="<?php echo JUri::root() . 'media/englishconcept/assets/images/lesson-book.png'; ?>" style="margin-top: -12px;">
-					<span>Lesson <?php echo $numLesson; ?></span>
+					<span>Lesson <?php echo $numLesson . ' - ' . $this->lesson->title; ?></span>
 				</h3>
 			</div>
 			<div class="content">
@@ -71,6 +71,9 @@ if (!empty($start))
 						<div class="part-content">
 							<?php echo $this->lesson->grammars->description; ?>
 							<?php if (!empty($this->lesson->grammars->exercises)): ?>
+								<div style="padding-top:5px;">
+									<em>Exercises</em>
+								</div>
 								<div>
 									<?php foreach ($this->lesson->grammars->exercises as $exercise): ?>
 										<?php echo $exercise->exercise_text; ?>
@@ -98,6 +101,9 @@ if (!empty($start))
 						<div class="part-content">
 							<?php echo $this->lesson->usages->description; ?>
 							<?php if (!empty($this->lesson->usages->exercises)): ?>
+								<div style="padding-top:5px;">
+									<em>Exercises</em>
+								</div>
 								<div>
 									<?php foreach ($this->lesson->usages->exercises as $exercise): ?>
 										<?php echo $exercise->exercise_text; ?>

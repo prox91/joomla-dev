@@ -220,7 +220,7 @@ class EnglishConceptModelGrammarExerciseQuestion extends JModelAdmin
 			// Delete old data
 			$q = $this->_db->getQuery(true);
 			$q->delete('#__ec_lesson_grammars_exercises_questions')
-				->where('exercise_id', $data['exercise_id']);
+				->where('exercise_id=' . $data['exercise_id']);
 			$this->_db->setQuery($q);
 			$this->_db->execute();
 
