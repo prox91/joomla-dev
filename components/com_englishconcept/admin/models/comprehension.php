@@ -214,7 +214,7 @@ class EnglishConceptModelComprehension extends JModelAdmin
                 // Delete old data
                 $q = $this->_db->getQuery(true);
                 $q->delete('#__ec_lesson_comprehensions_questions')
-                    ->where('comprehension_id', $data['id']);
+                    ->where('comprehension_id='. $data['id']);
                 $this->_db->setQuery($q);
                 $this->_db->execute();
 
