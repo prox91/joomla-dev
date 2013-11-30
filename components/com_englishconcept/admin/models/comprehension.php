@@ -62,7 +62,7 @@ class EnglishConceptModelComprehension extends JModelAdmin
 	/**
 	 * Constructor.
 	 *
-	 * @param   array  $config  An optional associative array of configuration settings.
+	 * @param   array $config  An optional associative array of configuration settings.
 	 *
 	 * @see     JModelLegacy
 	 * @since   12.2
@@ -71,20 +71,20 @@ class EnglishConceptModelComprehension extends JModelAdmin
 	{
 		parent::__construct($config);
 
-		$this->event_after_delete 	= 'onComprehensionAfterDelete';
-		$this->event_after_save 	= 'onComprehensionAfterSave';
-		$this->event_before_delete 	= 'onComprehensionBeforeDelete';
-		$this->event_before_save 	= 'onComprehensionBeforeSave';
-		$this->event_change_state 	= 'onComprehensionChangeState';
-		$this->text_prefix 			= strtoupper($this->option);
+		$this->event_after_delete  = 'onComprehensionAfterDelete';
+		$this->event_after_save    = 'onComprehensionAfterSave';
+		$this->event_before_delete = 'onComprehensionBeforeDelete';
+		$this->event_before_save   = 'onComprehensionBeforeSave';
+		$this->event_change_state  = 'onComprehensionChangeState';
+		$this->text_prefix         = strtoupper($this->option);
 	}
 
 	/**
 	 * Method to get a table object, load it if necessary.
 	 *
-	 * @param   string  $name     The table name. Optional.
-	 * @param   string  $prefix   The class prefix. Optional.
-	 * @param   array   $options  Configuration array for model. Optional.
+	 * @param   string $name     The table name. Optional.
+	 * @param   string $prefix   The class prefix. Optional.
+	 * @param   array $options  Configuration array for model. Optional.
 	 *
 	 * @return  JTable  A JTable object
 	 *
@@ -99,8 +99,8 @@ class EnglishConceptModelComprehension extends JModelAdmin
 	/**
 	 * Abstract method for getting the form from the model.
 	 *
-	 * @param   array    $data      Data for the form.
-	 * @param   boolean  $loadData  True if the form is to load its own data (default case), false if not.
+	 * @param   array $data      Data for the form.
+	 * @param   boolean $loadData  True if the form is to load its own data (default case), false if not.
 	 *
 	 * @return  mixed  A JForm object on success, false on failure
 	 *
@@ -109,15 +109,19 @@ class EnglishConceptModelComprehension extends JModelAdmin
 	public function getForm($data = array(), $loadData = true)
 	{
 		$form = $this->loadForm('com_englishconcept.comprehension', 'comprehension', array('control' => 'jform', 'load_data' => $loadData));
-		if (empty($form)) {
+		if (empty($form))
+		{
 			return false;
 		}
 
 		// Determine correct permissions to check.
-		if ($this->getState('comprehensions.id')) {
+		if ($this->getState('comprehensions.id'))
+		{
 			// Existing record. Can only edit in selected categories.
 			//$form->setFieldAttribute('catid', 'action', 'core.edit');
-		} else {
+		}
+		else
+		{
 			// New record. Can only create in selected categories.
 			//$form->setFieldAttribute('catid', 'action', 'core.create');
 		}
@@ -137,7 +141,8 @@ class EnglishConceptModelComprehension extends JModelAdmin
 		// Check the session for previously entered form data.
 		$data = JFactory::getApplication()->getUserState('com_englishconcept.edit.comprehension.data', array());
 
-		if (empty($data)) {
+		if (empty($data))
+		{
 			$data = $this->getItem();
 		}
 
@@ -147,7 +152,7 @@ class EnglishConceptModelComprehension extends JModelAdmin
 	/**
 	 * Prepare and sanitise the table data prior to saving.
 	 *
-	 * @param   JTable  $table  A reference to a JTable object.
+	 * @param   JTable $table  A reference to a JTable object.
 	 *
 	 * @return  void
 	 *
@@ -159,110 +164,113 @@ class EnglishConceptModelComprehension extends JModelAdmin
 		$date = JFactory::getDate();
 		$user = JFactory::getUser();
 
-		$table->modified	= $date->toSql();
-		$table->modified_by	= $user->get('id');
+		$table->modified    = $date->toSql();
+		$table->modified_by = $user->get('id');
 	}
 
-    /**
-     * Method to get a single record.
-     *
-     * @param   integer  $pk  The id of the primary key.
-     *
-     * @return  mixed    Object on success, false on failure.
-     *
-     * @since   11.1
-     */
-    public function getItem($pk = null)
-    {
-        $item = parent::getItem($pk);
+	/**
+	 * Method to get a single record.
+	 *
+	 * @param   integer $pk  The id of the primary key.
+	 *
+	 * @return  mixed    Object on success, false on failure.
+	 *
+	 * @since   11.1
+	 */
+	public function getItem($pk = null)
+	{
+		$item = parent::getItem($pk);
 
-        if (!empty($item)) {
-            // Get data question for comprehension
+		if (!empty($item))
+		{
+			// Get data question for comprehension
 
-            $query = $this->_db->getQuery(true);
-            $query->select("*")
-                ->from("#__ec_lesson_comprehensions_questions")
-                ->where("comprehension_id='" . $item->id . "'");
-            $this->_db->setQuery($query);
+			$query = $this->_db->getQuery(true);
+			$query->select("*")
+				->from("#__ec_lesson_comprehensions_questions")
+				->where("comprehension_id='" . $item->id . "'");
+			$this->_db->setQuery($query);
 
-            $questions = $this->_db->loadObjectList();
-            if (!empty($questions)) {
-                $item->questions = $questions;
-            }
-        }
+			$questions = $this->_db->loadObjectList();
+			if (!empty($questions))
+			{
+				$item->questions = $questions;
+			}
+		}
 
-        return $item;
-    }
+		return $item;
+	}
 
+	/**
+	 * Method to save the form data.
+	 *
+	 * @param   array $data  The form data.
+	 *
+	 * @return  boolean  True on success, False on error.
+	 *
+	 * @since   11.1
+	 */
+	public function save($data)
+	{
+		if (parent::save($data))
+		{
+			$comprehension_id = '';
+			if (isset($data['id']))
+			{
+				// Delete old data
+				$q = $this->_db->getQuery(true);
+				$q->delete('#__ec_lesson_comprehensions_questions')
+					->where('comprehension_id=' . $data['id']);
+				$this->_db->setQuery($q);
+				$this->_db->execute();
 
-    /**
-     * Method to save the form data.
-     *
-     * @param   array  $data  The form data.
-     *
-     * @return  boolean  True on success, False on error.
-     *
-     * @since   11.1
-     */
-    public function save($data)
-    {
-        if(parent::save($data))
-        {
-            $comprehension_id = '';
-            if(isset($data['id']))
-            {
-                // Delete old data
-                $q = $this->_db->getQuery(true);
-                $q->delete('#__ec_lesson_comprehensions_questions')
-                    ->where('comprehension_id='. $data['id']);
-                $this->_db->setQuery($q);
-                $this->_db->execute();
+				if ($error = $this->_db->getErrorMsg())
+				{
+					$this->setError($error);
 
-                if ($error = $this->_db->getErrorMsg())
-                {
-                    $this->setError($error);
-                    return false;
-                }
-                $comprehension_id = $data['id'];
-            }
-            else
-            {
-                // Create
-                $comprehension_id = $this->_db->insertid();
-            }
+					return false;
+				}
+				$comprehension_id = $data['id'];
+			}
+			else
+			{
+				// Create
+				$comprehension_id = $this->_db->insertid();
+			}
 
-            // Save data question of comprehension
-            $input = JFactory::getApplication()->input;
-            $postData = $input->get('jform', '', 'ARRAY');
-            $questionList = $postData['question'];
+			// Save data question of comprehension
+			$input        = JFactory::getApplication()->input;
+			$postData     = $input->get('jform', '', 'ARRAY');
+			$questionList = $postData['question'];
 
-            if(is_array($questionList) && count($questionList) > 0)
-            {
-                $query = $this->_db->getQuery(true);
-                $query->clear()
-                      ->insert('#__ec_lesson_comprehensions_questions')
-                      ->columns('comprehension_id, question');
+			if (is_array($questionList) && count($questionList) > 0)
+			{
+				$query = $this->_db->getQuery(true);
+				$query->clear()
+					->insert('#__ec_lesson_comprehensions_questions')
+					->columns('comprehension_id, question');
 
-                foreach ($questionList['title'] as $key => $value)
-                {
-                    $query->values($comprehension_id . ',' . $this->_db->quote($value));
-                }
+				foreach ($questionList['title'] as $key => $value)
+				{
+					$query->values($comprehension_id . ',' . $this->_db->quote($value));
+				}
 
-                $this->_db->setQuery($query);
-                $this->_db->execute();
+				$this->_db->setQuery($query);
+				$this->_db->execute();
 
-                if ($error = $this->_db->getErrorMsg())
-                {
-                    $this->setError($error);
-                    return false;
-                }
-            }
+				if ($error = $this->_db->getErrorMsg())
+				{
+					$this->setError($error);
 
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+					return false;
+				}
+			}
+
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }

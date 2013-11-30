@@ -53,9 +53,9 @@ class EnglishConceptModelLessons extends JModelList
         // Select some field
         $query->select($this->getState('list.select','ls.*'));
 
-        // From the hello table
+        // From the lesson table
         $query->from('#__ec_lessons AS ls');
-        $query->where('ls.deleted_flg = 0');
+        $query->where('ls.deleted_flg = 0 AND ls.published = 1');
 
         return $query;
     }

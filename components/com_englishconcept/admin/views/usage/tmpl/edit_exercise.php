@@ -46,7 +46,7 @@ $link = JRoute::_('index.php?option=com_englishconcept&tmpl=component&view=usage
                     ?>
                     <a id="modal" class="modal" href="<?php echo $linkEdit; ?>"
                        rel="{handler: 'iframe', size: {x: 900, y: 550}, onClose:function(){var js = window.location.reload();}}"
-	                    title="<?php echo $value->exercise_text; ?>"><?php echo $this->escape($value->title); ?></a>
+	                    title="<?php //echo $value->exercise_text; ?>"><?php echo $this->escape($value->title); ?></a>
                 </td>
                 <td>
                     <?php
