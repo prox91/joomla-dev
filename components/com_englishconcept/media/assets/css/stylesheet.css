@@ -233,7 +233,7 @@ body.contentpane {
 	border-left: 1px solid #CCCCCC;
 	border-right: 1px solid #CCCCCC;
 	min-height: 300px;
-	overflow: auto;
+	/*overflow: auto;*/
 	padding: 10px;
 }
 
