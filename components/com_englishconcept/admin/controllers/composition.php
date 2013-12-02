@@ -26,7 +26,7 @@ class EnglishConceptControllerComposition extends JControllerForm
         $query = $db->getQuery(true);
 
         $query->clear()
-            ->update($db->quoteName('#__ec_lesson_compositions'))
+            ->update($db->quoteName('#__ec_lessons_compositions'))
             ->set($db->quoteName('deleted_flg') . ' = ' . $db->quote(1))
             ->set($db->quoteName('deleted') . ' = ' . $db->quote($date->toSql()))
             ->set($db->quoteName('deleted_by') . ' = ' . $db->quote($user->id))
@@ -64,7 +64,7 @@ class EnglishConceptControllerComposition extends JControllerForm
         $query = $db->getQuery(true);
 
         $query->clear()
-            ->delete($db->quoteName('#__ec_lesson_compositions'))
+            ->delete($db->quoteName('#__ec_lessons_compositions'))
             ->where($db->quoteName('id') . ' = ' . $db->quote($id));
         $db->setQuery($query);
 

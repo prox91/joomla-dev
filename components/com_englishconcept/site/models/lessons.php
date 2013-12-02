@@ -97,7 +97,7 @@ class EnglishConceptModelLessons extends JModelList
 	    // Create a new query object
 	    $query = $this->_db->getQuery(true);
 	    $query->select('*')
-		    ->from('#__ec_lesson_compositions')
+		    ->from('#__ec_lessons_compositions')
 		    ->where('deleted_flg = 0 AND lesson_id='.$lessonId);
 
 		$this->_db->setQuery($query);
@@ -110,7 +110,7 @@ class EnglishConceptModelLessons extends JModelList
 	    // Create a new query object
 	    $query = $this->_db->getQuery(true);
 	    $query->select('*')
-		    ->from('#__ec_lesson_comprehensions')
+		    ->from('#__ec_lessons_comprehensions')
 		    ->where('deleted_flg = 0 AND lesson_id='.$lessonId);
 
 	    $this->_db->setQuery($query);
@@ -121,7 +121,7 @@ class EnglishConceptModelLessons extends JModelList
 	    {
 		    $query = $this->_db->getQuery(true);
 		    $query->select('*')
-			    ->from('#__ec_lesson_comprehensions_questions')
+			    ->from('#__ec_lessons_comprehensions_questions')
 			    ->where('comprehension_id='.$result->id);
 
 			$this->_db->setQuery($query);
@@ -136,7 +136,7 @@ class EnglishConceptModelLessons extends JModelList
 		// Create a new query object
 		$query = $this->_db->getQuery(true);
 		$query->select('*')
-			->from('#__ec_lesson_precises')
+			->from('#__ec_lessons_precises')
 			->where('deleted_flg = 0 AND lesson_id='.$lessonId);
 
 		$this->_db->setQuery($query);
@@ -149,7 +149,7 @@ class EnglishConceptModelLessons extends JModelList
 	    // Create a new query object
 	    $query = $this->_db->getQuery(true);
 	    $query->select('*')
-		    ->from('#__ec_lesson_grammars')
+		    ->from('#__ec_lessons_grammars')
 		    ->where('deleted_flg = 0 AND lesson_id='.$lessonId);
 
 	    $this->_db->setQuery($query);
@@ -158,7 +158,7 @@ class EnglishConceptModelLessons extends JModelList
         {
             $query = $this->_db->getQuery(true);
             $query->select('*')
-                ->from('#__ec_lesson_grammars_exercises')
+                ->from('#__ec_lessons_grammars_exercises')
                 ->where('deleted_flg = 0 AND grammar_id = '.$result->id);
 
             $this->_db->setQuery($query);
@@ -175,7 +175,7 @@ class EnglishConceptModelLessons extends JModelList
                 // Get all question which id in exercise id list above
                 $query = $this->_db->getQuery(true);
                 $query->select('*')
-                    ->from('#__ec_lesson_grammars_exercises_questions')
+                    ->from('#__ec_lessons_grammars_exercises_questions')
                     ->where('exercise_id IN (' . implode(',', $exerciseIds) . ')');
                 $this->_db->setQuery($query);
                 $allQuestions = $this->_db->loadObjectList();
@@ -208,7 +208,7 @@ class EnglishConceptModelLessons extends JModelList
 	    // Create a new query object
 	    $query = $this->_db->getQuery(true);
 	    $query->select('*')
-		    ->from('#__ec_lesson_usages')
+		    ->from('#__ec_lessons_usages')
 		    ->where('deleted_flg = 0 AND lesson_id='.$lessonId);
 
 	    $this->_db->setQuery($query);
@@ -217,7 +217,7 @@ class EnglishConceptModelLessons extends JModelList
         {
             $query =  $this->_db->getQuery(true);
             $query->select('*')
-                ->from('#__ec_lesson_usages_exercises')
+                ->from('#__ec_lessons_usages_exercises')
                 ->where('deleted_flg = 0 AND usage_id='.$result->id);
 
             $this->_db->setQuery($query);
@@ -234,7 +234,7 @@ class EnglishConceptModelLessons extends JModelList
 		        // Get all question which id in exercise id list above
 		        $query = $this->_db->getQuery(true);
 		        $query->select('*')
-					->from('#__ec_lesson_usages_exercises_questions')
+					->from('#__ec_lessons_usages_exercises_questions')
 					->where('exercise_id IN (' . implode(',', $exerciseIds) . ')');
 				$this->_db->setQuery($query);
 				$allQuestions = $this->_db->loadObjectList();
@@ -266,7 +266,7 @@ class EnglishConceptModelLessons extends JModelList
 	    // Create a new query object
 	    $query = $this->_db->getQuery(true);
 	    $query->select('*')
-		    ->from('#__ec_lesson_exercises')
+		    ->from('#__ec_lessons_exercises')
 		    ->where('deleted_flg = 0 AND lesson_id='.$lessonId);
 
 	    $this->_db->setQuery($query);

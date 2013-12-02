@@ -5,6 +5,6 @@ class EnglishConceptTableUsageExerciseQuestion extends JTable
 {
 	function __construct($_db)
 	{
-		parent::__construct('#__ec_lesson_usages_exercises_questions', 'id', $_db);
+		parent::__construct('#__ec_lessons_usages_exercises_questions', 'id', $_db);
 	}
 }

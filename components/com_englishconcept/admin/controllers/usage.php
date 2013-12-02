@@ -25,7 +25,7 @@ class EnglishConceptControllerUsage extends JControllerForm
         $query = $db->getQuery(true);
 
         $query->clear()
-            ->update($db->quoteName('#__ec_lesson_usages'))
+            ->update($db->quoteName('#__ec_lessons_usages'))
             ->set($db->quoteName('deleted_flg') . ' = ' . $db->quote(1))
             ->set($db->quoteName('deleted') . ' = ' . $db->quote($date->toSql()))
             ->set($db->quoteName('deleted_by') . ' = ' . $db->quote($user->id))
@@ -64,13 +64,13 @@ class EnglishConceptControllerUsage extends JControllerForm
 
         $gramQuery = $db->getQuery(true);
         $gramQuery->clear()
-            ->delete($db->quoteName('#__ec_lesson_usages'))
+            ->delete($db->quoteName('#__ec_lessons_usages'))
             ->where($db->quoteName('id') . ' = ' . $db->quote($id));
 
         $gramExeListQuery = $db->getQuery(true);
         $gramExeListQuery->clear()
             ->select('id')
-            ->from('#__ec_lesson_usages_exercises')
+            ->from('#__ec_lessons_usages_exercises')
             ->where($db->quoteName('usage_id') . ' = ' . $db->quote($id));
         $db->setQuery($gramExeListQuery);
         $exerciseList = $db->loadObjectList();
@@ -86,7 +86,7 @@ class EnglishConceptControllerUsage extends JControllerForm
 
         $gramExeQuery = $db->getQuery(true);
         $gramExeQuery->clear()
-            ->delete($db->quoteName('#__ec_lesson_usages_exercises'))
+            ->delete($db->quoteName('#__ec_lessons_usages_exercises'))
             ->where($db->quoteName('usage_id') . ' = ' . $db->quote($id));
 
         $success = true;
@@ -108,7 +108,7 @@ class EnglishConceptControllerUsage extends JControllerForm
             {
                 $gramExeQuesQuery = $db->getQuery(true);
                 $gramExeQuesQuery->clear()
-                    ->delete($db->quoteName('#__ec_lesson_usages_exercises_questions'))
+                    ->delete($db->quoteName('#__ec_lessons_usages_exercises_questions'))
                     ->where($db->quoteName('exercise_id') . ' IN (' . implode(',', $exerciseIdList) .')');
                 $db->setQuery($gramExeQuesQuery);
                 if(!$db->execute())

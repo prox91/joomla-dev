@@ -25,7 +25,7 @@ class EnglishConceptModelPrecises extends JModelList
         $query->select($this->getState('list.select','pr.*, ls.title AS title'));
 
         // From the precies and lesson table
-        $query->from('#__ec_lesson_precises AS pr');
+        $query->from('#__ec_lessons_precises AS pr');
 	    $query->leftJoin('#__ec_lessons ls ON ls.id = pr.lesson_id');
         $query->where('pr.deleted_flg = 0');
 

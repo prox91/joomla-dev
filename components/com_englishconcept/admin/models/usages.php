@@ -25,7 +25,7 @@ class EnglishConceptModelUsages extends JModelList
         $query->select($this->getState('list.select','us.*, ls.title AS name'));
 
         // From the hello table
-        $query->from('#__ec_lesson_usages AS us');
+        $query->from('#__ec_lessons_usages AS us');
         $query->leftJoin('#__ec_lessons ls ON ls.id = us.lesson_id');
         $query->where('us.deleted_flg = 0');
 

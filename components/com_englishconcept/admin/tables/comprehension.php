@@ -5,6 +5,6 @@ class EnglishConceptTableComprehension extends JTable
 {
 	function __construct($_db)
 	{
-		parent::__construct('#__ec_lesson_comprehensions', 'id', $_db);
+		parent::__construct('#__ec_lessons_comprehensions', 'id', $_db);
 	}
 }

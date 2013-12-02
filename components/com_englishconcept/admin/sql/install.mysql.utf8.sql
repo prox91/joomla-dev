@@ -100,8 +100,8 @@ CREATE TABLE IF NOT EXISTS `#__ec_lessons` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
-DROP TABLE IF EXISTS `#__ec_lesson_comprehensions`;
-CREATE TABLE IF NOT EXISTS `#__ec_lesson_comprehensions` (
+DROP TABLE IF EXISTS `#__ec_lessons_comprehensions`;
+CREATE TABLE IF NOT EXISTS `#__ec_lessons_comprehensions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lesson_id` int(11) NOT NULL ,
   `description` text,
@@ -122,8 +122,8 @@ CREATE TABLE IF NOT EXISTS `#__ec_lesson_comprehensions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
-DROP TABLE IF EXISTS `#__ec_lesson_comprehensions_questions`;
-CREATE TABLE IF NOT EXISTS `#__ec_lesson_comprehensions_questions` (
+DROP TABLE IF EXISTS `#__ec_lessons_comprehensions_questions`;
+CREATE TABLE IF NOT EXISTS `#__ec_lessons_comprehensions_questions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `comprehension_id` int(11) NOT NULL ,
   `description` text,
@@ -135,8 +135,8 @@ CREATE TABLE IF NOT EXISTS `#__ec_lesson_comprehensions_questions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
-DROP TABLE IF EXISTS `#__ec_lesson_compositions`;
-CREATE TABLE IF NOT EXISTS `#__ec_lesson_compositions` (
+DROP TABLE IF EXISTS `#__ec_lessons_compositions`;
+CREATE TABLE IF NOT EXISTS `#__ec_lessons_compositions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lesson_id` int(11) NOT NULL ,
   `description` text,
@@ -155,8 +155,8 @@ CREATE TABLE IF NOT EXISTS `#__ec_lesson_compositions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
-DROP TABLE IF EXISTS `#__ec_lesson_precises`;
-CREATE TABLE IF NOT EXISTS `#__ec_lesson_precises` (
+DROP TABLE IF EXISTS `#__ec_lessons_precises`;
+CREATE TABLE IF NOT EXISTS `#__ec_lessons_precises` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lesson_id` int(11) NOT NULL ,
   `description` text,
@@ -175,8 +175,8 @@ CREATE TABLE IF NOT EXISTS `#__ec_lesson_precises` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
-DROP TABLE IF EXISTS `#__ec_lesson_grammars`;
-CREATE TABLE IF NOT EXISTS `#__ec_lesson_grammars` (
+DROP TABLE IF EXISTS `#__ec_lessons_grammars`;
+CREATE TABLE IF NOT EXISTS `#__ec_lessons_grammars` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lesson_id` int(11) NOT NULL,
   `title` text,
@@ -197,8 +197,8 @@ CREATE TABLE IF NOT EXISTS `#__ec_lesson_grammars` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
-DROP TABLE IF EXISTS `#__ec_lesson_grammars_exercises`;
-CREATE TABLE IF NOT EXISTS `#__ec_lesson_grammars_exercises` (
+DROP TABLE IF EXISTS `#__ec_lessons_grammars_exercises`;
+CREATE TABLE IF NOT EXISTS `#__ec_lessons_grammars_exercises` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `grammar_id` int(11) NOT NULL,
   `title` text,
@@ -218,8 +218,8 @@ CREATE TABLE IF NOT EXISTS `#__ec_lesson_grammars_exercises` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
-DROP TABLE IF EXISTS `#__ec_lesson_grammars_exercises_questions`;
-CREATE TABLE IF NOT EXISTS `#__ec_lesson_grammars_exercises_questions` (
+DROP TABLE IF EXISTS `#__ec_lessons_grammars_exercises_questions`;
+CREATE TABLE IF NOT EXISTS `#__ec_lessons_grammars_exercises_questions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `exercise_id` int(11) NOT NULL,
   `question` text,
@@ -237,8 +237,8 @@ CREATE TABLE IF NOT EXISTS `#__ec_lesson_grammars_exercises_questions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
-DROP TABLE IF EXISTS `#__ec_lesson_usages`;
-CREATE TABLE IF NOT EXISTS `#__ec_lesson_usages` (
+DROP TABLE IF EXISTS `#__ec_lessons_usages`;
+CREATE TABLE IF NOT EXISTS `#__ec_lessons_usages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lesson_id` int(11) NOT NULL,
   `title` text,
@@ -259,8 +259,8 @@ CREATE TABLE IF NOT EXISTS `#__ec_lesson_usages` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
-DROP TABLE IF EXISTS `#__ec_lesson_usages_exercises`;
-CREATE TABLE IF NOT EXISTS `#__ec_lesson_usages_exercises` (
+DROP TABLE IF EXISTS `#__ec_lessons_usages_exercises`;
+CREATE TABLE IF NOT EXISTS `#__ec_lessons_usages_exercises` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `usage_id` int(11) NOT NULL,
   `title` text,
@@ -280,8 +280,8 @@ CREATE TABLE IF NOT EXISTS `#__ec_lesson_usages_exercises` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
-DROP TABLE IF EXISTS `#__ec_lesson_usages_exercises_questions`;
-CREATE TABLE IF NOT EXISTS `#__ec_lesson_usages_exercises_questions` (
+DROP TABLE IF EXISTS `#__ec_lessons_usages_exercises_questions`;
+CREATE TABLE IF NOT EXISTS `#__ec_lessons_usages_exercises_questions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `exercise_id` int(11) NOT NULL,
   `question` text,
@@ -299,8 +299,8 @@ CREATE TABLE IF NOT EXISTS `#__ec_lesson_usages_exercises_questions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
-DROP TABLE IF EXISTS `#__ec_lesson_exercises`;
-CREATE TABLE IF NOT EXISTS `#__ec_lesson_exercises` (
+DROP TABLE IF EXISTS `#__ec_lessons_exercises`;
+CREATE TABLE IF NOT EXISTS `#__ec_lessons_exercises` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lesson_id` int(11) NOT NULL,
   `description` text,

@@ -30,7 +30,7 @@ class EnglishConceptControllerPrecis extends JControllerForm
         $query = $db->getQuery(true);
 
         $query->clear()
-            ->update($db->quoteName('#__ec_lesson_precises'))
+            ->update($db->quoteName('#__ec_lessons_precises'))
             ->set($db->quoteName('deleted_flg') . ' = ' . $db->quote(1))
             ->set($db->quoteName('deleted') . ' = ' . $db->quote($date->toSql()))
             ->set($db->quoteName('deleted_by') . ' = ' . $db->quote($user->id))
@@ -68,7 +68,7 @@ class EnglishConceptControllerPrecis extends JControllerForm
         $query = $db->getQuery(true);
 
         $query->clear()
-            ->delete($db->quoteName('#__ec_lesson_precises'))
+            ->delete($db->quoteName('#__ec_lessons_precises'))
             ->where($db->quoteName('id') . ' = ' . $db->quote($id));
         $db->setQuery($query);
 

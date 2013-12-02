@@ -50,7 +50,7 @@ class EnglishConceptControllerUsageExercise extends JControllerForm
                 {
                     foreach($id as $v)
                     {
-                        $query->delete("#__ec_lesson_usages_exercises_questions");
+                        $query->delete("#__ec_lessons_usages_exercises_questions");
                         $query->where("exercise_id={$v}");
 
                         $db->setQuery($query);

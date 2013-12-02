@@ -183,7 +183,7 @@ class EnglishConceptModelUsage extends JModelAdmin
             // Get data exercise for grammar
             $query = $this->_db->getQuery(true);
             $query->select("*")
-                ->from("#__ec_lesson_usages_exercises")
+                ->from("#__ec_lessons_usages_exercises")
                 ->where("usage_id='" . $item->id . "'");
             $this->_db->setQuery($query);
 

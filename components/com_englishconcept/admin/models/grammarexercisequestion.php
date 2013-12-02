@@ -192,7 +192,7 @@ class EnglishConceptModelGrammarExerciseQuestion extends JModelAdmin
 			// Get data question for exercise
 			$query = $this->_db->getQuery(true);
 			$query->select("*")
-				->from("#__ec_lesson_grammars_exercises_questions")
+				->from("#__ec_lessons_grammars_exercises_questions")
 				->where("exercise_id=" . $exerciseId);
 			$this->_db->setQuery($query);
 
@@ -219,7 +219,7 @@ class EnglishConceptModelGrammarExerciseQuestion extends JModelAdmin
 		{
 			// Delete old data
 			$q = $this->_db->getQuery(true);
-			$q->delete('#__ec_lesson_grammars_exercises_questions')
+			$q->delete('#__ec_lessons_grammars_exercises_questions')
 				->where('exercise_id=' . $data['exercise_id']);
 			$this->_db->setQuery($q);
 			$this->_db->execute();
@@ -245,7 +245,7 @@ class EnglishConceptModelGrammarExerciseQuestion extends JModelAdmin
 		{
 			$query = $this->_db->getQuery(true);
 			$query->clear()
-				->insert('#__ec_lesson_grammars_exercises_questions')
+				->insert('#__ec_lessons_grammars_exercises_questions')
 				->columns('exercise_id, question');
 
 			foreach ($questionList['title'] as $value)

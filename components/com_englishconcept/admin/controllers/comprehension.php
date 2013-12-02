@@ -26,7 +26,7 @@ class EnglishConceptControllerComprehension extends JControllerForm
 		$query = $db->getQuery(true);
 
 		$query->clear()
-			->update($db->quoteName('#__ec_lesson_comprehensions'))
+			->update($db->quoteName('#__ec_lessons_comprehensions'))
 			->set($db->quoteName('deleted_flg') . ' = ' . $db->quote(1))
 			->set($db->quoteName('deleted') . ' = ' . $db->quote($date->toSql()))
 			->set($db->quoteName('deleted_by') . ' = ' . $db->quote($user->id))
@@ -64,12 +64,12 @@ class EnglishConceptControllerComprehension extends JControllerForm
 
 		$compQuery = $db->getQuery(true);
 		$compQuery->clear()
-			->delete($db->quoteName('#__ec_lesson_comprehensions'))
+			->delete($db->quoteName('#__ec_lessons_comprehensions'))
 			->where($db->quoteName('id') . ' = ' . $db->quote($id));
 
 		$compQuesQuery = $db->getQuery(true);
 		$compQuesQuery->clear()
-			->delete($db->quoteName('#__ec_lesson_comprehensions_questions'))
+			->delete($db->quoteName('#__ec_lessons_comprehensions_questions'))
 			->where($db->quoteName('comprehension_id') . ' = ' . $db->quote($id));
 
 		$success = true;
