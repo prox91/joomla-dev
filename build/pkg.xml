@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Development" description="Build component and module for development Joomla extension" default="delivery">
+    <property name="dirs.root" value=".."/>
+    <property file="./build.properties"/>
+    <taskdef name="zipme" classname="phingext.ZipmeTask" />
+
+    <target name="setup-properties"
+            description="Set up version and build properties">
+        <tstamp>
+            <format property="build.date"
+                    pattern="%Y-%m-%d"/>
+        </tstamp>
+    </target>
+
+    <target name="delivery" description="Delivery all source code of module and component">
+        <if>
+            <equals arg1="${mod.name}" arg2="" casesensitive="false" />
+            <then>
+                <echo>Don't implement module</echo>
+            </then>
+            <else>
+                <mkdir dir="${dirs.bin.mod}"/>
+                <phingcall target="release_module" />
+            </else>
+        </if>
+
+        <if>
+            <equals arg1="${com.name}" arg2="" casesensitive="false" />
+            <then>
+                <echo>Don't implement component</echo>
+            </then>
+            <else>
+                <mkdir dir="${dirs.bin.com}"/>
+                <phingcall target="release_component" />
+            </else>
+        </if>
+    </target>
+
+    <target name="release_module" description="Release all source code of module">
+        <!-- Create zip file for module -->
+        <delete file="${dirs.bin.mod}/mod_${mod.name}.${version}.zip" quiet="yes" includeemptydirs="false"/>
+        <zipme basedir="${dirs.mod.release}" destfile="${dirs.bin.mod}/mod_${mod.name}.${version}.zip" includeemptydirs="true">
+            <fileset dir="${dirs.mod.release}">
+                <include name="**" />
+            </fileset>
+        </zipme>
+    </target>
+
+    <target name="release_component" description="Release all source code of component">
+        <!-- Create zip file for component -->
+        <delete file="${dirs.bin.com}/com_${com.name}.${version}.zip" quiet="yes" includeemptydirs="false"/>
+        <zipme basedir="${dirs.com.release}" destfile="${dirs.bin.com}/com_${com.name}.${version}.zip" includeemptydirs="true">
+            <fileset dir="${dirs.com.release}">
+                <include name="**" />
+            </fileset>
+        </zipme>
+    </target>
+</project>
