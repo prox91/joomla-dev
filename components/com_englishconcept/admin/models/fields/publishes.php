@@ -24,7 +24,7 @@ class JFormFieldPublishes extends JFormField
 		$options[]	= JHtml::_('select.option',	'1',	JText::_('JPUBLISHED'));
 		$options[]	= JHtml::_('select.option',	'0',	JText::_('JUNPUBLISHED'));
 
-		$html[] = JHtml::_('select.genericlist', $options, null, null,'value','text', 1);
+        $html[] = JHtml::_('select.genericlist', $options, $this->name, null,'value','text', 1);
 
 		return implode($html);
 	}
