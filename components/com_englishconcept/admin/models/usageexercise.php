@@ -166,12 +166,20 @@ class EnglishConceptModelUsageExercise extends JModelAdmin
 	 */
 	protected function prepareTable($table)
 	{
-		jimport('joomla.filter.output');
 		$date = JFactory::getDate();
 		$user = JFactory::getUser();
 
-		$table->modified	= $date->toSql();
-		$table->modified_by	= $user->get('id');
+        // If insert new record
+        if(is_null($table->id))
+        {
+            $table->created	= $date->toSql();
+            $table->created_by	= $user->get('id');
+        }
+        else // Update record
+        {
+            $table->modified	= $date->toSql();
+            $table->modified_by	= $user->get('id');
+        }
 	}
 
 	/**

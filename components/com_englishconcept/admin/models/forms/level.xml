@@ -37,12 +37,16 @@
                labelclass="control-label"/>
 
         <field name="published"
-               type="Publishes"
+               type="list"
                class="inputbox"
                label="State"
+               default="1"
                description="State of Level"
                filter="safehtml" buttons="false" width="90%"
-               labelclass="control-label"/>
+               labelclass="control-label">
+            <option value="1">JPUBLISHED</option>
+            <option value="0">JUNPUBLISHED</option>
+        </field>
 
         <field name="groups"
                type="hidden"/>
