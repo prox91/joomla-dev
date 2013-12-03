@@ -26,6 +26,14 @@
 		       required="true"
 		       labelclass="control-label"/>
 
+		<field name="keystruct_ref"
+		       type="list"
+		       class="inputbox"
+		       label="Key Structure Reference"
+		       multiple="true"
+		       description="Key Structure Reference"
+		       labelclass="control-label"/>
+
 		<field name="description"
 		       type="editor"
 		       class="inputbox"

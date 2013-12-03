@@ -28,6 +28,14 @@ defined('_JEXEC') or die('Restricted Access');
 	</div>
 	<div class="control-group">
 		<div class="control-label">
+			<?php echo $this->form->getLabel('keystruct_ref'); ?>
+		</div>
+		<div class="controls">
+			<?php echo $this->form->getInput('keystruct_ref'); ?>
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="control-label">
 			<?php echo $this->form->getLabel('description'); ?>
 		</div>
 		<div class="controls">

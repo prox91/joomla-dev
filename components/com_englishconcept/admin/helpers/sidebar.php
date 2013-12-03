@@ -40,8 +40,8 @@ class EnglishConceptHelperSideBar
 
         $menuStructure['EC_SUBMENU_CONTENT'] = array(
             0 => array( 'EC_SUBMENU_COMPREHENSION_LIST', '&view=comprehensions' ),
-            1 => array( 'EC_SUBMENU_COMPOSITION_LIST', '&view=compositions'),
-            2 => array( 'EC_SUBMENU_PRECIS_LIST', '&view=precises'),
+            1 => array( 'EC_SUBMENU_PRECIS_LIST', '&view=precises'),
+            2 => array( 'EC_SUBMENU_COMPOSITION_LIST', '&view=compositions'),
             3 => array( 'EC_SUBMENU_GRAMMAR_LIST', '&view=grammars'),
             4 => array( 'EC_SUBMENU_USAGE_LIST', '&view=usages'),
         );

@@ -28,6 +28,30 @@ defined('_JEXEC') or die('Restricted Access');
 	</div>
 	<div class="control-group">
 		<div class="control-label">
+			<?php echo $this->form->getLabel('diffspecial_ref'); ?>
+		</div>
+		<div class="controls">
+			<?php echo $this->form->getInput('diffspecial_ref'); ?>
+		</div>
+	</div>
+
+	<!--Test control using bootstrap-->
+	<div class="control-group">
+		<div class="control-label">
+			Test Control
+		</div>
+		<div class="controls">
+			<select class="selectpicker" data-live-search="true" multiple>
+				<option>Mustard</option>
+				<option>Ketchup</option>
+				<option>Relish</option>
+			</select>
+		</div>
+	</div>
+	<!--Test control using bootstrap -->
+
+	<div class="control-group">
+		<div class="control-label">
 			<?php echo $this->form->getLabel('description'); ?>
 		</div>
 		<div class="controls">
