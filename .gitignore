@@ -13,7 +13,7 @@ Thumbs.db
 Desktop.ini
 
 # PHPStorm
-.idea/
+.idea/*
 
 # Eclipse
 .buildpath
