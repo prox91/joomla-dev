@@ -188,6 +188,23 @@ class EnglishConceptModelLesson extends JModelAdmin
         {
             $table->created	= $date->toSql();
             $table->created_by	= $user->get('id');
+
+            $query = $this->_db->getQuery(true);
+            $query->select('id')
+                ->from('#__ec_lessons')
+                ->where('deleted_flg = 0 AND book_id='.$table->book_id);
+            $this->_db->setQuery($query);
+            $count = $this->_db->getNumRows($this->_db->execute());
+
+            // Set lesson number
+            if(empty($count))
+            {
+                $table->lesson_no = 1;
+            }
+            else
+            {
+                $table->lesson_no = $count + 1;
+            }
         }
         else // Update record
         {

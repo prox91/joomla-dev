@@ -33,7 +33,7 @@ class JFormFieldLessons extends JFormField
 		{
 			foreach($results as $item)
 			{
-				$options[] = JHTML::_('select.option', $item->id, $item->id . ' - ' . $item->title);
+				$options[] = JHTML::_('select.option', $item->id, $item->lesson_no . ' - ' . $item->title);
 			}
 		}
 

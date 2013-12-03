@@ -160,6 +160,9 @@ class EnglishConceptModelGrammar extends JModelAdmin
 		$date = JFactory::getDate();
 		$user = JFactory::getUser();
 
+        // register grammar/key structure no
+        //$table->ks_no=
+
         // If insert new record
         if(is_null($table->id))
         {
