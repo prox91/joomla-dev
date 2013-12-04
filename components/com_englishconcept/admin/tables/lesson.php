@@ -19,36 +19,36 @@ class EnglishConceptTableLesson extends JTable
 	 * @link    http://docs.joomla.org/JTable/check
 	 * @since   11.1
 	 */
-    public function check()
-    {
-        $input = JFactory::getApplication()->input;
-        $file = $input->files->get('jform', '', 'ARRAY');
-        $post = $input->post->get('jform', '', 'ARRAY');
-        $bookId = $post['book_id'];
-        $file = $file['audio_upload'];
-        if (empty($file['error']))
-        {
-            // Make the filename safe
-            $audioFile = JFile::makeSafe($file['name']);
-            $fileExt = explode('.', $audioFile);
-            if (isset($audioFile))
-            {
-                $filepath = JPath::clean(JPATH_SITE . '/media/englishconcept/media/audio/' . strtolower(md5($bookId . $file['name'])) . '.' . $fileExt[1]);
-                $objectFile = new JObject($file);
-                $objectFile->filepath = $filepath;
+	public function check()
+	{
+		$input  = JFactory::getApplication()->input;
+		$file   = $input->files->get('jform', '', 'ARRAY');
+		$post   = $input->post->get('jform', '', 'ARRAY');
+		$bookId = $post['book_id'];
+		$file   = $file['audio_upload'];
+		if (empty($file['error']))
+		{
+			// Make the filename safe
+			$audioFile = JFile::makeSafe($file['name']);
+			$fileExt   = explode('.', $audioFile);
+			if (isset($audioFile))
+			{
+				$filepath             = JPath::clean(JPATH_SITE . '/media/englishconcept/media/audio/' . strtolower(md5($bookId . $file['name'])) . '.' . $fileExt[1]);
+				$objectFile           = new JObject($file);
+				$objectFile->filepath = $filepath;
 
-                if (JFile::exists($objectFile->filepath))
-                {
-                    JFile::delete($objectFile->filepath);
-                }
+				if (JFile::exists($objectFile->filepath))
+				{
+					JFile::delete($objectFile->filepath);
+				}
 
-                if (!JFile::upload($objectFile->tmp_name, $objectFile->filepath))
-                {
-                    return false;
-                }
-            }
-        }
+				if (!JFile::upload($objectFile->tmp_name, $objectFile->filepath))
+				{
+					return false;
+				}
+			}
+		}
 
-        return true;
-    }
+		return true;
+	}
 }

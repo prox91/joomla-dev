@@ -8,6 +8,17 @@
 */
 // No direct access to this file
 defined('_JEXEC') or die('Restricted Access');
+// Tags field ajax
+$chosenAjaxSettings = new JRegistry(
+	array(
+		'selector'    => '.selectpicker',
+		'type'        => 'GET',
+		'url'         => JUri::root() . 'index.php?option=com_englishconcept&task=usage.searchAjax',
+		'dataType'    => 'json',
+		'jsonTermKey' => 'like'
+	)
+);
+JHtml::_('formbehavior.ajaxchosen', $chosenAjaxSettings);
 ?>
 <fieldset class="adminform" id="general-tab">
 	<div class="control-group">
