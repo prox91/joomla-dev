@@ -160,13 +160,27 @@ class EnglishConceptModelGrammar extends JModelAdmin
 		$date = JFactory::getDate();
 		$user = JFactory::getUser();
 
-        // register grammar/key structure no
-        //$table->ks_no=
-
         // If insert new record
         if(is_null($table->id))
         {
-            $table->created	= $date->toSql();
+	        // register grammar/key structure no
+	        $query = $this->_db->getQuery(true);
+	        $query->select('lesson_no')
+		        ->from('#__ec_lessons')
+		        ->where('deleted_flg = 0 AND lesson_id='.$table->lesson_id);
+	        $this->_db->setQuery($query);
+	        $lessonObj = $this->_db->loadObject();
+
+	        // Set lesson number
+	        if(empty($lessonObj))
+	        {
+		        $table->keystruct_no = "KS.1";
+	        }
+	        else
+	        {
+		        $table->keystruct_no = "KS." . $lessonObj->lesson_no;
+	        }
+	        $table->created	= $date->toSql();
             $table->created_by	= $user->get('id');
         }
         else // Update record
