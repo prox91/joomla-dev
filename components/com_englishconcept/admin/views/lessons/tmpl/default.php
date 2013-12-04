@@ -89,11 +89,11 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 						<th width="1%">
 							<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
 						</th>
-						<th width="20%">
+						<th width="30%">
 							<?php //echo JHtml::_('grid.sort', 'JCATEGORY', 'category_title', $listDirn, $listOrder); ?>
 							Lesson Name
 						</th>
-						<th width="40">
+						<th width="62%">
 							<?php //echo JHtml::_('grid.sort', 'JGRID_HEADING_CREATED_BY', 'a.created_by', $listDirn, $listOrder); ?>
 							Introduction
 						</th>
@@ -101,7 +101,7 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 							<?php //echo JHtml::_('grid.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder); ?>
 							Status
 						</th>
-						<th width="1%" class="nowrap">
+						<th width="2%" class="nowrap">
 							<?php //echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
 							ID
 						</th>
@@ -123,7 +123,7 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 								<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 							</td>
 							<td>
-								<?php echo $this->escape($item->title); ?>
+								<?php echo $item->lesson_no . ' - ' .$this->escape($item->title); ?>
 							</td>
 							<td>
 								<?php echo $item->description; ?>

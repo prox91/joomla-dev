@@ -68,11 +68,11 @@ class EnglishConceptModelLessons extends JModelList
 		{
 			$item = $result[0];
 
-			// Get compositions info
-			$item->compositions = $this->_getCompositionInfos($item->id);
-
 			// Get comprehension info
 			$item->comprenhensions = $this->_getComprehensionInfos($item->id);
+
+			// Get compositions info
+			$item->compositions = $this->_getCompositionInfos($item->id);
 
 			// Get precises info
 			$item->precises = $this->_getPrecisInfos($item->id);
@@ -92,26 +92,13 @@ class EnglishConceptModelLessons extends JModelList
 		return $result;
 	}
 
-	private function _getCompositionInfos($lessonId)
-    {
-	    // Create a new query object
-	    $query = $this->_db->getQuery(true);
-	    $query->select('*')
-		    ->from('#__ec_lessons_compositions')
-		    ->where('deleted_flg = 0 AND lesson_id='.$lessonId);
-
-		$this->_db->setQuery($query);
-	    $result = $this->_db->loadObjectList();
-		return $result;
-	}
-
 	private function _getComprehensionInfos($lessonId)
     {
 	    // Create a new query object
 	    $query = $this->_db->getQuery(true);
 	    $query->select('*')
 		    ->from('#__ec_lessons_comprehensions')
-		    ->where('deleted_flg = 0 AND lesson_id='.$lessonId);
+		    ->where('deleted_flg = 0 AND published = 1 AND lesson_id='.$lessonId);
 
 	    $this->_db->setQuery($query);
 	    $result = $this->_db->loadObject();
@@ -131,13 +118,26 @@ class EnglishConceptModelLessons extends JModelList
 	    return $result;
 	}
 
+	private function _getCompositionInfos($lessonId)
+	{
+		// Create a new query object
+		$query = $this->_db->getQuery(true);
+		$query->select('*')
+			->from('#__ec_lessons_compositions')
+			->where('deleted_flg = 0 AND published = 1 AND lesson_id='.$lessonId);
+
+		$this->_db->setQuery($query);
+		$result = $this->_db->loadObjectList();
+		return $result;
+	}
+
 	private function _getPrecisInfos($lessonId)
 	{
 		// Create a new query object
 		$query = $this->_db->getQuery(true);
 		$query->select('*')
 			->from('#__ec_lessons_precises')
-			->where('deleted_flg = 0 AND lesson_id='.$lessonId);
+			->where('deleted_flg = 0 AND published = 1 AND lesson_id='.$lessonId);
 
 		$this->_db->setQuery($query);
 		$result = $this->_db->loadObjectList();
@@ -150,7 +150,7 @@ class EnglishConceptModelLessons extends JModelList
 	    $query = $this->_db->getQuery(true);
 	    $query->select('*')
 		    ->from('#__ec_lessons_grammars')
-		    ->where('deleted_flg = 0 AND lesson_id='.$lessonId);
+		    ->where('deleted_flg = 0 AND published = 1 AND lesson_id='.$lessonId);
 
 	    $this->_db->setQuery($query);
 	    $result = $this->_db->loadObject();
@@ -209,7 +209,7 @@ class EnglishConceptModelLessons extends JModelList
 	    $query = $this->_db->getQuery(true);
 	    $query->select('*')
 		    ->from('#__ec_lessons_usages')
-		    ->where('deleted_flg = 0 AND lesson_id='.$lessonId);
+		    ->where('deleted_flg = 0 AND published = 1 AND lesson_id='.$lessonId);
 
 	    $this->_db->setQuery($query);
 	    $result = $this->_db->loadObject();
@@ -267,7 +267,7 @@ class EnglishConceptModelLessons extends JModelList
 	    $query = $this->_db->getQuery(true);
 	    $query->select('*')
 		    ->from('#__ec_lessons_exercises')
-		    ->where('deleted_flg = 0 AND lesson_id='.$lessonId);
+		    ->where('deleted_flg = 0 AND published = 1 AND lesson_id='.$lessonId);
 
 	    $this->_db->setQuery($query);
 	    $result = $this->_db->loadObjectList();
