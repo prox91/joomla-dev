@@ -150,4 +150,10 @@ class EnglishConceptControllerUsage extends JControllerForm
             ));
         }
     }
+
+	public function searchAjax()
+	{
+		echo 'xxx';
+		exit();
+	}
 }
