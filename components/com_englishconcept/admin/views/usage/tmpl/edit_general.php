@@ -8,385 +8,141 @@
  */
 // No direct access to this file
 defined('_JEXEC') or die('Restricted Access');
-//JHtml::_('formbehavior.chosen', 'select');
-
 JHtml::_('jquery.framework');
-
+//JHtml::_('formbehavior.chosen');
+//JHtml::_('formbehavior.ajaxchosen');
 JHtml::script('media/jui/js/chosen.jquery.js');
+JHtml::script('media/jui/js/ajax-chosen.js');
 JHtml::stylesheet('/media/jui/css/chosen.css')
-
 ?>
 <fieldset class="adminform" id="general-tab">
-    <div class="control-group">
-        <div class="control-label">
-            <?php echo $this->form->getLabel('lesson_id'); ?>
-        </div>
-        <div class="controls">
-            <?php echo $this->form->getInput('lesson_id'); ?>
-        </div>
-    </div>
-    <div class="control-group">
-        <div class="control-label">
-            <?php echo $this->form->getLabel('title'); ?>
-        </div>
-        <div class="controls">
-            <?php echo $this->form->getInput('title'); ?>
-        </div>
-    </div>
-    <div class="control-group">
-        <div class="control-label">
-            <?php echo $this->form->getLabel('diffspecial_ref'); ?>
-        </div>
-        <div class="controls">
-            <?php echo $this->form->getInput('diffspecial_ref'); ?>
-        </div>
-    </div>
+	<div class="control-group">
+		<div class="control-label">
+			<?php echo $this->form->getLabel('lesson_id'); ?>
+		</div>
+		<div class="controls">
+			<?php echo $this->form->getInput('lesson_id'); ?>
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="control-label">
+			<?php echo $this->form->getLabel('title'); ?>
+		</div>
+		<div class="controls">
+			<?php echo $this->form->getInput('title'); ?>
+		</div>
+	</div>
+<!--	<div class="control-group">-->
+<!--		<div class="control-label">-->
+<!--			--><?php //echo $this->form->getLabel('diffspecial_ref'); ?>
+<!--		</div>-->
+<!--		<div class="controls">-->
+<!--			--><?php //echo $this->form->getInput('diffspecial_ref'); ?>
+<!--		</div>-->
+<!--	</div>-->
+	<div class="control-group">
+		<div class="control-label">
+			Difficult Special Ref
+		</div>
+		<div class="controls">
+			<select id="diffspecial_ref" data-live-search="true" multiple>
+				<option>Mustard</option>
+				<option>Ketchup</option>
+				<option>Relish</option>
+			</select>
+		</div>
+	</div>
 
-    <!--Test control using bootstrap-->
-    <div class="control-group">
-        <div class="control-label">
-            Test Control
-        </div>
-        <div class="controls">
-            <select id="advancedSelect" data-live-search="true" multiple>
-                <option>Mustard</option>
-                <option>Ketchup</option>
-                <option>Relish</option>
-            </select>
-        </div>
-    </div>
-    <!--Test control using bootstrap -->
-
-    <div class="control-group">
-        <div class="control-label">
-            <?php echo $this->form->getLabel('description'); ?>
-        </div>
-        <div class="controls">
-            <?php echo $this->form->getInput('description'); ?>
-        </div>
-    </div>
+	<div class="control-group">
+		<div class="control-label">
+			<?php echo $this->form->getLabel('description'); ?>
+		</div>
+		<div class="controls">
+			<?php echo $this->form->getInput('description'); ?>
+		</div>
+	</div>
 </fieldset>
 
 <script type="text/javascript">
+	(function ($) {
+		$(document).ready(function () {
+			var customTagPrefix = '#new#';
+			// Method to add tags pressing enter
+			$('#advancedSelect_chzn input').keydown(function (event) {
+				// Tag is greater than 3 chars and enter pressed
+				if (this.value.length >= 3 && (event.which === 13 || event.which === 188)) {
 
-(function ($) {
-    "use strict";
-    //Thanks John - http://ejohn.org/blog/javascript-array-remove/
-    var arrayRemove = function (from, to) {
-        var rest = this.slice((to || from) + 1 || this.length);
-        this.length = from < 0 ? this.length + from : from;
-        return this.push.apply(this, rest);
-    };
-    $.fn.ajaxChosen = function (ajaxOptions, options, chosenOptions) {
-        var select = $(this),
-            chosen,
-            keyRight,
-            input,
-            inputBG,
-            callback,
-            throttle = false,
-            requestQueue = [],
-            typing = false;
-        //loadingImg = '/img/loading.gif';
+					// Search an highlighted result
+					var highlighted = $('#advancedSelect_chzn').find('li.active-result.highlighted').first();
 
-        if ($('option', select).length === 0) {
-            //adding empty option so you don't have to, and chosen can perform search correctly
-            select.append('<option value=""></option>');
-        }
-        if (chosenOptions) {
-            select.chosen(chosenOptions);
-        } else {
-            select.chosen();
-        }
-        chosen = select.next();
-        input = $('input', chosen);
-        inputBG = input.get(0) ? input.get(0).style.background : '';
-        //copy out success callback
-        if ('success' in ajaxOptions && $.isFunction(ajaxOptions.success)) {
-            callback = ajaxOptions.success;
-        }
-        //replace with our success callback
-        ajaxOptions.success = function (data, textStatus, jqXHR) {
-            var items = data,
-                selected, valuesArray, valuesHash = {},
-                requestQueueLength = requestQueue.length,
-                old = false,
-                keep = false,
-                inputEmptied = false;
-            if (typing) {
-                //server returned a response, but it's about to become an older response
-                //so discard it and wait until the user is done typing
-                requestQueue.shift();
-                return false;
-            }
-            if (requestQueueLength > 1) {
-                $.each(requestQueue, function (idx, elem) {
-                    if (data.q === elem) {
-                        if (idx !== (requestQueueLength - 1)) {
-                            //found an older response, remove it from the queue and wait for newest response
-                            old = true;
-                            arrayRemove.call(requestQueue, idx);
-                        } else {
-                            //this handles the out of order request/response
-                            //last request came in first, and we want to keep it
-                            keep = true;
-                            //remove all the other older requests
-                            requestQueue.length = 0;
-                        }
-                        return false;
-                    }
-                });
-                //if we found an old response or we found the newest response and want to keep processing
-                if (old || !keep) {
-                    return false;
-                }
-            } else {
-                //only 1 request was made by the user remove it from queue and continue processing
-                if (typeof requestQueue.shift() === 'undefined') {
-                    //If all the old responses have been discarded because we've received the new one already
-                    return false;
-                }
-            }
-            //while the request was processing did the user empty the input box
-            inputEmptied = $.trim(input.val()).length === 0;
+					// Add the highlighted option
+					if (event.which === 13 && highlighted.text() !== '') {
+						// Extra check. If we have added a custom tag with this text remove it
+						var customOptionValue = customTagPrefix + highlighted.text();
+						$('#advancedSelect option').filter(function () {
+							return $(this).val() == customOptionValue;
+						}).remove();
 
-            //if additional processing needs to occur on the returned json
-            if ('processItems' in options && $.isFunction(options.processItems)) {
-                items = options.processItems(data);
-            } else if ('results' in items) {
-                //default behavior if process items isn't defined
-                //expects there to be a results key in data returned that has the results of the search
-                items = items.results;
-            } else {
-                console.log('Expected results key in data, but was not found. Options could not be built');
-                return false;
-            }
-            //.chzn-choices is only present with multi-selects
-            selected = $('option:selected', select).not(':empty').clone().attr('selected', true);
-            //saving values for deduplication
-            if (!$.isArray(select.val())) {
-                valuesArray = [select.val()];
-            } else {
-                valuesArray = select.val();
-            }
-            $.each(valuesArray, function (i, value) {
-                valuesHash[value] = 1;
-            });
-            $('option', select).remove();
+						// Select the highlighted result
+						var tagOption = $('#advancedSelect option').filter(function () {
+							return $(this).html() == highlighted.text();
+						});
+						tagOption.attr('selected', 'selected');
+					}
+					// Add the custom tag option
+					else {
+						var customTag = this.value;
 
-            $('<option value=""/>').appendTo(select);
-            //appending this even on single select in the event the user changes their mind and input is blurred. Keeps selected option selected
-            selected.appendTo(select);
+						// Extra check. Search if the custom tag already exists (typed faster than AJAX ready)
+						var tagOption = $('#advancedSelect option').filter(function () {
+							return $(this).html() == customTag;
+						});
+						if (tagOption.text() !== '') {
+							tagOption.attr('selected', 'selected');
+						}
+						else {
+							var option = $('<option>');
+							option.text(this.value).val(customTagPrefix + this.value);
+							option.attr('selected', 'selected');
 
-            if (!inputEmptied) {
-                if ($.isArray(items)) {
-                    //array of kv pairs [{id:'', text:''}...]
-                    $.each(items, function (i, opt) {
-                        if (typeof valuesHash[opt.id] === 'undefined') {
-                            $('<option value="' + opt.id + '">' + opt.text + '</option>').appendTo(select);
-                        }
-                    });
-                } else {
-                    //hash of kv pairs {'id':'text'...}
-                    $.each(items, function (value, text) {
-                        if (typeof valuesHash[value] === 'undefined') {
-                            $('<option value="' + value + '">' + text + '</option>').appendTo(select);
-                        }
-                    });
-                }
-            }
-            //update chosen
-            select.trigger("chosen:updated");
-            //right key, for highlight options after ajax is performed
-            keyRight = $.Event('keyup');
-            keyRight.which = 39;
-            //highlight
-            input.val(!inputEmptied ? data.q : '').trigger(keyRight).get(0).style.background = inputBG;
+							// Append the option an repopulate the chosen field
+							$('#advancedSelect').append(option);
+						}
+					}
 
-            if (items.length > 0) {
-                $('.no-results', chosen).hide();
-            } else {
-                $('.no-results', chosen).show();
-            }
+					this.value = '';
+					$('#diffspecial_ref').trigger('liszt:updated');
+					event.preventDefault();
 
-            //fire original success
-            if (callback) {
-                callback(data, textStatus, jqXHR);
-            }
-        };
-        //set loading image
-        options || (options = {});
-        //if ('loadingImg' in options) {
-        //    loadingImg = options.loadingImg;
-        //}
+				}
+			});
+		});
+	})(jQuery);
 
-        $('.chosen-search > input, .chosen-choices .search-field input', chosen).bind('keyup', function (e) {
-            var field = $(this),
-                q = field.val();
+	(function ($) {
+		$('#diffspecial_ref').chosen({
+			disable_search_threshold: 10,
+			allow_single_deselect   : true,
+			no_results_text         : "Oops, nothing found!"
+		});
+	}(jQuery));
 
-            //don't fire ajax if...
-            if (
-                (e.which === 9) ||//Tab
-                    (e.which === 13) ||//Enter
-                    (e.which === 16) ||//Shift
-                    (e.which === 17) ||//Ctrl
-                    (e.which === 18) ||//Alt
-                    (e.which === 19) ||//Pause, Break
-                    (e.which === 20) ||//CapsLock
-                    (e.which === 27) ||//Esc
-                    (e.which === 33) ||//Page Up
-                    (e.which === 34) ||//Page Down
-                    (e.which === 35) ||//End
-                    (e.which === 36) ||//Home
-                    (e.which === 37) ||//Left arrow
-                    (e.which === 38) ||//Up arrow
-                    (e.which === 39) ||//Right arrow
-                    (e.which === 40) ||//Down arrow
-                    (e.which === 44) ||//PrntScrn
-                    (e.which === 45) ||//Insert
-                    (e.which === 144) ||//NumLock
-                    (e.which === 145) ||//ScrollLock
-                    (e.which === 91) ||//WIN Key (Start)
-                    (e.which === 93) ||//WIN Menu
-                    (e.which === 224) ||//command key
-                    (e.which >= 112 && e.which <= 123)//F1 to F12
-                ) {
-                return false;
-            }
-            //backout of ajax dynamically
-            if ('useAjax' in options && $.isFunction(options.useAjax)) {
-                if (!options.useAjax(e)) {
-                    return false;
-                }
-            }
-            //backout if nothing is in input box
-            if ($.trim(q).length === 0) {
-                if (throttle) {
-                    clearTimeout(throttle);
-                }
-                return false;
-            }
-
-            typing = true;
-
-            //hide no results
-            $('.no-results', chosen).hide();
-            //add query to data
-            if ($.isArray(ajaxOptions.data)) {
-                //array
-                if (ajaxOptions.data[ajaxOptions.data.length - 1].name === 'q') {
-                    ajaxOptions.data.pop();
-                }
-                ajaxOptions.data = ajaxOptions.data.concat({ name: 'q', value: q});
-            } else {
-                //hash
-                if (!('data' in ajaxOptions)) {
-                    ajaxOptions.data = {};
-                }
-                $.extend(ajaxOptions.data, { data: {q: q} });
-            }
-            //dynamically generate url
-            if ('generateUrl' in options && $.isFunction(options.generateUrl)) {
-                ajaxOptions.url = options.generateUrl(q);
-            }
-
-            //show loading
-            input.get(0).style.background = 'transparent url("' + loadingImg + '") no-repeat right 3px';
-            //throttle that bitch, so we don't kill the server
-            if (throttle) {
-                clearTimeout(throttle);
-            }
-            throttle = setTimeout(function () {
-                requestQueue.push(q);
-                typing = false;
-                $.ajax(ajaxOptions);
-            }, 700);
-        });
-
-        return select;
-    };
-})(jQuery);
-
-(function($){
-    $(document).ready(function () {
-
-        var customTagPrefix = '#new#';
-
-        // Method to add tags pressing enter
-        $('#advancedSelect_chzn input').keydown(function(event) {
-
-            // Tag is greater than 3 chars and enter pressed
-            if (this.value.length >= 3 && (event.which === 13 || event.which === 188)) {
-
-                // Search an highlighted result
-                var highlighted = $('#advancedSelect_chzn').find('li.active-result.highlighted').first();
-
-                // Add the highlighted option
-                if (event.which === 13 && highlighted.text() !== '')
-                {
-                    // Extra check. If we have added a custom tag with this text remove it
-                    var customOptionValue = customTagPrefix + highlighted.text();
-                    $('#advancedSelect option').filter(function () { return $(this).val() == customOptionValue; }).remove();
-
-                    // Select the highlighted result
-                    var tagOption = $('#advancedSelect option').filter(function () { return $(this).html() == highlighted.text(); });
-                    tagOption.attr('selected', 'selected');
-                }
-                // Add the custom tag option
-                else
-                {
-                    var customTag = this.value;
-
-                    // Extra check. Search if the custom tag already exists (typed faster than AJAX ready)
-                    var tagOption = $('#advancedSelect option').filter(function () { return $(this).html() == customTag; });
-                    if (tagOption.text() !== '')
-                    {
-                        tagOption.attr('selected', 'selected');
-                    }
-                    else
-                    {
-                        var option = $('<option>');
-                        option.text(this.value).val(customTagPrefix + this.value);
-                        option.attr('selected','selected');
-
-                        // Append the option an repopulate the chosen field
-                        $('#advancedSelect').append(option);
-                    }
-                }
-
-                this.value = '';
-                $('#advancedSelect').trigger('liszt:updated');
-                event.preventDefault();
-
-            }
-        });
-    });
-})(jQuery);
-
-(function ($) {
-    $('#advancedSelect').chosen({
-        disable_search_threshold: 10,
-        allow_single_deselect: true,
-        no_results_text: "Oops, nothing found!"
-    });
-}(jQuery));
-
-(function ($) {
-    $('#advancedSelect').ajaxChosen( {
-            dataType: 'json',
-            type: 'GET',
-            url:'<?php echo JUri::base() .'index.php?option=com_englishconcept&view=usage&task=usage.searchAjax'; ?>',
-            jsonTermKey: 'like',
-            afterTypeDelay: '500',
-            minTermLength: '3'
-        },
-        function (data) {
-            var results = [];
-            $.each(data, function (i, val) {
-                results.push({ value: val.value, text: val.text });
-            });
-            return results;
-        }
-    );
-}(jQuery));
+	(function ($) {
+		$('#diffspecial_ref').ajaxChosen({
+				dataType      : 'json',
+				type          : 'GET',
+				url           : '<?php echo JUri::base() .'index.php?option=com_englishconcept&view=usage&task=usage.searchAjax'; ?>',
+				jsonTermKey   : 'like',
+				afterTypeDelay: '500',
+				minTermLength : '3'
+			},
+			function (data) {
+				var results = [];
+				$.each(data, function (i, val) {
+					results.push({ value: val.value, text: val.text });
+				});
+				return results;
+			}
+		);
+	}(jQuery));
 </script>
