@@ -9,11 +9,15 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted Access');
 JHtml::_('jquery.framework');
-//JHtml::_('formbehavior.chosen');
-//JHtml::_('formbehavior.ajaxchosen');
-JHtml::script('media/jui/js/chosen.jquery.js');
-JHtml::script('media/jui/js/ajax-chosen.js');
-JHtml::stylesheet('/media/jui/css/chosen.css')
+JText::script('JGLOBAL_SELECT_SOME_OPTIONS');
+JText::script('JGLOBAL_SELECT_AN_OPTION');
+JText::script('JGLOBAL_SELECT_NO_RESULTS_MATCH');
+JText::script('JGLOBAL_KEEP_TYPING');
+JText::script('JGLOBAL_LOOKING_FOR');
+
+JHtml::_('script', 'jui/chosen.jquery.js', false, true, false, false, $debug);
+JHtml::_('stylesheet', 'jui/chosen.css', false, true);
+JHtml::_('script', 'jui/ajax-chosen.js', false, true, false, false, $debug);
 ?>
 <fieldset class="adminform" id="general-tab">
 	<div class="control-group">
@@ -70,7 +74,7 @@ JHtml::stylesheet('/media/jui/css/chosen.css')
 			// Method to add tags pressing enter
 			$('#advancedSelect_chzn input').keydown(function (event) {
 				// Tag is greater than 3 chars and enter pressed
-				if (this.value.length >= 3 && (event.which === 13 || event.which === 188)) {
+				if (this.value.length > 3 && (event.which === 13 || event.which === 188)) {
 
 					// Search an highlighted result
 					var highlighted = $('#advancedSelect_chzn').find('li.active-result.highlighted').first();

@@ -154,7 +154,7 @@ class EnglishConceptControllerUsage extends JControllerForm
 	public function searchAjax()
 	{
 		$app = JFactory::getApplication();
-		$condition = trim($app->input->get('like', null));
+		$condition = trim($app->input->get('like', ''));
 
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
