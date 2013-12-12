@@ -92,4 +92,20 @@ class EnglishConceptHelper
 
 		return self::$actions;
 	}
+
+	public static function getUsageOption($id = null)
+	{
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		$query->select("id, lesson_id, diffspecial_no, diffspecial_ref")
+			  ->from("#__ec_lessons_usages");
+		if(!is_null($id))
+		{
+			$query->where('id=' . $id);
+		}
+		$db->setQuery($query);
+		$result = $db->loadObjectList();
+
+		return $result;
+	}
 }

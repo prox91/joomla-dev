@@ -178,6 +178,9 @@ class EnglishConceptModelUsage extends JModelAdmin
             $table->diffspecial_no = "DS." . $lessonObj->lesson_no;
         }
 
+		$diffspecial_ref = implode(",", $table->diffspecial_ref);
+		$table->diffspecial_ref = $diffspecial_ref;
+
         // If insert new record
         if(is_null($table->id))
         {

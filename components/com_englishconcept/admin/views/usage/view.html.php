@@ -30,6 +30,8 @@ class EnglishConceptViewUsage extends ECViewAdmin
 			return false;
 		}
 
+		$results = EnglishConceptHelper::getUsageOption($this->item->id);
+
 		// Set the tool bar
 		$this->addToolbar();
 

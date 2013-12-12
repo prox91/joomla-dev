@@ -49,7 +49,7 @@ JHtml::_('script', 'jui/ajax-chosen.js', false, true, false, false, $debug);
 			Difficult Special Ref
 		</div>
 		<div class="controls">
-			<select id="diffspecial_ref" data-live-search="true" multiple>
+			<select id="diffspecial_ref" data-live-search="true" multiple name="jform[diffspecial_ref][]">
 				<option>Mustard</option>
 				<option>Ketchup</option>
 				<option>Relish</option>
