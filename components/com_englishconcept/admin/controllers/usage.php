@@ -153,39 +153,39 @@ class EnglishConceptControllerUsage extends JControllerForm
 
 	public function searchAjax()
 	{
-		$app = JFactory::getApplication();
-		$condition = trim($app->input->get('like', ''));
+        $app = JFactory::getApplication();
+        $condition = trim($app->input->get('like', ''));
 
-		$db = JFactory::getDbo();
-		$query = $db->getQuery(true);
-		$query->select('id, lesson_id, diffspecial_no')
-			->from('#__ec_lessons_usages');
-		if(!empty($condition))
-		{
-			$query->where("diffspecial_no LIKE '%" . $condition . "%'");
-		}
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+        $query->select('id, lesson_id, diffspecial_no')
+            ->from('#__ec_lessons_usages');
+        if(!empty($condition))
+        {
+            $query->where("diffspecial_no LIKE '%" . $condition . "%'");
+        }
 
-		$db->setQuery($query);
-		$result = $db->loadObjectList();
+        $db->setQuery($query);
+        $result = $db->loadObjectList();
 
-		$data = array(
-			array(
-				'value' => '1',
-				'text' => 'xxx',
-				'path' => 'path1'
-			),
-			array(
-				'value' => '2',
-				'text' => 'yyy',
-				'path' => 'path2'
-			),
-			array(
-				'value' => '3',
-				'text' => 'zzz',
-				'path' => 'path3'
-			)
-		);
-		echo json_encode($data);
-		$app->close();
+        if(!empty($result))
+        {
+            $data = array();
+            foreach($result as $usage)
+            {
+                $ds = array();
+                $ds['value'] = $usage->lesson_id;
+                $ds['text'] = $usage->diffspecial_no;
+
+                $data[] = $ds;
+            }
+        }
+        else
+        {
+            $data = array();
+        }
+
+        echo json_encode($data);
+        $app->close();
 	}
 }

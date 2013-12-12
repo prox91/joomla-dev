@@ -28,7 +28,7 @@ if (!empty($start))
 			</div>
 			<div class="content">
 				<form id="form" enctype="multipart/form-data" method="post" action="#">
-					<div style="padding-bottom: 10px;">
+					<div id="script-container" style="padding-bottom: 10px; min-height: 30px;">
 						<div height="100" width="100" id="audio"></div>
 						<?php if (!empty($this->lesson->text)): ?>
 							<div class="hidden-text-expander inline" title="show/hidden lesson content">
