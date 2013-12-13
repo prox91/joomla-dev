@@ -179,7 +179,14 @@ class EnglishConceptModelUsage extends JModelAdmin
         }
 
 		$diffspecial_ref = implode(",", $table->diffspecial_ref);
-		$table->diffspecial_ref = $diffspecial_ref;
+		if(is_null($diffspecial_ref))
+		{
+			$table->diffspecial_ref = '';
+		}
+		else
+		{
+			$table->diffspecial_ref = $diffspecial_ref;
+		}
 
         // If insert new record
         if(is_null($table->id))
