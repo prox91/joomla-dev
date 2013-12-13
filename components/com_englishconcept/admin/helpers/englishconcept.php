@@ -93,6 +93,22 @@ class EnglishConceptHelper
 		return self::$actions;
 	}
 
+	public static function getGrammarOption($id = null)
+	{
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		$query->select("id, lesson_id, keystruct_no, keystruct_ref")
+			->from("#__ec_lessons_grammars");
+		if(!is_null($id))
+		{
+			$query->where('id=' . $id);
+		}
+		$db->setQuery($query);
+		$result = $db->loadObjectList();
+
+		return $result;
+	}
+
 	public static function getUsageOption($id = null)
 	{
 		$db = JFactory::getDbo();

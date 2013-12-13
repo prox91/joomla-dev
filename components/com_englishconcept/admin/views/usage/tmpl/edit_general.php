@@ -36,23 +36,13 @@ JHtml::_('script', 'jui/ajax-chosen.js', false, true, false, false, $debug);
 			<?php echo $this->form->getInput('title'); ?>
 		</div>
 	</div>
-<!--	<div class="control-group">-->
-<!--		<div class="control-label">-->
-<!--			--><?php //echo $this->form->getLabel('diffspecial_ref'); ?>
-<!--		</div>-->
-<!--		<div class="controls">-->
-<!--			--><?php //echo $this->form->getInput('diffspecial_ref'); ?>
-<!--		</div>-->
-<!--	</div>-->
 	<div class="control-group">
 		<div class="control-label">
 			Difficult Special Ref
 		</div>
 		<div class="controls">
 			<select id="diffspecial_ref" data-live-search="true" multiple name="jform[diffspecial_ref][]">
-				<option>Mustard</option>
-				<option>Ketchup</option>
-				<option>Relish</option>
+				<?php echo $this->options; ?>
 			</select>
 		</div>
 	</div>
@@ -72,23 +62,23 @@ JHtml::_('script', 'jui/ajax-chosen.js', false, true, false, false, $debug);
 		$(document).ready(function () {
 			var customTagPrefix = '#new#';
 			// Method to add tags pressing enter
-			$('#advancedSelect_chzn input').keydown(function (event) {
+			$('#diffspecial_ref_chzn input').keydown(function (event) {
 				// Tag is greater than 3 chars and enter pressed
 				if (this.value.length > 3 && (event.which === 13 || event.which === 188)) {
 
 					// Search an highlighted result
-					var highlighted = $('#advancedSelect_chzn').find('li.active-result.highlighted').first();
+					var highlighted = $('#diffspecial_ref_chzn').find('li.active-result.highlighted').first();
 
 					// Add the highlighted option
 					if (event.which === 13 && highlighted.text() !== '') {
 						// Extra check. If we have added a custom tag with this text remove it
 						var customOptionValue = customTagPrefix + highlighted.text();
-						$('#advancedSelect option').filter(function () {
+						$('#diffspecial_ref option').filter(function () {
 							return $(this).val() == customOptionValue;
 						}).remove();
 
 						// Select the highlighted result
-						var tagOption = $('#advancedSelect option').filter(function () {
+						var tagOption = $('#diffspecial_ref option').filter(function () {
 							return $(this).html() == highlighted.text();
 						});
 						tagOption.attr('selected', 'selected');
@@ -98,7 +88,7 @@ JHtml::_('script', 'jui/ajax-chosen.js', false, true, false, false, $debug);
 						var customTag = this.value;
 
 						// Extra check. Search if the custom tag already exists (typed faster than AJAX ready)
-						var tagOption = $('#advancedSelect option').filter(function () {
+						var tagOption = $('#diffspecial_ref option').filter(function () {
 							return $(this).html() == customTag;
 						});
 						if (tagOption.text() !== '') {
@@ -110,7 +100,7 @@ JHtml::_('script', 'jui/ajax-chosen.js', false, true, false, false, $debug);
 							option.attr('selected', 'selected');
 
 							// Append the option an repopulate the chosen field
-							$('#advancedSelect').append(option);
+							$('#diffspecial_ref').append(option);
 						}
 					}
 

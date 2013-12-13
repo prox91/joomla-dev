@@ -30,6 +30,48 @@ class EnglishConceptViewGrammar extends ECViewAdmin
 			return false;
 		}
 
+		$results = EnglishConceptHelper::getGrammarOption($this->item->id);
+		if(count($results) > 0)
+		{
+			if(is_null($this->item->id))
+			{
+				// Grammar new
+				$options = '';
+				foreach($results as $result)
+				{
+					$options .= '<option value="' . $result->lesson_id . '">' . $result->keystruct_no . '</option>';
+				}
+				$this->options  = $options;
+			}
+			else
+			{
+				// Usage already have reference
+				if(!empty($results[0]->keystruct_ref))
+				{
+					$ksArr = explode(',', $results[0]->keystruct_ref);
+					$options = '';
+					foreach($ksArr as $ks)
+					{
+						$options .= '<option selected="selected" value="' . $ks . '">KS.' . $ks . '</option>';
+					}
+				}
+				else
+				{
+					$results = EnglishConceptHelper::getGrammarOption();
+					$options = '';
+					foreach($results as $result)
+					{
+						$options .= '<option value="' . $result->lesson_id . '">' . $result->keystruct_no . '</option>';
+					}
+				}
+				$this->options  = $options;
+			}
+		}
+		else
+		{
+			$this->options = '<option></option>';
+		}
+
 		// Set the tool bar
 		$this->addToolbar();
 

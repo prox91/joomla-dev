@@ -31,6 +31,46 @@ class EnglishConceptViewUsage extends ECViewAdmin
 		}
 
 		$results = EnglishConceptHelper::getUsageOption($this->item->id);
+		if(count($results) > 0)
+		{
+			if(is_null($this->item->id))
+			{
+				// Usage new
+				$options = '';
+				foreach($results as $result)
+				{
+					$options .= '<option value="' . $result->lesson_id . '">' . $result->diffspecial_no . '</option>';
+				}
+				$this->options  = $options;
+			}
+			else
+			{
+				// Usage already have reference
+				if(!empty($results[0]->diffspecial_ref))
+				{
+					$dsArr = explode(',', $results[0]->diffspecial_ref);
+					$options = '';
+					foreach($dsArr as $ds)
+					{
+						$options .= '<option selected="selected" value="' . $ds . '">DS.' . $ds . '</option>';
+					}
+				}
+				else
+				{
+					$results = EnglishConceptHelper::getUsageOption();
+					$options = '';
+					foreach($results as $result)
+					{
+						$options .= '<option value="' . $result->lesson_id . '">' . $result->diffspecial_no . '</option>';
+					}
+				}
+				$this->options  = $options;
+			}
+		}
+		else
+		{
+			$this->options = '<option></option>';
+		}
 
 		// Set the tool bar
 		$this->addToolbar();

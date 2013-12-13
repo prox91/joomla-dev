@@ -151,4 +151,42 @@ class EnglishConceptControllerGrammar extends JControllerForm
             ));
         }
     }
+
+	public function searchAjax()
+	{
+		$app = JFactory::getApplication();
+		$condition = trim($app->input->get('like', ''));
+
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		$query->select('id, lesson_id, keystruct_no')
+			->from('#__ec_lessons_grammars');
+		if(!empty($condition))
+		{
+			$query->where("keystruct_no LIKE '%" . $condition . "%'");
+		}
+
+		$db->setQuery($query);
+		$result = $db->loadObjectList();
+
+		if(!empty($result))
+		{
+			$data = array();
+			foreach($result as $grammar)
+			{
+				$ks = array();
+				$ks['value'] = $grammar->lesson_id;
+				$ks['text'] = $grammar->keystruct_no;
+
+				$data[] = $ks;
+			}
+		}
+		else
+		{
+			$data = array();
+		}
+
+		echo json_encode($data);
+		$app->close();
+	}
 }

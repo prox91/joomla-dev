@@ -178,6 +178,9 @@ class EnglishConceptModelGrammar extends JModelAdmin
             $table->keystruct_no = "KS." . $lessonObj->lesson_no;
         }
 
+		$keystruct_ref = implode(",", $table->keystruct_ref);
+		$table->keystruct_ref = $keystruct_ref;
+
         // If insert new record
         if(is_null($table->id))
         {
