@@ -139,13 +139,6 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 						</tr>
 					<?php endforeach; ?>
 					</tbody>
-					<tfoot>
-					<tr>
-						<td colspan="15">
-							<?php echo $this->pagination->getListFooter(); ?>
-						</td>
-					</tr>
-					</tfoot>
 				</table>
 				<?php echo $this->pagination->getListFooter(); ?>
 				<input type="hidden" name="task" value="" />
