@@ -86,6 +86,17 @@ class EnglishConceptModelLessons extends JModelList
 			// Get exercise info
 			$item->exercises = $this->_getExerciseInfo($item->id);
 
+			$displayType = 0;
+			if(!empty($item->comprenhensions) && count($item->comprenhensions))
+			{
+				$displayType &= 1;
+			}
+
+			if(!empty($item->compositions) && count($item->compositions) > 0)
+			{
+				$displayType &= 1;
+			}
+
 			$result = $item;
 		}
 
