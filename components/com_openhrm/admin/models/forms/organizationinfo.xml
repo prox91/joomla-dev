@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field name="id"
+		       type="text"
+		       default="0"
+		       label="ID"
+		       description="ID"
+		       readonly="true"
+		       class="readonly"
+		       labelclass="control-label"/>
+
+		<field name="name"
+		       type="text"
+		       class="inputbox"
+		       label="Organization name"
+		       description="Organization name"
+		       size="30"
+		       required="true"
+		       labelclass="control-label"/>
+
+		<field name="tax_code"
+		       type="text"
+		       class="inputbox"
+		       description="Tax code"
+		       label="Tax code"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="registration_number"
+		       type="text"
+		       class="inputbox"
+		       label="Registration number"
+		       description="Registration number"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="phone"
+		       type="text"
+		       class="inputbox"
+		       label="Phone number"
+		       description="Phone number"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="fax"
+		       type="text"
+		       class="inputbox"
+		       label="Fax number"
+		       description="Fax number"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="email"
+		       type="text"
+		       class="inputbox"
+		       label="Email address"
+		       description="Email address"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="country_id"
+		       type="countries"
+		       class="inputbox"
+		       label="Country name"
+		       description="Country name"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="state_id"
+		       type="states"
+		       class="inputbox"
+		       label="State/Province name"
+		       description="State/Province name"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="city"
+		       type="text"
+		       class="inputbox"
+		       label="City name"
+		       description="City name"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="zip_code"
+		       type="text"
+		       class="inputbox"
+		       label="Zip code"
+		       description="Zip code"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="street1"
+		       type="text"
+		       class="inputbox"
+		       label="Street address 1"
+		       description="Street address 1"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="street2"
+		       type="text"
+		       class="inputbox"
+		       label="Street address 2"
+		       description="Street address 2"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="logo"
+		       type="file"
+		       class="inputbox"
+		       label="Logo file name"
+		       description="Logo file name"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="note"
+		       type="editor"
+		       class="inputbox"
+		       label="Note"
+		       description="Input note about organization"
+		       size="30"
+		       labelclass="control-label"/>
+	</fieldset>
+</form>

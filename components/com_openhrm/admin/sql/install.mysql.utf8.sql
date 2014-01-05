@@ -28,6 +28,26 @@ CREATE TABLE IF NOT EXISTS `#__openhrm_timezones` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `#__openhrm_organization_infos`;
+CREATE TABLE IF NOT EXISTS `#__openhrm_organization_infos` (
+  `id` int(4) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `tax_code` varchar(30) DEFAULT NULL,
+  `registration_number` varchar(30) DEFAULT NULL,
+  `phone` varchar(30) DEFAULT NULL,
+  `fax` varchar(30) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  `country` varchar(30) DEFAULT NULL,
+  `province` varchar(30) DEFAULT NULL,
+  `city` varchar(30) DEFAULT NULL,
+  `zip_code` varchar(30) DEFAULT NULL,
+  `street1` varchar(100) DEFAULT NULL,
+  `street2` varchar(100) DEFAULT NULL,
+  `logo` varchar(30) DEFAULT NULL,
+  `note` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `#__openhrm_usergroups`;
 CREATE TABLE IF NOT EXISTS `#__openhrm_usergroups` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',

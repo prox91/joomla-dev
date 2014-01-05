@@ -22,7 +22,7 @@ class OpenHrmModelStates extends JModelList
         $query = $db->getQuery(true);
 
         // Select some field
-        $query->select($this->getState('list.select','s.*', 'c.name AS country_name'));
+        $query->select($this->getState('list.select','s.*, c.name AS country_name'));
 
         $query->from('#__openhrm_states AS s')
               ->leftJoin('#__openhrm_countries AS c ON c.id = s.country_id');
