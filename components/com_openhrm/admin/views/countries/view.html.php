@@ -7,11 +7,9 @@
  * To change this template use File | Settings | File Templates.
  */
 // No direct access to this file
-defined('_JEXEC') or die('Restricted access');
-/**
- * Class EnglishConceptViewEnglishConcept
- */
-class EnglishConceptViewBooks extends ECViewAdmin
+defined('_JEXEC') or die;
+
+class OpenHrmViewCountries extends ECViewAdmin
 {
 	protected $items;
 	protected $pagination;
@@ -43,17 +41,17 @@ class EnglishConceptViewBooks extends ECViewAdmin
 
 	public function addToolbar()
 	{
-		$canDo	= EnglishConceptHelper::getActions();
+		//$canDo	= OpenHrmHelperHrm::getActions();
 
-		JToolbarHelper::title(JText::_('COM_ENGLISHCONCEPT_TITLE'));
-		JToolbarHelper::addNew('book.add');
-		JToolbarHelper::editList('book.edit');
-		JToolbarHelper::trash('book.trash');
-		JToolbarHelper::deleteList('Do you want to delete it?', 'book.delete');
+		JToolbarHelper::title(JText::_('COM_OPENHRM_COUNTRY_TITLE'));
+		JToolbarHelper::addNew('country.add');
+		JToolbarHelper::editList('country.edit');
+		JToolbarHelper::trash('country.trash');
+		JToolbarHelper::deleteList('Do you want to delete it?', 'country.delete');
 
-		if ($canDo->get('core.admin'))
+		//if ($canDo->get('core.admin'))
 		{
-			//JToolbarHelper::preferences('com_englisconcept');
+			//JToolbarHelper::preferences('com_openhrm');
 			//JToolbarHelper::divider();
 		}
 	}
@@ -61,6 +59,6 @@ class EnglishConceptViewBooks extends ECViewAdmin
 	public function setDocument()
 	{
 		$document = JFactory::getDocument();
-		$document->setTitle(JText::_("COM_ENGLISHCONCEPT_TITLE"));
+		$document->setTitle(JText::_("COM_OPENHRM_COUNTRY_TITLE"));
 	}
 }

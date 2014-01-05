@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 // Access check: is this user allowed to access the backend of this component?
-if (!JFactory::getUser()->authorise('core.manage', 'com_hrm'))
+if (!JFactory::getUser()->authorise('core.manage', 'com_openhrm'))
 {
 	return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
 }

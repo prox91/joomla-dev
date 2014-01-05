@@ -9,10 +9,7 @@
 // No direct access to this file
 defined('_JEXEC') or die;
 
-/**
- * Class HrmHelper
- */
-class HrmHelper
+class OpenHrmHelperHrm
 {
 	/**
 	 * @var    JObject  A cache for the available actions.

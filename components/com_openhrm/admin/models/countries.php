@@ -8,7 +8,7 @@
  */
 defined('_JEXEC') or die;
 
-class OpenHrmModelBooks extends JModelList
+class OpenHrmModelCountries extends JModelList
 {
     /**
      * Method to build a sql to load the list data
@@ -22,11 +22,9 @@ class OpenHrmModelBooks extends JModelList
         $query = $db->getQuery(true);
 
         // Select some field
-        $query->select($this->getState('list.select','b.*'));
+        $query->select($this->getState('list.select','*'));
 
-        // From the hello table
-        $query->from('#__ec_books AS b');
-        $query->where('b.deleted_flg = 0');
+        $query->from('#__openhrm_countries');
 
         return $query;
     }

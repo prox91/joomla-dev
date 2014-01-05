@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die;
 
-class JFormFieldBooks extends JFormField
+class JFormFieldCountries extends JFormField
 {
 	/**
 	 * The form field type.
@@ -9,7 +9,7 @@ class JFormFieldBooks extends JFormField
 	 * @var		string
 	 * @since	1.6
 	 */
-	protected $type = 'Books';
+	protected $type = 'Countries';
 
 	/**
 	 * Method to get the field input markup.
@@ -21,13 +21,11 @@ class JFormFieldBooks extends JFormField
 	{
 		// Initialize variables.
 		$options 	= array();
-		$model      = JModelLegacy::getInstance('Books', 'OpenHrmModel', array('ignore_request' => true));
+		$model      = JModelLegacy::getInstance('Countries', 'OpenHrmModel', array('ignore_request' => true));
 
-		//$model->setState('filter.state', 1);
-		//$model->setState('list.ordering', 'u.currency_name');
 		$results 	= $model->getItems();
 
-		$selectedId	= (int) $this->form->getValue('book_id');
+		$selectedId	= (int) $this->form->getValue('country_id');
 
 		if (!empty($results))
 		{

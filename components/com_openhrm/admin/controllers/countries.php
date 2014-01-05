@@ -6,7 +6,7 @@
  * Time: 11:58 AM
  * To change this template use File | Settings | File Templates.
  */
-defined('_JEXEC') or die('Restricted Access');
+defined('_JEXEC') or die;
 
 // Import Joomla admin controller from the library
 jimport('joomla.application.component.controlleradmin');
@@ -14,13 +14,13 @@ jimport('joomla.application.component.controlleradmin');
 /**
  * HelloWorlds Controller
  */
-class EnglishConceptControllerBooks extends JControllerAdmin
+class OpenHrmControllerCountries extends JControllerAdmin
 {
     /**
      * Proxy for getModel.
      * @since       2.5
      */
-    public function getModel($name = 'Book', $prefix = 'EnglishConceptModel', $config = array('ignore_request' => true))
+    public function getModel($name = 'Country', $prefix = 'OpenHrmModel', $config = array('ignore_request' => true))
     {
         $model = parent::getModel($name, $prefix, $config);
         return $model;

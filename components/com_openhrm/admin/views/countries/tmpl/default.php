@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 // No direct access to this file
-defined('_JEXEC') or die('Restricted Access');
+defined('_JEXEC') or die;
 JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.multiselect');
 JHtml::_('dropdown.init');
@@ -23,7 +23,7 @@ $trashed	= '';//$this->state->get('filter.published') == -2 ? true : false;
 $saveOrder	= $listOrder == 'a.ordering';
 if ($saveOrder)
 {
-	$saveOrderingUrl = 'index.php?option=com_englishconcept&task=englishconcepts.saveOrderAjax&tmpl=component';
+	$saveOrderingUrl = 'index.php?option=com_openhrm&task=openhrms.saveOrderAjax&tmpl=component';
 	JHtml::_('sortablelist.sortable', 'articleList', 'adminForm', strtolower($listDirn), $saveOrderingUrl);
 }
 
@@ -50,12 +50,12 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 <div class="ec-contain">
 	<?php echo $this->sidebar; ?>
 	<div id="ec-panel-right" class="span10">
-		<form action="<?php echo JRoute::_('index.php?option=com_englishconcept&view=books'); ?>" method="post" name="adminForm" id="adminForm">
+		<form action="<?php echo JRoute::_('index.php?option=com_openhrm&view=countries'); ?>" method="post" name="adminForm" id="adminForm">
 			<div class="ec-main-container">
 				<div id="filter-bar" class="btn-toolbar">
 					<div class="filter-search btn-group pull-left">
-						<label for="filter_search" class="element-invisible"><?php echo JText::_('COM_ENGLISHCONCEPT_FILTER_BOOK_NAME_DESC'); ?></label>
-						<input type="text" name="filter_search" placeholder="<?php echo JText::_('COM_ENGLISHCONCEPT_FILTER_BOOK_NAME_DESC'); ?>" id="filter_search" value="<?php //echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_ENGLISHCONCEPT_FILTER_SEARCH_DESC'); ?>" />
+						<label for="filter_search" class="element-invisible"><?php echo JText::_('COM_OPENHRM_FILTER_COUNTRY_NAME_DESC'); ?></label>
+						<input type="text" name="filter_search" placeholder="<?php echo JText::_('COM_OPENHRM_FILTER_COUNTRY_NAME_DESC'); ?>" id="filter_search" value="<?php //echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_OPENHRM_FILTER_SEARCH_DESC'); ?>" />
 					</div>
 					<div class="btn-group pull-left hidden-phone">
 						<button class="btn tip hasTooltip" type="submit" title="<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>"><i class="icon-search"></i></button>
@@ -83,23 +83,27 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 				</div>
 				<div class="clearfix"> </div>
 
-				<table id="adminLessonList" class="table table-striped">
+				<table id="adminList" class="table table-striped">
 					<thead>
 					<tr>
 						<th width="1%">
 							<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
 						</th>
-						<th width="20%">
-							<?php //echo JHtml::_('grid.sort', 'JCATEGORY', 'category_title', $listDirn, $listOrder); ?>
-							Book Name
-						</th>
-						<th width="40">
-							<?php //echo JHtml::_('grid.sort', 'JGRID_HEADING_CREATED_BY', 'a.created_by', $listDirn, $listOrder); ?>
-							Introduction
-						</th>
 						<th width="5%">
 							<?php //echo JHtml::_('grid.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder); ?>
 							Status
+						</th>
+						<th width="20%">
+							<?php //echo JHtml::_('grid.sort', 'JCATEGORY', 'category_title', $listDirn, $listOrder); ?>
+							Country Name
+						</th>
+						<th width="20">
+							<?php //echo JHtml::_('grid.sort', 'JGRID_HEADING_CREATED_BY', 'a.created_by', $listDirn, $listOrder); ?>
+							ISO Code 2
+						</th>
+						<th width="20">
+							<?php //echo JHtml::_('grid.sort', 'JGRID_HEADING_CREATED_BY', 'a.created_by', $listDirn, $listOrder); ?>
+							ISO Code 3
 						</th>
 						<th width="1%" class="nowrap">
 							<?php //echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
@@ -122,16 +126,17 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 							<td class="center">
 								<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 							</td>
+							<td class="center">
+								<?php echo JHtml::_('jgrid.published', $item->published, $i, 'countries.', 'cb'); ?>
+							</td>
 							<td>
 								<?php echo $this->escape($item->name); ?>
 							</td>
 							<td>
-								<?php echo $item->description; ?>
+								<?php echo $this->escape($item->iso_code_2); ?>
 							</td>
-							<td class="center">
-								<?php //echo JHtml::_('jgrid.published', $item->state, $i, 'articles.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
-								<?php //echo $item->status; ?>
-								<?php echo JHtml::_('jgrid.published', $item->published, $i, 'books.', 'cb'); ?>
+							<td>
+								<?php echo $this->escape($item->iso_code_3); ?>
 							</td>
 							<td class="center">
 								<?php echo (int) $item->id; ?>

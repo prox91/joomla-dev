@@ -9,7 +9,7 @@
 // no direct access
 defined('_JEXEC') or die;
 
-class OpenHrmtModelBook extends JModelAdmin
+class OpenHrmModelCountry extends JModelAdmin
 {
 	/**
 	 * The prefix to use with controller messages.
@@ -71,11 +71,11 @@ class OpenHrmtModelBook extends JModelAdmin
 	{
 		parent::__construct($config);
 
-		$this->event_after_delete 	= 'onBookAfterDelete';
-		$this->event_after_save 	= 'onBookAfterSave';
-		$this->event_before_delete 	= 'onBookBeforeDelete';
-		$this->event_before_save 	= 'onBookBeforeSave';
-		$this->event_change_state 	= 'onBookChangeState';
+		$this->event_after_delete 	= 'onCountryAfterDelete';
+		$this->event_after_save 	= 'onCountryAfterSave';
+		$this->event_before_delete 	= 'onCountryBeforeDelete';
+		$this->event_before_save 	= 'onCountryBeforeSave';
+		$this->event_change_state 	= 'onCountryChangeState';
 		$this->text_prefix 			= strtoupper($this->option);
 	}
 
@@ -91,7 +91,7 @@ class OpenHrmtModelBook extends JModelAdmin
 	 * @since   12.2
 	 * @throws  Exception
 	 */
-	public function getTable($name = 'book', $prefix = 'EnglishConceptTable', $options = array())
+	public function getTable($name = 'country', $prefix = 'OpenHrmTable', $options = array())
 	{
 		return parent::getTable($name, $prefix, $options);
 	}
@@ -108,15 +108,13 @@ class OpenHrmtModelBook extends JModelAdmin
 	 */
 	public function getForm($data = array(), $loadData = true)
 	{
-		$form = $this->loadForm('com_englishconcept.book',
-			'book',
-			array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_openhrm.country', 'country', array('control' => 'jform', 'load_data' => $loadData));
 		if (empty($form)) {
 			return false;
 		}
 
 		// Determine correct permissions to check.
-		if ($this->getState('books.id')) {
+		if ($this->getState('country.id')) {
 			// Existing record. Can only edit in selected categories.
 			//$form->setFieldAttribute('catid', 'action', 'core.edit');
 		} else {
@@ -137,7 +135,7 @@ class OpenHrmtModelBook extends JModelAdmin
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_englishconcept.edit.book.data', array());
+		$data = JFactory::getApplication()->getUserState('com_openhrm.edit.country.data', array());
 
 		if (empty($data)) {
 			$data = $this->getItem();
@@ -157,20 +155,6 @@ class OpenHrmtModelBook extends JModelAdmin
 	 */
 	protected function prepareTable($table)
 	{
-		$date = JFactory::getDate();
-		$user = JFactory::getUser();
-
-        $table->name		= htmlspecialchars_decode($table->name, ENT_QUOTES);
-        // If insert new record
-        if(is_null($table->id))
-        {
-            $table->created	= $date->toSql();
-            $table->created_by	= $user->get('id');
-        }
-        else // Update record
-        {
-            $table->modified	= $date->toSql();
-            $table->modified_by	= $user->get('id');
-        }
+		$table->name = htmlspecialchars_decode($table->name, ENT_QUOTES);
 	}
 }

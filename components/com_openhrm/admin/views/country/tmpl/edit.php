@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 // No direct access to this file
-defined('_JEXEC') or die('Restricted Access');
+defined('_JEXEC') or die;
 JHtml::_('behavior.formvalidation');
 ?>
 <script type="text/javascript">
@@ -34,7 +34,7 @@ JHtml::_('behavior.formvalidation');
             <script type="text/javascript">
                 Joomla.submitbutton = function(task)
                 {
-                    if (task == 'book.cancel' || document.formvalidator.isValid(document.id('itemForm')))
+                    if (task == 'country.cancel' || document.formvalidator.isValid(document.id('itemForm')))
                     {
 	                    <?php //echo $this->form->getField('book')->save(); ?>
                         Joomla.submitform(task, document.getElementById('itemForm'));
@@ -46,15 +46,15 @@ JHtml::_('behavior.formvalidation');
                 }
             </script>
             <form enctype="multipart/form-data"
-                action="<?php JRoute::_('index.php?option=com_englishconcept&view=book'); ?>" method="post" name="itemForm" id="itemForm"
+                action="<?php JRoute::_('index.php?option=com_openhrm&view=country'); ?>" method="post" name="itemForm" id="itemForm"
                 class="form-validate form-horizontal">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#general" data-toggle="tab"><?php echo JText::_('General')?></a></li>
                 </ul>
 
                 <div class="tab-content">
-                    <div class="tab-pane active" id="generall">
-                        <fieldset class="adminform" id="exercise-tab">
+                    <div class="tab-pane" id="general">
+                        <fieldset class="adminform">
                             <div class="control-group">
 	                            <div class="control-label">
                                     <?php echo $this->form->getLabel('name'); ?>
@@ -65,28 +65,36 @@ JHtml::_('behavior.formvalidation');
                             </div>
                             <div class="control-group">
 	                            <div class="control-label">
-                                    <?php echo $this->form->getLabel('alias'); ?>
+                                    <?php echo $this->form->getLabel('iso_code_2'); ?>
 		                        </div>
                                 <div class="controls">
-                                    <?php echo $this->form->getInput('alias'); ?>
+                                    <?php echo $this->form->getInput('iso_code_2'); ?>
                                 </div>
                             </div>
                             <div class="control-group">
 	                            <div class="control-label">
-                                    <?php echo $this->form->getLabel('img_url'); ?>
+                                    <?php echo $this->form->getLabel('iso_code_3'); ?>
 		                        </div>
                                 <div class="controls">
-                                    <?php echo $this->form->getInput('img_url'); ?>
+                                    <?php echo $this->form->getInput('iso_code_3'); ?>
                                 </div>
                             </div>
                             <div class="control-group">
 	                            <div class="control-label">
-                                    <?php echo $this->form->getLabel('description'); ?>
+                                    <?php echo $this->form->getLabel('address_format'); ?>
 		                        </div>
                                 <div class="controls">
-                                    <?php echo $this->form->getInput('description'); ?>
+                                    <?php echo $this->form->getInput('address_format'); ?>
                                 </div>
                             </div>
+	                        <div class="control-group">
+		                        <div class="control-label">
+			                        <?php echo $this->form->getLabel('postcode_required'); ?>
+		                        </div>
+		                        <div class="controls">
+			                        <?php echo $this->form->getInput('postcode_required'); ?>
+		                        </div>
+	                        </div>
                             <div class="control-group">
 	                            <div class="control-label">
                                     <?php echo $this->form->getLabel('published'); ?>

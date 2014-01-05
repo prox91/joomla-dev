@@ -7,9 +7,9 @@
  * To change this template use File | Settings | File Templates.
  */
 // No direct access to this file
-defined('_JEXEC') or die('Restricted access');
+defined('_JEXEC') or die;
 
-class EnglishConceptViewBook extends ECViewAdmin
+class OpenHrmViewCountry extends ECViewAdmin
 {
 	protected $state;
 	protected $item;
@@ -45,16 +45,16 @@ class EnglishConceptViewBook extends ECViewAdmin
 		//JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 		JHtml::_('behavior.tooltip');
 
-		JToolbarHelper::title(JText::_('COM_ENGLISHCONCEPT_TITLE'));
-		JToolBarHelper::apply('book.apply', 'JToolbar_Apply');
-		JToolBarHelper::save('book.save', 'JToolbar_Save');
-		JToolBarHelper::addNew('book.save2new', 'JToolbar_Save_and_new');
-		JToolBarHelper::cancel('book.cancel', 'JToolbar_Cancel');
+		JToolbarHelper::title(JText::_('COM_OPENHRM_COUNTRY_TITLE'));
+		JToolBarHelper::apply('country.apply', 'JToolbar_Apply');
+		JToolBarHelper::save('country.save', 'JToolbar_Save');
+		JToolBarHelper::addNew('country.save2new', 'JToolbar_Save_and_new');
+		JToolBarHelper::cancel('country.cancel', 'JToolbar_Cancel');
 	}
 
 	public function setDocument()
 	{
 		$document = JFactory::getDocument();
-		$document->setTitle(JText::_("COM_ENGLISHCONCEPT_TITLE"));
+		$document->setTitle(JText::_("COM_OPENHRM_COUNTRY_TITLE"));
 	}
 }
