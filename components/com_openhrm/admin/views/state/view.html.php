@@ -9,7 +9,7 @@
 // No direct access to this file
 defined('_JEXEC') or die;
 
-class OpenHrmViewCountry extends ECViewAdmin
+class OpenHrmViewState extends ECViewAdmin
 {
 	protected $state;
 	protected $item;
@@ -45,15 +45,15 @@ class OpenHrmViewCountry extends ECViewAdmin
 		//JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 		JHtml::_('behavior.tooltip');
 
-		JToolbarHelper::title(JText::_('COM_OPENHRM_COUNTRY_TITLE'));
-		JToolBarHelper::apply('country.apply', 'JToolbar_Apply');
-		JToolBarHelper::save('country.save', 'JToolbar_Save');
-		JToolBarHelper::cancel('country.cancel', 'JToolbar_Cancel');
+		JToolbarHelper::title(JText::_('COM_OPENHRM_STATE_TITLE'));
+		JToolBarHelper::apply('state.apply', 'JToolbar_Apply');
+		JToolBarHelper::save('state.save', 'JToolbar_Save');
+		JToolBarHelper::cancel('state.cancel', 'JToolbar_Cancel');
 	}
 
 	public function setDocument()
 	{
 		$document = JFactory::getDocument();
-		$document->setTitle(JText::_("COM_OPENHRM_COUNTRY_TITLE"));
+		$document->setTitle(JText::_("COM_OPENHRM_STATE_TITLE"));
 	}
 }

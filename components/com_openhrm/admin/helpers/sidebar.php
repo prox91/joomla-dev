@@ -31,21 +31,21 @@ class OpenHrmHelperSideBar
 
         if ($disabled) return;
 
-        $menuStructure['EC_SUBMENU_MASTER'] = array(
-            0 => array( 'EC_SUBMENU_COUNTRY_LIST', '&view=countries' ),
-            1 => array( 'EC_SUBMENU_STATE_LIST', '&view=states'),
+        $menuStructure['OPENHRM_SUBMENU_MASTER'] = array(
+            0 => array( 'OPENHRM_SUBMENU_COUNTRY_LIST', '&view=countries' ),
+            1 => array( 'OPENHRM_SUBMENU_STATE_LIST', '&view=states'),
         );
 
-        $menuStructure['EC_SUBMENU_CONTENT'] = array(
-            0 => array( 'EC_SUBMENU_COMPREHENSION_LIST', '&view=comprehensions' ),
-            1 => array( 'EC_SUBMENU_PRECIS_LIST', '&view=precises'),
-            2 => array( 'EC_SUBMENU_COMPOSITION_LIST', '&view=compositions'),
-            3 => array( 'EC_SUBMENU_GRAMMAR_LIST', '&view=grammars'),
-            4 => array( 'EC_SUBMENU_USAGE_LIST', '&view=usages'),
+        $menuStructure['OPENHRM_SUBMENU_CONTENT'] = array(
+            0 => array( 'OPENHRM_SUBMENU_COMPREHENSION_LIST', '&view=comprehensions' ),
+            1 => array( 'OPENHRM_SUBMENU_PRECIS_LIST', '&view=precises'),
+            2 => array( 'OPENHRM_SUBMENU_COMPOSITION_LIST', '&view=compositions'),
+            3 => array( 'OPENHRM_SUBMENU_GRAMMAR_LIST', '&view=grammars'),
+            4 => array( 'OPENHRM_SUBMENU_USAGE_LIST', '&view=usages'),
         );
 
-        $menuStructure['EC_SUBMENU_SYSTEM'] = array(
-            0 => array( 'EC_SUBMENU_SETTING_LIST', '&view=setting' ),
+        $menuStructure['OPENHRM_SUBMENU_SYSTEM'] = array(
+            0 => array( 'OPENHRM_SUBMENU_SETTING_LIST', '&view=setting' ),
         );
 
         $html = '';
@@ -53,7 +53,7 @@ class OpenHrmHelperSideBar
         $html .= '<ul id="ec-sidebar-navigation">';
 
         $html .= '<li class="ec-tools">
-					<a id="ec-dashboard" title="'.JText::_('EC_SUBMENU_DASHBOARD').'"
+					<a id="ec-dashboard" title="'.JText::_('OPENHRM_SUBMENU_DASHBOARD').'"
 					   href="'.JRoute::_('index.php?option=com_openhrm').'">
 					</a>
 				  </li>';

@@ -10,8 +10,8 @@
 		       class="readonly"
 		       labelclass="control-label"/>
 
-		<field name="name"
-		       type="text"
+		<field name="country_id"
+		       type="countries"
 		       class="inputbox"
 		       description="Country name"
 		       label="Country Name"
@@ -19,51 +19,29 @@
 		       required="true"
 		       labelclass="control-label"/>
 
-		<field name="iso_code_2"
+		<field name="name"
 		       type="text"
 		       class="inputbox"
-		       label="ISO Code Name 2"
-		       description="ISO Code Name 2"
+		       label="State Name"
+		       description="State Name"
 		       size="30"
 		       required="true"
 		       labelclass="control-label"/>
 
-		<field name="iso_code_3"
+		<field name="code"
 		       type="text"
 		       class="inputbox"
-		       label="ISO Code Name 3"
-		       description="ISO Code Name 3"
+		       label="Code Name"
+		       description="State Code Name"
 		       size="30"
 		       labelclass="control-label"/>
-
-		<field name="address_format"
-		       type="text"
-		       class="inputbox"
-		       label="Address format"
-		       description="Address format"
-		       size="30"
-		       labelclass="control-label"/>
-
-		<field name="postcode_required"
-		       type="list"
-		       class="inputbox"
-		       label="Post code"
-		       default="1"
-		       description="Post code required"
-		       filter="safehtml"
-		       buttons="false"
-		       width="90%"
-		       labelclass="control-label">
-			<option value="1">JYES</option>
-			<option value="0">JNO</option>
-		</field>
 
 		<field name="published"
 		       type="list"
 		       class="inputbox"
 		       label="State"
 		       default="1"
-		       description="State of country"
+		       description="State of Country"
 		       filter="safehtml"
 		       buttons="false"
 		       width="90%"

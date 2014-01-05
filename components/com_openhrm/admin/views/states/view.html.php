@@ -9,7 +9,7 @@
 // No direct access to this file
 defined('_JEXEC') or die;
 
-class OpenHrmViewCountries extends ECViewAdmin
+class OpenHrmViewStates extends ECViewAdmin
 {
 	protected $items;
 	protected $pagination;
@@ -43,9 +43,9 @@ class OpenHrmViewCountries extends ECViewAdmin
 	{
 		//$canDo	= OpenHrmHelperHrm::getActions();
 
-		JToolbarHelper::title(JText::_('COM_OPENHRM_COUNTRY_TITLE'));
-		JToolbarHelper::addNew('country.add');
-		JToolbarHelper::editList('country.edit');
+		JToolbarHelper::title(JText::_('COM_OPENHRM_STATE_TITLE'));
+		JToolbarHelper::addNew('state.add');
+		JToolbarHelper::editList('state.edit');
 
 		//if ($canDo->get('core.admin'))
 		{
@@ -57,6 +57,6 @@ class OpenHrmViewCountries extends ECViewAdmin
 	public function setDocument()
 	{
 		$document = JFactory::getDocument();
-		$document->setTitle(JText::_("COM_OPENHRM_COUNTRY_TITLE"));
+		$document->setTitle(JText::_("COM_OPENHRM_STATE_TITLE"));
 	}
 }

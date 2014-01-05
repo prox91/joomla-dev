@@ -10,8 +10,8 @@ CREATE TABLE IF NOT EXISTS `#__openhrm_countries` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `#__openhrm_zones`;
-CREATE TABLE IF NOT EXISTS `#__openhrm_zones` (
+DROP TABLE IF EXISTS `#__openhrm_states`;
+CREATE TABLE IF NOT EXISTS `#__openhrm_states` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `country_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,

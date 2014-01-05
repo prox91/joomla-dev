@@ -51,6 +51,14 @@ JHtml::_('behavior.formvalidation');
 						<fieldset class="adminform">
 							<div class="control-group">
 								<div class="control-label">
+									<?php echo $this->form->getLabel('country_id'); ?>
+								</div>
+								<div class="controls">
+									<?php echo $this->form->getInput('country_id'); ?>
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="control-label">
 									<?php echo $this->form->getLabel('name'); ?>
 								</div>
 								<div class="controls">
@@ -59,34 +67,10 @@ JHtml::_('behavior.formvalidation');
 							</div>
 							<div class="control-group">
 								<div class="control-label">
-									<?php echo $this->form->getLabel('iso_code_2'); ?>
+									<?php echo $this->form->getLabel('code'); ?>
 								</div>
 								<div class="controls">
-									<?php echo $this->form->getInput('iso_code_2'); ?>
-								</div>
-							</div>
-							<div class="control-group">
-								<div class="control-label">
-									<?php echo $this->form->getLabel('iso_code_3'); ?>
-								</div>
-								<div class="controls">
-									<?php echo $this->form->getInput('iso_code_3'); ?>
-								</div>
-							</div>
-							<div class="control-group">
-								<div class="control-label">
-									<?php echo $this->form->getLabel('address_format'); ?>
-								</div>
-								<div class="controls">
-									<?php echo $this->form->getInput('address_format'); ?>
-								</div>
-							</div>
-							<div class="control-group">
-								<div class="control-label">
-									<?php echo $this->form->getLabel('postcode_required'); ?>
-								</div>
-								<div class="controls">
-									<?php echo $this->form->getInput('postcode_required'); ?>
+									<?php echo $this->form->getInput('code'); ?>
 								</div>
 							</div>
 							<div class="control-group">
