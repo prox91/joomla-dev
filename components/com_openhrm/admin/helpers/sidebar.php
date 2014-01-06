@@ -90,12 +90,12 @@ class OpenHrmHelperSideBar
         $iconMap = array(
             'dashboard' => 'icon-home',
             'pim' => 'icon-user',
-            'leave' => 'icon-key',
-            'time' => 'icon-file-add',
+            'leave' => 'icon-share',
+            'time' => 'icon-time',
             'recruitment' => 'icon-comments-2',
-            'performance' => 'icon-wrench',
-            'report' => 'icon-wrench',
-            'admin' => 'icon-wrench',
+            'performance' => 'icon-adjust',
+            'report' => 'icon-bookmark',
+            'admin' => 'icon-key',
             'system' => 'icon-wrench'
         );
 
