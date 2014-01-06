@@ -48,6 +48,15 @@ CREATE TABLE IF NOT EXISTS `#__openhrm_organization_infos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `#__openhrm_marital_statuses`;
+CREATE TABLE IF NOT EXISTS `#__openhrm_marital_statuses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) NOT NULL,
+  `published` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 DROP TABLE IF EXISTS `#__openhrm_usergroups`;
 CREATE TABLE IF NOT EXISTS `#__openhrm_usergroups` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
