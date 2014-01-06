@@ -88,19 +88,22 @@ class OpenHrmHelperSideBar
 				  </li>';
 
         $iconMap = array(
-            'master' => 'icon-home',
-            //'customer' => 'icon-user',
-            'content' => 'icon-key',
-            //'' => 'icon-file-add',
-            //'' => 'icon-comments-2',
+            'dashboard' => 'icon-home',
+            'pim' => 'icon-user',
+            'leave' => 'icon-key',
+            'time' => 'icon-file-add',
+            'recruitment' => 'icon-comments-2',
+            'performance' => 'icon-wrench',
+            'report' => 'icon-wrench',
+            'admin' => 'icon-wrench',
             'system' => 'icon-wrench'
         );
 
         foreach ($menuStructure as $menuName => $menuDetails)
         {
-            $html .= '<li class="ec-toggle" id="ec-sn_'.strtolower(substr($menuName, 11)).'">
+            $html .= '<li class="ec-toggle" id="ec-sn_'.strtolower(substr($menuName, 16)).'">
 			            <a class="ec-indicator">Open</a>
-			            <a class="ec-title"><i class="'. $iconMap[strtolower(substr($menuName, 11))] .'"></i> '.JText::_($menuName).'</a>';
+			            <a class="ec-title"><i class="'. $iconMap[strtolower(substr($menuName, 16))] .'"></i> '.JText::_($menuName).'</a>';
             $html .= '<ul>';
             foreach ($menuDetails as $menu)
             {
