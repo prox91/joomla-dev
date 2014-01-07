@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field name="id"
+		       type="text"
+		       default="0"
+		       label="ID"
+		       description="ID"
+		       readonly="true"
+		       class="readonly"
+		       labelclass="control-label"/>
+
+		<field name="name"
+		       type="text"
+		       class="inputbox"
+		       description="Country name"
+		       label="Country Name"
+		       size="30"
+		       required="true"
+		       labelclass="control-label"/>
+
+		<field name="iso_code_2"
+		       type="text"
+		       class="inputbox"
+		       label="ISO Code Name 2"
+		       description="ISO Code Name 2"
+		       size="30"
+		       required="true"
+		       labelclass="control-label"/>
+
+		<field name="iso_code_3"
+		       type="text"
+		       class="inputbox"
+		       label="ISO Code Name 3"
+		       description="ISO Code Name 3"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="address_format"
+		       type="text"
+		       class="inputbox"
+		       label="Address format"
+		       description="Address format"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="postcode_required"
+		       type="list"
+		       class="inputbox"
+		       label="Post code"
+		       default="1"
+		       description="Post code required"
+		       filter="safehtml"
+		       buttons="false"
+		       width="90%"
+		       labelclass="control-label">
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>
+
+		<field name="published"
+		       type="list"
+		       class="inputbox"
+		       label="State"
+		       default="1"
+		       description="State of country"
+		       filter="safehtml"
+		       buttons="false"
+		       width="90%"
+		       labelclass="control-label">
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+	</fieldset>
+</form>
