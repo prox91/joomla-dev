@@ -40,7 +40,7 @@ JHtml::_('behavior.formvalidation');
 				}
 			</script>
 			<form enctype="multipart/form-data"
-				action="<?php JRoute::_('index.php?option=com_openhrm&view=maritalstatus'); ?>" method="post" name="itemForm" id="itemForm"
+				action="<?php JRoute::_('index.php?option=com_openhrm&view=maritalstate'); ?>" method="post" name="itemForm" id="itemForm"
 				class="form-validate form-horizontal">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#general" data-toggle="tab"><?php echo JText::_('General')?></a></li>

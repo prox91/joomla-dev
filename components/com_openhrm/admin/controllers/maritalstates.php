@@ -14,13 +14,13 @@ jimport('joomla.application.component.controlleradmin');
 /**
  * HelloWorlds Controller
  */
-class OpenHrmControllerMaritalStatuses extends JControllerAdmin
+class OpenHrmControllerMaritalStates extends JControllerAdmin
 {
     /**
      * Proxy for getModel.
      * @since       2.5
      */
-    public function getModel($name = 'Maritalstatus', $prefix = 'OpenHrmModel', $config = array('ignore_request' => true))
+    public function getModel($name = 'Maritalstate', $prefix = 'OpenHrmModel', $config = array('ignore_request' => true))
     {
         $model = parent::getModel($name, $prefix, $config);
         return $model;

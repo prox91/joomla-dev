@@ -50,12 +50,12 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 <div class="ec-contain">
 	<?php echo $this->sidebar; ?>
 	<div id="ec-panel-right" class="span10">
-		<form action="<?php echo JRoute::_('index.php?option=com_openhrm&view=maritalstatuses'); ?>" method="post" name="adminForm" id="adminForm">
+		<form action="<?php echo JRoute::_('index.php?option=com_openhrm&view=maritalstates'); ?>" method="post" name="adminForm" id="adminForm">
 			<div class="ec-main-container">
 				<div id="filter-bar" class="btn-toolbar">
 					<div class="filter-search btn-group pull-left">
-						<label for="filter_search" class="element-invisible"><?php echo JText::_('COM_OPENHRM_FILTER_MARITALSTATUS_NAME_DESC'); ?></label>
-						<input type="text" name="filter_search" placeholder="<?php echo JText::_('COM_OPENHRM_FILTER_MARITALSTATUS_NAME_DESC'); ?>" id="filter_search" value="<?php //echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_OPENHRM_FILTER_SEARCH_DESC'); ?>" />
+						<label for="filter_search" class="element-invisible"><?php echo JText::_('COM_OPENHRM_FILTER_MARITALSTATE_NAME_DESC'); ?></label>
+						<input type="text" name="filter_search" placeholder="<?php echo JText::_('COM_OPENHRM_FILTER_MARITALSTATE_NAME_DESC'); ?>" id="filter_search" value="<?php //echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_OPENHRM_FILTER_SEARCH_DESC'); ?>" />
 					</div>
 					<div class="btn-group pull-left hidden-phone">
 						<button class="btn tip hasTooltip" type="submit" title="<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>"><i class="icon-search"></i></button>
@@ -93,7 +93,7 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 							<?php //echo JHtml::_('grid.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder); ?>
 							Status
 						</th>
-						<th width="60%">
+						<th width="97%">
 							<?php //echo JHtml::_('grid.sort', 'JCATEGORY', 'category_title', $listDirn, $listOrder); ?>
 							Marital Status Name
 						</th>
@@ -119,7 +119,7 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 								<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 							</td>
 							<td class="center">
-								<?php echo JHtml::_('jgrid.published', $item->published, $i, 'maritalstatuses.', 'cb'); ?>
+								<?php echo JHtml::_('jgrid.published', $item->published, $i, 'maritalstates.', 'cb'); ?>
 							</td>
 							<td>
 								<?php echo $this->escape($item->name); ?>

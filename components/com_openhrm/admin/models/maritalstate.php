@@ -9,7 +9,7 @@
 // no direct access
 defined('_JEXEC') or die;
 
-class OpenHrmModelMaritalStatus extends JModelAdmin
+class OpenHrmModelMaritalState extends JModelAdmin
 {
 	/**
 	 * The prefix to use with controller messages.
@@ -71,11 +71,11 @@ class OpenHrmModelMaritalStatus extends JModelAdmin
 	{
 		parent::__construct($config);
 
-		$this->event_after_delete 	= 'onMaritalStatusAfterDelete';
-		$this->event_after_save 	= 'onMaritalStatusAfterSave';
-		$this->event_before_delete 	= 'onMaritalStatusBeforeDelete';
-		$this->event_before_save 	= 'onMaritalStatusBeforeSave';
-		$this->event_change_state 	= 'onMaritalStatusChangeState';
+		$this->event_after_delete 	= 'onMaritalStateAfterDelete';
+		$this->event_after_save 	= 'onMaritalStateAfterSave';
+		$this->event_before_delete 	= 'onMaritalStateBeforeDelete';
+		$this->event_before_save 	= 'onMaritalStateBeforeSave';
+		$this->event_change_state 	= 'onMaritalStateChangeState';
 		$this->text_prefix 			= strtoupper($this->option);
 	}
 
@@ -91,7 +91,7 @@ class OpenHrmModelMaritalStatus extends JModelAdmin
 	 * @since   12.2
 	 * @throws  Exception
 	 */
-	public function getTable($name = 'maritalstatus', $prefix = 'OpenHrmTable', $options = array())
+	public function getTable($name = 'maritalstate', $prefix = 'OpenHrmTable', $options = array())
 	{
 		return parent::getTable($name, $prefix, $options);
 	}
@@ -108,13 +108,13 @@ class OpenHrmModelMaritalStatus extends JModelAdmin
 	 */
 	public function getForm($data = array(), $loadData = true)
 	{
-		$form = $this->loadForm('com_openhrm.maritalstatus', 'maritalstatus', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_openhrm.maritalstate', 'maritalstate', array('control' => 'jform', 'load_data' => $loadData));
 		if (empty($form)) {
 			return false;
 		}
 
 		// Determine correct permissions to check.
-		if ($this->getState('maritalstatus.id')) {
+		if ($this->getState('maritalstate.id')) {
 			// Existing record. Can only edit in selected categories.
 			//$form->setFieldAttribute('catid', 'action', 'core.edit');
 		} else {

@@ -75,7 +75,7 @@ class OpenHrmHelperSideBar
             1 => array( 'OPENHRM_SUBMENU_STATE_LIST', '&view=states'),
             2 => array( 'OPENHRM_SUBMENU_ORGANIZATIONINFO_LIST', '&view=organizationinfo'),
             //3 => array( 'OPENHRM_SUBMENU_SETTING_LIST', '&view=configures' ),
-            4 => array( 'OPENHRM_SUBMENU_MARITALSTATUS_LIST', '&view=maritalstatuses' ),
+            4 => array( 'OPENHRM_SUBMENU_MARITALSTATE_LIST', '&view=maritalstates' ),
         );
 
         $html = '';

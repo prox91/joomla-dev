@@ -8,7 +8,7 @@
  */
 defined('_JEXEC') or die;
 
-class OpenHrmModelMaritalStatuses extends JModelList
+class OpenHrmModelMaritalStates extends JModelList
 {
     /**
      * Method to build a sql to load the list data
@@ -24,7 +24,7 @@ class OpenHrmModelMaritalStatuses extends JModelList
         // Select some field
         $query->select($this->getState('list.select','*'));
 
-        $query->from('#__openhrm_marital_statuses');
+        $query->from('#__openhrm_marital_states');
 
         return $query;
     }

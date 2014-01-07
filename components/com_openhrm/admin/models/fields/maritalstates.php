@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die;
 
-class JFormFieldMaritalStatuses extends JFormField
+class JFormFieldMaritalStates extends JFormField
 {
 	/**
 	 * The form field type.
@@ -9,7 +9,7 @@ class JFormFieldMaritalStatuses extends JFormField
 	 * @var		string
 	 * @since	1.6
 	 */
-	protected $type = 'Maritalstatuses';
+	protected $type = 'Maritalstates';
 
 	/**
 	 * Method to get the field input markup.
@@ -21,11 +21,11 @@ class JFormFieldMaritalStatuses extends JFormField
 	{
 		// Initialize variables.
 		$options 	= array();
-		$model      = JModelLegacy::getInstance('Maritalstatuses', 'OpenHrmModel', array('ignore_request' => true));
+		$model      = JModelLegacy::getInstance('Maritalstates', 'OpenHrmModel', array('ignore_request' => true));
 
 		$results 	= $model->getItems();
 
-		$selectedId	= (int) $this->form->getValue('maritalstatus_id');
+		$selectedId	= (int) $this->form->getValue('maritalstate_id');
 
 		if (!empty($results))
 		{

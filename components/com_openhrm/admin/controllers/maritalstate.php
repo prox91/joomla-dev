@@ -8,7 +8,7 @@
  */
 defined('_JEXEC') or die;
 
-class OpenHrmControllerMaritalStatus extends JControllerForm
+class OpenHrmControllerMaritalState extends JControllerForm
 {
 	function __construct($config = array())
 	{

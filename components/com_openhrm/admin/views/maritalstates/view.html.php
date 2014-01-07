@@ -9,7 +9,7 @@
 // No direct access to this file
 defined('_JEXEC') or die;
 
-class OpenHrmViewMaritalStatuses extends ECViewAdmin
+class OpenHrmViewMaritalStates extends ECViewAdmin
 {
 	protected $items;
 	protected $pagination;
@@ -43,9 +43,9 @@ class OpenHrmViewMaritalStatuses extends ECViewAdmin
 	{
 		//$canDo	= OpenHrmHelperHrm::getActions();
 
-		JToolbarHelper::title(JText::_('COM_OPENHRM_MARITALSTATUS_TITLE'));
-		JToolbarHelper::addNew('maritalstatus.add');
-		JToolbarHelper::editList('maritalstatus.edit');
+		JToolbarHelper::title(JText::_('COM_OPENHRM_MARITALSTATE_TITLE'));
+		JToolbarHelper::addNew('maritalstate.add');
+		JToolbarHelper::editList('maritalstate.edit');
 
 		//if ($canDo->get('core.admin'))
 		{
@@ -57,6 +57,6 @@ class OpenHrmViewMaritalStatuses extends ECViewAdmin
 	public function setDocument()
 	{
 		$document = JFactory::getDocument();
-		$document->setTitle(JText::_("COM_OPENHRM_MARITALSTATUS_TITLE"));
+		$document->setTitle(JText::_("COM_OPENHRM_MARITALSTATE_TITLE"));
 	}
 }

@@ -9,7 +9,7 @@
 // No direct access to this file
 defined('_JEXEC') or die;
 
-class OpenHrmViewMaritalStatus extends ECViewAdmin
+class OpenHrmViewMaritalState extends ECViewAdmin
 {
 	protected $state;
 	protected $item;
@@ -45,15 +45,15 @@ class OpenHrmViewMaritalStatus extends ECViewAdmin
 		//JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 		JHtml::_('behavior.tooltip');
 
-		JToolbarHelper::title(JText::_('COM_OPENHRM_MARITALSTATUS_TITLE'));
-		JToolBarHelper::apply('maritalstatus.apply', 'JToolbar_Apply');
-		JToolBarHelper::save('maritalstatus.save', 'JToolbar_Save');
-		JToolBarHelper::cancel('maritalstatus.cancel', 'JToolbar_Cancel');
+		JToolbarHelper::title(JText::_('COM_OPENHRM_MARITALSTATE_TITLE'));
+		JToolBarHelper::apply('maritalstate.apply', 'JToolbar_Apply');
+		JToolBarHelper::save('maritalstate.save', 'JToolbar_Save');
+		JToolBarHelper::cancel('maritalstate.cancel', 'JToolbar_Cancel');
 	}
 
 	public function setDocument()
 	{
 		$document = JFactory::getDocument();
-		$document->setTitle(JText::_("COM_OPENHRM_MARITALSTATUS_TITLE"));
+		$document->setTitle(JText::_("COM_OPENHRM_MARITALSTATE_TITLE"));
 	}
 }
