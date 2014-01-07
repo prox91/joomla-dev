@@ -56,7 +56,6 @@ CREATE TABLE IF NOT EXISTS `#__openhrm_marital_states` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
 DROP TABLE IF EXISTS `#__openhrm_usergroups`;
 CREATE TABLE IF NOT EXISTS `#__openhrm_usergroups` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
@@ -67,11 +66,11 @@ CREATE TABLE IF NOT EXISTS `#__openhrm_usergroups` (
   `alias` varchar(255) DEFAULT '',
   `description` text,
   `ordering` int(11) NOT NULL DEFAULT 0,
-  `created` datetime DEFAULT '0000-00-00 00:00:00',
+  `created_date` datetime DEFAULT '0000-00-00 00:00:00',
   `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `modified` datetime DEFAULT '0000-00-00 00:00:00',
+  `modified_date` datetime DEFAULT '0000-00-00 00:00:00',
   `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted` datetime DEFAULT '0000-00-00 00:00:00',
+  `deleted_date` datetime DEFAULT '0000-00-00 00:00:00',
   `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
   `deleted_flg` tinyint(1) unsigned DEFAULT 0,
   PRIMARY KEY (`id`),
@@ -81,22 +80,10 @@ CREATE TABLE IF NOT EXISTS `#__openhrm_usergroups` (
   KEY `idx_openhrm_usergroup_nested_set_lookup` (`lft`,`rgt`) USING BTREE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-
-
--- ------------------------------------------------------------------------------------
-DROP TABLE IF EXISTS `#__ec_books`;
-CREATE TABLE IF NOT EXISTS `#__ec_books` (
+DROP TABLE IF EXISTS `#__openhrm_settings`;
+CREATE TABLE IF NOT EXISTS `#__openhrm_settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT '',
-  `alias` varchar(255) DEFAULT '',
-  `img_url` varchar(100) DEFAULT '',
   `description` text,
-  `ordering` int(11) NOT NULL DEFAULT 0,
-  `checked_out` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `checked_out_time` datetime DEFAULT '0000-00-00 00:00:00',
-  `published` tinyint(4) DEFAULT 0,
-  `publish_up` datetime DEFAULT '0000-00-00 00:00:00',
-  `publish_down` datetime DEFAULT '0000-00-00 00:00:00',
   `created` datetime DEFAULT '0000-00-00 00:00:00',
   `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
   `modified` datetime DEFAULT '0000-00-00 00:00:00',
@@ -107,315 +94,65 @@ CREATE TABLE IF NOT EXISTS `#__ec_books` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
-DROP TABLE IF EXISTS `#__ec_categories`;
-CREATE TABLE IF NOT EXISTS `#__ec_categories` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT '',
-  `alias` varchar(255) DEFAULT '',
-  `description` text,
-  `ordering` int(11) NOT NULL DEFAULT 0,
-  `checked_out` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `checked_out_time` datetime DEFAULT '0000-00-00 00:00:00',
-  `published` tinyint(4) DEFAULT 0,
-  `publish_up` datetime DEFAULT '0000-00-00 00:00:00',
-  `publish_down` datetime DEFAULT '0000-00-00 00:00:00',
-  `created` datetime DEFAULT '0000-00-00 00:00:00',
+DROP TABLE IF EXISTS `#__openhrm_employees`;
+CREATE TABLE IF NOT EXISTS `#__openhrm_employees` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+  `company_id` int(11) NOT NULL DEFAULT '0',
+  `employee_number` int(7) NOT NULL DEFAULT '0',
+  `employee_id` varchar(50) DEFAULT NULL,
+  `first_name` varchar(100) NOT NULL DEFAULT '',
+  `middle_name` varchar(100) DEFAULT '',
+  `last_name` varchar(100) NOT NULL DEFAULT '',
+  `ssn_no` varchar(50) DEFAULT NULL,
+  `nick_name` varchar(100) DEFAULT '',
+  `gender` smallint(6) DEFAULT '0',
+  `marital_state_id` int(11) NOT NULL DEFAULT '0',
+  `birthday` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `employee_status_id` int(11) NOT NULL DEFAULT '0',
+  `smoker` tinyint(1) unsigned DEFAULT 0,
+  `nationality_id` int(11) NOT NULL DEFAULT '0',
+  `country_id` int(11) NOT NULL DEFAULT '0',
+  `state_id` int(11) NOT NULL DEFAULT '0',
+  `city` varchar(255) DEFAULT NULL,
+  `zip_code` varchar(20) DEFAULT NULL,
+  `home_phone` varchar(20) DEFAULT NULL,
+  `work_phone` varchar(20) DEFAULT NULL,
+  `mobile_phone` varchar(20) DEFAULT NULL,
+  `street1` varchar(100) DEFAULT '',
+  `street2` varchar(100) DEFAULT '',
+  `work_email` varchar(100) DEFAULT NULL,
+  `other_email` varchar(100) DEFAULT NULL,
+  `driver_license_num` varchar(100) DEFAULT '',
+  `driver_license_exp_date` date DEFAULT NULL,
+  `military_service` varchar(100) DEFAULT '',
+  `job_title_id` int(11) NOT NULL DEFAULT '0',
+  `eeo_cat_id` int(11) NOT NULL DEFAULT '0',
+  `work_station` int(6) DEFAULT NULL,
+  `salary_grade_id` int(11) NOT NULL DEFAULT '0',
+  `joined_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `terminal_reason_id` int(4) DEFAULT NULL,
+  `terminal_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `ip` varchar(20) NOT NULL DEFAULT '',
+  `created_date` datetime DEFAULT '0000-00-00 00:00:00',
   `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `modified` datetime DEFAULT '0000-00-00 00:00:00',
+  `modified_date` datetime DEFAULT '0000-00-00 00:00:00',
   `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted` datetime DEFAULT '0000-00-00 00:00:00',
+  `deleted_date` datetime DEFAULT '0000-00-00 00:00:00',
   `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
   `deleted_flg` tinyint(1) unsigned DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
+  `published` tinyint(1) NOT NULL DEFAULT '1',
+  `custom1` varchar(250) DEFAULT NULL,
+  `custom2` varchar(250) DEFAULT NULL,
+  `custom3` varchar(250) DEFAULT NULL,
+  `custom4` varchar(250) DEFAULT NULL,
+  `custom5` varchar(250) DEFAULT NULL,
+  `custom6` varchar(250) DEFAULT NULL,
+  `custom7` varchar(250) DEFAULT NULL,
+  `custom8` varchar(250) DEFAULT NULL,
+  `custom9` varchar(250) DEFAULT NULL,
+  `custom10` varchar(250) DEFAULT NULL,
 
-DROP TABLE IF EXISTS `#__ec_levels`;
-CREATE TABLE IF NOT EXISTS `#__ec_levels` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `alias` varchar(255) DEFAULT '',
-  `description` text,
-  `ordering` int(11) NOT NULL DEFAULT 0,
-  `checked_out` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `checked_out_time` datetime DEFAULT '0000-00-00 00:00:00',
-  `published` tinyint(4) DEFAULT 0,
-  `publish_up` datetime DEFAULT '0000-00-00 00:00:00',
-  `publish_down` datetime DEFAULT '0000-00-00 00:00:00',
-  `created` datetime DEFAULT '0000-00-00 00:00:00',
-  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `modified` datetime DEFAULT '0000-00-00 00:00:00',
-  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted` datetime DEFAULT '0000-00-00 00:00:00',
-  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
+  `ethnic_race_code` varchar(13) DEFAULT NULL,
+  `emp_sin_num` varchar(100) DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
-
-DROP TABLE IF EXISTS `#__ec_lessons`;
-CREATE TABLE IF NOT EXISTS `#__ec_lessons` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `book_id` int(11) NOT NULL,
-  `cat_id` int(11) NOT NULL,
-  `level_id` int(11) NOT NULL,
-  `lesson_no` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT '',
-  `alias` varchar(255) DEFAULT '',
-  `description` text,
-  `title` text,
-  `title_trans` text,
-  `audio_url` varchar(100) DEFAULT '',
-  `audio_url_hash` varchar(100) DEFAULT '',
-  `text` text,
-  `text_trans` text,
-  `ordering` int(11) NOT NULL DEFAULT 0,
-  `checked_out` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `checked_out_time` datetime DEFAULT '0000-00-00 00:00:00',
-  `published` tinyint(4) DEFAULT 0,
-  `publish_up` datetime DEFAULT '0000-00-00 00:00:00',
-  `publish_down` datetime DEFAULT '0000-00-00 00:00:00',
-  `created` datetime DEFAULT '0000-00-00 00:00:00',
-  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `modified` datetime DEFAULT '0000-00-00 00:00:00',
-  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted` datetime DEFAULT '0000-00-00 00:00:00',
-  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
-
-DROP TABLE IF EXISTS `#__ec_lessons_comprehensions`;
-CREATE TABLE IF NOT EXISTS `#__ec_lessons_comprehensions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lesson_id` int(11) NOT NULL ,
-  `description` text,
-  `ordering` int(11) NOT NULL DEFAULT 0,
-  `checked_out` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `checked_out_time` datetime DEFAULT '0000-00-00 00:00:00',
-  `published` tinyint(4) DEFAULT 0,
-  `publish_up` datetime DEFAULT '0000-00-00 00:00:00',
-  `publish_down` datetime DEFAULT '0000-00-00 00:00:00',
-  `created` datetime DEFAULT '0000-00-00 00:00:00',
-  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `modified` datetime DEFAULT '0000-00-00 00:00:00',
-  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted` datetime DEFAULT '0000-00-00 00:00:00',
-  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
-
-DROP TABLE IF EXISTS `#__ec_lessons_comprehensions_questions`;
-CREATE TABLE IF NOT EXISTS `#__ec_lessons_comprehensions_questions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `comprehension_id` int(11) NOT NULL ,
-  `description` text,
-  `question` text,
-  `question_trans` text,
-  `answer` text,
-  `answer_trans` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
-
-DROP TABLE IF EXISTS `#__ec_lessons_compositions`;
-CREATE TABLE IF NOT EXISTS `#__ec_lessons_compositions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lesson_id` int(11) NOT NULL ,
-  `description` text,
-  `question` text,
-  `question_trans` text,
-  `answer` text,
-  `answer_trans` text,
-  `published` tinyint(4) DEFAULT 0,
-  `created` datetime DEFAULT '0000-00-00 00:00:00',
-  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `modified` datetime DEFAULT '0000-00-00 00:00:00',
-  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted` datetime DEFAULT '0000-00-00 00:00:00',
-  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
-
-DROP TABLE IF EXISTS `#__ec_lessons_precises`;
-CREATE TABLE IF NOT EXISTS `#__ec_lessons_precises` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lesson_id` int(11) NOT NULL ,
-  `description` text,
-  `question` text,
-  `question_trans` text,
-  `answer` text,
-  `answer_trans` text,
-  `published` tinyint(4) DEFAULT 0,
-  `created` datetime DEFAULT '0000-00-00 00:00:00',
-  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `modified` datetime DEFAULT '0000-00-00 00:00:00',
-  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted` datetime DEFAULT '0000-00-00 00:00:00',
-  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
-
-DROP TABLE IF EXISTS `#__ec_lessons_grammars`;
-CREATE TABLE IF NOT EXISTS `#__ec_lessons_grammars` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lesson_id` int(11) NOT NULL,
-  `title` text,
-  `description` text,
-  `text` text,
-  `text_explain` text,
-  `text_trans` text,
-  `keystruct_no` varchar (50) NOT NULL DEFAULT 0 COMMENT 'key structure number of lesson',
-  `keystruct_no_ref` varchar (50) NOT NULL DEFAULT 0 COMMENT 'related key structure number of lesson',
-  `published` tinyint(4) DEFAULT 0,
-  `created` datetime DEFAULT '0000-00-00 00:00:00',
-  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `modified` datetime DEFAULT '0000-00-00 00:00:00',
-  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted` datetime DEFAULT '0000-00-00 00:00:00',
-  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
-
-DROP TABLE IF EXISTS `#__ec_lessons_grammars_exercises`;
-CREATE TABLE IF NOT EXISTS `#__ec_lessons_grammars_exercises` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `grammar_id` int(11) NOT NULL,
-  `title` text,
-  `exercise_text` text,
-  `exercise_text_explain` text,
-  `exercise_text_trans` text,
-  `created` datetime DEFAULT '0000-00-00 00:00:00',
-  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `modified` datetime DEFAULT '0000-00-00 00:00:00',
-  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted` datetime DEFAULT '0000-00-00 00:00:00',
-  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
-
-DROP TABLE IF EXISTS `#__ec_lessons_grammars_exercises_questions`;
-CREATE TABLE IF NOT EXISTS `#__ec_lessons_grammars_exercises_questions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `exercise_id` int(11) NOT NULL,
-  `question` text,
-  `question_trans` text,
-  `created` datetime DEFAULT '0000-00-00 00:00:00',
-  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `modified` datetime DEFAULT '0000-00-00 00:00:00',
-  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted` datetime DEFAULT '0000-00-00 00:00:00',
-  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
-
-DROP TABLE IF EXISTS `#__ec_lessons_usages`;
-CREATE TABLE IF NOT EXISTS `#__ec_lessons_usages` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lesson_id` int(11) NOT NULL,
-  `title` text,
-  `description` text,
-  `text` text,
-  `text_trans` text,
-  `text_explain` text,
-  `diffspecial_no` varchar (50) NOT NULL DEFAULT 0 COMMENT 'different special of lesson',
-  `diffspecial_no_ref` varchar (50) NOT NULL DEFAULT 0 COMMENT 'related different special of lesson',
-  `published` tinyint(4) DEFAULT 0,
-  `created` datetime DEFAULT '0000-00-00 00:00:00',
-  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `modified` datetime DEFAULT '0000-00-00 00:00:00',
-  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted` datetime DEFAULT '0000-00-00 00:00:00',
-  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
-
-DROP TABLE IF EXISTS `#__ec_lessons_usages_exercises`;
-CREATE TABLE IF NOT EXISTS `#__ec_lessons_usages_exercises` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `usage_id` int(11) NOT NULL,
-  `title` text,
-  `exercise_text` text,
-  `exercise_text_explain` text,
-  `exercise_text_trans` text,
-  `created` datetime DEFAULT '0000-00-00 00:00:00',
-  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `modified` datetime DEFAULT '0000-00-00 00:00:00',
-  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted` datetime DEFAULT '0000-00-00 00:00:00',
-  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
-
-DROP TABLE IF EXISTS `#__ec_lessons_usages_exercises_questions`;
-CREATE TABLE IF NOT EXISTS `#__ec_lessons_usages_exercises_questions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `exercise_id` int(11) NOT NULL,
-  `question` text,
-  `question_trans` text,
-  `created` datetime DEFAULT '0000-00-00 00:00:00',
-  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `modified` datetime DEFAULT '0000-00-00 00:00:00',
-  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted` datetime DEFAULT '0000-00-00 00:00:00',
-  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
-
-DROP TABLE IF EXISTS `#__ec_lessons_exercises`;
-CREATE TABLE IF NOT EXISTS `#__ec_lessons_exercises` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lesson_id` int(11) NOT NULL,
-  `description` text,
-  `title` VARCHAR(255) DEFAULT '',
-  `published` tinyint(4) DEFAULT 0,
-  `created` datetime DEFAULT '0000-00-00 00:00:00',
-  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `modified` datetime DEFAULT '0000-00-00 00:00:00',
-  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted` datetime DEFAULT '0000-00-00 00:00:00',
-  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
-
-DROP TABLE IF EXISTS `#__ec_questions`;
-CREATE TABLE IF NOT EXISTS `#__ec_questions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lesson_id` int(11) NOT NULL,
-  `description` text,
-  `title` VARCHAR(255) DEFAULT '',
-  `published` tinyint(4) DEFAULT 0,
-  `created` datetime DEFAULT '0000-00-00 00:00:00',
-  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `modified` datetime DEFAULT '0000-00-00 00:00:00',
-  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted` datetime DEFAULT '0000-00-00 00:00:00',
-  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
-
-DROP TABLE IF EXISTS `#__ec_settings`;
-CREATE TABLE IF NOT EXISTS `#__ec_settings` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lesson_id` int(11) NOT NULL,
-  `description` text,
-  `text` text,
-  `text_trans` text,
-  `text_explain` text,
-  `created` datetime DEFAULT '0000-00-00 00:00:00',
-  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `modified` datetime DEFAULT '0000-00-00 00:00:00',
-  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted` datetime DEFAULT '0000-00-00 00:00:00',
-  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

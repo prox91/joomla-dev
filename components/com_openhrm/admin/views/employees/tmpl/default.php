@@ -54,8 +54,8 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 			<div class="ec-main-container">
 				<div id="filter-bar" class="btn-toolbar">
 					<div class="filter-search btn-group pull-left">
-						<label for="filter_search" class="element-invisible"><?php echo JText::_('COM_OPENHRM_FILTER_COUNTRY_NAME_DESC'); ?></label>
-						<input type="text" name="filter_search" placeholder="<?php echo JText::_('COM_OPENHRM_FILTER_COUNTRY_NAME_DESC'); ?>" id="filter_search" value="<?php //echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_OPENHRM_FILTER_SEARCH_DESC'); ?>" />
+						<label for="filter_search" class="element-invisible"><?php echo JText::_('COM_OPENHRM_FILTER_EMPLOYEE_NAME_DESC'); ?></label>
+						<input type="text" name="filter_search" placeholder="<?php echo JText::_('COM_OPENHRM_FILTER_EMPLOYEE_NAME_DESC'); ?>" id="filter_search" value="<?php //echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_OPENHRM_FILTER_SEARCH_DESC'); ?>" />
 					</div>
 					<div class="btn-group pull-left hidden-phone">
 						<button class="btn tip hasTooltip" type="submit" title="<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>"><i class="icon-search"></i></button>
@@ -93,17 +93,33 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 							<?php //echo JHtml::_('grid.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder); ?>
 							Status
 						</th>
-						<th width="20%">
+						<th width="15%">
 							<?php //echo JHtml::_('grid.sort', 'JCATEGORY', 'category_title', $listDirn, $listOrder); ?>
-							Country Name
+							First(& Middle) Name
 						</th>
-						<th width="20">
+						<th width="10%">
 							<?php //echo JHtml::_('grid.sort', 'JGRID_HEADING_CREATED_BY', 'a.created_by', $listDirn, $listOrder); ?>
-							ISO Code 2
+							Last Name
 						</th>
-						<th width="20">
+						<th width="15%">
 							<?php //echo JHtml::_('grid.sort', 'JGRID_HEADING_CREATED_BY', 'a.created_by', $listDirn, $listOrder); ?>
-							ISO Code 3
+							Job Title
+						</th>
+						<th width="13%">
+							<?php //echo JHtml::_('grid.sort', 'JGRID_HEADING_CREATED_BY', 'a.created_by', $listDirn, $listOrder); ?>
+							Employment Status
+						</th>
+						<th width="16%">
+							<?php //echo JHtml::_('grid.sort', 'JGRID_HEADING_CREATED_BY', 'a.created_by', $listDirn, $listOrder); ?>
+							Sub Unit
+						</th>
+						<th width="10%">
+							<?php //echo JHtml::_('grid.sort', 'JGRID_HEADING_CREATED_BY', 'a.created_by', $listDirn, $listOrder); ?>
+							Location
+						</th>
+						<th width="12%">
+							<?php //echo JHtml::_('grid.sort', 'JGRID_HEADING_CREATED_BY', 'a.created_by', $listDirn, $listOrder); ?>
+							Supervisor
 						</th>
 						<th width="1%" class="nowrap">
 							<?php //echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
@@ -130,13 +146,25 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 								<?php echo JHtml::_('jgrid.published', $item->published, $i, 'employees.', 'cb'); ?>
 							</td>
 							<td>
-								<?php echo $this->escape($item->name); ?>
+								<?php echo $this->escape($item->firstname . ' ' . $item->middlename); ?>
 							</td>
 							<td>
-								<?php echo $this->escape($item->iso_code_2); ?>
+								<?php echo $this->escape($item->lastname); ?>
 							</td>
 							<td>
-								<?php echo $this->escape($item->iso_code_3); ?>
+								<?php echo $this->escape($item->job_title_id); ?>
+							</td>
+							<td>
+								<?php echo $this->escape($item->employee_status_id); ?>
+							</td>
+							<td>
+								<?php echo $this->escape($item->employee_status_id); ?>
+							</td>
+							<td>
+								<?php echo $this->escape($item->employee_status_id); ?>
+							</td>
+							<td>
+								<?php echo $this->escape($item->employee_status_id); ?>
 							</td>
 							<td class="center">
 								<?php echo (int) $item->id; ?>

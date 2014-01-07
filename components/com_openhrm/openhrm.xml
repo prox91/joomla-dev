@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="component" version="3.1.x" method="upgrade">
+<extension type="component" version="3.0.x" method="upgrade">
 	<name>COM_OPENHRM</name>
-	<creationDate>2013-05-01</creationDate>
+	<creationDate>2014-01-01</creationDate>
 	<copyright>Copyright (C) 2013. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<author>Nha Bui</author>
 	<authorEmail>bngnha@gmail.com</authorEmail>
 	<authorUrl>http://www.net4you.com</authorUrl>
-	<version>0.0.13</version>
+	<version>0.0.1</version>
 	<description>COM_OPENHRM_DESCRIPTION</description>
 
 	<install> <!-- Runs on install -->
