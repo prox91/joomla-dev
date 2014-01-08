@@ -146,10 +146,10 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 								<?php echo JHtml::_('jgrid.published', $item->published, $i, 'employees.', 'cb'); ?>
 							</td>
 							<td>
-								<?php echo $this->escape($item->firstname . ' ' . $item->middlename); ?>
+								<?php echo $this->escape($item->first_name . ' ' . $item->middle_name); ?>
 							</td>
 							<td>
-								<?php echo $this->escape($item->lastname); ?>
+								<?php echo $this->escape($item->last_name); ?>
 							</td>
 							<td>
 								<?php echo $this->escape($item->job_title_id); ?>

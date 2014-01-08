@@ -43,62 +43,17 @@ JHtml::_('behavior.formvalidation');
 				action="<?php JRoute::_('index.php?option=com_openhrm&view=employee'); ?>" method="post" name="itemForm" id="itemForm"
 				class="form-validate form-horizontal">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#general" data-toggle="tab"><?php echo JText::_('General')?></a></li>
+					<li class="active"><a href="#personal" data-toggle="tab"><?php echo JText::_('Personal Detail')?></a></li>
+                    <li class=""><a href="#contact" data-toggle="tab"><?php echo JText::_('Contact')?></a></li>
 				</ul>
 
 				<div class="tab-content">
-					<div class="tab-pane active" id="general">
-						<fieldset class="adminform">
-							<div class="control-group">
-								<div class="control-label">
-									<?php echo $this->form->getLabel('name'); ?>
-								</div>
-								<div class="controls">
-									<?php echo $this->form->getInput('name'); ?>
-								</div>
-							</div>
-							<div class="control-group">
-								<div class="control-label">
-									<?php echo $this->form->getLabel('iso_code_2'); ?>
-								</div>
-								<div class="controls">
-									<?php echo $this->form->getInput('iso_code_2'); ?>
-								</div>
-							</div>
-							<div class="control-group">
-								<div class="control-label">
-									<?php echo $this->form->getLabel('iso_code_3'); ?>
-								</div>
-								<div class="controls">
-									<?php echo $this->form->getInput('iso_code_3'); ?>
-								</div>
-							</div>
-							<div class="control-group">
-								<div class="control-label">
-									<?php echo $this->form->getLabel('address_format'); ?>
-								</div>
-								<div class="controls">
-									<?php echo $this->form->getInput('address_format'); ?>
-								</div>
-							</div>
-							<div class="control-group">
-								<div class="control-label">
-									<?php echo $this->form->getLabel('postcode_required'); ?>
-								</div>
-								<div class="controls">
-									<?php echo $this->form->getInput('postcode_required'); ?>
-								</div>
-							</div>
-							<div class="control-group">
-								<div class="control-label">
-									<?php echo $this->form->getLabel('published'); ?>
-								</div>
-								<div class="controls">
-									<?php echo $this->form->getInput('published'); ?>
-								</div>
-							</div>
-						</fieldset>
+					<div class="tab-pane active" id="personal">
+                        <?php echo $this->loadTemplate('personal'); ?>
 					</div>
+                    <div class="tab-pane" id="contact">
+                        <?php echo $this->loadTemplate('contact'); ?>
+                    </div>
 				</div>
 
 				<input type="hidden" name="task" value="" />

@@ -10,53 +10,95 @@
 		       class="readonly"
 		       labelclass="control-label"/>
 
-		<field name="name"
+		<field name="first_name"
 		       type="text"
 		       class="inputbox"
-		       description="Country name"
-		       label="Country Name"
+		       description="First name"
+		       label="First Name"
 		       size="30"
 		       required="true"
 		       labelclass="control-label"/>
 
-		<field name="iso_code_2"
+		<field name="middle_name"
 		       type="text"
 		       class="inputbox"
-		       label="ISO Code Name 2"
-		       description="ISO Code Name 2"
+		       label="Middle name"
+		       description="Middle name"
 		       size="30"
 		       required="true"
 		       labelclass="control-label"/>
 
-		<field name="iso_code_3"
+		<field name="last_name"
 		       type="text"
 		       class="inputbox"
-		       label="ISO Code Name 3"
-		       description="ISO Code Name 3"
+		       label="Last name"
+		       description="Last name"
 		       size="30"
 		       labelclass="control-label"/>
 
-		<field name="address_format"
+		<field name="employee_code"
 		       type="text"
 		       class="inputbox"
-		       label="Address format"
-		       description="Address format"
+		       label="Employee ID"
+		       description="Employee ID"
 		       size="30"
 		       labelclass="control-label"/>
 
-		<field name="postcode_required"
-		       type="list"
+        <field name="driver_license_num"
+               type="text"
+               class="inputbox"
+               label="Driver License Number"
+               description="Driver License Number"
+               size="30"
+               labelclass="control-label"/>
+
+        <field name="driver_license_exp_date"
+               type="calendar"
+               class="inputbox"
+               label="License Expiry Date"
+               description="License Expiry Date"
+               width="90%"
+               labelclass="control-label"/>
+
+		<field name="picture"
+		       type="file"
 		       class="inputbox"
-		       label="Post code"
-		       default="1"
-		       description="Post code required"
-		       filter="safehtml"
-		       buttons="false"
-		       width="90%"
-		       labelclass="control-label">
-			<option value="1">JYES</option>
-			<option value="0">JNO</option>
-		</field>
+		       label="Photograph"
+		       description="Photograph"
+               size="30"
+		       labelclass="control-label"/>
+
+        <field name="gender"
+               type="radio"
+               label="Gender"
+               default="1"
+               description="Gender"
+               filter="safehtml"
+               buttons="false"
+               width="90%"
+               labelclass="control-label">
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+
+        <field name="marital_state_id"
+               type="maritalstates"
+               class="inputbox"
+               label="Marital Status"
+               default="1"
+               description="Marital Status"
+               filter="safehtml"
+               buttons="false"
+               width="90%"
+               labelclass="control-label"/>
+
+        <field name="birthday"
+               type="calendar"
+               class="inputbox"
+               label="Birthday"
+               description="Birthday"
+               width="90%"
+               labelclass="control-label"/>
 
 		<field name="published"
 		       type="list"
@@ -71,5 +113,95 @@
 			<option value="1">JPUBLISHED</option>
 			<option value="0">JUNPUBLISHED</option>
 		</field>
+
+        <!-- Contact tab -->
+        <field name="street1"
+               type="text"
+               class="inputbox"
+               label="Street 1"
+               description="Street 1"
+               size="30"
+               labelclass="control-label"/>
+
+        <field name="street2"
+               type="text"
+               class="inputbox"
+               label="Street 2"
+               description="Street 2"
+               size="30"
+               labelclass="control-label"/>
+
+        <field name="city"
+               type="text"
+               class="inputbox"
+               label="City"
+               description="City"
+               size="30"
+               labelclass="control-label"/>
+
+        <field name="country_id"
+               type="countries"
+               class="inputbox"
+               label="Country"
+               description="Country"
+               size="30"
+               labelclass="control-label"/>
+
+        <field name="state_id"
+               type="states"
+               class="inputbox"
+               label="Country"
+               description="Country"
+               size="30"
+               labelclass="control-label"/>
+
+        <field name="zip_code"
+               type="text"
+               class="inputbox"
+               label="Zip/Portal code"
+               description="Zip/Portal code"
+               size="30"
+               labelclass="control-label"/>
+
+        <field name="home_phone"
+               type="text"
+               class="inputbox"
+               label="Home phone"
+               description="Home phone"
+               size="30"
+               labelclass="control-label"/>
+
+        <field name="work_phone"
+               type="text"
+               class="inputbox"
+               label="Work phone"
+               description="Work phone"
+               size="30"
+               labelclass="control-label"/>
+
+        <field name="mobile_phone"
+               type="text"
+               class="inputbox"
+               label="Mobile phone"
+               description="Mobile phone"
+               size="30"
+               labelclass="control-label"/>
+
+        <field name="work_email"
+               type="text"
+               class="inputbox"
+               label="Work email"
+               description="Work email"
+               size="30"
+               labelclass="control-label"/>
+
+        <field name="other_email"
+               type="text"
+               class="inputbox"
+               label="Other email"
+               description="Other email"
+               size="30"
+               labelclass="control-label"/>
+
 	</fieldset>
 </form>
