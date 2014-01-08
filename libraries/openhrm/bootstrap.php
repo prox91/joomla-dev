@@ -8,7 +8,7 @@ require JPATH_OPENHRM . '/functions.php';
 //// Use our own base field
 //if (!class_exists('JFormField', false))
 //{
-//	$baseField = JPATH_LIBRARIES . '/redcore/joomla/form/field.php';
+//	$baseField = JPATH_LIBRARIES . '/openhrm/joomla/form/field.php';
 //
 //	if (file_exists($baseField))
 //	{
@@ -33,4 +33,4 @@ JHtml::addIncludePath(JPATH_OPENHRM . '/html');
 
 // Load library language
 //$lang = JFactory::getLanguage();
-//$lang->load('lib_redcore', JPATH_SITE);
+//$lang->load('lib_openhrm', JPATH_SITE);
