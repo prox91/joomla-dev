@@ -19,7 +19,6 @@
 		<folder>form</folder>
 		<folder>helper</folder>
 		<folder>html</folder>
-		<folder>image</folder>
 		<folder>joomla</folder>
 		<folder>layout</folder>
 		<folder>layouts</folder>
@@ -27,7 +26,6 @@
 		<folder>menu</folder>
 		<folder>modal</folder>
 		<folder>model</folder>
-		<folder>oauth2</folder>
 		<folder>pagination</folder>
 		<folder>plugin</folder>
 		<folder>table</folder>
