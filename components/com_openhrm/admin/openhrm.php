@@ -9,6 +9,9 @@
 // No direct access to this file
 defined('_JEXEC') or die;
 
+// Register component prefix
+RLoader::registerPrefix('OpenHrm', __DIR__);
+
 // Access check: is this user allowed to access the backend of this component?
 if (!JFactory::getUser()->authorise('core.manage', 'com_openhrm'))
 {

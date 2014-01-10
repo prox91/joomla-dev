@@ -25,7 +25,7 @@ JHtml::_('behavior.formvalidation');
 	}
 </script>
 <div class="ec-contain">
-	<?php echo $this->sidebar; ?>
+	<?php //echo $this->sidebar; ?>
 	<div id="ec-panel-right" class="span10">
 		<div class="ec-main-container">
 			<script type="text/javascript">

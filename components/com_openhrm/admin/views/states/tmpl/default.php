@@ -48,7 +48,7 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 	}
 </script>
 <div class="ec-contain">
-	<?php echo $this->sidebar; ?>
+	<?php //echo $this->sidebar; ?>
 	<div id="ec-panel-right" class="span10">
 		<form action="<?php echo JRoute::_('index.php?option=com_openhrm&view=states'); ?>" method="post" name="adminForm" id="adminForm">
 			<div class="ec-main-container">
@@ -93,15 +93,15 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 							<?php //echo JHtml::_('grid.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder); ?>
 							Status
 						</th>
-						<th width="20%">
+						<th width="40%">
 							<?php //echo JHtml::_('grid.sort', 'JCATEGORY', 'category_title', $listDirn, $listOrder); ?>
 							Country Name
 						</th>
-						<th width="20">
+						<th width="30%">
 							<?php //echo JHtml::_('grid.sort', 'JGRID_HEADING_CREATED_BY', 'a.created_by', $listDirn, $listOrder); ?>
 							State Name
 						</th>
-						<th width="20">
+						<th width="23%">
 							<?php //echo JHtml::_('grid.sort', 'JGRID_HEADING_CREATED_BY', 'a.created_by', $listDirn, $listOrder); ?>
 							State Code
 						</th>

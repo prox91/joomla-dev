@@ -48,7 +48,7 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 	}
 </script>
 <div class="ec-contain">
-	<?php echo $this->sidebar; ?>
+	<?php //echo $this->sidebar; ?>
 	<div id="ec-panel-right" class="span10">
 		<form action="<?php echo JRoute::_('index.php?option=com_openhrm&view=employees'); ?>" method="post" name="adminForm" id="adminForm">
 			<div class="ec-main-container">
