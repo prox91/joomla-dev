@@ -4,17 +4,17 @@
 	<property file="./deploy.properties"/>
 
 	<target name="deploy" description="Deploy extension to web server">
-        <if>
-            <equals arg1="${com.name}" arg2="" casesensitive="false" />
-            <then>
-                <echo>Don't deploy any component</echo>
-            </then>
-            <else>
-                <phingcall target="deploy_component" />
-            </else>
-        </if>
+		<if>
+			<equals arg1="${com.name}" arg2="" casesensitive="false" />
+			<then>
+				<echo>Don't deploy any component</echo>
+			</then>
+			<else>
+				<phingcall target="deploy_component" />
+			</else>
+		</if>
 
-        <if>
+		<if>
 			<equals arg1="${mod.name}" arg2="" casesensitive="false" />
 			<then>
 				<echo>Don't deploy any module</echo>
@@ -24,7 +24,26 @@
 			</else>
 		</if>
 
-        <!--
+		<if>
+			<equals arg1="${plg.name}" arg2="" casesensitive="false" />
+			<then>
+				<echo>Don't deploy any plugin</echo>
+			</then>
+			<else>
+				<phingcall target="deploy_plugin" />
+			</else>
+		</if>
+
+		<if>
+			<equals arg1="${lib.name}" arg2="" casesensitive="false" />
+			<then>
+				<echo>Don't deploy any library</echo>
+			</then>
+			<else>
+				<phingcall target="deploy_library" />
+			</else>
+		</if>
+
 		<if>
 			<equals arg1="${active.media}" arg2="true" casesensitive="false" />
 			<then>
@@ -34,59 +53,135 @@
 				<phingcall target="deploy_media" />
 			</else>
 		</if>
-		-->
-
 	</target>
 
-    <target name="deploy_component" description="Deploy the component to web server">
-        <!-- Manifest & install script -->
-        <copy todir="${des.com.admin}" overwrite="true">
-            <fileset id="com-backend-manifest" dir="${src.com}">
-                <include name="**install*"/>
-                <include name="**${com.name}.xml"/>
-            </fileset>
-        </copy>
+	<!-- Component -->
+	<target name="deploy_component" description="Deploy the component to web server">
+		<!-- Manifest & install script -->
+		<copy todir="${des.com.admin}"
+		      overwrite="true">
+			<fileset id="com-backend-manifest"
+			         dir="${src.com}">
+				<include name="**install*"/>
+				<include name="**${com.name}.xml"/>
+			</fileset>
+		</copy>
 
-        <!-- Backend of component -->
-        <copy todir="${des.com.admin}" overwrite="true">
-            <fileset id="com-backend-dir" dir="${src.com.admin}">
-                <include name="**"/>
-                <exclude name="${src.com.admin.lang}/**"/>
-            </fileset>
-        </copy>
+		<!-- Backend of component -->
+		<copy todir="${des.com.admin}"
+		      overwrite="true">
+			<fileset id="com-backend-dir"
+			         dir="${src.com.admin}">
+				<include name="**"/>
+				<exclude name="${src.com.admin.lang}/**"/>
+			</fileset>
+		</copy>
 
-        <!-- Language backend of component -->
-        <copy todir="${des.com.admin.lang}" overwrite="true">
-            <fileset dir="${src.com.admin.lang}">
-                <include name="**" />
-            </fileset>
-        </copy>
+		<!-- Language backend of component -->
+		<copy todir="${des.com.admin.lang}"
+		      overwrite="true">
+			<fileset dir="${src.com.admin.lang}">
+				<include name="**"/>
+			</fileset>
+		</copy>
 
-        <!-- Frontend of component -->
-        <copy todir="${des.com.site}" overwrite="true">
-            <fileset id="com-frontend-dir" dir="${src.com.site}">
-                <include name="**"/>
-                <exclude name="${src.com.site.lang}/**"/>
-            </fileset>
-        </copy>
+		<!-- Frontend of component -->
+		<copy todir="${des.com.site}"
+		      overwrite="true">
+			<fileset id="com-frontend-dir"
+			         dir="${src.com.site}">
+				<include name="**"/>
+				<exclude name="${src.com.site.lang}/**"/>
+			</fileset>
+		</copy>
 
-        <!-- Language frontend of component -->
-        <copy todir="${des.com.site.lang}" overwrite="true">
-            <fileset dir="${src.com.site.lang}">
-                <include name="**" />
-            </fileset>
-        </copy>
+		<!-- Language frontend of component -->
+		<copy todir="${des.com.site.lang}"
+		      overwrite="true">
+			<fileset dir="${src.com.site.lang}">
+				<include name="**"/>
+			</fileset>
+		</copy>
 
-	    <!-- Media -->
-        <!--
-	    <copy todir="${des.com.media}" overwrite="true">
-		    <fileset dir="${src.com.media}">
-			    <include name="**" />
-		    </fileset>
-	    </copy>
-	    -->
+		<!-- Media -->
+		<copy todir="${des.com.media}"
+		      overwrite="true">
+			<fileset dir="${src.com.media}">
+				<include name="**"/>
+			</fileset>
+		</copy>
+	</target>
 
-    </target>
+	<!-- Module -->
+	<target name="deploy_module" description="Deploy the module to the web server">
+		<!-- Module -->
+		<copy todir="${des.mod}"
+			overwrite="true">
+			<fileset id="mod-dir"
+			         dir="${src.mod}">
+				<include name="**"/>
+				<exclude name="${src.mod.lang}/**"/>
+			</fileset>
+		</copy>
+
+		<!-- Language -->
+		<copy todir="${des.mod.lang}"
+		      overwrite="true">
+			<fileset id="mod-dir"
+			         dir="${src.mod.lang}">
+				<include name="**"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- Plugin -->
+	<target name="deploy_plugin" description="Deploy the plugin to web server">
+		<copy todir="${des.plg}" overwrite="true">
+			<fileset id="plg-dir" dir="${src.plg}">
+				<include name="**"/>
+				<exclude name="**${src.plg.lang}/**"/>
+			</fileset>
+		</copy>
+
+		<!-- Language -->
+		<copy todir="${des.plg.lang}" overwrite="true">
+			<fileset id="plg-dir" dir="${src.plg.lang}">
+				<include name="**"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- Library -->
+	<target name="deploy_library" description="Deploy the library to web server">
+		<copy todir="${des.lib}" overwrite="true">
+			<fileset id="lib-dir" dir="${src.lib}">
+				<include name="**"/>
+				<exclude name="${src.lib.lang}"/>
+				<exclude name="**${lib.name}.xml"/>
+			</fileset>
+		</copy>
+
+		<!-- Language -->
+		<copy todir="${des.lib.lang}" overwrite="true">
+			<fileset id="lib-lang" dir="${src.lib.lang}">
+				<include name="**"/>
+			</fileset>
+		</copy>
+
+		<!-- Media -->
+		<copy todir="${des.lib.media}" overwrite="true">
+			<fileset id="lib-manifest" dir="${src.lib.media}">
+				<include name="**"/>
+			</fileset>
+		</copy>
+
+		<!-- Manifest & install script -->
+		<copy todir="${des.lib.manifest}" overwrite="true">
+			<fileset id="lib-manifest" dir="${src.lib}">
+				<include name="**${lib.name}.xml"/>
+			</fileset>
+		</copy>
+	</target>
 
 	<!-- Media -->
 	<target name="deploy_media" description="Deploy the media folder to the web server">
@@ -96,25 +191,4 @@
 			</fileset>
 		</copy>
 	</target>
-
-	<target name="deploy_module" description="Deploy the module to the web server">
-        <!-- Module -->
-        <copy todir="${des.mod}" overwrite="true">
-            <fileset id="mod-dir" dir="${src.mod}">
-                <include name="**"/>
-                <exclude name="${src.mod.lang}/**"/>
-            </fileset>
-        </copy>
-
-        <!-- Language -->
-        <copy todir="${des.mod.lang}" overwrite="true">
-            <fileset id="mod-dir" dir="${src.mod.lang}">
-                <include name="**"/>
-            </fileset>
-        </copy>
-	</target>
-
-    <target name="deploy_plugin" description="Deploy the plugin to web server">
-
-    </target>
 </project>
