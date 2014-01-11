@@ -36,69 +36,71 @@ JHtml::_('behavior.formvalidation');
 		}
 	}
 </script>
-<form enctype="multipart/form-data"
-	action="<?php JRoute::_('index.php?option=com_openhrm&view=country'); ?>" method="post" name="itemForm" id="itemForm"
-	class="form-validate form-horizontal">
-	<ul class="nav nav-tabs">
-		<li class="active"><a href="#general" data-toggle="tab"><?php echo JText::_('General')?></a></li>
-	</ul>
+<div class="main-container">
+	<form enctype="multipart/form-data"
+		action="<?php JRoute::_('index.php?option=com_openhrm&view=country'); ?>" method="post" name="itemForm" id="itemForm"
+		class="form-validate form-horizontal">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#general" data-toggle="tab"><?php echo JText::_('General')?></a></li>
+		</ul>
 
-	<div class="tab-content">
-		<div class="tab-pane active" id="general">
-			<fieldset class="adminform">
-				<div class="control-group">
-					<div class="control-label">
-						<?php echo $this->form->getLabel('name'); ?>
+		<div class="tab-content">
+			<div class="tab-pane active" id="general">
+				<fieldset class="adminform">
+					<div class="control-group">
+						<div class="control-label">
+							<?php echo $this->form->getLabel('name'); ?>
+						</div>
+						<div class="controls">
+							<?php echo $this->form->getInput('name'); ?>
+						</div>
 					</div>
-					<div class="controls">
-						<?php echo $this->form->getInput('name'); ?>
+					<div class="control-group">
+						<div class="control-label">
+							<?php echo $this->form->getLabel('iso_code_2'); ?>
+						</div>
+						<div class="controls">
+							<?php echo $this->form->getInput('iso_code_2'); ?>
+						</div>
 					</div>
-				</div>
-				<div class="control-group">
-					<div class="control-label">
-						<?php echo $this->form->getLabel('iso_code_2'); ?>
+					<div class="control-group">
+						<div class="control-label">
+							<?php echo $this->form->getLabel('iso_code_3'); ?>
+						</div>
+						<div class="controls">
+							<?php echo $this->form->getInput('iso_code_3'); ?>
+						</div>
 					</div>
-					<div class="controls">
-						<?php echo $this->form->getInput('iso_code_2'); ?>
+					<div class="control-group">
+						<div class="control-label">
+							<?php echo $this->form->getLabel('address_format'); ?>
+						</div>
+						<div class="controls">
+							<?php echo $this->form->getInput('address_format'); ?>
+						</div>
 					</div>
-				</div>
-				<div class="control-group">
-					<div class="control-label">
-						<?php echo $this->form->getLabel('iso_code_3'); ?>
+					<div class="control-group">
+						<div class="control-label">
+							<?php echo $this->form->getLabel('postcode_required'); ?>
+						</div>
+						<div class="controls">
+							<?php echo $this->form->getInput('postcode_required'); ?>
+						</div>
 					</div>
-					<div class="controls">
-						<?php echo $this->form->getInput('iso_code_3'); ?>
+					<div class="control-group">
+						<div class="control-label">
+							<?php echo $this->form->getLabel('published'); ?>
+						</div>
+						<div class="controls">
+							<?php echo $this->form->getInput('published'); ?>
+						</div>
 					</div>
-				</div>
-				<div class="control-group">
-					<div class="control-label">
-						<?php echo $this->form->getLabel('address_format'); ?>
-					</div>
-					<div class="controls">
-						<?php echo $this->form->getInput('address_format'); ?>
-					</div>
-				</div>
-				<div class="control-group">
-					<div class="control-label">
-						<?php echo $this->form->getLabel('postcode_required'); ?>
-					</div>
-					<div class="controls">
-						<?php echo $this->form->getInput('postcode_required'); ?>
-					</div>
-				</div>
-				<div class="control-group">
-					<div class="control-label">
-						<?php echo $this->form->getLabel('published'); ?>
-					</div>
-					<div class="controls">
-						<?php echo $this->form->getInput('published'); ?>
-					</div>
-				</div>
-			</fieldset>
+				</fieldset>
+			</div>
 		</div>
-	</div>
 
-	<input type="hidden" name="task" value="" />
-	<input type="hidden" name="jform[id]" value="<?php if (isset($this->item->id))	{	echo $this->item->id;	} ?>" />
-	<?php echo JHtml::_('form.token'); ?>
-</form>
+		<input type="hidden" name="task" value="" />
+		<input type="hidden" name="jform[id]" value="<?php if (isset($this->item->id))	{	echo $this->item->id;	} ?>" />
+		<?php echo JHtml::_('form.token'); ?>
+	</form>
+</div>

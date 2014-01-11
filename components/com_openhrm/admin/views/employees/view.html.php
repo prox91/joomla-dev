@@ -9,10 +9,17 @@
 // No direct access to this file
 defined('_JEXEC') or die;
 
-class OpenHrmViewEmployees extends ECViewAdmin
+class OpenHrmViewEmployees extends OpenHrmViewAdmin
 {
 	protected $items;
 	protected $pagination;
+
+	/**
+	 * Do we have to display a sidebar ?
+	 *
+	 * @var  boolean
+	 */
+	protected $displaySidebar = false;
 
 	/**
 	 * Display function
@@ -52,6 +59,16 @@ class OpenHrmViewEmployees extends ECViewAdmin
 			//JToolbarHelper::preferences('com_openhrm');
 			//JToolbarHelper::divider();
 		}
+	}
+
+	/**
+	 * Get the view title.
+	 *
+	 * @return  string  The view title.
+	 */
+	public function getTitle()
+	{
+		return JText::_('COM_OPENHRM_EMPLOYEE_TITLE');
 	}
 
 	public function setDocument()

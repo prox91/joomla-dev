@@ -18,112 +18,71 @@ if( isset($data['active']) )
 }
 ?>
 <ul class="nav nav-tabs nav-stacked">
-	<?php if ($active === 'configures' || $active === 'accesstokens' || $active === 'profiles') : ?>
-		<li>
-			<a href="<?php echo JRoute::_('index.php?option=com_redsocialstream&view=dashboard') ?>">
+	<li>
+		<?php if ($active === 'countries') : ?>
+			<a class="active" href="<?php echo JRoute::_('index.php?option=com_openhrm&view=countries') ?>">
 				<i class="icon-dashboard"></i>
-				<?php echo JText::_('COM_REDSOCIALSTREAM_DASHBOARD_TITLE') ?>
+				<?php echo JText::_('OPENHRM_SUBMENU_COUNTRY_LIST') ?>
 			</a>
-		</li>
-		<li>
-			<?php if ($active === 'profiles') : ?>
-				<a class="active" href="<?php echo JRoute::_('index.php?option=com_redsocialstream&view=profiles') ?>">
-					<i class="icon-ticket"></i>
-					<?php echo JText::_('COM_REDSOCIALSTREAM_PROFILES_LIST_TITLE') ?>
-				</a>
-			<?php else : ?>
-				<a href="<?php echo JRoute::_('index.php?option=com_redsocialstream&view=profiles') ?>">
-					<i class="icon-ticket"></i>
-					<?php echo JText::_('COM_REDSOCIALSTREAM_PROFILES_LIST_TITLE') ?>
-				</a>
-			<?php endif; ?>
-		</li>
-		<li>
-			<?php if ($active === 'configures') : ?>
-				<a class="active" href="<?php echo JRoute::_('index.php?option=com_redsocialstreamb&view=configures') ?>">
-					<i class="icon-ticket"></i>
-					<?php echo JText::_('COM_REDSOCIALSTREAM_CONFIGURES_LIST_TITLE') ?>
-				</a>
-			<?php else : ?>
-				<a href="<?php echo JRoute::_('index.php?option=com_redsocialstream&view=configures') ?>">
-					<i class="icon-ticket"></i>
-					<?php echo JText::_('COM_REDSOCIALSTREAM_CONFIGURES_LIST_TITLE') ?>
-				</a>
-			<?php endif; ?>
-		</li>
-		<li>
-			<?php if ($active === 'accesstokens') : ?>
-				<a class="active" href="<?php echo JRoute::_('index.php?option=com_redsocialstreamb&view=accesstokens') ?>">
-					<i class="icon-ticket"></i>
-					<?php echo JText::_('COM_REDSOCIALSTREAM_ACCESSTOKENS_LIST_TITLE') ?>
-				</a>
-			<?php else : ?>
-				<a href="<?php echo JRoute::_('index.php?option=com_redsocialstream&view=accesstokens') ?>">
-					<i class="icon-ticket"></i>
-					<?php echo JText::_('COM_REDSOCIALSTREAM_ACCESSTOKENS_LIST_TITLE') ?>
-				</a>
-			<?php endif; ?>
-		</li>
-	<?php else : ?>
-		<li>
-			<?php if ($active === 'dashboard') : ?>
-				<a class="active" href="<?php echo JRoute::_('index.php?option=com_redsocialstreamb&view=dashboard') ?>">
-					<i class="icon-dashboard"></i>
-					<?php echo JText::_('COM_REDSOCIALSTREAM_DASHBOARD_TITLE') ?>
-				</a>
-			<?php else : ?>
-				<a href="<?php echo JRoute::_('index.php?option=com_redsocialstream&view=dashboard') ?>">
-					<i class="icon-dashboard"></i>
-					<?php echo JText::_('COM_REDSOCIALSTREAM_DASHBOARD_TITLE') ?>
-				</a>
-			<?php endif; ?>
-		</li>
-		<li>
-			<?php if ($active === 'groups') : ?>
-				<a class="active" href="<?php echo JRoute::_('index.php?option=com_redsocialstreamb&view=groups') ?>">
-					<i class="icon-dashboard"></i>
-					<?php echo JText::_('COM_REDSOCIALSTREAM_GROUPS_LIST_TITLE') ?>
-				</a>
-			<?php else : ?>
-				<a href="<?php echo JRoute::_('index.php?option=com_redsocialstream&view=groups') ?>">
-					<i class="icon-dashboard"></i>
-					<?php echo JText::_('COM_REDSOCIALSTREAM_GROUPS_LIST_TITLE') ?>
-				</a>
-			<?php endif; ?>
-		</li>
-		<li>
-			<?php if ($active === 'profiles') : ?>
-				<a class="active" href="<?php echo JRoute::_('index.php?option=com_redsocialstream&view=profiles') ?>">
-					<i class="icon-ticket"></i>
-					<?php echo JText::_('COM_REDSOCIALSTREAM_PROFILES_LIST_TITLE') ?>
-				</a>
-			<?php else : ?>
-				<a href="<?php echo JRoute::_('index.php?option=com_redsocialstream&view=profiles') ?>">
-					<i class="icon-ticket"></i>
-					<?php echo JText::_('COM_REDSOCIALSTREAM_PROFILES_LIST_TITLE') ?>
-				</a>
-			<?php endif; ?>
-		</li>
-		<li>
-			<?php if ($active === 'posts') : ?>
-				<a class="active" href="<?php echo JRoute::_('index.php?option=com_redsocialstream&view=posts') ?>">
-					<i class="icon-ticket"></i>
-					<?php echo JText::_('COM_REDSOCIALSTREAM_POSTS_LIST_TITLE') ?>
-				</a>
-			<?php else : ?>
-				<a href="<?php echo JRoute::_('index.php?option=com_redsocialstream&view=posts') ?>">
-					<i class="icon-ticket"></i>
-					<?php echo JText::_('COM_REDSOCIALSTREAM_POSTS_LIST_TITLE') ?>
-				</a>
-			<?php endif; ?>
-		</li>
-		<li>
-			<a href="<?php echo JRoute::_('index.php?option=com_redsocialstream&view=configures') ?>">
+		<?php else : ?>
+			<a href="<?php echo JRoute::_('index.php?option=com_openhrm&view=countries') ?>">
+				<i class="icon-dashboard"></i>
+				<?php echo JText::_('OPENHRM_SUBMENU_COUNTRY_LIST') ?>
+			</a>
+		<?php endif; ?>
+	</li>
+	<li>
+		<?php if ($active === 'states') : ?>
+			<a class="active" href="<?php echo JRoute::_('index.php?option=com_openhrm&view=states') ?>">
+				<i class="icon-dashboard"></i>
+				<?php echo JText::_('OPENHRM_SUBMENU_STATE_LIST') ?>
+			</a>
+		<?php else : ?>
+			<a href="<?php echo JRoute::_('index.php?option=com_openhrm&view=states') ?>">
+				<i class="icon-dashboard"></i>
+				<?php echo JText::_('OPENHRM_SUBMENU_STATE_LIST') ?>
+			</a>
+		<?php endif; ?>
+	</li>
+	<li>
+		<?php if ($active === 'organizationinfo') : ?>
+			<a class="active" href="<?php echo JRoute::_('index.php?option=com_openhrm&view=organizationinfo') ?>">
 				<i class="icon-ticket"></i>
-				<?php echo JText::_('COM_REDSOCIALSTREAM_CONFIGURES_LIST_TITLE') ?>
+				<?php echo JText::_('OPENHRM_SUBMENU_ORGANIZATIONINFO_LIST') ?>
 			</a>
-		</li>
-	<?php endif; ?>
+		<?php else : ?>
+			<a href="<?php echo JRoute::_('index.php?option=com_openhrm&view=organizationinfo') ?>">
+				<i class="icon-ticket"></i>
+				<?php echo JText::_('OPENHRM_SUBMENU_ORGANIZATIONINFO_LIST') ?>
+			</a>
+		<?php endif; ?>
+	</li>
+	<li>
+		<?php if ($active === 'configures') : ?>
+			<a class="active" href="<?php echo JRoute::_('index.php?option=com_openhrm&view=configures') ?>">
+				<i class="icon-ticket"></i>
+				<?php echo JText::_('OPENHRM_SUBMENU_SETTING_LIST') ?>
+			</a>
+		<?php else : ?>
+			<a href="<?php echo JRoute::_('index.php?option=com_openhrm&view=configures') ?>">
+				<i class="icon-ticket"></i>
+				<?php echo JText::_('OPENHRM_SUBMENU_SETTING_LIST') ?>
+			</a>
+		<?php endif; ?>
+	</li>
+	<li>
+		<?php if ($active === 'maritalstates') : ?>
+			<a class="active" href="<?php echo JRoute::_('index.php?option=com_openhrm&view=maritalstates') ?>">
+				<i class="icon-ticket"></i>
+				<?php echo JText::_('OPENHRM_SUBMENU_SETTING_LIST') ?>
+			</a>
+		<?php else : ?>
+			<a href="<?php echo JRoute::_('index.php?option=com_openhrm&view=maritalstates') ?>">
+				<i class="icon-ticket"></i>
+				<?php echo JText::_('OPENHRM_SUBMENU_MARITALSTATE_LIST') ?>
+			</a>
+		<?php endif; ?>
+	</li>
 </ul>
 
 

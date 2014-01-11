@@ -9,7 +9,7 @@
 // No direct access to this file
 defined('_JEXEC') or die;
 
-class OpenHrmViewOrganizationInfo extends ECViewAdmin
+class OpenHrmViewOrganizationInfo extends OpenHrmViewAdmin
 {
 	protected $state;
 	protected $item;
@@ -50,6 +50,16 @@ class OpenHrmViewOrganizationInfo extends ECViewAdmin
 		JToolBarHelper::apply('organizationinfo.apply', 'JToolbar_Apply');
 		JToolBarHelper::save('organizationinfo.save', 'JToolbar_Save');
 		JToolBarHelper::cancel('organizationinfo.cancel', 'JToolbar_Cancel');
+	}
+
+	/**
+	 * Get the view title.
+	 *
+	 * @return  string  The view title.
+	 */
+	public function getTitle()
+	{
+		return JText::_('COM_OPENHRM_ORGANIZATIONINFO_TITLE');
 	}
 
 	public function setDocument()

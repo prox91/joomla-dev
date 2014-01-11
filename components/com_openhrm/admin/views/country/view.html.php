@@ -9,7 +9,7 @@
 // No direct access to this file
 defined('_JEXEC') or die;
 
-class OpenHrmViewCountry extends ECViewAdmin
+class OpenHrmViewCountry extends OpenHrmViewAdmin
 {
 	protected $state;
 	protected $item;
@@ -30,9 +30,6 @@ class OpenHrmViewCountry extends ECViewAdmin
 			return false;
 		}
 
-		// Set the tool bar
-		$this->addToolbar();
-
 		// Display the template
 		parent::display($tpl);
 
@@ -40,15 +37,57 @@ class OpenHrmViewCountry extends ECViewAdmin
 		$this->setDocument();
 	}
 
-	public function addToolbar()
+	/**
+	 * Get the toolbar to render.
+	 *
+	 * @return  RToolbar
+	 */
+	public function getToolbar()
 	{
-		//JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
-		JHtml::_('behavior.tooltip');
+		$canDo = OpenHrmHelpersAcl::getActions($this->state->get('filter.country_id'));
+		$user = JFactory::getUser();
 
-		JToolbarHelper::title(JText::_('COM_OPENHRM_COUNTRY_TITLE'));
-		JToolBarHelper::apply('country.apply', 'JToolbar_Apply');
-		JToolBarHelper::save('country.save', 'JToolbar_Save');
-		JToolBarHelper::cancel('country.cancel', 'JToolbar_Cancel');
+		$firstGroup = new RToolbarButtonGroup;
+		$secondGroup = new RToolbarButtonGroup;
+		$thirdGroup = new RToolbarButtonGroup;
+
+		if ($user->authorise('core.admin', 'com_openhrm.panel'))
+		{
+			// Add / edit
+			//if ($canDo->get('core.create') || (count($user->getAuthorisedCategories('com_openhrm', 'core.create'))) > 0)
+			{
+				$save = RToolbarBuilder::createSaveButton('country.apply');
+				$saveNew = RToolbarBuilder::createSaveAndNewButton('country.savenew');
+				$saveClose = RToolbarBuilder::createSaveAndCloseButton('country.save');
+				$secondGroup->addButton($save)
+							->addButton($saveNew)
+							->addButton($saveClose);
+			}
+
+			// Delete / Revoke
+			//if ($canDo->get('core.delete'))
+			{
+				$cancel = RToolbarBuilder::createDeleteButton('country.cancel');
+				$thirdGroup->addButton($cancel);
+			}
+		}
+
+		$toolbar = new RToolbar;
+		$toolbar->addGroup($firstGroup)
+			->addGroup($secondGroup)
+			->addGroup($thirdGroup);
+
+		return $toolbar;
+	}
+
+	/**
+	 * Get the view title.
+	 *
+	 * @return  string  The view title.
+	 */
+	public function getTitle()
+	{
+		return JText::_('COM_OPENHRM_COUNTRY_TITLE');
 	}
 
 	public function setDocument()

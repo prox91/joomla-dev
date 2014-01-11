@@ -177,7 +177,7 @@ if ($result instanceof Exception)
 	});
 </script>
 <?php if ($view->getLayout() === 'modal') : ?>
-	<div class="row-fluid redcore">
+	<div class="row-fluid openhrm">
 		<section id="component">
 			<div class="row-fluid message-sys"></div>
 			<div class="row-fluid">
@@ -186,7 +186,7 @@ if ($result instanceof Exception)
 		</section>
 	</div>
 <?php elseif ($templateComponent) : ?>
-	<div class="container-fluid redcore">
+	<div class="container-fluid openhrm">
 		<div class="span12 content">
 			<section id="component">
 				<div class="row-fluid">
@@ -202,7 +202,7 @@ if ($result instanceof Exception)
 	</div>
 <?php
 else : ?>
-	<div class="redcore">
+	<div class="openhrm">
 		<div class="container-fluid">
 			<?php if ($displayTopbar) : ?>
 				<?php echo RLayoutHelper::render($topbarLayout, $topbarData) ?>
@@ -217,14 +217,16 @@ else : ?>
 					<div class="span12 content">
 				<?php endif; ?>
 						<section id="component">
-							<div class="row-fluid">
-								<h1><?php echo $view->getTitle() ?></h1>
-							</div>
-							<?php if ($toolbar instanceof RToolbar) : ?>
-								<div class="row-fluid">
-									<?php echo $toolbar->render() ?>
+							<div class="row-fluid heading">
+								<div class="title span4">
+									<h3><?php echo $view->getTitle() ?></h3>
 								</div>
-							<?php endif; ?>
+								<?php if ($toolbar instanceof RToolbar) : ?>
+									<div class="span8">
+									<?php echo $toolbar->render() ?>
+									</div>
+								<?php endif; ?>
+							</div>
 							<div class="row-fluid message-sys"></div>
 							<div class="row-fluid">
 								<?php echo $result ?>
@@ -234,7 +236,7 @@ else : ?>
 			</div>
 		</div>
 		<footer class="footer pagination-centered navbar navbar-fixed-bottom hidden-phone">
-			Copyright 2013 redcomponent.com. All rights reserved.
+			Copyright 2013 ntksoft.com. All rights reserved.
 		</footer>
 	</div>
 <?php endif; ?>

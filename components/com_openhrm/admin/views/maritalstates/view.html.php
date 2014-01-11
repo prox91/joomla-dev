@@ -9,7 +9,7 @@
 // No direct access to this file
 defined('_JEXEC') or die;
 
-class OpenHrmViewMaritalStates extends ECViewAdmin
+class OpenHrmViewMaritalStates extends OpenHrmViewAdmin
 {
 	protected $items;
 	protected $pagination;
@@ -52,6 +52,16 @@ class OpenHrmViewMaritalStates extends ECViewAdmin
 			//JToolbarHelper::preferences('com_openhrm');
 			//JToolbarHelper::divider();
 		}
+	}
+
+	/**
+	 * Get the view title.
+	 *
+	 * @return  string  The view title.
+	 */
+	public function getTitle()
+	{
+		return JText::_('COM_OPENHRM_MARITALSTATE_TITLE');
 	}
 
 	public function setDocument()

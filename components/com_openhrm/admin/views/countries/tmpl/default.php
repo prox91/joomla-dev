@@ -48,7 +48,7 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 	}
 </script>
 <form action="<?php echo JRoute::_('index.php?option=com_openhrm&view=countries'); ?>" method="post" name="adminForm" id="adminForm">
-	<div class="ec-main-container">
+	<div class="main-container">
 		<div id="filter-bar" class="btn-toolbar">
 			<div class="filter-search btn-group pull-left">
 				<label for="filter_search" class="element-invisible"><?php echo JText::_('COM_OPENHRM_FILTER_COUNTRY_NAME_DESC'); ?></label>

@@ -113,7 +113,6 @@ if ($displayJoomlaMenu)
 					<i class="icon-undo"></i> Back to Joomla
 				</a>
 				<?php endif; ?>
-				<span class="divider-vertical pull-left"></span>
 			<?php endif; ?>
 			<a class="brand" href="<?php echo $componentUri ?>"><?php echo $componentTitle ?></a>
 			<div class="nav-collapse hidden-phone hidden-tablet">

@@ -20,7 +20,7 @@ if (!JFactory::getUser()->authorise('core.manage', 'com_openhrm'))
 
 // require helper file
 JLoader::register('OpenHrm', dirname(__FILE__) . '/helpers/openhrm.php');
-require_once (JPATH_ADMINISTRATOR . '/components/com_openhrm/classes/ec.view.admin.php');
+require_once (JPATH_ADMINISTRATOR . '/components/com_openhrm/classes/admin.view.php');
 
 // Get an instance of the controller
 $controller = JControllerLegacy::getInstance('OpenHrm');

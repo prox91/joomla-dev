@@ -6,26 +6,15 @@
  * Time: 11:13 AM
  * To change this template use File | Settings | File Templates.
  */
-require_once (JPATH_COMPONENT . '/helpers/sidebar.php');
-
-class ECViewAdmin extends RView
-//class ECViewAdmin extends JViewLegacy
+class OpenHrmViewAdmin extends RView
 {
-//    public function __construct($config = array())
-//    {
-//        // Side bar
-//        $this->sidebar = OpenHrmHelperSideBar::getSideNavigation();
-//
-//        parent::__construct($config);
-//    }
-
 	/**
 	 * The component title to display in the topbar layout (if using it).
 	 * It can be html.
 	 *
 	 * @var string
 	 */
-	protected $componentTitle = 'red<strong>SOCIALSTREAM</strong>';
+	protected $componentTitle = '';
 
 	/**
 	 * Do we have to display a sidebar ?

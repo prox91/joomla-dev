@@ -97,6 +97,6 @@ if ($result instanceof Exception)
 	return $result;
 }
 ?>
-<div class="redcore">
+<div class="openhrm">
 	<?php echo $result; ?>
 </div>
