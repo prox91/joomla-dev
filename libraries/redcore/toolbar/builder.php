@@ -51,7 +51,7 @@ final class RToolbarBuilder
 			$class .= ' btn-success';
 		}
 
-		return new RToolbarButtonStandard('JTOOLBAR_NEW', $task, $class, 'icon-file-text-alt', '', false);
+		return new RToolbarButtonStandard('JTOOLBAR_NEW', $task, $class, 'icon-plus', '', false);
 	}
 
 	/**
@@ -64,7 +64,7 @@ final class RToolbarBuilder
 	 */
 	public static function createPublishButton($task, $class = '')
 	{
-		return new RToolbarButtonStandard('JTOOLBAR_PUBLISH', $task, $class, 'icon-plus-sign');
+		return new RToolbarButtonStandard('JTOOLBAR_PUBLISH', $task, $class, 'icon-check-sign');
 	}
 
 	/**

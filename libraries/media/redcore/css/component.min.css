@@ -1,9 +1,5 @@
 /*!
- * openhrm v1.0.0
- *
- * Copyright (C) 2008 - 2013 redCOMPONENT.com. All rights reserved
- * Licensed under the GNU General Public License version 2 or later.
- * http://www.gnu.org/licenses/gpl-2.0.html
+ * openHRM v1.0.0
  *
  * Based on Twitter Bootstrap v.2.3.2
  * http://getbootstrap.com/2.3.2/
@@ -1774,7 +1770,7 @@
 }
 .openhrm .table {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .openhrm .table th,
 .openhrm .table td {
@@ -2002,8 +1998,8 @@
 .openhrm .table-hover tbody tr.info:hover > td {
     background-color: #c4e3f3;
 }
-.openhrm [class^="icon-"],
-.openhrm [class*=" icon-"] {
+.redcore [class^="icon-"],
+.redcore [class*=" icon-"] {
     display: inline-block;
     width: 14px;
     height: 14px;
@@ -2015,450 +2011,450 @@
     background-repeat: no-repeat;
     margin-top: 1px;
 }
-.openhrm .icon-white,
-.openhrm .nav-pills > .active > a > [class^="icon-"],
-.openhrm .nav-pills > .active > a > [class*=" icon-"],
-.openhrm .nav-list > .active > a > [class^="icon-"],
-.openhrm .nav-list > .active > a > [class*=" icon-"],
-.openhrm .navbar-inverse .nav > .active > a > [class^="icon-"],
-.openhrm .navbar-inverse .nav > .active > a > [class*=" icon-"],
-.openhrm .dropdown-menu > li > a:hover > [class^="icon-"],
-.openhrm .dropdown-menu > li > a:focus > [class^="icon-"],
-.openhrm .dropdown-menu > li > a:hover > [class*=" icon-"],
-.openhrm .dropdown-menu > li > a:focus > [class*=" icon-"],
-.openhrm .dropdown-menu > .active > a > [class^="icon-"],
-.openhrm .dropdown-menu > .active > a > [class*=" icon-"],
-.openhrm .dropdown-submenu:hover > a > [class^="icon-"],
-.openhrm .dropdown-submenu:focus > a > [class^="icon-"],
-.openhrm .dropdown-submenu:hover > a > [class*=" icon-"],
-.openhrm .dropdown-submenu:focus > a > [class*=" icon-"] {
+.redcore .icon-white,
+.redcore .nav-pills > .active > a > [class^="icon-"],
+.redcore .nav-pills > .active > a > [class*=" icon-"],
+.redcore .nav-list > .active > a > [class^="icon-"],
+.redcore .nav-list > .active > a > [class*=" icon-"],
+.redcore .navbar-inverse .nav > .active > a > [class^="icon-"],
+.redcore .navbar-inverse .nav > .active > a > [class*=" icon-"],
+.redcore .dropdown-menu > li > a:hover > [class^="icon-"],
+.redcore .dropdown-menu > li > a:focus > [class^="icon-"],
+.redcore .dropdown-menu > li > a:hover > [class*=" icon-"],
+.redcore .dropdown-menu > li > a:focus > [class*=" icon-"],
+.redcore .dropdown-menu > .active > a > [class^="icon-"],
+.redcore .dropdown-menu > .active > a > [class*=" icon-"],
+.redcore .dropdown-submenu:hover > a > [class^="icon-"],
+.redcore .dropdown-submenu:focus > a > [class^="icon-"],
+.redcore .dropdown-submenu:hover > a > [class*=" icon-"],
+.redcore .dropdown-submenu:focus > a > [class*=" icon-"] {
     background-image: url("../img/glyphicons-halflings-white.png");
 }
-.openhrm .icon-glass {
+.redcore .icon-glass {
     background-position: 0      0;
 }
-.openhrm .icon-music {
+.redcore .icon-music {
     background-position: -24px 0;
 }
-.openhrm .icon-search {
+.redcore .icon-search {
     background-position: -48px 0;
 }
-.openhrm .icon-envelope {
+.redcore .icon-envelope {
     background-position: -72px 0;
 }
-.openhrm .icon-heart {
+.redcore .icon-heart {
     background-position: -96px 0;
 }
-.openhrm .icon-star {
+.redcore .icon-star {
     background-position: -120px 0;
 }
-.openhrm .icon-star-empty {
+.redcore .icon-star-empty {
     background-position: -144px 0;
 }
-.openhrm .icon-user {
+.redcore .icon-user {
     background-position: -168px 0;
 }
-.openhrm .icon-film {
+.redcore .icon-film {
     background-position: -192px 0;
 }
-.openhrm .icon-th-large {
+.redcore .icon-th-large {
     background-position: -216px 0;
 }
-.openhrm .icon-th {
+.redcore .icon-th {
     background-position: -240px 0;
 }
-.openhrm .icon-th-list {
+.redcore .icon-th-list {
     background-position: -264px 0;
 }
-.openhrm .icon-ok {
+.redcore .icon-ok {
     background-position: -288px 0;
 }
-.openhrm .icon-remove {
+.redcore .icon-remove {
     background-position: -312px 0;
 }
-.openhrm .icon-zoom-in {
+.redcore .icon-zoom-in {
     background-position: -336px 0;
 }
-.openhrm .icon-zoom-out {
+.redcore .icon-zoom-out {
     background-position: -360px 0;
 }
-.openhrm .icon-off {
+.redcore .icon-off {
     background-position: -384px 0;
 }
-.openhrm .icon-signal {
+.redcore .icon-signal {
     background-position: -408px 0;
 }
-.openhrm .icon-cog {
+.redcore .icon-cog {
     background-position: -432px 0;
 }
-.openhrm .icon-trash {
+.redcore .icon-trash {
     background-position: -456px 0;
 }
-.openhrm .icon-home {
+.redcore .icon-home {
     background-position: 0 -24px;
 }
-.openhrm .icon-file {
+.redcore .icon-file {
     background-position: -24px -24px;
 }
-.openhrm .icon-time {
+.redcore .icon-time {
     background-position: -48px -24px;
 }
-.openhrm .icon-road {
+.redcore .icon-road {
     background-position: -72px -24px;
 }
-.openhrm .icon-download-alt {
+.redcore .icon-download-alt {
     background-position: -96px -24px;
 }
-.openhrm .icon-download {
+.redcore .icon-download {
     background-position: -120px -24px;
 }
-.openhrm .icon-upload {
+.redcore .icon-upload {
     background-position: -144px -24px;
 }
-.openhrm .icon-inbox {
+.redcore .icon-inbox {
     background-position: -168px -24px;
 }
-.openhrm .icon-play-circle {
+.redcore .icon-play-circle {
     background-position: -192px -24px;
 }
-.openhrm .icon-repeat {
+.redcore .icon-repeat {
     background-position: -216px -24px;
 }
-.openhrm .icon-refresh {
+.redcore .icon-refresh {
     background-position: -240px -24px;
 }
-.openhrm .icon-list-alt {
+.redcore .icon-list-alt {
     background-position: -264px -24px;
 }
-.openhrm .icon-lock {
+.redcore .icon-lock {
     background-position: -287px -24px;
 }
-.openhrm .icon-flag {
+.redcore .icon-flag {
     background-position: -312px -24px;
 }
-.openhrm .icon-headphones {
+.redcore .icon-headphones {
     background-position: -336px -24px;
 }
-.openhrm .icon-volume-off {
+.redcore .icon-volume-off {
     background-position: -360px -24px;
 }
-.openhrm .icon-volume-down {
+.redcore .icon-volume-down {
     background-position: -384px -24px;
 }
-.openhrm .icon-volume-up {
+.redcore .icon-volume-up {
     background-position: -408px -24px;
 }
-.openhrm .icon-qrcode {
+.redcore .icon-qrcode {
     background-position: -432px -24px;
 }
-.openhrm .icon-barcode {
+.redcore .icon-barcode {
     background-position: -456px -24px;
 }
-.openhrm .icon-tag {
+.redcore .icon-tag {
     background-position: 0 -48px;
 }
-.openhrm .icon-tags {
+.redcore .icon-tags {
     background-position: -25px -48px;
 }
-.openhrm .icon-book {
+.redcore .icon-book {
     background-position: -48px -48px;
 }
-.openhrm .icon-bookmark {
+.redcore .icon-bookmark {
     background-position: -72px -48px;
 }
-.openhrm .icon-print {
+.redcore .icon-print {
     background-position: -96px -48px;
 }
-.openhrm .icon-camera {
+.redcore .icon-camera {
     background-position: -120px -48px;
 }
-.openhrm .icon-font {
+.redcore .icon-font {
     background-position: -144px -48px;
 }
-.openhrm .icon-bold {
+.redcore .icon-bold {
     background-position: -167px -48px;
 }
-.openhrm .icon-italic {
+.redcore .icon-italic {
     background-position: -192px -48px;
 }
-.openhrm .icon-text-height {
+.redcore .icon-text-height {
     background-position: -216px -48px;
 }
-.openhrm .icon-text-width {
+.redcore .icon-text-width {
     background-position: -240px -48px;
 }
-.openhrm .icon-align-left {
+.redcore .icon-align-left {
     background-position: -264px -48px;
 }
-.openhrm .icon-align-center {
+.redcore .icon-align-center {
     background-position: -288px -48px;
 }
-.openhrm .icon-align-right {
+.redcore .icon-align-right {
     background-position: -312px -48px;
 }
-.openhrm .icon-align-justify {
+.redcore .icon-align-justify {
     background-position: -336px -48px;
 }
-.openhrm .icon-list {
+.redcore .icon-list {
     background-position: -360px -48px;
 }
-.openhrm .icon-indent-left {
+.redcore .icon-indent-left {
     background-position: -384px -48px;
 }
-.openhrm .icon-indent-right {
+.redcore .icon-indent-right {
     background-position: -408px -48px;
 }
-.openhrm .icon-facetime-video {
+.redcore .icon-facetime-video {
     background-position: -432px -48px;
 }
-.openhrm .icon-picture {
+.redcore .icon-picture {
     background-position: -456px -48px;
 }
-.openhrm .icon-pencil {
+.redcore .icon-pencil {
     background-position: 0 -72px;
 }
-.openhrm .icon-map-marker {
+.redcore .icon-map-marker {
     background-position: -24px -72px;
 }
-.openhrm .icon-adjust {
+.redcore .icon-adjust {
     background-position: -48px -72px;
 }
-.openhrm .icon-tint {
+.redcore .icon-tint {
     background-position: -72px -72px;
 }
-.openhrm .icon-edit {
+.redcore .icon-edit {
     background-position: -96px -72px;
 }
-.openhrm .icon-share {
+.redcore .icon-share {
     background-position: -120px -72px;
 }
-.openhrm .icon-check {
+.redcore .icon-check {
     background-position: -144px -72px;
 }
-.openhrm .icon-move {
+.redcore .icon-move {
     background-position: -168px -72px;
 }
-.openhrm .icon-step-backward {
+.redcore .icon-step-backward {
     background-position: -192px -72px;
 }
-.openhrm .icon-fast-backward {
+.redcore .icon-fast-backward {
     background-position: -216px -72px;
 }
-.openhrm .icon-backward {
+.redcore .icon-backward {
     background-position: -240px -72px;
 }
-.openhrm .icon-play {
+.redcore .icon-play {
     background-position: -264px -72px;
 }
-.openhrm .icon-pause {
+.redcore .icon-pause {
     background-position: -288px -72px;
 }
-.openhrm .icon-stop {
+.redcore .icon-stop {
     background-position: -312px -72px;
 }
-.openhrm .icon-forward {
+.redcore .icon-forward {
     background-position: -336px -72px;
 }
-.openhrm .icon-fast-forward {
+.redcore .icon-fast-forward {
     background-position: -360px -72px;
 }
-.openhrm .icon-step-forward {
+.redcore .icon-step-forward {
     background-position: -384px -72px;
 }
-.openhrm .icon-eject {
+.redcore .icon-eject {
     background-position: -408px -72px;
 }
-.openhrm .icon-chevron-left {
+.redcore .icon-chevron-left {
     background-position: -432px -72px;
 }
-.openhrm .icon-chevron-right {
+.redcore .icon-chevron-right {
     background-position: -456px -72px;
 }
-.openhrm .icon-plus-sign {
+.redcore .icon-plus-sign {
     background-position: 0 -96px;
 }
-.openhrm .icon-minus-sign {
+.redcore .icon-minus-sign {
     background-position: -24px -96px;
 }
-.openhrm .icon-remove-sign {
+.redcore .icon-remove-sign {
     background-position: -48px -96px;
 }
-.openhrm .icon-ok-sign {
+.redcore .icon-ok-sign {
     background-position: -72px -96px;
 }
-.openhrm .icon-question-sign {
+.redcore .icon-question-sign {
     background-position: -96px -96px;
 }
-.openhrm .icon-info-sign {
+.redcore .icon-info-sign {
     background-position: -120px -96px;
 }
-.openhrm .icon-screenshot {
+.redcore .icon-screenshot {
     background-position: -144px -96px;
 }
-.openhrm .icon-remove-circle {
+.redcore .icon-remove-circle {
     background-position: -168px -96px;
 }
-.openhrm .icon-ok-circle {
+.redcore .icon-ok-circle {
     background-position: -192px -96px;
 }
-.openhrm .icon-ban-circle {
+.redcore .icon-ban-circle {
     background-position: -216px -96px;
 }
-.openhrm .icon-arrow-left {
+.redcore .icon-arrow-left {
     background-position: -240px -96px;
 }
-.openhrm .icon-arrow-right {
+.redcore .icon-arrow-right {
     background-position: -264px -96px;
 }
-.openhrm .icon-arrow-up {
+.redcore .icon-arrow-up {
     background-position: -289px -96px;
 }
-.openhrm .icon-arrow-down {
+.redcore .icon-arrow-down {
     background-position: -312px -96px;
 }
-.openhrm .icon-share-alt {
+.redcore .icon-share-alt {
     background-position: -336px -96px;
 }
-.openhrm .icon-resize-full {
+.redcore .icon-resize-full {
     background-position: -360px -96px;
 }
-.openhrm .icon-resize-small {
+.redcore .icon-resize-small {
     background-position: -384px -96px;
 }
-.openhrm .icon-plus {
+.redcore .icon-plus {
     background-position: -408px -96px;
 }
-.openhrm .icon-minus {
+.redcore .icon-minus {
     background-position: -433px -96px;
 }
-.openhrm .icon-asterisk {
+.redcore .icon-asterisk {
     background-position: -456px -96px;
 }
-.openhrm .icon-exclamation-sign {
+.redcore .icon-exclamation-sign {
     background-position: 0 -120px;
 }
-.openhrm .icon-gift {
+.redcore .icon-gift {
     background-position: -24px -120px;
 }
-.openhrm .icon-leaf {
+.redcore .icon-leaf {
     background-position: -48px -120px;
 }
-.openhrm .icon-fire {
+.redcore .icon-fire {
     background-position: -72px -120px;
 }
-.openhrm .icon-eye-open {
+.redcore .icon-eye-open {
     background-position: -96px -120px;
 }
-.openhrm .icon-eye-close {
+.redcore .icon-eye-close {
     background-position: -120px -120px;
 }
-.openhrm .icon-warning-sign {
+.redcore .icon-warning-sign {
     background-position: -144px -120px;
 }
-.openhrm .icon-plane {
+.redcore .icon-plane {
     background-position: -168px -120px;
 }
-.openhrm .icon-calendar {
+.redcore .icon-calendar {
     background-position: -192px -120px;
 }
-.openhrm .icon-random {
+.redcore .icon-random {
     background-position: -216px -120px;
     width: 16px;
 }
-.openhrm .icon-comment {
+.redcore .icon-comment {
     background-position: -240px -120px;
 }
-.openhrm .icon-magnet {
+.redcore .icon-magnet {
     background-position: -264px -120px;
 }
-.openhrm .icon-chevron-up {
+.redcore .icon-chevron-up {
     background-position: -288px -120px;
 }
-.openhrm .icon-chevron-down {
+.redcore .icon-chevron-down {
     background-position: -313px -119px;
 }
-.openhrm .icon-retweet {
+.redcore .icon-retweet {
     background-position: -336px -120px;
 }
-.openhrm .icon-shopping-cart {
+.redcore .icon-shopping-cart {
     background-position: -360px -120px;
 }
-.openhrm .icon-folder-close {
+.redcore .icon-folder-close {
     background-position: -384px -120px;
     width: 16px;
 }
-.openhrm .icon-folder-open {
+.redcore .icon-folder-open {
     background-position: -408px -120px;
     width: 16px;
 }
-.openhrm .icon-resize-vertical {
+.redcore .icon-resize-vertical {
     background-position: -432px -119px;
 }
-.openhrm .icon-resize-horizontal {
+.redcore .icon-resize-horizontal {
     background-position: -456px -118px;
 }
-.openhrm .icon-hdd {
+.redcore .icon-hdd {
     background-position: 0 -144px;
 }
-.openhrm .icon-bullhorn {
+.redcore .icon-bullhorn {
     background-position: -24px -144px;
 }
-.openhrm .icon-bell {
+.redcore .icon-bell {
     background-position: -48px -144px;
 }
-.openhrm .icon-certificate {
+.redcore .icon-certificate {
     background-position: -72px -144px;
 }
-.openhrm .icon-thumbs-up {
+.redcore .icon-thumbs-up {
     background-position: -96px -144px;
 }
-.openhrm .icon-thumbs-down {
+.redcore .icon-thumbs-down {
     background-position: -120px -144px;
 }
-.openhrm .icon-hand-right {
+.redcore .icon-hand-right {
     background-position: -144px -144px;
 }
-.openhrm .icon-hand-left {
+.redcore .icon-hand-left {
     background-position: -168px -144px;
 }
-.openhrm .icon-hand-up {
+.redcore .icon-hand-up {
     background-position: -192px -144px;
 }
-.openhrm .icon-hand-down {
+.redcore .icon-hand-down {
     background-position: -216px -144px;
 }
-.openhrm .icon-circle-arrow-right {
+.redcore .icon-circle-arrow-right {
     background-position: -240px -144px;
 }
-.openhrm .icon-circle-arrow-left {
+.redcore .icon-circle-arrow-left {
     background-position: -264px -144px;
 }
-.openhrm .icon-circle-arrow-up {
+.redcore .icon-circle-arrow-up {
     background-position: -288px -144px;
 }
-.openhrm .icon-circle-arrow-down {
+.redcore .icon-circle-arrow-down {
     background-position: -312px -144px;
 }
-.openhrm .icon-globe {
+.redcore .icon-globe {
     background-position: -336px -144px;
 }
-.openhrm .icon-wrench {
+.redcore .icon-wrench {
     background-position: -360px -144px;
 }
-.openhrm .icon-tasks {
+.redcore .icon-tasks {
     background-position: -384px -144px;
 }
-.openhrm .icon-filter {
+.redcore .icon-filter {
     background-position: -408px -144px;
 }
-.openhrm .icon-briefcase {
+.redcore .icon-briefcase {
     background-position: -432px -144px;
 }
-.openhrm .icon-fullscreen {
+.redcore .icon-fullscreen {
     background-position: -456px -144px;
 }
-.openhrm .dropup,
-.openhrm .dropdown {
+.redcore .dropup,
+.redcore .dropdown {
     position: relative;
 }
 .openhrm .dropdown-toggle {
@@ -2747,7 +2743,7 @@
     /* IE7 inline-block hack */
 
     *zoom: 1;
-    padding: 4px 12px;
+    /*padding: 4px 12px;*/
     margin-bottom: 0;
     font-size: 14px;
     line-height: 20px;
@@ -3599,14 +3595,14 @@
     border-radius: 6px;
 }
 .openhrm .nav .dropdown-toggle .caret {
-    border-top-color: #0088cc;
-    border-bottom-color: #0088cc;
+	border-top-color: #176C97;
+	border-bottom-color: #6FC4EF;
     margin-top: 6px;
 }
 .openhrm .nav .dropdown-toggle:hover .caret,
 .openhrm .nav .dropdown-toggle:focus .caret {
-    border-top-color: #005580;
-    border-bottom-color: #005580;
+	border-top-color: #3388B3;
+	border-bottom-color: #1A6F9A;
 }
 .openhrm .nav-tabs .dropdown-toggle .caret {
     margin-top: 8px;
@@ -4288,7 +4284,8 @@
     color: #999999;
 }
 .openhrm .pagination {
-    margin: 20px 0;
+    /*margin: 20px 0;*/
+	margin-bottom: 10px;
 	border-top: 1px solid rgb(221, 221, 221);
 	display: inline-block;
 	padding-top: 10px;
@@ -7680,7 +7677,7 @@
     color: #fff;
 }
 .openhrm .navbar .nav > li > a {
-    color: #b7b7b7;
+    color: #CBCBCB;
 }
 .openhrm .navbar .nav li.dropdown > .dropdown-toggle .caret {
     border-bottom-color: #b7b7b7;
@@ -7715,7 +7712,8 @@
     background: #FFFFFF;
 }
 .openhrm .navbar .divider-vertical {
-    border-left: 1px solid #BDBDBD;
+	border-left: 1px solid #38495E;
+	border-right: 1px solid #141414;
     margin: 0 5px;
 }
 .openhrm .navbar ul a {
@@ -7848,7 +7846,7 @@
     border: 1px solid #F2F2F2;
     */
 	float: right;
-	padding: 5px 5px 5px 5px;
+	/*padding: 5px 5px 5px 5px;*/
 }
 .openhrm .toolbar .btn {
     font-size: 13px;
@@ -7905,14 +7903,14 @@
 .openhrm [class*=" icon-"]:before {
     font-family: inherit;
     font-style: inherit;
-    color: inherit;
+    /*color: inherit;*/
 }
 .openhrm .icon-stack:before {
     content: none;
 }
 
 #component {
-	border-radius: 7px 7px 0px 0px;
+	border-radius: 4px 4px 0px 0px;
 	border: 1px solid rgb(219, 219, 219);
 }
 
@@ -7928,4 +7926,19 @@
 }
 .openhrm .heading .title {
 	padding-left: 10px;
+}
+.openhrm .heading .title > h3 {
+	height: 36px;
+	margin-bottom: 0;
+	margin-top: 0;
+	font-size: 20px;
+}
+.openhrm .heading .toolbar {
+	margin-bottom: 0;
+	margin-top: 4px;
+}
+#system-message-container {
+	padding-bottom: 0px;
+	margin-bottom: 10px;
+	padding-left: 12px;
 }

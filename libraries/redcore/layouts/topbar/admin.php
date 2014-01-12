@@ -134,14 +134,14 @@ if ($displayJoomlaMenu)
 					<ul class="dropdown-menu">
 						<li class="">
 							<a href="index.php?option=com_admin&amp;task=profile.edit&amp;id=<?php echo $userId; ?>">
-								<i class="icon-edit-sign icon-2"></i>
+								<i class="icon-pencil"></i>
 								<?php echo $userName ?>
 							</a>
 						</li>
 						<li class="divider"></li>
 						<li class="">
 							<a href="index.php?option=com_login&amp;task=logout&amp;<?php echo JSession::getFormToken(); ?>=1">
-								<span class="icon-off"></span>
+								<span class="icon-signout"></span>
 								<?php echo JText::_('LIB_REDCORE_ACCOUNT_LOGOUT'); ?>
 							</a>
 						</li>

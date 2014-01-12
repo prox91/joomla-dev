@@ -21,12 +21,12 @@ if( isset($data['active']) )
 	<li>
 		<?php if ($active === 'countries') : ?>
 			<a class="active" href="<?php echo JRoute::_('index.php?option=com_openhrm&view=countries') ?>">
-				<i class="icon-dashboard"></i>
+				<i class="icon-globe"></i>
 				<?php echo JText::_('OPENHRM_SUBMENU_COUNTRY_LIST') ?>
 			</a>
 		<?php else : ?>
 			<a href="<?php echo JRoute::_('index.php?option=com_openhrm&view=countries') ?>">
-				<i class="icon-dashboard"></i>
+				<i class="icon-globe"></i>
 				<?php echo JText::_('OPENHRM_SUBMENU_COUNTRY_LIST') ?>
 			</a>
 		<?php endif; ?>
@@ -34,12 +34,12 @@ if( isset($data['active']) )
 	<li>
 		<?php if ($active === 'states') : ?>
 			<a class="active" href="<?php echo JRoute::_('index.php?option=com_openhrm&view=states') ?>">
-				<i class="icon-dashboard"></i>
+				<i class="icon-bookmark"></i>
 				<?php echo JText::_('OPENHRM_SUBMENU_STATE_LIST') ?>
 			</a>
 		<?php else : ?>
 			<a href="<?php echo JRoute::_('index.php?option=com_openhrm&view=states') ?>">
-				<i class="icon-dashboard"></i>
+				<i class="icon-bookmark"></i>
 				<?php echo JText::_('OPENHRM_SUBMENU_STATE_LIST') ?>
 			</a>
 		<?php endif; ?>
@@ -60,12 +60,12 @@ if( isset($data['active']) )
 	<li>
 		<?php if ($active === 'configures') : ?>
 			<a class="active" href="<?php echo JRoute::_('index.php?option=com_openhrm&view=configures') ?>">
-				<i class="icon-ticket"></i>
+				<i class="icon-wrench"></i>
 				<?php echo JText::_('OPENHRM_SUBMENU_SETTING_LIST') ?>
 			</a>
 		<?php else : ?>
 			<a href="<?php echo JRoute::_('index.php?option=com_openhrm&view=configures') ?>">
-				<i class="icon-ticket"></i>
+				<i class="icon-wrench"></i>
 				<?php echo JText::_('OPENHRM_SUBMENU_SETTING_LIST') ?>
 			</a>
 		<?php endif; ?>
@@ -73,12 +73,12 @@ if( isset($data['active']) )
 	<li>
 		<?php if ($active === 'maritalstates') : ?>
 			<a class="active" href="<?php echo JRoute::_('index.php?option=com_openhrm&view=maritalstates') ?>">
-				<i class="icon-ticket"></i>
+				<i class="icon-heart"></i>
 				<?php echo JText::_('OPENHRM_SUBMENU_SETTING_LIST') ?>
 			</a>
 		<?php else : ?>
 			<a href="<?php echo JRoute::_('index.php?option=com_openhrm&view=maritalstates') ?>">
-				<i class="icon-ticket"></i>
+				<i class="icon-heart"></i>
 				<?php echo JText::_('OPENHRM_SUBMENU_MARITALSTATE_LIST') ?>
 			</a>
 		<?php endif; ?>
