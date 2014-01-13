@@ -510,9 +510,9 @@ class RPagination
 	 *
 	 * @since   1.0
 	 */
-	public function getListFooter()
+	public function getListFooter($layoutId = 'pagination.links', $options = array())
 	{
-		return $this->getPaginationLinks();
+		return $this->getPaginationLinks($layoutId, $options);
 	}
 
 	/**

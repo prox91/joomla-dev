@@ -14,7 +14,7 @@ $pages = $list['pages'];
 
 $options = new JRegistry($displayData['options']);
 
-$showLimitBox   = $options->get('showLimitBox', true);
+$showLimitBox   = $options->get('showLimitBox', false); // false: Disable limit box
 $showPagesLinks = $options->get('showPagesLinks', true);
 $showLimitStart = $options->get('showLimitStart', true);
 
