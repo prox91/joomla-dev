@@ -8,7 +8,7 @@
  */
 defined('_JEXEC') or die;
 
-class OpenHrmControllerOrganizationInfo extends JControllerForm
+class OpenHrmControllerOrganizationInfo extends RControllerForm
 {
 	function __construct($config = array())
 	{

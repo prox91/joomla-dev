@@ -11,10 +11,6 @@ defined('_JEXEC') or die;
 
 class OpenHrmViewState extends OpenHrmViewAdmin
 {
-	protected $state;
-	protected $item;
-	protected $form;
-
 	/**
 	 * Display function
 	 */

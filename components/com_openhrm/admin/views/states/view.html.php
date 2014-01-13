@@ -11,9 +11,6 @@ defined('_JEXEC') or die;
 
 class OpenHrmViewStates extends OpenHrmViewAdmin
 {
-	protected $items;
-	protected $pagination;
-
 	/**
 	 * Display function
 	 */

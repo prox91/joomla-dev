@@ -11,9 +11,6 @@ defined('_JEXEC') or die;
 
 class OpenHrmViewMaritalStates extends OpenHrmViewAdmin
 {
-	protected $items;
-	protected $pagination;
-
 	/**
 	 * Display function
 	 */

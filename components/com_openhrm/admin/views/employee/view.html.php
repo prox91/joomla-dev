@@ -11,9 +11,12 @@ defined('_JEXEC') or die;
 
 class OpenHrmViewEmployee extends OpenHrmViewAdmin
 {
-	protected $state;
-	protected $item;
-	protected $form;
+	/**
+	 * Do we have to display a sidebar ?
+	 *
+	 * @var  boolean
+	 */
+	protected $displaySidebar = false;
 
 	/**
 	 * Display function
@@ -49,7 +52,6 @@ class OpenHrmViewEmployee extends OpenHrmViewAdmin
 
         $firstGroup = new RToolbarButtonGroup;
         $secondGroup = new RToolbarButtonGroup;
-        $thirdGroup = new RToolbarButtonGroup;
 
         if ($user->authorise('core.admin', 'com_openhrm.panel'))
         {
@@ -59,7 +61,7 @@ class OpenHrmViewEmployee extends OpenHrmViewAdmin
                 $save = RToolbarBuilder::createSaveButton('employee.apply');
                 $saveNew = RToolbarBuilder::createSaveAndNewButton('employee.savenew');
                 $saveClose = RToolbarBuilder::createSaveAndCloseButton('employee.save');
-                $secondGroup->addButton($save)
+	            $firstGroup->addButton($save)
                     ->addButton($saveNew)
                     ->addButton($saveClose);
             }
@@ -68,14 +70,13 @@ class OpenHrmViewEmployee extends OpenHrmViewAdmin
             //if ($canDo->get('core.delete'))
             {
                 $cancel = RToolbarBuilder::createCancelButton('employee.cancel');
-                $thirdGroup->addButton($cancel);
+	            $secondGroup->addButton($cancel);
             }
         }
 
         $toolbar = new RToolbar;
         $toolbar->addGroup($firstGroup)
-            ->addGroup($secondGroup)
-            ->addGroup($thirdGroup);
+            ->addGroup($secondGroup);
 
         return $toolbar;
     }

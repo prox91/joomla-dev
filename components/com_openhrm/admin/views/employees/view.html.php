@@ -11,9 +11,6 @@ defined('_JEXEC') or die;
 
 class OpenHrmViewEmployees extends OpenHrmViewAdmin
 {
-	protected $items;
-	protected $pagination;
-
 	/**
 	 * Do we have to display a sidebar ?
 	 *

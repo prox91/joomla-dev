@@ -8,13 +8,7 @@
  */
 defined('_JEXEC') or die;
 
-// Import Joomla admin controller from the library
-jimport('joomla.application.component.controlleradmin');
-
-/**
- * HelloWorlds Controller
- */
-class OpenHrmControllerMaritalStates extends JControllerAdmin
+class OpenHrmControllerMaritalStates extends RControllerAdmin
 {
     /**
      * Proxy for getModel.
