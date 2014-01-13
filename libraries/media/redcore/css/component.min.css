@@ -7954,7 +7954,7 @@
 }
 
 .openhrm .convention-nav {
-      background: -moz-linear-gradient(center top , #FFFFFF 0%, #EDEDED 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+      /*background: -moz-linear-gradient(center top , #FFFFFF 0%, #EDEDED 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);*/
       border-bottom: 1px solid #D3D3D3;
       color: #0C192E;
       margin-bottom: 10px;

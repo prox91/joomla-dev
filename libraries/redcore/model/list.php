@@ -82,10 +82,10 @@ abstract class RModelList extends JModelList
 		}
 
 		// Different pagination depending on the view
-		if (empty($this->paginationPrefix))
-		{
-			$this->paginationPrefix = strtolower($option . '_' . $view . '_' . $this->getName() . '_');
-		}
+//		if (empty($this->paginationPrefix))
+//		{
+//			$this->paginationPrefix = strtolower($option . '_' . $view . '_' . $this->getName() . '_');
+//		}
 
 		if ($this->limitstartField == 'auto')
 		{

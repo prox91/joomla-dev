@@ -118,7 +118,7 @@ abstract class JHtmlRgrid
 			$class = '';
 
 			// Prepare the class.
-			if ($active_class === 'plus-sign')
+			if ($active_class === 'check-sign')
 			{
 				$class = 'published';
 			}
@@ -228,7 +228,7 @@ abstract class JHtmlRgrid
 			$prefix = array_key_exists('prefix', $options) ? $options['prefix'] : '';
 		}
 
-		$states = array(1 => array('unpublish', 'JPUBLISHED', 'JLIB_HTML_UNPUBLISH_ITEM', 'JPUBLISHED', false, 'plus-sign', 'plus-sign'),
+		$states = array(1 => array('unpublish', 'JPUBLISHED', 'JLIB_HTML_UNPUBLISH_ITEM', 'JPUBLISHED', false, 'check-sign', 'check-sign'),
 			0 => array('publish', 'JUNPUBLISHED', 'JLIB_HTML_PUBLISH_ITEM', 'JUNPUBLISHED', false, 'minus-sign', 'minus-sign'),
 			2 => array('unpublish', 'JARCHIVED', 'JLIB_HTML_UNPUBLISH_ITEM', 'JARCHIVED', false, 'hdd', 'hdd'),
 			-2 => array('publish', 'JTRASHED', 'JLIB_HTML_PUBLISH_ITEM', 'JTRASHED', false, 'trash', 'trash'));
