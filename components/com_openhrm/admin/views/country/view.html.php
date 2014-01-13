@@ -49,7 +49,6 @@ class OpenHrmViewCountry extends OpenHrmViewAdmin
 
 		$firstGroup = new RToolbarButtonGroup;
 		$secondGroup = new RToolbarButtonGroup;
-		$thirdGroup = new RToolbarButtonGroup;
 
 		if ($user->authorise('core.admin', 'com_openhrm.panel'))
 		{
@@ -59,7 +58,7 @@ class OpenHrmViewCountry extends OpenHrmViewAdmin
 				$save = RToolbarBuilder::createSaveButton('country.apply');
 				$saveNew = RToolbarBuilder::createSaveAndNewButton('country.savenew');
 				$saveClose = RToolbarBuilder::createSaveAndCloseButton('country.save');
-				$secondGroup->addButton($save)
+                $firstGroup->addButton($save)
 							->addButton($saveNew)
 							->addButton($saveClose);
 			}
@@ -67,15 +66,14 @@ class OpenHrmViewCountry extends OpenHrmViewAdmin
 			// Delete / Revoke
 			//if ($canDo->get('core.delete'))
 			{
-				$cancel = RToolbarBuilder::createDeleteButton('country.cancel');
-				$thirdGroup->addButton($cancel);
+				$cancel = RToolbarBuilder::createCancelButton('country.cancel');
+                $secondGroup->addButton($cancel);
 			}
 		}
 
 		$toolbar = new RToolbar;
 		$toolbar->addGroup($firstGroup)
-			->addGroup($secondGroup)
-			->addGroup($thirdGroup);
+			->addGroup($secondGroup);
 
 		return $toolbar;
 	}
@@ -89,6 +87,16 @@ class OpenHrmViewCountry extends OpenHrmViewAdmin
 	{
 		return JText::_('COM_OPENHRM_COUNTRY_TITLE');
 	}
+
+    /**
+     * Get the view title.
+     *
+     * @return  string  The view title.
+     */
+    public function getTitleIcon()
+    {
+        return 'icon-globe';
+    }
 
 	public function setDocument()
 	{

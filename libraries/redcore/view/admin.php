@@ -153,6 +153,16 @@ abstract class RViewAdmin extends RViewBase
 		return '';
 	}
 
+    /**
+     * Get the view title.
+     *
+     * @return  string  The view title.
+     */
+    public function getTitleIcon()
+    {
+        return '';
+    }
+
 	/**
 	 * Get the toolbar to render.
 	 *

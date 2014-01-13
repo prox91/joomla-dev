@@ -32,9 +32,6 @@ class OpenHrmViewOrganizationInfo extends OpenHrmViewAdmin
 			return false;
 		}
 
-		// Set the tool bar
-		$this->addToolbar();
-
 		// Display the template
 		parent::display($tpl);
 
@@ -42,15 +39,44 @@ class OpenHrmViewOrganizationInfo extends OpenHrmViewAdmin
 		$this->setDocument();
 	}
 
-	public function addToolbar()
-	{
-		JHtml::_('behavior.tooltip');
+    /**
+     * Get the toolbar to render.
+     *
+     * @return  RToolbar
+     */
+    public function getToolbar()
+    {
+        $canDo = OpenHrmHelpersAcl::getActions($this->state->get('filter.country_id'));
+        $user = JFactory::getUser();
 
-		JToolbarHelper::title(JText::_('COM_OPENHRM_ORGANIZATIONINFO_TITLE'));
-		JToolBarHelper::apply('organizationinfo.apply', 'JToolbar_Apply');
-		JToolBarHelper::save('organizationinfo.save', 'JToolbar_Save');
-		JToolBarHelper::cancel('organizationinfo.cancel', 'JToolbar_Cancel');
-	}
+        $firstGroup = new RToolbarButtonGroup;
+        $secondGroup = new RToolbarButtonGroup;
+
+        if ($user->authorise('core.admin', 'com_openhrm.panel'))
+        {
+            // Add / edit
+            //if ($canDo->get('core.create') || (count($user->getAuthorisedCategories('com_openhrm', 'core.create'))) > 0)
+            {
+                $save = RToolbarBuilder::createSaveButton('organizationinfo.apply');
+                $saveClose = RToolbarBuilder::createSaveAndCloseButton('organizationinfo.save');
+                $firstGroup->addButton($save)
+                    ->addButton($saveClose);
+            }
+
+            // Delete / Revoke
+            //if ($canDo->get('core.delete'))
+            {
+                $cancel = RToolbarBuilder::createCancelButton('organizationinfo.cancel');
+                $secondGroup->addButton($cancel);
+            }
+        }
+
+        $toolbar = new RToolbar;
+        $toolbar->addGroup($firstGroup)
+            ->addGroup($secondGroup);
+
+        return $toolbar;
+    }
 
 	/**
 	 * Get the view title.
@@ -61,6 +87,16 @@ class OpenHrmViewOrganizationInfo extends OpenHrmViewAdmin
 	{
 		return JText::_('COM_OPENHRM_ORGANIZATIONINFO_TITLE');
 	}
+
+    /**
+     * Get the view title.
+     *
+     * @return  string  The view title.
+     */
+    public function getTitleIcon()
+    {
+        return 'icon-heart';
+    }
 
 	public function setDocument()
 	{

@@ -175,6 +175,37 @@ if ($result instanceof Exception)
 		jQuery('.sidebar a').attr('disabled', true).attr('href', '#').addClass('disabled');
 		<?php endif; ?>
 	});
+
+    jQuery(document).ready(function () {
+        (function(jQuery) {
+            // fix sub nav on scroll
+            var win = jQuery(window)
+            var nav = jQuery('.convention-toolbar');
+            var navTop = jQuery('.convention-toolbar').length && jQuery('.convention-toolbar').offset().top - 40;
+            var isFixed = 0;
+            processScroll();
+            // hack sad times - holdover until rewrite for 2.1
+            nav.on('click', function() {
+                if (!isFixed) {
+                    setTimeout(function()
+                    {
+                        win.scrollTop(win.scrollTop() - 47)
+                    }, 10)
+                }
+            })
+            win.on('scroll', processScroll);
+            function processScroll() {
+                var i, scrollTop = win.scrollTop()
+                if (scrollTop >= navTop && !isFixed) {
+                    isFixed = 1;
+                    nav.addClass('convention-toolbar-fixed');
+                } else if (scrollTop <= navTop && isFixed) {
+                    isFixed = 0;
+                    nav.removeClass('convention-toolbar-fixed');
+                }
+            }
+        })(jQuery);
+    });
 </script>
 <?php if ($view->getLayout() === 'modal') : ?>
 	<div class="row-fluid openhrm">
@@ -217,9 +248,10 @@ else : ?>
 					<div class="span12 content">
 				<?php endif; ?>
 						<section id="component">
-							<div class="row-fluid heading">
+							<div class="convention-toolbar row-fluid heading">
 								<div class="title span4">
-									<h3><?php echo $view->getTitle() ?></h3>
+                                    <?php $iconName = $view->getTitleIcon();?>
+									<h3><?php if(!empty($iconName)) { echo '<i class="' . $view->getTitleIcon() . '"></i>'; } ?> <?php echo $view->getTitle() ?></h3>
 								</div>
 								<?php if ($toolbar instanceof RToolbar) : ?>
 									<div class="span8">

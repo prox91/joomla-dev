@@ -8,7 +8,7 @@
  */
 defined('_JEXEC') or die;
 
-class OpenHrmModelCountries extends JModelList
+class OpenHrmModelCountries extends RModelList
 {
     /**
      * Method to build a sql to load the list data

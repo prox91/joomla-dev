@@ -20,8 +20,8 @@ class OpenHrmViewCountries extends OpenHrmViewAdmin
 	public function display($tpl = null)
 	{
 		// Get data from the model
+        $this->state = $this->get('State');
 		$this->items = $this->get('Items');
-		$this->state = $this->get('State');
 		$this->pagination = $this->get('Pagination');
 
 		// Check for errors.
@@ -57,8 +57,15 @@ class OpenHrmViewCountries extends OpenHrmViewAdmin
 			//if ($canDo->get('core.create') || (count($user->getAuthorisedCategories('com_openhrm', 'core.create'))) > 0)
 			{
 				$new = RToolbarBuilder::createNewButton('country.add');
-				$secondGroup->addButton($new);
+                $edit = RToolbarBuilder::createEditButton('country.edit');
+                $firstGroup->addButton($new)
+                    ->addButton($edit);
 			}
+
+            $publish =  RToolbarBuilder::createPublishButton('countries.published');
+            $unpublish =  RToolbarBuilder::createPublishButton('countries.unpublished');
+            $secondGroup->addButton($publish)
+                        ->addButton($unpublish);
 
 			// Delete / Revoke
 			//if ($canDo->get('core.delete'))
@@ -85,6 +92,16 @@ class OpenHrmViewCountries extends OpenHrmViewAdmin
 	{
 		return JText::_('COM_OPENHRM_COUNTRY_TITLE');
 	}
+
+    /**
+     * Get the view title.
+     *
+     * @return  string  The view title.
+     */
+    public function getTitleIcon()
+    {
+        return 'icon-globe';
+    }
 
 	public function setDocument()
 	{

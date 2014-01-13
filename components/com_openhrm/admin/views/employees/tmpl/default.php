@@ -137,10 +137,10 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 				?>
 				<tr class="row<?php echo $i % 2; ?>">
 					<td class="center">
-						<?php echo JHtml::_('grid.id', $i, $item->id); ?>
+						<?php echo JHtml::_('rgrid.id', $i, $item->id); ?>
 					</td>
 					<td class="center">
-						<?php echo JHtml::_('jgrid.published', $item->published, $i, 'employees.', 'cb'); ?>
+						<?php echo JHtml::_('rgrid.published', $item->published, $i, 'employees.', 'cb'); ?>
 					</td>
 					<td>
 						<?php echo $this->escape($item->first_name . ' ' . $item->middle_name); ?>

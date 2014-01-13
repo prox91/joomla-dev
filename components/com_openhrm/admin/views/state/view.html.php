@@ -30,9 +30,6 @@ class OpenHrmViewState extends OpenHrmViewAdmin
 			return false;
 		}
 
-		// Set the tool bar
-		$this->addToolbar();
-
 		// Display the template
 		parent::display($tpl);
 
@@ -40,26 +37,66 @@ class OpenHrmViewState extends OpenHrmViewAdmin
 		$this->setDocument();
 	}
 
-	public function addToolbar()
-	{
-		//JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
-		JHtml::_('behavior.tooltip');
+    /**
+     * Get the toolbar to render.
+     *
+     * @return  RToolbar
+     */
+    public function getToolbar()
+    {
+        $canDo = OpenHrmHelpersAcl::getActions($this->state->get('filter.country_id'));
+        $user = JFactory::getUser();
 
-		JToolbarHelper::title(JText::_('COM_OPENHRM_STATE_TITLE'));
-		JToolBarHelper::apply('state.apply', 'JToolbar_Apply');
-		JToolBarHelper::save('state.save', 'JToolbar_Save');
-		JToolBarHelper::cancel('state.cancel', 'JToolbar_Cancel');
-	}
+        $firstGroup = new RToolbarButtonGroup;
+        $secondGroup = new RToolbarButtonGroup;
 
-	/**
-	 * Get the view title.
-	 *
-	 * @return  string  The view title.
-	 */
-	public function getTitle()
-	{
-		return JText::_('COM_OPENHRM_STATE_TITLE');
-	}
+        if ($user->authorise('core.admin', 'com_openhrm.panel'))
+        {
+            // Add / edit
+            //if ($canDo->get('core.create') || (count($user->getAuthorisedCategories('com_openhrm', 'core.create'))) > 0)
+            {
+                $save = RToolbarBuilder::createSaveButton('state.apply');
+                $saveNew = RToolbarBuilder::createSaveAndNewButton('maritalstate.savenew');
+                $saveClose = RToolbarBuilder::createSaveAndCloseButton('state.save');
+                $firstGroup->addButton($save)
+                    ->addButton($saveNew)
+                    ->addButton($saveClose);
+            }
+
+            // Delete / Revoke
+            //if ($canDo->get('core.delete'))
+            {
+                $cancel = RToolbarBuilder::createCancelButton('state.cancel');
+                $secondGroup->addButton($cancel);
+            }
+        }
+
+        $toolbar = new RToolbar;
+        $toolbar->addGroup($firstGroup)
+            ->addGroup($secondGroup);
+
+        return $toolbar;
+    }
+
+    /**
+     * Get the view title.
+     *
+     * @return  string  The view title.
+     */
+    public function getTitle()
+    {
+        return JText::_('COM_OPENHRM_STATE_TITLE');
+    }
+
+    /**
+     * Get the view title.
+     *
+     * @return  string  The view title.
+     */
+    public function getTitleIcon()
+    {
+        return 'icon-heart';
+    }
 
 	public function setDocument()
 	{

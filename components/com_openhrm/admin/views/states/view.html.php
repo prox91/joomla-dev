@@ -20,6 +20,7 @@ class OpenHrmViewStates extends OpenHrmViewAdmin
 	public function display($tpl = null)
 	{
 		// Get data from the model
+        $this->state = $this->get('State');
 		$this->items = $this->get('Items');
 		$this->pagination = $this->get('Pagination');
 
@@ -29,9 +30,6 @@ class OpenHrmViewStates extends OpenHrmViewAdmin
 			return false;
 		}
 
-		// Set the tool bar
-		$this->addToolbar();
-
 		// Display the template
 		parent::display($tpl);
 
@@ -39,30 +37,71 @@ class OpenHrmViewStates extends OpenHrmViewAdmin
 		$this->setDocument();
 	}
 
-	public function addToolbar()
-	{
-		//$canDo	= OpenHrmHelperHrm::getActions();
+    /**
+     * Get the toolbar to render.
+     *
+     * @return  RToolbar
+     */
+    public function getToolbar()
+    {
+        $canDo = OpenHrmHelpersAcl::getActions($this->state->get('filter.country_id'));
+        $user = JFactory::getUser();
 
-		JToolbarHelper::title(JText::_('COM_OPENHRM_STATE_TITLE'));
-		JToolbarHelper::addNew('state.add');
-		JToolbarHelper::editList('state.edit');
+        $firstGroup = new RToolbarButtonGroup;
+        $secondGroup = new RToolbarButtonGroup;
+        $thirdGroup = new RToolbarButtonGroup;
 
-		//if ($canDo->get('core.admin'))
-		{
-			//JToolbarHelper::preferences('com_openhrm');
-			//JToolbarHelper::divider();
-		}
-	}
+        if ($user->authorise('core.admin', 'com_openhrm.panel'))
+        {
+            // Add / edit
+            //if ($canDo->get('core.create') || (count($user->getAuthorisedCategories('com_openhrm', 'core.create'))) > 0)
+            {
+                $new = RToolbarBuilder::createNewButton('state.add');
+                $edit = RToolbarBuilder::createEditButton('state.edit');
+                $firstGroup->addButton($new)
+                    ->addButton($edit);
+            }
 
-	/**
-	 * Get the view title.
-	 *
-	 * @return  string  The view title.
-	 */
-	public function getTitle()
-	{
-		return JText::_('COM_OPENHRM_STATE_TITLE');
-	}
+            $publish =  RToolbarBuilder::createPublishButton('states.published');
+            $unpublish =  RToolbarBuilder::createPublishButton('states.unpublished');
+            $secondGroup->addButton($publish)
+                ->addButton($unpublish);
+
+            // Delete / Revoke
+            //if ($canDo->get('core.delete'))
+            {
+                $delete = RToolbarBuilder::createDeleteButton('states.delete');
+                $thirdGroup->addButton($delete);
+            }
+        }
+
+        $toolbar = new RToolbar;
+        $toolbar->addGroup($firstGroup)
+            ->addGroup($secondGroup)
+            ->addGroup($thirdGroup);
+
+        return $toolbar;
+    }
+
+    /**
+     * Get the view title.
+     *
+     * @return  string  The view title.
+     */
+    public function getTitle()
+    {
+        return JText::_('COM_OPENHRM_STATE_TITLE');
+    }
+
+    /**
+     * Get the view title.
+     *
+     * @return  string  The view title.
+     */
+    public function getTitleIcon()
+    {
+        return 'icon-bookmark';
+    }
 
 	public function setDocument()
 	{

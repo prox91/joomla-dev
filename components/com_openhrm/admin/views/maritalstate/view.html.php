@@ -30,9 +30,6 @@ class OpenHrmViewMaritalState extends OpenHrmViewAdmin
 			return false;
 		}
 
-		// Set the tool bar
-		$this->addToolbar();
-
 		// Display the template
 		parent::display($tpl);
 
@@ -40,18 +37,48 @@ class OpenHrmViewMaritalState extends OpenHrmViewAdmin
 		$this->setDocument();
 	}
 
-	public function addToolbar()
-	{
-		//JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
-		JHtml::_('behavior.tooltip');
+    /**
+     * Get the toolbar to render.
+     *
+     * @return  RToolbar
+     */
+    public function getToolbar()
+    {
+        $canDo = OpenHrmHelpersAcl::getActions($this->state->get('filter.country_id'));
+        $user = JFactory::getUser();
 
-		JToolbarHelper::title(JText::_('COM_OPENHRM_MARITALSTATE_TITLE'));
-		JToolBarHelper::apply('maritalstate.apply', 'JToolbar_Apply');
-		JToolBarHelper::save('maritalstate.save', 'JToolbar_Save');
-		JToolBarHelper::cancel('maritalstate.cancel', 'JToolbar_Cancel');
-	}
+        $firstGroup = new RToolbarButtonGroup;
+        $secondGroup = new RToolbarButtonGroup;
 
-	/**
+        if ($user->authorise('core.admin', 'com_openhrm.panel'))
+        {
+            // Add / edit
+            //if ($canDo->get('core.create') || (count($user->getAuthorisedCategories('com_openhrm', 'core.create'))) > 0)
+            {
+                $save = RToolbarBuilder::createSaveButton('maritalstate.apply');
+                $saveNew = RToolbarBuilder::createSaveAndNewButton('maritalstate.savenew');
+                $saveClose = RToolbarBuilder::createSaveAndCloseButton('maritalstate.save');
+                $firstGroup->addButton($save)
+                    ->addButton($saveNew)
+                    ->addButton($saveClose);
+            }
+
+            // Delete / Revoke
+            //if ($canDo->get('core.delete'))
+            {
+                $cancel = RToolbarBuilder::createCancelButton('maritalstate.cancel');
+                $secondGroup->addButton($cancel);
+            }
+        }
+
+        $toolbar = new RToolbar;
+        $toolbar->addGroup($firstGroup)
+            ->addGroup($secondGroup);
+
+        return $toolbar;
+    }
+
+    /**
 	 * Get the view title.
 	 *
 	 * @return  string  The view title.
@@ -60,6 +87,16 @@ class OpenHrmViewMaritalState extends OpenHrmViewAdmin
 	{
 		return JText::_('COM_OPENHRM_MARITALSTATE_TITLE');
 	}
+
+    /**
+     * Get the view title.
+     *
+     * @return  string  The view title.
+     */
+    public function getTitleIcon()
+    {
+        return 'icon-heart';
+    }
 
 	public function setDocument()
 	{

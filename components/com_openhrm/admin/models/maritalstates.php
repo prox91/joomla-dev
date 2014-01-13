@@ -8,7 +8,7 @@
  */
 defined('_JEXEC') or die;
 
-class OpenHrmModelMaritalStates extends JModelList
+class OpenHrmModelMaritalStates extends RModelList
 {
     /**
      * Method to build a sql to load the list data
