@@ -100,4 +100,4 @@ defined('_JEXEC') or die;
             <?php echo $this->form->getInput('other_email'); ?>
         </div>
     </div>
-</span>
+</div>
