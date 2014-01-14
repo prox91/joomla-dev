@@ -39,20 +39,28 @@ JHtml::_('behavior.formvalidation');
 	<form enctype="multipart/form-data"
 		action="<?php JRoute::_('index.php?option=com_openhrm&view=employee'); ?>" method="post" name="itemForm" id="itemForm"
 		class="form-validate form-horizontal">
-		<ul class="nav nav-tabs">
-			<li class="active"><a href="#personal" data-toggle="tab"><?php echo JText::_('Personal Detail')?></a></li>
-            <li class=""><a href="#contact" data-toggle="tab"><?php echo JText::_('Contact')?></a></li>
-		</ul>
-
-		<div class="tab-content">
-			<div class="tab-pane active" id="personal">
-                <?php echo $this->loadTemplate('personal'); ?>
-			</div>
-            <div class="tab-pane" id="contact">
-                <?php echo $this->loadTemplate('contact'); ?>
+        <div class="span4">
+            <div>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#personal" data-toggle="tab"><?php echo JText::_('Personal Detail')?></a></li>
+                    <li class=""><a href="#contact" data-toggle="tab"><?php echo JText::_('Contact')?></a></li>
+                </ul>
             </div>
-		</div>
-
+        </div>
+        <div class="span8">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#personal" data-toggle="tab"><?php echo JText::_('Personal Detail')?></a></li>
+                <li class=""><a href="#contact" data-toggle="tab"><?php echo JText::_('Contact')?></a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="personal">
+                    <?php echo $this->loadTemplate('personal'); ?>
+                </div>
+                <div class="tab-pane" id="contact">
+                    <?php echo $this->loadTemplate('contact'); ?>
+                </div>
+            </div>
+        </div>
 		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="jform[id]" value="<?php if (isset($this->item->id))	{	echo $this->item->id;	} ?>" />
 		<?php echo JHtml::_('form.token'); ?>
