@@ -9,55 +9,57 @@
 // No direct access to this file
 defined('_JEXEC') or die;
 ?>
-<fieldset class="adminform">
-    <div class="control-group">
-        <div class="control-label">
-            <?php echo $this->form->getLabel('street1'); ?>
-        </div>
-        <div class="controls">
-            <?php echo $this->form->getInput('street1'); ?>
-        </div>
-    </div>
-    <div class="control-group">
-        <div class="control-label">
-            <?php echo $this->form->getLabel('street2'); ?>
-        </div>
-        <div class="controls">
-            <?php echo $this->form->getInput('street2'); ?>
-        </div>
-    </div>
-    <div class="control-group">
-        <div class="control-label">
-            <?php echo $this->form->getLabel('city'); ?>
-        </div>
-        <div class="controls">
-            <?php echo $this->form->getInput('city'); ?>
-        </div>
-    </div>
-    <div class="control-group">
-        <div class="control-label">
-            <?php echo $this->form->getLabel('country_id'); ?>
-        </div>
-        <div class="controls">
-            <?php echo $this->form->getInput('country_id'); ?>
-        </div>
-    </div>
-    <div class="control-group">
-        <div class="control-label">
-            <?php echo $this->form->getLabel('state_id'); ?>
-        </div>
-        <div class="controls">
-            <?php echo $this->form->getInput('state_id'); ?>
-        </div>
-    </div>
-    <div class="control-group">
-        <div class="control-label">
-            <?php echo $this->form->getLabel('zip_code'); ?>
-        </div>
-        <div class="controls">
-            <?php echo $this->form->getInput('zip_code'); ?>
-        </div>
-    </div>
+<div class="span6" xmlns="http://www.w3.org/1999/html">
+	<div class="control-group">
+		<div class="control-label">
+			<?php echo $this->form->getLabel('street1'); ?>
+		</div>
+		<div class="controls">
+			<?php echo $this->form->getInput('street1'); ?>
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="control-label">
+			<?php echo $this->form->getLabel('street2'); ?>
+		</div>
+		<div class="controls">
+			<?php echo $this->form->getInput('street2'); ?>
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="control-label">
+			<?php echo $this->form->getLabel('city'); ?>
+		</div>
+		<div class="controls">
+			<?php echo $this->form->getInput('city'); ?>
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="control-label">
+			<?php echo $this->form->getLabel('country_id'); ?>
+		</div>
+		<div class="controls">
+			<?php echo $this->form->getInput('country_id'); ?>
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="control-label">
+			<?php echo $this->form->getLabel('state_id'); ?>
+		</div>
+		<div class="controls">
+			<?php echo $this->form->getInput('state_id'); ?>
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="control-label">
+			<?php echo $this->form->getLabel('zip_code'); ?>
+		</div>
+		<div class="controls">
+			<?php echo $this->form->getInput('zip_code'); ?>
+		</div>
+	</div>
+</div>
+<div class="span6">
     <div class="control-group">
         <div class="control-label">
             <?php echo $this->form->getLabel('home_phone'); ?>
@@ -98,4 +100,4 @@ defined('_JEXEC') or die;
             <?php echo $this->form->getInput('other_email'); ?>
         </div>
     </div>
-</fieldset>
+</span>
