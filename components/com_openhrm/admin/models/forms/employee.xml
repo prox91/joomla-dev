@@ -15,7 +15,7 @@
 		       class="inputbox"
 		       description="First name"
 		       label="First Name"
-		       size="30"
+		       size="30%"
 		       required="true"
 		       labelclass="control-label"/>
 
