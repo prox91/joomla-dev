@@ -47,7 +47,7 @@
         <field name="driver_license_num"
                type="text"
                class="inputbox"
-               label="Driver License Number"
+               label="Drv Lice No."
                description="Driver License Number"
                size="30"
                labelclass="control-label"/>
@@ -150,8 +150,8 @@
         <field name="state_id"
                type="states"
                class="inputbox"
-               label="Country"
-               description="Country"
+               label="State/Province"
+               description="State/Province"
                size="30"
                labelclass="control-label"/>
 

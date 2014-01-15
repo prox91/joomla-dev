@@ -10,28 +10,36 @@
 defined('_JEXEC') or die;
 ?>
 <fieldset class="adminform">
-    <div class="control-group">
-        <div class="control-label">
-            <?php echo $this->form->getLabel('first_name'); ?>
+    <div class="span12">
+        <div class="span4">
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('first_name'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('first_name'); ?>
+                </div>
+            </div>
         </div>
-        <div class="controls">
-            <?php echo $this->form->getInput('first_name'); ?>
+        <div class="span4">
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('middle_name'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('middle_name'); ?>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="control-group">
-        <div class="control-label">
-            <?php echo $this->form->getLabel('middle_name'); ?>
-        </div>
-        <div class="controls">
-            <?php echo $this->form->getInput('middle_name'); ?>
-        </div>
-    </div>
-    <div class="control-group">
-        <div class="control-label">
-            <?php echo $this->form->getLabel('last_name'); ?>
-        </div>
-        <div class="controls">
-            <?php echo $this->form->getInput('last_name'); ?>
+        <div class="span4">
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('last_name'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('last_name'); ?>
+                </div>
+            </div>
         </div>
     </div>
     <div class="control-group">
@@ -42,20 +50,26 @@ defined('_JEXEC') or die;
             <?php echo $this->form->getInput('employee_code'); ?>
         </div>
     </div>
-    <div class="control-group">
-        <div class="control-label">
-            <?php echo $this->form->getLabel('driver_license_num'); ?>
+    <div class="span12">
+        <div class="span4">
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('driver_license_num'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('driver_license_num'); ?>
+                </div>
+            </div>
         </div>
-        <div class="controls">
-            <?php echo $this->form->getInput('driver_license_num'); ?>
-        </div>
-    </div>
-    <div class="control-group">
-        <div class="control-label">
-            <?php echo $this->form->getLabel('driver_license_exp_date'); ?>
-        </div>
-        <div class="controls">
-            <?php echo $this->form->getInput('driver_license_exp_date'); ?>
+        <div class="span4">
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('driver_license_exp_date'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('driver_license_exp_date'); ?>
+                </div>
+            </div>
         </div>
     </div>
     <div class="control-group">

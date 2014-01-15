@@ -27,7 +27,7 @@ JHtml::_('behavior.formvalidation');
 <div class="main-container">
 	<script type="text/javascript">
 		Joomla.submitbutton = function (task) {
-			if (task == 'country.cancel' || document.formvalidator.isValid(document.id('itemForm'))) {
+			if (task == 'employee.cancel' || document.formvalidator.isValid(document.id('itemForm'))) {
 				<?php //echo $this->form->getField('book')->save(); ?>
 				Joomla.submitform(task, document.getElementById('itemForm'));
 			}
