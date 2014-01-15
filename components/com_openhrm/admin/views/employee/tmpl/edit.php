@@ -39,7 +39,7 @@ JHtml::_('behavior.formvalidation');
 	<form enctype="multipart/form-data"
 		action="<?php JRoute::_('index.php?option=com_openhrm&view=employee'); ?>" method="post" name="itemForm" id="itemForm"
 		class="form-validate form-horizontal">
-        <div class="span4">
+        <div class="span2">
             <div>
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#personal" data-toggle="tab"><?php echo JText::_('Personal Detail')?></a></li>
@@ -47,7 +47,7 @@ JHtml::_('behavior.formvalidation');
                 </ul>
             </div>
         </div>
-        <div class="span8">
+        <div class="span10">
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#personal" data-toggle="tab"><?php echo JText::_('Personal Detail')?></a></li>
                 <li class=""><a href="#contact" data-toggle="tab"><?php echo JText::_('Contact')?></a></li>

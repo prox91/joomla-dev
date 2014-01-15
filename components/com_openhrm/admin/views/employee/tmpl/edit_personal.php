@@ -9,7 +9,7 @@
 // No direct access to this file
 defined('_JEXEC') or die;
 ?>
-<fieldset class="adminform">
+<fieldset>
     <div class="span12">
         <div class="span4">
             <div class="control-group">
@@ -50,6 +50,8 @@ defined('_JEXEC') or die;
             <?php echo $this->form->getInput('employee_code'); ?>
         </div>
     </div>
+</fieldset>
+<fieldset>
     <div class="span12">
         <div class="span4">
             <div class="control-group">
@@ -61,7 +63,7 @@ defined('_JEXEC') or die;
                 </div>
             </div>
         </div>
-        <div class="span4">
+        <div class="span6">
             <div class="control-group">
                 <div class="control-label">
                     <?php echo $this->form->getLabel('driver_license_exp_date'); ?>
