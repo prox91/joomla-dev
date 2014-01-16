@@ -40,11 +40,10 @@ JHtml::_('behavior.formvalidation');
 		action="<?php JRoute::_('index.php?option=com_openhrm&view=employee'); ?>" method="post" name="itemForm" id="itemForm"
 		class="form-validate form-horizontal">
         <div class="span2">
-            <div>
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#personal" data-toggle="tab"><?php echo JText::_('Personal Detail')?></a></li>
-                    <li class=""><a href="#contact" data-toggle="tab"><?php echo JText::_('Contact')?></a></li>
-                </ul>
+            <div class="persional">
+                <div class="picture">
+                    <img src="">
+                </div>
             </div>
         </div>
         <div class="span10">

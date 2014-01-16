@@ -12,16 +12,15 @@ defined('_JEXEC') or die;
 <span class="divider-vertical pull-left"></span>
 <ul class="nav">
 	<li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">	<?php echo JText::_('OPENHRM_SUBMENU_DASHBOARD') ?>
-			<b class="caret"></b>
+		<a href="<?php echo JRoute::_('index.php?option=com_openhrm&view=dashboard') ?>">	<?php echo JText::_('OPENHRM_SUBMENU_DASHBOARD') ?>
 		</a>
-		<ul class="dropdown-menu">
-			<li>
-				<a href="<?php echo JRoute::_('index.php?option=com_openhrm&view=dashboard') ?>">
-					<?php echo JText::_('OPENHRM_SUBMENU_DASHBOARD') ?>
-				</a>
-			</li>
-		</ul>
+<!--		<ul class="dropdown-menu">-->
+<!--			<li>-->
+<!--				<a href="--><?php //echo JRoute::_('index.php?option=com_openhrm&view=dashboard') ?><!--">-->
+<!--					--><?php //echo JText::_('OPENHRM_SUBMENU_DASHBOARD') ?>
+<!--				</a>-->
+<!--			</li>-->
+<!--		</ul>-->
 	</li>
 	<li>
 		<a href="#"	class="dropdown-toggle"	data-toggle="dropdown">	<?php echo JText::_('OPENHRM_SUBMENU_PIM') ?>

@@ -158,6 +158,17 @@ if ($result instanceof Exception)
 {
 	return $result;
 }
+
+if ($displaySidebar)
+{
+    $conventionToolbar = 'convention-toolbar';
+    $conventionToolbarFix = 'convention-toolbar-fixed';
+}
+else
+{
+    $conventionToolbar = 'convention-toolbar-full';
+    $conventionToolbarFix = 'convention-toolbar-full-fixed';
+}
 ?>
 <script type="text/javascript">
 	jQuery(document).ready(function () {
@@ -180,8 +191,8 @@ if ($result instanceof Exception)
         (function(jQuery) {
             // fix sub nav on scroll
             var win = jQuery(window)
-            var nav = jQuery('.convention-toolbar');
-            var navTop = jQuery('.convention-toolbar').length && jQuery('.convention-toolbar').offset().top - 40;
+            var nav = jQuery('.<?php echo $conventionToolbar; ?>');
+            var navTop = jQuery('.<?php echo $conventionToolbar; ?>').length && jQuery('.<?php echo $conventionToolbar; ?>').offset().top - 40;
             var isFixed = 0;
             processScroll();
             // hack sad times - holdover until rewrite for 2.1
@@ -198,10 +209,10 @@ if ($result instanceof Exception)
                 var i, scrollTop = win.scrollTop()
                 if (scrollTop >= navTop && !isFixed) {
                     isFixed = 1;
-                    nav.addClass('convention-toolbar-fixed');
+                    nav.addClass('<?php echo $conventionToolbarFix; ?>');
                 } else if (scrollTop <= navTop && isFixed) {
                     isFixed = 0;
-                    nav.removeClass('convention-toolbar-fixed');
+                    nav.removeClass('<?php echo $conventionToolbarFix; ?>');
                 }
             }
         })(jQuery);
@@ -248,7 +259,7 @@ else : ?>
 					<div class="span12 content">
 				<?php endif; ?>
 						<section id="component">
-							<div class="convention-toolbar row-fluid heading">
+							<div class="<?php echo $conventionToolbar; ?> row-fluid heading">
 								<div class="title span4">
                                     <?php $iconName = $view->getTitleIcon();?>
 									<h3><?php if(!empty($iconName)) { echo '<i class="' . $view->getTitleIcon() . '"></i>'; } ?> <?php echo $view->getTitle() ?></h3>

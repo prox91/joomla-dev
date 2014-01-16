@@ -7945,21 +7945,29 @@
     padding-right: 10px;
 }
 
-.openhrm .convention-toolbar {
-    background: -moz-linear-gradient(center top , #FFFFFF 0%, #EDEDED 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
-    border-bottom: 1px solid #D3D3D3;
-    color: #0C192E;
-    margin-bottom: 10px;
-    text-shadow: 0 1px 0 #FFFFFF;
-}
-
 .openhrm .convention-nav {
       /*background: -moz-linear-gradient(center top , #FFFFFF 0%, #EDEDED 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);*/
       border-bottom: 1px solid #D3D3D3;
       color: #0C192E;
       margin-bottom: 10px;
       text-shadow: 0 1px 0 #FFFFFF;
-  }
+}
+
+.openhrm .convention-nav-fixed {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 40px;
+    width: 14.5%;
+    z-index: 100;
+}
+
+.openhrm .convention-toolbar, .openhrm .convention-toolbar-full {
+    background: -moz-linear-gradient(center top , #FFFFFF 0%, #EDEDED 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border-bottom: 1px solid #D3D3D3;
+    color: #0C192E;
+    margin-bottom: 10px;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
 
 .openhrm .convention-toolbar-fixed {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -7969,10 +7977,11 @@
     z-index: 100;
 }
 
-.openhrm .convention-nav-fixed {
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      position: fixed;
-      top: 40px;
-      width: 14.5%;
-      z-index: 100;
-  }
+.openhrm .convention-toolbar-full-fixed {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 41px;
+    width: 98.5%;
+    z-index: 100;
+}
+
