@@ -23,7 +23,7 @@ class OpenHrmController extends JControllerLegacy
 	{
 		// Set default view if not set
 		$input = JFactory::getApplication()->input;
-		$input->set('view', $input->getCmd('view', 'Countries'));
+		$input->set('view', $input->getCmd('view', 'Dashboard'));
 
         JHtml::stylesheet('openhrm/assets/stylesheet.css', false, true, false);
 

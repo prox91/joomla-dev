@@ -69,7 +69,7 @@
 		       labelclass="control-label"/>
 
         <field name="gender"
-               type="radio"
+               type="list"
                label="Gender"
                default="1"
                description="Gender"

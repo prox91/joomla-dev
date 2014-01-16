@@ -35,21 +35,30 @@ JHtml::_('behavior.formvalidation');
 				alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
 			}
 		}
+
+		jQuery(document).ready(function(){
+			jQuery('#personalPhotoId').click(function(){
+				alert('Open media to change the photo!');
+			});
+		});
 	</script>
 	<form enctype="multipart/form-data"
 		action="<?php JRoute::_('index.php?option=com_openhrm&view=employee'); ?>" method="post" name="itemForm" id="itemForm"
 		class="form-validate form-horizontal">
         <div class="span2">
-            <div class="persional">
+            <div class="personal">
+	            <div class="name">
+		            <div>Bui Ngoc Nha</div>
+		        </div>
                 <div class="picture">
-                    <img src="">
+                    <img src="<?php echo JUri::root().'media/openhrm/images/default-photo.png'; ?>" id="personalPhotoId">
                 </div>
             </div>
         </div>
         <div class="span10">
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#personal" data-toggle="tab"><?php echo JText::_('Personal Detail')?></a></li>
-                <li class=""><a href="#contact" data-toggle="tab"><?php echo JText::_('Contact')?></a></li>
+                <li class="active"><a href="#personal" data-toggle="tab"><?php echo JText::_('Basic Information')?></a></li>
+                <li class=""><a href="#contact" data-toggle="tab"><?php echo JText::_('Contact Detail')?></a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="personal">
