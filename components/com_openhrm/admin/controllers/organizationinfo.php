@@ -30,8 +30,8 @@ class OpenHrmControllerOrganizationInfo extends RControllerForm
 		parent::save($key, $urlVar);
 	}
 
-	public function cancel($key = null)
+	public function close()
 	{
-		$this->$this->view_list = 'countries';
+		$this->view_list = 'countries';
 	}
 }

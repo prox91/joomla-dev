@@ -62,7 +62,7 @@ class OpenHrmViewOrganizationInfo extends OpenHrmViewAdmin
             // Delete / Revoke
             //if ($canDo->get('core.delete'))
             {
-                $cancel = RToolbarBuilder::createCancelButton('organizationinfo.cancel');
+                $cancel = RToolbarBuilder::createCloseButton('organizationinfo.close');
                 $secondGroup->addButton($cancel);
             }
         }
