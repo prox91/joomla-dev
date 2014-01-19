@@ -8,7 +8,11 @@
  */
 // No direct access to this file
 defined('_JEXEC') or die;
-JHtml::_('behavior.formvalidation');
+//JHtml::_('behavior.modal');
+//JHtml::_('behavior.formvalidation');
+JHtml::_('bootstrap.modal', 'collapseModal');
+
+$link = JRoute::_('index.php?option=com_openhrm&tmpl=component&view=mediamanagers&layout=modal&' . JSession::getFormToken() . '=1');
 ?>
 <script type="text/javascript">
 	Joomla.orderTable = function () {
@@ -35,12 +39,6 @@ JHtml::_('behavior.formvalidation');
 				alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
 			}
 		}
-
-		jQuery(document).ready(function(){
-			jQuery('#personalPhotoId').click(function(){
-				alert('Open media to change the photo!');
-			});
-		});
 	</script>
 	<form enctype="multipart/form-data"
 		action="<?php JRoute::_('index.php?option=com_openhrm&view=employee'); ?>" method="post" name="itemForm" id="itemForm"
@@ -51,8 +49,18 @@ JHtml::_('behavior.formvalidation');
 		            <div>Bui Ngoc Nha</div>
 		        </div>
                 <div class="picture">
-                    <img src="<?php echo JUri::root().'media/openhrm/images/default-photo.png'; ?>" id="personalPhotoId">
+	                <a href="<?php echo $link; ?>" data-target="#collapseModal" data-toggle="modal" id="changePictureId">
+						<img src="<?php echo JUri::root().'media/openhrm/images/default-photo.png'; ?>" id="personalPhotoId">
+	                </a>
                 </div>
+	            <div class="modal hide fade" id="collapseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		            <div class="modal-header">
+			            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			            <h3 id="myModalLabel">Modal header</h3>
+		            </div>
+		            <div class="modal-body">
+		            </div>
+	            </div>
             </div>
         </div>
         <div class="span10">

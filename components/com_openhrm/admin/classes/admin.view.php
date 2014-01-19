@@ -6,7 +6,7 @@
  * Time: 11:13 AM
  * To change this template use File | Settings | File Templates.
  */
-class OpenHrmViewAdmin extends RView
+class OpenHrmViewAdmin extends RViewAdmin
 {
 	/**
 	 * The component title to display in the topbar layout (if using it).

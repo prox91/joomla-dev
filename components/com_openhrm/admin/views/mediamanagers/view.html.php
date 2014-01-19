@@ -30,6 +30,8 @@ class OpenHrmViewMediaManagers extends OpenHrmViewAdmin
 			return false;
 		}
 
+		$this->componentLayout = 'modal';
+
 		// Display the template
 		parent::display($tpl);
 

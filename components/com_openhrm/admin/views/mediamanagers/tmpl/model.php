@@ -8,130 +8,128 @@
  */
 // No direct access to this file
 defined('_JEXEC') or die;
-JHtml::_('bootstrap.tooltip');
-JHtml::_('behavior.multiselect');
 JHtml::_('dropdown.init');
+JHtml::_('bootstrap.tooltip');
 JHtml::_('formbehavior.chosen', 'select');
+JHtml::_('behavior.multiselect');
 
 $app		= JFactory::getApplication();
 $user		= JFactory::getUser();
 $userId		= $user->get('id');
-$listOrder	= '';//$this->escape($this->state->get('list.ordering'));
-$listDirn	= '';//$this->escape($this->state->get('list.direction'));
-$archived	= '';//$this->state->get('filter.published') == 2 ? true : false;
-$trashed	= '';//$this->state->get('filter.published') == -2 ? true : false;
-$saveOrder	= $listOrder == 'a.ordering';
-if ($saveOrder)
-{
-	$saveOrderingUrl = 'index.php?option=com_openhrm&task=openhrms.saveOrderAjax&tmpl=component';
-	JHtml::_('sortablelist.sortable', 'articleList', 'adminForm', strtolower($listDirn), $saveOrderingUrl);
-}
+$link = JRoute::_('index.php?option=com_openhrm&task=mediamanager.apply&view=mediamanager&tmpl=component&layout=modal&type=' . $grammarId);
 
-$sortFields = ''; //$this->getSortFields();
-$assoc		= isset($app->item_associations) ? $app->item_associations : 0;
+JHtml::_('stylesheet', 'openhrm/assets/jquery/ui/themes/ui-lightness/jquery-ui-1.8.16.custom.css');
+JHtml::_('script', 'openhrm/assets/jquery/ui/jquery-ui-1.8.16.custom.min.js', false, true, false, false);
+JHtml::_('script', 'openhrm/assets/jquery/ui/external/jquery.bgiframe-2.1.2.js', false, true, false, false);
+JHtml::_('script', 'openhrm/assets/jquery/jstree/jquery.tree.min.js', false, true, false, false);
+JHtml::_('script', 'openhrm/assets/jquery/ajaxupload.js', false, true, false, false);
+
+$button_folder = JText::_('Thư mục mới');
+$button_delete = JText::_('Xóa');
+$button_move = JText::_('Chuyển');
+$button_copy = JText::_('Sao');
+$button_rename = JText::_('Sửa tên');
+$button_upload = JText::_('Tải lên');
+$button_refresh = JText::_('Làm tươi');
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <title><?php echo $title; ?></title>
-    <base href="<?php echo $base; ?>" />
-    <script type="text/javascript" src="view/javascript/jquery/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-1.8.16.custom.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="view/javascript/jquery/ui/themes/ui-lightness/jquery-ui-1.8.16.custom.css" />
-    <script type="text/javascript" src="view/javascript/jquery/ui/external/jquery.bgiframe-2.1.2.js"></script>
-    <script type="text/javascript" src="view/javascript/jquery/jstree/jquery.tree.min.js"></script>
-    <script type="text/javascript" src="view/javascript/jquery/ajaxupload.js"></script>
-    <style type="text/css">
-        body {
-            padding: 0;
-            margin: 0;
-            background: #F7F7F7;
-            font-family: Verdana, Arial, Helvetica, sans-serif;
-            font-size: 11px;
-        }
-        img {
-            border: 0;
-        }
-        #container {
-            padding: 0px 10px 7px 10px;
-            height: 340px;
-        }
-        #menu {
-            clear: both;
-            height: 29px;
-            margin-bottom: 3px;
-        }
-        #column-left {
-            background: #FFF;
-            border: 1px solid #CCC;
-            float: left;
-            width: 20%;
-            height: 320px;
-            overflow: auto;
-        }
-        #column-right {
-            background: #FFF;
-            border: 1px solid #CCC;
-            float: right;
-            width: 78%;
-            height: 320px;
-            overflow: auto;
-            text-align: center;
-        }
-        #column-right div {
-            text-align: left;
-            padding: 5px;
-        }
-        #column-right a {
-            display: inline-block;
-            text-align: center;
-            border: 1px solid #EEEEEE;
-            cursor: pointer;
-            margin: 5px;
-            padding: 5px;
-        }
-        #column-right a.selected {
-            border: 1px solid #7DA2CE;
-            background: #EBF4FD;
-        }
-        #column-right input {
-            display: none;
-        }
-        #dialog {
-            display: none;
-        }
-        .button {
-            display: block;
-            float: left;
-            padding: 8px 5px 8px 25px;
-            margin-right: 5px;
-            background-position: 5px 6px;
-            background-repeat: no-repeat;
-            cursor: pointer;
-        }
-        .button:hover {
-            background-color: #EEEEEE;
-        }
-        .thumb {
-            padding: 5px;
-            width: 105px;
-            height: 105px;
-            background: #F7F7F7;
-            border: 1px solid #CCCCCC;
-            cursor: pointer;
-            cursor: move;
-            position: relative;
-        }
-    </style>
-</head>
-<body>
+
+<style type="text/css">
+	body {
+		padding: 0;
+		margin: 0;
+		background: #F7F7F7;
+		font-family: Verdana, Arial, Helvetica, sans-serif;
+		font-size: 11px;
+	}
+	img {
+		border: 0;
+	}
+	#container {
+		padding: 0px 10px 7px 10px;
+		height: 340px;
+	}
+	#menu {
+		clear: both;
+		height: 29px;
+		margin-bottom: 3px;
+	}
+	#column-left {
+		background: #FFF;
+		border: 1px solid #CCC;
+		float: left;
+		width: 20%;
+		height: 320px;
+		overflow: auto;
+	}
+	#column-right {
+		background: #FFF;
+		border: 1px solid #CCC;
+		float: right;
+		width: 78%;
+		height: 320px;
+		overflow: auto;
+		text-align: center;
+	}
+	#column-right div {
+		text-align: left;
+		padding: 5px;
+	}
+	#column-right a {
+		display: inline-block;
+		text-align: center;
+		border: 1px solid #EEEEEE;
+		cursor: pointer;
+		margin: 5px;
+		padding: 5px;
+	}
+	#column-right a.selected {
+		border: 1px solid #7DA2CE;
+		background: #EBF4FD;
+	}
+	#column-right input {
+		display: none;
+	}
+	#dialog {
+		display: none;
+	}
+	.button {
+		display: block;
+		float: left;
+		padding: 8px 5px 8px 25px;
+		margin-right: 5px;
+		background-position: 5px 6px;
+		background-repeat: no-repeat;
+		cursor: pointer;
+	}
+	.button:hover {
+		background-color: #EEEEEE;
+	}
+	.thumb {
+		padding: 5px;
+		width: 105px;
+		height: 105px;
+		background: #F7F7F7;
+		border: 1px solid #CCCCCC;
+		cursor: pointer;
+		cursor: move;
+		position: relative;
+	}
+</style>
 <div id="container">
-    <div id="menu"><a id="create" class="button" style="background-image: url('view/image/filemanager/folder.png');"><?php echo $button_folder; ?></a><a id="delete" class="button" style="background-image: url('view/image/filemanager/edit-delete.png');"><?php echo $button_delete; ?></a><a id="move" class="button" style="background-image: url('view/image/filemanager/edit-cut.png');"><?php echo $button_move; ?></a><a id="copy" class="button" style="background-image: url('view/image/filemanager/edit-copy.png');"><?php echo $button_copy; ?></a><a id="rename" class="button" style="background-image: url('view/image/filemanager/edit-rename.png');"><?php echo $button_rename; ?></a><a id="upload" class="button" style="background-image: url('view/image/filemanager/upload.png');"><?php echo $button_upload; ?></a><a id="refresh" class="button" style="background-image: url('view/image/filemanager/refresh.png');"><?php echo $button_refresh; ?></a></div>
+    <div id="menu">
+	    <a id="create" class="button" style="background-image: url(<?php echo JUri::root() . 'media/openhrm/assets/images/folder.png'; ?>);"><?php echo $button_folder; ?></a>
+	    <a id="delete" class="button" style="background-image: url(<?php echo JUri::root() . 'media/openhrm/assets/images/edit-delete.png'; ?>);"><?php echo $button_delete; ?></a>
+	    <a id="move" class="button" style="background-image: url(<?php echo JUri::root() . 'media/openhrm/assets/images/edit-cut.png'; ?>);"><?php echo $button_move; ?></a>
+	    <a id="copy" class="button" style="background-image: url(<?php echo JUri::root() . 'media/openhrm/assets/images/edit-copy.png'; ?>);"><?php echo $button_copy; ?></a>
+	    <a id="rename" class="button" style="background-image: url(<?php echo JUri::root() . 'media/openhrm/assets/images/edit-rename.png'; ?>);"><?php echo $button_rename; ?></a>
+	    <a id="upload" class="button" style="background-image: url(<?php echo JUri::root() . 'media/openhrm/assets/images/upload.png'; ?>);"><?php echo $button_upload; ?></a>
+	    <a id="refresh" class="button" style="background-image: url(<?php echo JUri::root() . 'media/openhrm/assets/images/refresh.png'; ?>);"><?php echo $button_refresh; ?></a>
+    </div>
     <div id="column-left"></div>
     <div id="column-right"></div>
 </div>
-<script type="text/javascript"><!--
+<script type="text/javascript">
+<!--
 $(document).ready(function() {
     (function(){
         var special = jQuery.event.special,
@@ -682,5 +680,3 @@ $(document).ready(function() {
     });
 });
 //--></script>
-</body>
-</html>
