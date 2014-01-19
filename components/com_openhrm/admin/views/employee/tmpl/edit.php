@@ -39,6 +39,11 @@ $link = JRoute::_('index.php?option=com_openhrm&tmpl=component&view=mediamanager
 				alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
 			}
 		}
+		jQuery('a#changePictureId').on('click', function(e) {
+			e.preventDefault();
+			var url = jQuery(this).attr('href');
+			jQuery(".modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" src="'+url+'"></iframe>');
+		});
 	</script>
 	<form enctype="multipart/form-data"
 		action="<?php JRoute::_('index.php?option=com_openhrm&view=employee'); ?>" method="post" name="itemForm" id="itemForm"
