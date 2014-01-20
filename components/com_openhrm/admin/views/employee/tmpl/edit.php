@@ -8,8 +8,6 @@
  */
 // No direct access to this file
 defined('_JEXEC') or die;
-//JHtml::_('behavior.modal');
-//JHtml::_('behavior.formvalidation');
 JHtml::_('bootstrap.modal', 'collapseModal');
 
 $link = JRoute::_('index.php?option=com_openhrm&tmpl=component&view=mediamanagers&layout=modal&' . JSession::getFormToken() . '=1');
@@ -38,11 +36,12 @@ $link = JRoute::_('index.php?option=com_openhrm&tmpl=component&view=mediamanager
 			else {
 				alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
 			}
-		}
+		};
+
 		jQuery('a#changePictureId').on('click', function(e) {
 			e.preventDefault();
 			var url = jQuery(this).attr('href');
-			jQuery(".modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" src="'+url+'"></iframe>');
+			jQuery("div.modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" src="'+url+'"></iframe>');
 		});
 	</script>
 	<form enctype="multipart/form-data"
@@ -54,9 +53,7 @@ $link = JRoute::_('index.php?option=com_openhrm&tmpl=component&view=mediamanager
 		            <div>Bui Ngoc Nha</div>
 		        </div>
                 <div class="picture">
-	                <a href="<?php echo $link; ?>" data-target="#collapseModal" data-toggle="modal" id="changePictureId">
-						<img src="<?php echo JUri::root().'media/openhrm/images/default-photo.png'; ?>" id="personalPhotoId">
-	                </a>
+	                <a href="<?php echo $link; ?>" data-target="#collapseModal" data-toggle="modal" id="changePictureId"><img src="<?php echo JUri::root().'media/openhrm/images/default-photo.png'; ?>" id="personalPhotoId"></a>
                 </div>
 	            <div class="modal hide fade" id="collapseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		            <div class="modal-header">

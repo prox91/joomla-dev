@@ -16,7 +16,7 @@ JHtml::_('behavior.multiselect');
 $app		= JFactory::getApplication();
 $user		= JFactory::getUser();
 $userId		= $user->get('id');
-$link = JRoute::_('index.php?option=com_openhrm&task=mediamanager.apply&view=mediamanager&tmpl=component&layout=modal&type=' . $grammarId);
+$link = JRoute::_('index.php?option=com_openhrm&task=mediamanager.apply&view=mediamanager&tmpl=component&layout=modal');
 
 JHtml::_('stylesheet', 'openhrm/assets/jquery/ui/themes/ui-lightness/jquery-ui-1.8.16.custom.css');
 JHtml::_('script', 'openhrm/assets/jquery/ui/jquery-ui-1.8.16.custom.min.js', false, true, false, false);
@@ -31,6 +31,18 @@ $button_copy = JText::_('Sao');
 $button_rename = JText::_('Sửa tên');
 $button_upload = JText::_('Tải lên');
 $button_refresh = JText::_('Làm tươi');
+
+$entry_folder = JText::_('entry_folder');
+$entry_move = JText::_('entry_move');
+$entry_copy = JText::_('entry_copy');
+$entry_rename = JText::_('entry_rename');
+
+$button_submit = JText::_('button_submit');
+
+$error_directory = JText::_('error_directory');
+$error_select = JText::_('error_select');
+
+$no_image = OpenHrmHelpersOpenhrm::resize(JPATH_ROOT  . '/media/openhrm/images/default-photo.png', 100, 100);
 ?>
 
 <style type="text/css">
@@ -130,7 +142,7 @@ $button_refresh = JText::_('Làm tươi');
 </div>
 <script type="text/javascript">
 <!--
-$(document).ready(function() {
+jQuery(document).ready(function() {
     (function(){
         var special = jQuery.event.special,
             uid1 = 'D' + (+new Date()),
@@ -196,30 +208,32 @@ $(document).ready(function() {
         };
     })();
 
-    $('#column-right').bind('scrollstop', function() {
-        $('#column-right a').each(function(index, element) {
-            var height = $('#column-right').height();
-            var offset = $(element).offset();
+	/*
+    jQuery('#column-right').bind('scrollstop', function() {
+        jQuery('#column-right a').each(function(index, element) {
+            var height = jQuery('#column-right').height();
+            var offset = jQuery(element).offset();
 
-            if ((offset.top > 0) && (offset.top < height) && $(element).find('img').attr('src') == '<?php echo $no_image; ?>') {
-                $.ajax({
-                    url: 'index.php?route=common/filemanager/image&token=<?php echo $token; ?>&image=' + encodeURIComponent('data/' + $(element).find('input[name=\'image\']').attr('value')),
+            if ((offset.top > 0) && (offset.top < height) && jQuery(element).find('img').attr('src') == '<?php //echo $no_image; ?>') {
+                jQuery.ajax({
+	                url: '<?php echo JRoute::_('index.php?option=com_openhrm&task=mediamanagers.image&format=json', false); ?>&image=' + encodeURIComponent('data/' + jQuery(element).find('input[name=\'image\']').attr('value')),
                     dataType: 'html',
                     success: function(html) {
-                        $(element).find('img').replaceWith('<img src="' + html + '" alt="" title="" />');
+                        jQuery(element).find('img').replaceWith('<img src="' + html + '" alt="" title="" />');
                     }
                 });
             }
         });
     });
+    */
 
-    $('#column-left').tree({
+    jQuery('#column-left').tree({
         data: {
             type: 'json',
             async: true,
             opts: {
                 method: 'post',
-                url: 'index.php?route=common/filemanager/directory&token=<?php echo $token; ?>'
+	            url: '<?php echo JRoute::_('index.php?option=com_openhrm&task=mediamanagers.directory&format=json', false); ?>'
             }
         },
         selected: 'top',
@@ -257,14 +271,14 @@ $(document).ready(function() {
                 } else {
                     TREE_OBJ.settings.data.opts.static = false;
 
-                    return { 'directory': $(NODE).attr('directory') }
+                    return { 'directory': jQuery(NODE).attr('directory') }
                 }
             },
             onselect: function (NODE, TREE_OBJ) {
-                $.ajax({
-                    url: 'index.php?route=common/filemanager/files&token=<?php echo $token; ?>',
+                jQuery.ajax({
+	                url: '<?php echo JRoute::_('index.php?option=com_openhrm&task=mediamanagers.files&format=json', false); ?>',
                     type: 'post',
-                    data: 'directory=' + encodeURIComponent($(NODE).attr('directory')),
+                    data: 'directory=' + encodeURIComponent(jQuery(NODE).attr('directory')),
                     dataType: 'json',
                     success: function(json) {
                         html = '<div>';
@@ -277,9 +291,9 @@ $(document).ready(function() {
 
                         html += '</div>';
 
-                        $('#column-right').html(html);
+                        jQuery('#column-right').html(html);
 
-                        $('#column-right').trigger('scrollstop');
+                        jQuery('#column-right').trigger('scrollstop');
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
                         alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -289,55 +303,57 @@ $(document).ready(function() {
         }
     });
 
-    $('#column-right a').live('click', function() {
-        if ($(this).attr('class') == 'selected') {
-            $(this).removeAttr('class');
+    jQuery('#column-right a').live('click', function() {
+        if (jQuery(this).attr('class') == 'selected') {
+            jQuery(this).removeAttr('class');
         } else {
-            $('#column-right a').removeAttr('class');
+            jQuery('#column-right a').removeAttr('class');
 
-            $(this).attr('class', 'selected');
+            jQuery(this).attr('class', 'selected');
         }
     });
 
-    $('#column-right a').live('dblclick', function() {
-        <?php if ($fckeditor) { ?>
-        window.opener.CKEDITOR.tools.callFunction(<?php echo $fckeditor; ?>, '<?php echo $directory; ?>' + $(this).find('input[name=\'image\']').attr('value'));
+/*
+    jQuery('#column-right a').live('dblclick', function() {
+        <?php //if ($fckeditor) { ?>
+        window.opener.CKEDITOR.tools.callFunction(<?php //echo $fckeditor; ?>, '<?php //echo $directory; ?>' + jQuery(this).find('input[name=\'image\']').attr('value'));
 
         self.close();
-        <?php } else { ?>
-        parent.$('#<?php echo $field; ?>').attr('value', 'data/' + $(this).find('input[name=\'image\']').attr('value'));
-        parent.$('#dialog').dialog('close');
+        <?php //} else { ?>
+        parent.jQuery('#<?php //echo $field; ?>').attr('value', 'data/' + jQuery(this).find('input[name=\'image\']').attr('value'));
+        parent.jQuery('#dialog').dialog('close');
 
-        parent.$('#dialog').remove();
-        <?php } ?>
+        parent.jQuery('#dialog').remove();
+        <?php //} ?>
     });
+*/
 
-    $('#create').bind('click', function() {
-        var tree = $.tree.focused();
+    jQuery('#create').bind('click', function() {
+        var tree = jQuery.tree.focused();
 
         if (tree.selected) {
-            $('#dialog').remove();
+            jQuery('#dialog').remove();
 
             html  = '<div id="dialog">';
             html += '<?php echo $entry_folder; ?> <input type="text" name="name" value="" /> <input type="button" value="<?php echo $button_submit; ?>" />';
             html += '</div>';
 
-            $('#column-right').prepend(html);
+            jQuery('#column-right').prepend(html);
 
-            $('#dialog').dialog({
+            jQuery('#dialog').dialog({
                 title: '<?php echo $button_folder; ?>',
                 resizable: false
             });
 
-            $('#dialog input[type=\'button\']').bind('click', function() {
-                $.ajax({
-                    url: 'index.php?route=common/filemanager/create&token=<?php echo $token; ?>',
+            jQuery('#dialog input[type=\'button\']').bind('click', function() {
+                jQuery.ajax({
+	                url: '<?php echo JRoute::_('index.php?option=com_openhrm&task=mediamanagers.create&format=json', false); ?>',
                     type: 'post',
-                    data: 'directory=' + encodeURIComponent($(tree.selected).attr('directory')) + '&name=' + encodeURIComponent($('#dialog input[name=\'name\']').val()),
+                    data: 'directory=' + encodeURIComponent(jQuery(tree.selected).attr('directory')) + '&name=' + encodeURIComponent(jQuery('#dialog input[name=\'name\']').val()),
                     dataType: 'json',
                     success: function(json) {
                         if (json.success) {
-                            $('#dialog').remove();
+                            jQuery('#dialog').remove();
 
                             tree.refresh(tree.selected);
 
@@ -356,18 +372,18 @@ $(document).ready(function() {
         }
     });
 
-    $('#delete').bind('click', function() {
-        path = $('#column-right a.selected').find('input[name=\'image\']').attr('value');
+    jQuery('#delete').bind('click', function() {
+        path = jQuery('#column-right a.selected').find('input[name=\'image\']').attr('value');
 
         if (path) {
-            $.ajax({
-                url: 'index.php?route=common/filemanager/delete&token=<?php echo $token; ?>',
+            jQuery.ajax({
+	            url: '<?php echo JRoute::_('index.php?option=com_openhrm&task=mediamanagers.delete&format=json', false); ?>',
                 type: 'post',
                 data: 'path=' + encodeURIComponent(path),
                 dataType: 'json',
                 success: function(json) {
                     if (json.success) {
-                        var tree = $.tree.focused();
+                        var tree = jQuery.tree.focused();
 
                         tree.select_branch(tree.selected);
 
@@ -383,13 +399,13 @@ $(document).ready(function() {
                 }
             });
         } else {
-            var tree = $.tree.focused();
+            var tree = jQuery.tree.focused();
 
             if (tree.selected) {
-                $.ajax({
-                    url: 'index.php?route=common/filemanager/delete&token=<?php echo $token; ?>',
+                jQuery.ajax({
+	                url: '<?php echo JRoute::_('index.php?option=com_openhrm&task=mediamanagers.delete&format=json', false); ?>',
                     type: 'post',
-                    data: 'path=' + encodeURIComponent($(tree.selected).attr('directory')),
+                    data: 'path=' + encodeURIComponent(jQuery(tree.selected).attr('directory')),
                     dataType: 'json',
                     success: function(json) {
                         if (json.success) {
@@ -414,36 +430,36 @@ $(document).ready(function() {
         }
     });
 
-    $('#move').bind('click', function() {
-        $('#dialog').remove();
+    jQuery('#move').bind('click', function() {
+        jQuery('#dialog').remove();
 
         html  = '<div id="dialog">';
         html += '<?php echo $entry_move; ?> <select name="to"></select> <input type="button" value="<?php echo $button_submit; ?>" />';
         html += '</div>';
 
-        $('#column-right').prepend(html);
+        jQuery('#column-right').prepend(html);
 
-        $('#dialog').dialog({
+        jQuery('#dialog').dialog({
             title: '<?php echo $button_move; ?>',
             resizable: false
         });
 
-        $('#dialog select[name=\'to\']').load('index.php?route=common/filemanager/folders&token=<?php echo $token; ?>');
+        jQuery('#dialog select[name=\'to\']').load('<?php echo JRoute::_('index.php?option=com_openhrm&task=mediamanagers.folders&format=json', false); ?>');
 
-        $('#dialog input[type=\'button\']').bind('click', function() {
-            path = $('#column-right a.selected').find('input[name=\'image\']').attr('value');
+        jQuery('#dialog input[type=\'button\']').bind('click', function() {
+            path = jQuery('#column-right a.selected').find('input[name=\'image\']').attr('value');
 
             if (path) {
-                $.ajax({
-                    url: 'index.php?route=common/filemanager/move&token=<?php echo $token; ?>',
-                    type: 'post',
-                    data: 'from=' + encodeURIComponent(path) + '&to=' + encodeURIComponent($('#dialog select[name=\'to\']').val()),
+                jQuery.ajax({
+	                url: '<?php echo JRoute::_('index.php?option=com_openhrm&task=mediamanagers.move&format=json', false); ?>',
+	                type: 'post',
+                    data: 'from=' + encodeURIComponent(path) + '&to=' + encodeURIComponent(jQuery('#dialog select[name=\'to\']').val()),
                     dataType: 'json',
                     success: function(json) {
                         if (json.success) {
-                            $('#dialog').remove();
+                            jQuery('#dialog').remove();
 
-                            var tree = $.tree.focused();
+                            var tree = jQuery.tree.focused();
 
                             tree.select_branch(tree.selected);
 
@@ -459,16 +475,16 @@ $(document).ready(function() {
                     }
                 });
             } else {
-                var tree = $.tree.focused();
+                var tree = jQuery.tree.focused();
 
-                $.ajax({
-                    url: 'index.php?route=common/filemanager/move&token=<?php echo $token; ?>',
+                jQuery.ajax({
+	                url: '<?php echo JRoute::_('index.php?option=com_openhrm&task=mediamanagers.move&format=json', false); ?>',
                     type: 'post',
-                    data: 'from=' + encodeURIComponent($(tree.selected).attr('directory')) + '&to=' + encodeURIComponent($('#dialog select[name=\'to\']').val()),
+                    data: 'from=' + encodeURIComponent(jQuery(tree.selected).attr('directory')) + '&to=' + encodeURIComponent(jQuery('#dialog select[name=\'to\']').val()),
                     dataType: 'json',
                     success: function(json) {
                         if (json.success) {
-                            $('#dialog').remove();
+                            jQuery('#dialog').remove();
 
                             tree.select_branch('#top');
 
@@ -489,36 +505,35 @@ $(document).ready(function() {
         });
     });
 
-    $('#copy').bind('click', function() {
-        $('#dialog').remove();
+    jQuery('#copy').bind('click', function() {
+        jQuery('#dialog').remove();
 
         html  = '<div id="dialog">';
         html += '<?php echo $entry_copy; ?> <input type="text" name="name" value="" /> <input type="button" value="<?php echo $button_submit; ?>" />';
         html += '</div>';
 
-        $('#column-right').prepend(html);
+        jQuery('#column-right').prepend(html);
 
-        $('#dialog').dialog({
+        jQuery('#dialog').dialog({
             title: '<?php echo $button_copy; ?>',
             resizable: false
         });
+        jQuery('#dialog select[name=\'to\']').load('<?php echo JRoute::_('index.php?option=com_openhrm&task=mediamanagers.folders&format=json', false); ?>');
 
-        $('#dialog select[name=\'to\']').load('index.php?route=common/filemanager/folders&token=<?php echo $token; ?>');
-
-        $('#dialog input[type=\'button\']').bind('click', function() {
-            path = $('#column-right a.selected').find('input[name=\'image\']').attr('value');
+        jQuery('#dialog input[type=\'button\']').bind('click', function() {
+            path = jQuery('#column-right a.selected').find('input[name=\'image\']').attr('value');
 
             if (path) {
-                $.ajax({
-                    url: 'index.php?route=common/filemanager/copy&token=<?php echo $token; ?>',
+                jQuery.ajax({
+	                url: '<?php echo JRoute::_('index.php?option=com_openhrm&task=mediamanagers.copy&format=json', false); ?>',
                     type: 'post',
-                    data: 'path=' + encodeURIComponent(path) + '&name=' + encodeURIComponent($('#dialog input[name=\'name\']').val()),
+                    data: 'path=' + encodeURIComponent(path) + '&name=' + encodeURIComponent(jQuery('#dialog input[name=\'name\']').val()),
                     dataType: 'json',
                     success: function(json) {
                         if (json.success) {
-                            $('#dialog').remove();
+                            jQuery('#dialog').remove();
 
-                            var tree = $.tree.focused();
+                            var tree = jQuery.tree.focused();
 
                             tree.select_branch(tree.selected);
 
@@ -534,16 +549,16 @@ $(document).ready(function() {
                     }
                 });
             } else {
-                var tree = $.tree.focused();
+                var tree = jQuery.tree.focused();
 
-                $.ajax({
-                    url: 'index.php?route=common/filemanager/copy&token=<?php echo $token; ?>',
+                jQuery.ajax({
+	                url: '<?php echo JRoute::_('index.php?option=com_openhrm&task=mediamanagers.copy&format=json', false); ?>',
                     type: 'post',
-                    data: 'path=' + encodeURIComponent($(tree.selected).attr('directory')) + '&name=' + encodeURIComponent($('#dialog input[name=\'name\']').val()),
+                    data: 'path=' + encodeURIComponent(jQuery(tree.selected).attr('directory')) + '&name=' + encodeURIComponent(jQuery('#dialog input[name=\'name\']').val()),
                     dataType: 'json',
                     success: function(json) {
                         if (json.success) {
-                            $('#dialog').remove();
+                            jQuery('#dialog').remove();
 
                             tree.select_branch(tree.parent(tree.selected));
 
@@ -564,34 +579,34 @@ $(document).ready(function() {
         });
     });
 
-    $('#rename').bind('click', function() {
-        $('#dialog').remove();
+    jQuery('#rename').bind('click', function() {
+        jQuery('#dialog').remove();
 
         html  = '<div id="dialog">';
         html += '<?php echo $entry_rename; ?> <input type="text" name="name" value="" /> <input type="button" value="<?php echo $button_submit; ?>" />';
         html += '</div>';
 
-        $('#column-right').prepend(html);
+        jQuery('#column-right').prepend(html);
 
-        $('#dialog').dialog({
+        jQuery('#dialog').dialog({
             title: '<?php echo $button_rename; ?>',
             resizable: false
         });
 
-        $('#dialog input[type=\'button\']').bind('click', function() {
-            path = $('#column-right a.selected').find('input[name=\'image\']').attr('value');
+        jQuery('#dialog input[type=\'button\']').bind('click', function() {
+            path = jQuery('#column-right a.selected').find('input[name=\'image\']').attr('value');
 
             if (path) {
-                $.ajax({
-                    url: 'index.php?route=common/filemanager/rename&token=<?php echo $token; ?>',
+                jQuery.ajax({
+	                url: '<?php echo JRoute::_('index.php?option=com_openhrm&task=mediamanagers.rename&format=json', false); ?>',
                     type: 'post',
-                    data: 'path=' + encodeURIComponent(path) + '&name=' + encodeURIComponent($('#dialog input[name=\'name\']').val()),
+                    data: 'path=' + encodeURIComponent(path) + '&name=' + encodeURIComponent(jQuery('#dialog input[name=\'name\']').val()),
                     dataType: 'json',
                     success: function(json) {
                         if (json.success) {
-                            $('#dialog').remove();
+                            jQuery('#dialog').remove();
 
-                            var tree = $.tree.focused();
+                            var tree = jQuery.tree.focused();
 
                             tree.select_branch(tree.selected);
 
@@ -607,16 +622,16 @@ $(document).ready(function() {
                     }
                 });
             } else {
-                var tree = $.tree.focused();
+                var tree = jQuery.tree.focused();
 
-                $.ajax({
-                    url: 'index.php?route=common/filemanager/rename&token=<?php echo $token; ?>',
+                jQuery.ajax({
+	                url: '<?php echo JRoute::_('index.php?option=com_openhrm&task=mediamanagers.rename&format=json', false); ?>',
                     type: 'post',
-                    data: 'path=' + encodeURIComponent($(tree.selected).attr('directory')) + '&name=' + encodeURIComponent($('#dialog input[name=\'name\']').val()),
+                    data: 'path=' + encodeURIComponent(jQuery(tree.selected).attr('directory')) + '&name=' + encodeURIComponent(jQuery('#dialog input[name=\'name\']').val()),
                     dataType: 'json',
                     success: function(json) {
                         if (json.success) {
-                            $('#dialog').remove();
+                            jQuery('#dialog').remove();
 
                             tree.select_branch(tree.parent(tree.selected));
 
@@ -638,15 +653,15 @@ $(document).ready(function() {
     });
 
     new AjaxUpload('#upload', {
-        action: 'index.php?route=common/filemanager/upload&token=<?php echo $token; ?>',
+	    action: '<?php echo JRoute::_('index.php?option=com_openhrm&task=mediamanagers.upload&format=json', false); ?>',
         name: 'image',
         autoSubmit: false,
         responseType: 'json',
         onChange: function(file, extension) {
-            var tree = $.tree.focused();
+            var tree = jQuery.tree.focused();
 
             if (tree.selected) {
-                this.setData({'directory': $(tree.selected).attr('directory')});
+                this.setData({'directory': jQuery(tree.selected).attr('directory')});
             } else {
                 this.setData({'directory': ''});
             }
@@ -654,11 +669,11 @@ $(document).ready(function() {
             this.submit();
         },
         onSubmit: function(file, extension) {
-            $('#upload').append('<img src="view/image/loading.gif" class="loading" style="padding-left: 5px;" />');
+            jQuery('#upload').append('<img src="view/image/loading.gif" class="loading" style="padding-left: 5px;" />');
         },
         onComplete: function(file, json) {
             if (json.success) {
-                var tree = $.tree.focused();
+                var tree = jQuery.tree.focused();
 
                 tree.select_branch(tree.selected);
 
@@ -669,12 +684,12 @@ $(document).ready(function() {
                 alert(json.error);
             }
 
-            $('.loading').remove();
+            jQuery('.loading').remove();
         }
     });
 
-    $('#refresh').bind('click', function() {
-        var tree = $.tree.focused();
+    jQuery('#refresh').bind('click', function() {
+        var tree = jQuery.tree.focused();
 
         tree.refresh(tree.selected);
     });

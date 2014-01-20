@@ -9,7 +9,7 @@
 // No direct access to this file
 defined('_JEXEC') or die;
 
-class OpenHrmHelperHrm
+class OpenHrmHelpersOpenhrm
 {
 	/**
 	 * @var    JObject  A cache for the available actions.
@@ -120,5 +120,14 @@ class OpenHrmHelperHrm
 		$result = $db->loadObjectList();
 
 		return $result;
+	}
+
+	public static function resize($filename, $width, $height)
+	{
+		$path     = JPath::clean($filename);
+		$JImage   = new JImage($path);
+
+		$image = $JImage->resize($width, $height, true, 1);
+		return $image->toFile($path);
 	}
 }
