@@ -155,9 +155,9 @@ class OpenHrmHelpersOpenhrm
             }
 
             $image = $JImage->resize($width, $height, true, 1);
-            if($image->toFile(DIR_IMAGE . $new_image))
+            if($image->toFile(DIR_IMAGE . '/' . $new_image))
             {
-                $ret = DIR_IMAGE . '/' . $new_image;
+	            $ret = JUri::root() . 'media/openhrm/images/' . $new_image;
             }
         }
 
