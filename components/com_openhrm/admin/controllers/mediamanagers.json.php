@@ -10,8 +10,6 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.controlleradmin');
 
-define('DIR_IMAGE', JPATH_ROOT  . '/media/openhrm/images');
-
 class OpenHrmControllerMediaManagers extends JControllerAdmin
 {
 	public function image()
@@ -122,12 +120,17 @@ class OpenHrmControllerMediaManagers extends JControllerAdmin
 						$i++;
 					}
 
-					$json[] = array(
-						'file'     => utf8_substr($file, strlen(DIR_IMAGE )),
-						'filename' => basename($file),
-						'size'     => round(utf8_substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i],
-						'thumb'    => OpenHrmHelpersOpenhrm::resize(utf8_substr($file, strlen(DIR_IMAGE)), 100, 100)
-					);
+                    $fileData = utf8_substr($file, strlen(DIR_IMAGE) + 1);
+                    $filename = basename($file);
+                    $size = round(utf8_substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i];
+                    $thumb = OpenHrmHelpersOpenhrm::resize($file, 100, 100);
+
+                    $json[] = array(
+                        'file'     => $fileData,
+                        'filename' => $filename,
+                        'size'     => $size,
+                        'thumb'    => $thumb
+                    );
 				}
 			}
 		}

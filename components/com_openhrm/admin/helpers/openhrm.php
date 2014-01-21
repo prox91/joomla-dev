@@ -124,10 +124,43 @@ class OpenHrmHelpersOpenhrm
 
 	public static function resize($filename, $width, $height)
 	{
-		$path     = JPath::clean($filename);
-		$JImage   = new JImage($path);
+        $path     = JPath::clean($filename);
+        $JImage   = new JImage($path);
 
-		$image = $JImage->resize($width, $height, true, 1);
-		return $image->toFile($path);
+        $info = pathinfo($filename);
+        $extension = $info['extension'];
+
+        $old_image = basename($filename);
+        $new_image = $info['filename'] . '-' . $width . 'x' . $height . '.' . $extension;
+        $ret = '';
+
+        if (!file_exists(DIR_IMAGE . '/' . $new_image)
+            || (filemtime(DIR_IMAGE . '/' . $old_image) > filemtime(DIR_IMAGE . '/' . $new_image)))
+        {
+            $path = '';
+
+            $directories = explode('/', dirname(str_replace('../', '', DIR_IMAGE . '/' . $new_image)));
+
+            foreach ($directories as $directory)
+            {
+                if(!empty($directory))
+                {
+                    $path = $path . '/' . $directory;
+
+                    if (!file_exists($path))
+                    {
+                        @mkdir(DIR_IMAGE . $path, 0777);
+                    }
+                }
+            }
+
+            $image = $JImage->resize($width, $height, true, 1);
+            if($image->toFile(DIR_IMAGE . $new_image))
+            {
+                $ret = DIR_IMAGE . '/' . $new_image;
+            }
+        }
+
+        return $ret;
 	}
 }
