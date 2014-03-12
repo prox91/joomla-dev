@@ -134,12 +134,12 @@ class OpenHrmHelpersOpenhrm
         $new_image = $info['filename'] . '-' . $width . 'x' . $height . '.' . $extension;
         $ret = '';
 
-        if (!file_exists(DIR_IMAGE . '/' . $new_image)
-            || (filemtime(DIR_IMAGE . '/' . $old_image) > filemtime(DIR_IMAGE . '/' . $new_image)))
+        if (!file_exists(DIR_IMAGE . '/thumbs' . $new_image)
+            || (filemtime(DIR_IMAGE . '/' . $old_image) > filemtime(DIR_IMAGE . '/thumbs' . $new_image)))
         {
             $path = '';
 
-            $directories = explode('/', dirname(str_replace('../', '', DIR_IMAGE . '/' . $new_image)));
+            $directories = explode('/', dirname(str_replace('../', '', DIR_IMAGE . '/thumbs' . $new_image)));
 
             foreach ($directories as $directory)
             {
@@ -155,11 +155,15 @@ class OpenHrmHelpersOpenhrm
             }
 
             $image = $JImage->resize($width, $height, true, 1);
-            if($image->toFile(DIR_IMAGE . '/' . $new_image))
+            if($image->toFile(DIR_IMAGE . '/thumbs' . $new_image))
             {
-	            $ret = JUri::root() . 'media/openhrm/images/' . $new_image;
+	            $ret = JUri::root() . 'media/openhrm/images/thumbs' . $new_image;
             }
         }
+		else
+		{
+			$ret = JUri::root() . 'media/openhrm/images/thumbs' . $new_image;
+		}
 
         return $ret;
 	}

@@ -123,7 +123,8 @@ $assoc		= isset($app->item_associations) ? $app->item_associations : 0;
 								<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 							</td>
 							<td>
-								<?php echo $item->lesson_no . ' - ' . $this->escape($item->name); ?>
+								<a href="<?php echo JRoute::_('index.php?option=com_englishconcept&task=usage.edit&id=' . $item->id); ?>" title="<?php echo JText::_('JACTION_EDIT'); ?>">
+									<?php echo $item->lesson_no . ' - ' . $this->escape($item->name); ?></a>
 							</td>
 							<td>
 								<?php echo $item->title; ?>
