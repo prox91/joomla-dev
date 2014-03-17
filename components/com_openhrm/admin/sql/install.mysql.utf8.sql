@@ -78,6 +78,25 @@ CREATE TABLE IF NOT EXISTS `#__openhrm_currencies` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `#__openhrm_pay_grades`;
+CREATE TABLE IF NOT EXISTS `#__openhrm_pay_grades` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `currency_id`	int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `min_salary` decimal(12,2),
+  `max_salary`	decimal(12,2),
+  `published` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `#__openhrm_employment_status`;
+CREATE TABLE IF NOT EXISTS `#__openhrm_employment_status` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) NOT NULL,
+  `published` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `#__openhrm_job_titles`;
 CREATE TABLE IF NOT EXISTS `#__openhrm_job_titles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -156,7 +175,6 @@ CREATE TABLE IF NOT EXISTS `#__openhrm_settings` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
 /* Transaction Tables*/
-
   DROP TABLE IF EXISTS `#__openhrm_employees`;
   CREATE TABLE IF NOT EXISTS `#__openhrm_employees` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
@@ -263,15 +281,15 @@ CREATE TABLE IF NOT EXISTS `#__openhrm_employees_media` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `#__openhrm_employees_language`;
-CREATE TABLE IF NOT EXISTS `#__openhrm_employees_language` (
+DROP TABLE IF EXISTS `#__openhrm_employees_languages`;
+CREATE TABLE IF NOT EXISTS `#__openhrm_employees_languages` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
   `employee_id` int(11) NOT NULL DEFAULT '0' COMMENT 'Reference to employee id',
   `language_id` int(11) NOT NULL DEFAULT '0' COMMENT 'Reference to language id',
   `reading` varchar(100) NULL COMMENT 'Elementary Proficiency,Limited Working Proficiency,Professional Working Proficiency,Full Professional Proficiency,Native or Bilingual Proficiency',
   `speaking` varchar(100) COMMENT 'Elementary Proficiency,Limited Working Proficiency,Professional Working Proficiency,Full Professional Proficiency,Native or Bilingual Proficiency',
   `writing` varchar(100) COMMENT 'Elementary Proficiency,Limited Working Proficiency,Professional Working Proficiency,Full Professional Proficiency,Native or Bilingual Proficiency',
-  `understand` varchar(100) COMMENT 'Elementary Proficiency,Limited Working Proficiency,Professional Working Proficiency,Full Professional Proficiency,Native or Bilingual Proficiency',
+  `understanding` varchar(100) COMMENT 'Elementary Proficiency,Limited Working Proficiency,Professional Working Proficiency,Full Professional Proficiency,Native or Bilingual Proficiency',
   `comment` varchar(100) DEFAULT '',
   `created_date` datetime DEFAULT '0000-00-00 00:00:00',
   `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
