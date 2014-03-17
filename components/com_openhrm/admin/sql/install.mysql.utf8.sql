@@ -1,3 +1,5 @@
+
+/* Master tables */
 DROP TABLE IF EXISTS `#__openhrm_countries`;
 CREATE TABLE IF NOT EXISTS `#__openhrm_countries` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -27,6 +29,65 @@ CREATE TABLE IF NOT EXISTS `#__openhrm_timezones` (
   `timezone_text` varchar(100) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `#__openhrm_educations`;
+CREATE TABLE IF NOT EXISTS `#__openhrm_educations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) NOT NULL,
+  `published` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `#__openhrm_certifications`;
+CREATE TABLE IF NOT EXISTS `#__openhrm_certifications` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) NOT NULL,
+  `published` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `#__openhrm_skills`;
+CREATE TABLE IF NOT EXISTS `#__openhrm_skills` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) NOT NULL,
+  `published` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `#__openhrm_nationalities`;
+CREATE TABLE IF NOT EXISTS `#__openhrm_nationalities` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) NOT NULL,
+  `published` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `#__openhrm_languages`;
+CREATE TABLE IF NOT EXISTS `#__openhrm_languages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) NOT NULL,
+  `published` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `#__openhrm_currencies`;
+CREATE TABLE IF NOT EXISTS `#__openhrm_currencies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) NOT NULL,
+  `published` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `#__openhrm_job_titles`;
+CREATE TABLE IF NOT EXISTS `#__openhrm_job_titles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar (20) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `description` text DEFAULT '',
+  `specification` text DEFAULT '',
+  `published` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `#__openhrm_organization_infos`;
 CREATE TABLE IF NOT EXISTS `#__openhrm_organization_infos` (
@@ -94,6 +155,8 @@ CREATE TABLE IF NOT EXISTS `#__openhrm_settings` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 PACK_KEYS=0;
 
+/* Transaction Tables*/
+
   DROP TABLE IF EXISTS `#__openhrm_employees`;
   CREATE TABLE IF NOT EXISTS `#__openhrm_employees` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
@@ -157,3 +220,107 @@ CREATE TABLE IF NOT EXISTS `#__openhrm_settings` (
     `emp_sin_num` varchar(100) DEFAULT '',
     PRIMARY KEY (`id`)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `#__openhrm_employees_skills`;
+CREATE TABLE IF NOT EXISTS `#__openhrm_employees_skills` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+  `employee_id` int(11) NOT NULL DEFAULT '0' COMMENT 'Reference to employee id',
+  `skill_id` int(11) NOT NULL DEFAULT '0' COMMENT 'Reference to skill id',
+  `year_of_exp` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `comment` varchar(100) DEFAULT '',
+  `created_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `modified_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `deleted_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
+  `published` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `#__openhrm_employees_media`;
+CREATE TABLE IF NOT EXISTS `#__openhrm_employees_media` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+  `employee_id` int(11) NOT NULL DEFAULT '0' COMMENT 'Reference to employee id',
+  `picture_data` MEDIUMBLOB NULL COMMENT 'Data of picture',
+  `picture_filename` varchar(100) COMMENT 'File name of picture',
+  `picture_filesize` varchar(20) COMMENT 'File size of picture',
+  `picture_filetype` varchar(20) COMMENT 'File type of picture: jpg/png',
+  `picture_width` varchar(20) COMMENT 'File width of picture',
+  `picture_height` varchar(20) COMMENT 'File height of picture',
+  `picture_thumb_width` varchar(20) COMMENT 'File thumb width of picture',
+  `picture_thumb_height` varchar(20) COMMENT 'File thumb height of picture',
+  `comment` varchar(100) DEFAULT '',
+  `created_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `modified_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `deleted_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
+  `published` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `#__openhrm_employees_language`;
+CREATE TABLE IF NOT EXISTS `#__openhrm_employees_language` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+  `employee_id` int(11) NOT NULL DEFAULT '0' COMMENT 'Reference to employee id',
+  `language_id` int(11) NOT NULL DEFAULT '0' COMMENT 'Reference to language id',
+  `reading` varchar(100) NULL COMMENT 'Elementary Proficiency,Limited Working Proficiency,Professional Working Proficiency,Full Professional Proficiency,Native or Bilingual Proficiency',
+  `speaking` varchar(100) COMMENT 'Elementary Proficiency,Limited Working Proficiency,Professional Working Proficiency,Full Professional Proficiency,Native or Bilingual Proficiency',
+  `writing` varchar(100) COMMENT 'Elementary Proficiency,Limited Working Proficiency,Professional Working Proficiency,Full Professional Proficiency,Native or Bilingual Proficiency',
+  `understand` varchar(100) COMMENT 'Elementary Proficiency,Limited Working Proficiency,Professional Working Proficiency,Full Professional Proficiency,Native or Bilingual Proficiency',
+  `comment` varchar(100) DEFAULT '',
+  `created_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `modified_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `deleted_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
+  `published` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `#__openhrm_employees_education`;
+CREATE TABLE IF NOT EXISTS `#__openhrm_employees_education` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+  `employee_id` int(11) NOT NULL DEFAULT '0' COMMENT 'Reference to employee id',
+  `education_id` int(11) NOT NULL DEFAULT '0' COMMENT 'Reference to education id',
+  `institute` varchar(400) NULL COMMENT 'Institute detail info',
+  `start_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `end_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `comment` varchar(100) DEFAULT '',
+  `created_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `modified_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `deleted_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
+  `published` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `#__openhrm_employees_certifications`;
+CREATE TABLE IF NOT EXISTS `#__openhrm_employees_certifications` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+  `employee_id` int(11) NOT NULL DEFAULT '0' COMMENT 'Reference to employee id',
+  `certifications_id` int(11) NOT NULL DEFAULT '0' COMMENT 'Reference to certification id',
+  `institute` varchar(400) NULL COMMENT 'Institute detail info',
+  `start_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `end_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `comment` varchar(100) DEFAULT '',
+  `created_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `modified_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `deleted_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
+  `published` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
