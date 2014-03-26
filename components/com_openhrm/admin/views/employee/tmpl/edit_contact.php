@@ -9,7 +9,7 @@
 // No direct access to this file
 defined('_JEXEC') or die;
 ?>
-<div class="span6" xmlns="http://www.w3.org/1999/html">
+<fieldset>
 	<div class="control-group">
 		<div class="control-label">
 			<?php echo $this->form->getLabel('street1'); ?>
@@ -58,8 +58,6 @@ defined('_JEXEC') or die;
 			<?php echo $this->form->getInput('zip_code'); ?>
 		</div>
 	</div>
-</div>
-<div class="span6">
     <div class="control-group">
         <div class="control-label">
             <?php echo $this->form->getLabel('home_phone'); ?>
@@ -100,4 +98,4 @@ defined('_JEXEC') or die;
             <?php echo $this->form->getInput('other_email'); ?>
         </div>
     </div>
-</div>
+</fieldset>

@@ -171,6 +171,11 @@ defined('_JEXEC') or die;
 					<?php echo JText::_('OPENHRM_SUBMENU_MARITALSTATE_LIST') ?>
 				</a>
 			</li>
+			<li>
+				<a href="<?php echo JRoute::_('index.php?option=com_openhrm&view=educations') ?>">
+					<?php echo JText::_('OPENHRM_SUBMENU_EDUCATION_LIST') ?>
+				</a>
+			</li>
 		</ul>
 	</li>
 </ul>

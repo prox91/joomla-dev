@@ -9,7 +9,7 @@
 // No direct access to this file
 defined('_JEXEC') or die;
 
-class OpenHrmViewState extends OpenHrmViewAdmin
+class OpenHrmViewEducation extends OpenHrmViewAdmin
 {
 	/**
 	 * Display function
@@ -51,9 +51,9 @@ class OpenHrmViewState extends OpenHrmViewAdmin
             // Add / edit
             //if ($canDo->get('core.create') || (count($user->getAuthorisedCategories('com_openhrm', 'core.create'))) > 0)
             {
-                $save = RToolbarBuilder::createSaveButton('state.apply');
-                $saveNew = RToolbarBuilder::createSaveAndNewButton('state.savenew');
-                $saveClose = RToolbarBuilder::createSaveAndCloseButton('state.save');
+                $save = RToolbarBuilder::createSaveButton('education.apply');
+                $saveNew = RToolbarBuilder::createSaveAndNewButton('education.savenew');
+                $saveClose = RToolbarBuilder::createSaveAndCloseButton('education.save');
                 $firstGroup->addButton($save)
                     ->addButton($saveNew)
                     ->addButton($saveClose);
@@ -62,7 +62,7 @@ class OpenHrmViewState extends OpenHrmViewAdmin
             // Delete / Revoke
             //if ($canDo->get('core.delete'))
             {
-                $cancel = RToolbarBuilder::createCancelButton('state.cancel');
+                $cancel = RToolbarBuilder::createCancelButton('education.cancel');
                 $secondGroup->addButton($cancel);
             }
         }
@@ -81,7 +81,7 @@ class OpenHrmViewState extends OpenHrmViewAdmin
      */
     public function getTitle()
     {
-        return JText::_('COM_OPENHRM_STATE_TITLE');
+        return JText::_('COM_OPENHRM_EDUCATION_TITLE');
     }
 
     /**
@@ -97,6 +97,6 @@ class OpenHrmViewState extends OpenHrmViewAdmin
 	public function setDocument()
 	{
 		$document = JFactory::getDocument();
-		$document->setTitle(JText::_("COM_OPENHRM_STATE_TITLE"));
+		$document->setTitle(JText::_("COM_OPENHRM_EDUCATION_TITLE"));
 	}
 }

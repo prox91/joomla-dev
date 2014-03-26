@@ -37,7 +37,7 @@ JHtml::_('behavior.formvalidation');
 		}
 	</script>
 	<form enctype="multipart/form-data"
-		action="<?php JRoute::_('index.php?option=com_openhrm&view=state'); ?>" method="post" name="itemForm" id="itemForm"
+		action="<?php JRoute::_('index.php?option=com_openhrm&view=education'); ?>" method="post" name="itemForm" id="itemForm"
 		class="form-validate form-horizontal">
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#general" data-toggle="tab"><?php echo JText::_('General')?></a></li>
@@ -48,26 +48,10 @@ JHtml::_('behavior.formvalidation');
 				<fieldset class="adminform">
 					<div class="control-group">
 						<div class="control-label">
-							<?php echo $this->form->getLabel('country_id'); ?>
-						</div>
-						<div class="controls">
-							<?php echo $this->form->getInput('country_id'); ?>
-						</div>
-					</div>
-					<div class="control-group">
-						<div class="control-label">
 							<?php echo $this->form->getLabel('name'); ?>
 						</div>
 						<div class="controls">
 							<?php echo $this->form->getInput('name'); ?>
-						</div>
-					</div>
-					<div class="control-group">
-						<div class="control-label">
-							<?php echo $this->form->getLabel('code'); ?>
-						</div>
-						<div class="controls">
-							<?php echo $this->form->getInput('code'); ?>
 						</div>
 					</div>
 					<div class="control-group">

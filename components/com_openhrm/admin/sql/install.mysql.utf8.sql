@@ -342,3 +342,21 @@ CREATE TABLE IF NOT EXISTS `#__openhrm_employees_certifications` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `#__openhrm_employees_experiences`;
+CREATE TABLE IF NOT EXISTS `#__openhrm_employees_experiences` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+  `employee_id` int(11) NOT NULL DEFAULT '0' COMMENT 'Reference to employee id',
+  `start_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `end_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `comment` varchar(100) DEFAULT '',
+  `created_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `created_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `modified_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `modified_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `deleted_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `deleted_by` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `deleted_flg` tinyint(1) unsigned DEFAULT 0,
+  `published` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

@@ -69,6 +69,10 @@ $link = JRoute::_('index.php?option=com_openhrm&tmpl=component&view=mediamanager
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#personal" data-toggle="tab"><?php echo JText::_('Basic Information')?></a></li>
                 <li class=""><a href="#contact" data-toggle="tab"><?php echo JText::_('Contact Detail')?></a></li>
+	            <li class=""><a href="#education" data-toggle="tab"><?php echo JText::_('Education')?></a></li>
+	            <li class=""><a href="#experience" data-toggle="tab"><?php echo JText::_('Experience')?></a></li>
+	            <li class=""><a href="#language" data-toggle="tab"><?php echo JText::_('Language')?></a></li>
+	            <li class=""><a href="#skill" data-toggle="tab"><?php echo JText::_('Skill')?></a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="personal">
@@ -77,6 +81,15 @@ $link = JRoute::_('index.php?option=com_openhrm&tmpl=component&view=mediamanager
                 <div class="tab-pane" id="contact">
                     <?php echo $this->loadTemplate('contact'); ?>
                 </div>
+	            <div class="tab-pane" id="education">
+		            <?php echo $this->loadTemplate('education'); ?>
+	            </div>
+	            <div class="tab-pane" id="language">
+		            <?php echo $this->loadTemplate('language'); ?>
+	            </div>
+	            <div class="tab-pane" id="skill">
+		            <?php echo $this->loadTemplate('skill'); ?>
+	            </div>
             </div>
         </div>
 		<input type="hidden" name="task" value="" />

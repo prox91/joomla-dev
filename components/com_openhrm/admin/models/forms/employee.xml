@@ -203,5 +203,80 @@
                size="30"
                labelclass="control-label"/>
 
+		<!--Qualification tab-->
+		<!--Experience work-->
+		<field name="company"
+		       type="text"
+		       class="inputbox"
+		       label="Company"
+		       description="Company has worked for before"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="job_title"
+		       type="text"
+		       class="inputbox"
+		       label="Job title"
+		       description="Job title"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="start_date"
+		       type="calendar"
+		       class="inputbox"
+		       label="From"
+		       description="From date"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="end_date"
+		       type="calendar"
+		       class="inputbox"
+		       label="To"
+		       description="To date"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<!-- Education tab -->
+		<field name="education_id"
+		       type="educations"
+		       class="inputbox"
+		       label="Level"
+		       description="Education level"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="institute"
+		       type="text"
+		       class="inputbox"
+		       label="Institute"
+		       description="Institute"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="e_start_date"
+		       type="calendar"
+		       class="inputbox"
+		       label="From"
+		       description="From date"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="e_end_date"
+		       type="calendar"
+		       class="inputbox"
+		       label="To"
+		       description="To Date"
+		       size="30"
+		       labelclass="control-label"/>
+
+		<field name="comment"
+		       type="texterea"
+		       class="inputbox"
+		       label="Comment"
+		       description="Comment"
+		       size="30"
+		       labelclass="control-label"/>
+
 	</fieldset>
 </form>

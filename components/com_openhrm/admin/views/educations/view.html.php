@@ -9,19 +9,20 @@
 // No direct access to this file
 defined('_JEXEC') or die;
 
-class OpenHrmViewState extends OpenHrmViewAdmin
+class OpenHrmViewEducations extends OpenHrmViewAdmin
 {
 	/**
 	 * Display function
 	 */
 	public function display($tpl = null)
 	{
-		$this->state	= $this->get('State');
-		$this->item		= $this->get('Item');
-		$this->form		= $this->get('Form');
+		// Get data from the model
+        $this->state = $this->get('State');
+		$this->items = $this->get('Items');
+		$this->pagination = $this->get('Pagination');
 
-		if (count($errors = $this->get('Errors')))
-		{
+		// Check for errors.
+		if (count($errors = $this->get('Errors'))) {
 			JError::raiseError(500, implode("\n", $errors));
 			return false;
 		}
@@ -45,31 +46,36 @@ class OpenHrmViewState extends OpenHrmViewAdmin
 
         $firstGroup = new RToolbarButtonGroup;
         $secondGroup = new RToolbarButtonGroup;
+        $thirdGroup = new RToolbarButtonGroup;
 
         if ($user->authorise('core.admin', 'com_openhrm.panel'))
         {
             // Add / edit
             //if ($canDo->get('core.create') || (count($user->getAuthorisedCategories('com_openhrm', 'core.create'))) > 0)
             {
-                $save = RToolbarBuilder::createSaveButton('state.apply');
-                $saveNew = RToolbarBuilder::createSaveAndNewButton('state.savenew');
-                $saveClose = RToolbarBuilder::createSaveAndCloseButton('state.save');
-                $firstGroup->addButton($save)
-                    ->addButton($saveNew)
-                    ->addButton($saveClose);
+                $new = RToolbarBuilder::createNewButton('education.add');
+                $edit = RToolbarBuilder::createEditButton('education.edit');
+                $firstGroup->addButton($new)
+                    ->addButton($edit);
             }
+
+            $publish =  RToolbarBuilder::createPublishButton('educations.published');
+            $unpublish =  RToolbarBuilder::createPublishButton('educations.unpublished');
+            $secondGroup->addButton($publish)
+                ->addButton($unpublish);
 
             // Delete / Revoke
             //if ($canDo->get('core.delete'))
             {
-                $cancel = RToolbarBuilder::createCancelButton('state.cancel');
-                $secondGroup->addButton($cancel);
+                $delete = RToolbarBuilder::createDeleteButton('educations.delete');
+                $thirdGroup->addButton($delete);
             }
         }
 
         $toolbar = new RToolbar;
         $toolbar->addGroup($firstGroup)
-            ->addGroup($secondGroup);
+            ->addGroup($secondGroup)
+            ->addGroup($thirdGroup);
 
         return $toolbar;
     }
@@ -81,7 +87,7 @@ class OpenHrmViewState extends OpenHrmViewAdmin
      */
     public function getTitle()
     {
-        return JText::_('COM_OPENHRM_STATE_TITLE');
+        return JText::_('COM_OPENHRM_EDUCATION_TITLE');
     }
 
     /**
@@ -91,12 +97,12 @@ class OpenHrmViewState extends OpenHrmViewAdmin
      */
     public function getTitleIcon()
     {
-        return 'icon-heart';
+        return 'icon-bookmark';
     }
 
 	public function setDocument()
 	{
 		$document = JFactory::getDocument();
-		$document->setTitle(JText::_("COM_OPENHRM_STATE_TITLE"));
+		$document->setTitle(JText::_("COM_OPENHRM_EDUCATION_TITLE"));
 	}
 }

@@ -13,100 +13,90 @@ defined('_JEXEC') or die;
 	<div class="control-row">
 	    <div class="control-group">
 	        <div class="control-label">
-	            <?php echo $this->form->getLabel('first_name'); ?>
+	            <?php echo $this->form->getLabel('company'); ?>
 	        </div>
 	        <div class="controls">
-	            <?php echo $this->form->getInput('first_name'); ?>
+	            <?php echo $this->form->getInput('company'); ?>
 	        </div>
 	    </div>
 	</div>
 	<div class="control-row">
 	    <div class="control-group">
 	        <div class="control-label">
-	            <?php echo $this->form->getLabel('middle_name'); ?>
+	            <?php echo $this->form->getLabel('job_title'); ?>
 	        </div>
 	        <div class="controls">
-	            <?php echo $this->form->getInput('middle_name'); ?>
+	            <?php echo $this->form->getInput('job_title'); ?>
 	        </div>
 	    </div>
 	</div>
 	<div class="control-row">
 	    <div class="control-group">
 	        <div class="control-label">
-	            <?php echo $this->form->getLabel('last_name'); ?>
+	            <?php echo $this->form->getLabel('start_date'); ?>
 	        </div>
 	        <div class="controls">
-	            <?php echo $this->form->getInput('last_name'); ?>
+	            <?php echo $this->form->getInput('start_date'); ?>
 	        </div>
 	    </div>
 	<div>
 	<div class="control-row">
 		<div class="control-group">
 			<div class="control-label">
-				<?php echo $this->form->getLabel('employee_code'); ?>
+				<?php echo $this->form->getLabel('end_date'); ?>
 			</div>
 			<div class="controls">
-				<?php echo $this->form->getInput('employee_code'); ?>
+				<?php echo $this->form->getInput('end_date'); ?>
 			</div>
 		</div>
 	</div>
     <div class="control-row">
         <div class="control-group">
             <div class="control-label">
-                <?php echo $this->form->getLabel('driver_license_num'); ?>
+                <?php echo $this->form->getLabel('education_id'); ?>
             </div>
             <div class="controls">
-                <?php echo $this->form->getInput('driver_license_num'); ?>
+                <?php echo $this->form->getInput('education_id'); ?>
             </div>
         </div>
     </div>
 	<div class="control-row">
 		<div class="control-group">
 			<div class="control-label">
-				<?php echo $this->form->getLabel('driver_license_exp_date'); ?>
+				<?php echo $this->form->getLabel('institute'); ?>
 			</div>
 			<div class="controls">
-				<?php echo $this->form->getInput('driver_license_exp_date'); ?>
+				<?php echo $this->form->getInput('institute'); ?>
 			</div>
 		</div>
 	</div>
 	<div class="control-row">
 		<div class="control-group">
 			<div class="control-label">
-				<?php echo $this->form->getLabel('gender'); ?>
+				<?php echo $this->form->getLabel('e_start_date'); ?>
 			</div>
 			<div class="controls">
-				<?php echo $this->form->getInput('gender'); ?>
+				<?php echo $this->form->getInput('e_start_date'); ?>
 			</div>
 		</div>
 	</div>
 	<div class="control-row">
 		<div class="control-group">
 			<div class="control-label">
-				<?php echo $this->form->getLabel('marital_state_id'); ?>
+				<?php echo $this->form->getLabel('e_end_date'); ?>
 			</div>
 			<div class="controls">
-				<?php echo $this->form->getInput('marital_state_id'); ?>
+				<?php echo $this->form->getInput('e_end_date'); ?>
 			</div>
 		</div>
 	</div>
 	<div class="control-row">
 		<div class="control-group">
 			<div class="control-label">
-				<?php echo $this->form->getLabel('picture'); ?>
+				<?php echo $this->form->getLabel('comment'); ?>
 			</div>
 			<div class="controls">
-				<?php echo $this->form->getInput('picture'); ?>
-			</div>
-		</div>
-	</div>
-	<div class="control-row">
-		<div class="control-group">
-			<div class="control-label">
-				<?php echo $this->form->getLabel('birthday'); ?>
-			</div>
-			<div class="controls">
-				<?php echo $this->form->getInput('birthday'); ?>
+				<?php echo $this->form->getInput('comment'); ?>
 			</div>
 		</div>
 	</div>

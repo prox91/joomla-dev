@@ -106,12 +106,25 @@ if( isset($data['active']) )
 		<?php if ($active === 'maritalstates') : ?>
 			<a class="active" href="<?php echo JRoute::_('index.php?option=com_openhrm&view=maritalstates') ?>">
 				<i class="icon-heart"></i>
-				<?php echo JText::_('OPENHRM_SUBMENU_SETTING_LIST') ?>
+				<?php echo JText::_('OPENHRM_SUBMENU_MARITALSTATE_LIST') ?>
 			</a>
 		<?php else : ?>
 			<a href="<?php echo JRoute::_('index.php?option=com_openhrm&view=maritalstates') ?>">
 				<i class="icon-heart"></i>
 				<?php echo JText::_('OPENHRM_SUBMENU_MARITALSTATE_LIST') ?>
+			</a>
+		<?php endif; ?>
+	</li>
+	<li>
+		<?php if ($active === 'educations') : ?>
+			<a class="active" href="<?php echo JRoute::_('index.php?option=com_openhrm&view=educations') ?>">
+				<i class="icon-heart"></i>
+				<?php echo JText::_('OPENHRM_SUBMENU_EDUCATION_LIST') ?>
+			</a>
+		<?php else : ?>
+			<a href="<?php echo JRoute::_('index.php?option=com_openhrm&view=educations') ?>">
+				<i class="icon-heart"></i>
+				<?php echo JText::_('OPENHRM_SUBMENU_EDUCATION_LIST') ?>
 			</a>
 		<?php endif; ?>
 	</li>
