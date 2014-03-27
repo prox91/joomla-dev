@@ -12,38 +12,7 @@ JHtml::_('bootstrap.modal', 'collapseModal');
 
 $link = JRoute::_('index.php?option=com_openhrm&tmpl=component&view=mediamanagers&layout=modal&' . JSession::getFormToken() . '=1');
 ?>
-<script type="text/javascript">
-	Joomla.orderTable = function () {
-		table = document.getElementById("sortTable");
-		direction = document.getElementById("directionTable");
-		order = table.options[table.selectedIndex].value;
-		if (order != '<?php //echo $listOrder; ?>') {
-			dirn = 'asc';
-		}
-		else {
-			dirn = direction.options[direction.selectedIndex].value;
-		}
-		Joomla.tableOrdering(order, dirn, '');
-	}
-</script>
 <div class="main-container">
-	<script type="text/javascript">
-		Joomla.submitbutton = function (task) {
-			if (task == 'employee.cancel' || document.formvalidator.isValid(document.id('itemForm'))) {
-				<?php //echo $this->form->getField('book')->save(); ?>
-				Joomla.submitform(task, document.getElementById('itemForm'));
-			}
-			else {
-				alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
-			}
-		};
-
-		jQuery('a#changePictureId').on('click', function(e) {
-			e.preventDefault();
-			var url = jQuery(this).attr('href');
-			jQuery("div.modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" src="'+url+'"></iframe>');
-		});
-	</script>
 	<form enctype="multipart/form-data"
 		action="<?php JRoute::_('index.php?option=com_openhrm&view=employee'); ?>" method="post" name="itemForm" id="itemForm"
 		class="form-validate form-horizontal">
@@ -79,21 +48,62 @@ $link = JRoute::_('index.php?option=com_openhrm&tmpl=component&view=mediamanager
                     <?php echo $this->loadTemplate('personal'); ?>
                 </div>
                 <div class="tab-pane" id="contact">
-                    <?php echo $this->loadTemplate('contact'); ?>
+                    <?php //echo $this->loadTemplate('contact'); ?>
                 </div>
 	            <div class="tab-pane" id="education">
-		            <?php echo $this->loadTemplate('education'); ?>
+		            <?php //echo $this->loadTemplate('education'); ?>
 	            </div>
 	            <div class="tab-pane" id="language">
-		            <?php echo $this->loadTemplate('language'); ?>
+		            <?php //echo $this->loadTemplate('language'); ?>
 	            </div>
 	            <div class="tab-pane" id="skill">
-		            <?php echo $this->loadTemplate('skill'); ?>
+		            <?php //echo $this->loadTemplate('skill'); ?>
 	            </div>
             </div>
         </div>
 		<input type="hidden" name="task" value="" />
+		<input type="hidden" name="layout" value="contact" />
 		<input type="hidden" name="jform[id]" value="<?php if (isset($this->item->id))	{	echo $this->item->id;	} ?>" />
 		<?php echo JHtml::_('form.token'); ?>
 	</form>
 </div>
+<script type="text/javascript">
+	Joomla.orderTable = function () {
+		table = document.getElementById("sortTable");
+		direction = document.getElementById("directionTable");
+		order = table.options[table.selectedIndex].value;
+		if (order != '<?php //echo $listOrder; ?>') {
+			dirn = 'asc';
+		}
+		else {
+			dirn = direction.options[direction.selectedIndex].value;
+		}
+		Joomla.tableOrdering(order, dirn, '');
+	}
+
+	Joomla.submitbutton = function (task) {
+		if (task == 'employee.cancel' || document.formvalidator.isValid(document.id('itemForm'))) {
+			<?php //echo $this->form->getField('book')->save(); ?>
+			Joomla.submitform(task, document.getElementById('itemForm'));
+		}
+		else {
+			alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
+		}
+	};
+
+	jQuery('a#changePictureId').on('click', function(e) {
+		e.preventDefault();
+		var url = jQuery(this).attr('href');
+		jQuery("div.modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" src="'+url+'"></iframe>');
+	});
+
+	var tabName = "";
+	jQuery('.nav-tabs a').live('click', function(){
+		var href = jQuery(this).attr('href');
+		if(tabName != href){
+			tabName = href;
+			jQuery('#itemForm').submit();
+		} else {
+		}
+	});
+</script>
